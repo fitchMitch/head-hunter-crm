@@ -1,0 +1,5 @@
+<h1>Activation du compte</h1>
+
+<p><%= @user.name %>,</p>
+<p>Bienvenue, bienvenue dans ma demeure. Essuie-toi les pieds pour aller plus loin, tu pourrais tout salir. Clique moi donc là :
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %></p>

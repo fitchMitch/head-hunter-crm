@@ -2,7 +2,8 @@ require 'test_helper'
 
 class ApplicationHelperTest < ActionView::TestCase
   test "full title helper" do
-    assert_equal full_title,         "Ruby on Rails Tutorial Sample App"
-    assert_equal full_title("Help"), "Help | Ruby on Rails Tutorial Sample App"
+    siteToBuild = "JuinJuillet"
+    assert_equal full_title,      siteToBuild
+    assert_equal full_title("Help"), "Help | "  +  siteToBuild
   end
 end
