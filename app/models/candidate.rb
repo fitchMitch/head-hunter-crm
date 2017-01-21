@@ -1,2 +1,3 @@
 class Candidate < Person
+
 end
