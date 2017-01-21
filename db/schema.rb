@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104230229) do
+ActiveRecord::Schema.define(version: 20170121144857) do
+
+  create_table "people", force: :cascade do |t|
+    t.string   "type"
+    t.string   "title"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "cell_phone_number"
+    t.date     "birthdate"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "whished_job_title"
+    t.integer  "experience_years"
+    t.float    "whished_salary"
+    t.index ["email"], name: "index_people_on_email"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

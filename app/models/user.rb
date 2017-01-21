@@ -2,13 +2,19 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  name            :string
-#  email           :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  password_digest :string
-#  remember_digest :string
+#  id                :integer          not null, primary key
+#  name              :string
+#  email             :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  password_digest   :string
+#  remember_digest   :string
+#  admin             :boolean          default(FALSE)
+#  activation_digest :string
+#  activated         :boolean          default(FALSE)
+#  activated_at      :datetime
+#  reset_digest      :string
+#  reset_sent_at     :datetime
 #
 
 class User < ApplicationRecord
@@ -16,6 +22,8 @@ class User < ApplicationRecord
 
   before_save   :downcase_email
   before_create :create_activation_digest
+  #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
+  #:time, :date, :binary, :boolean, :references
 
 
   validates :name,  presence: true, length: { maximum: 50 }
