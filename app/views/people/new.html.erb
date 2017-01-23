@@ -1,0 +1,10 @@
+<% provide(:title, 'Ajouter un contact') %>
+<% provide(:button_text, 'Ajouter ce contact') %>
+<% if logged_in? && current_user.admin? %>
+  <h1>Ajouter un contact</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= render 'form' %>
+    </div>
+  </div>
+<% end %>

@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ body{
+   background-color: #d9cdd9;
+ }
+ .navbar-inverse{
+   background-color: #2f0c2f;
+ }

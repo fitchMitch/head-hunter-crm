@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 20170121144857) do
 
   create_table "people", force: :cascade do |t|
-    t.string   "type"
     t.string   "title"
     t.string   "firstname"
     t.string   "lastname"
@@ -23,9 +22,8 @@ ActiveRecord::Schema.define(version: 20170121144857) do
     t.date     "birthdate"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "whished_job_title"
-    t.integer  "experience_years"
-    t.float    "whished_salary"
+    t.boolean  "is_jj_hired"
+    t.boolean  "is_client"
     t.index ["email"], name: "index_people_on_email"
   end
 
