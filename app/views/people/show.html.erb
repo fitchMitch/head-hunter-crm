@@ -1,0 +1,12 @@
+<% provide(:title, @person.firstname) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+
+         <%= link_to @person.full_name, edit_person_path(@person) %>
+      </h1>
+      et tous ses attributs (<%= @person.phone_number %> | <%= @person.email %> ) etc...
+    </section>
+  </aside>
+</div>

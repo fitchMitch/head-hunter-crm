@@ -1,20 +1,18 @@
 <%= simple_form_for(@person) do |f| %>
   <div class="row">
     <div class="col-sm-6">
-      <%= f.input :title, label: "Civilité", collection: titleList ,default:titleList.first %>
-      <%= f.input :firstname, label: "Prénom" %>
-      <%= f.input :lastname, label: "Nom" %>
-      <%= f.input :email, label: "Email" %>
+      <%= f.input :title, label: "Civilité", collection: titleList ,default:titleList.first ,input_html: {class:" input-sm"}%>
+      <%= f.input :firstname, label: "Prénom",input_html:{class:" input-sm" } %>
+      <%= f.input :lastname, label: "Nom",input_html:{class:" input-sm" } %>
+      <%= f.input :email, label: "Email" ,input_html: {class:" input-sm"}%>
     </div>
-    <div class="col-sm-6">
-      <%= f.input :phone_number, label: "Numéro de téléphone" ,input_html: { maxlength: 16 } %>
-      <%= f.input :cell_phone_number , label:"Numéro de mobile",input_html: { maxlength: 16 } %>
-      <%= f.input :birthdate  , label:"Né le ",as: :date, start_year: Date.today.year - 75,
-                                  end_year: Date.today.year - 14,
-                                  order: [:day,:month, :year] %>
-      <%= f.input :is_jj_hired  , as: :boolean, boolean_style: :nested, label:"Client de JuinJuillet" %>
-      <%= f.input :is_jj_hired  , inline_label:"A été placé par JuinJuillet",class:"shiftMeLeft" %>
-
+    <div class="col-sm-6 ">
+      <%= f.input :phone_number, label: "Numéro de téléphone" ,input_html:{ maxlength: 16,class:" input-sm" } %>
+      <%= f.input :cell_phone_number , label:"Numéro de mobile",input_html:{ maxlength: 16,class:" input-sm" } %>
+      <%= f.input :birthdate  , label:"Né le ",as: :date, start_year: Date.today.year - 75, end_year: Date.today.year - 14, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
+      <%= f.input :is_jj_hired,  inline_label:"Placé par JuinJuillet",  input_html: {class:" shiftMeLeft input-sm"} %>
+      <%= f.input :is_client,  inline_label:"Client de JuinJuillet",  input_html: {class:" shiftMeLeft input-sm"} %>
+      <%= f.input :note, label: "Commentaire" %>
     </div>
   </div>
 
