@@ -14,8 +14,11 @@
 #  updated_at        :datetime         not null
 #  is_jj_hired       :boolean
 #  is_client         :boolean
+#  note              :text
 #
+
 class Person < ApplicationRecord
+  has_one :job_history
   before_save   :downcase_email
   before_save   :upcase_name
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
@@ -28,7 +31,7 @@ class Person < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :phone_number,  length: { minimum:10,maximum: 16 }
   validates :cell_phone_number,  length: { minimum:10,maximum: 16 }
-  
+
   def full_name
     firstname+" "+lastname.upcase
   end

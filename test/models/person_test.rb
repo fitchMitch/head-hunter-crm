@@ -14,6 +14,7 @@
 #  updated_at        :datetime         not null
 #  is_jj_hired       :boolean
 #  is_client         :boolean
+#  note              :text
 #
 
 require 'test_helper'
