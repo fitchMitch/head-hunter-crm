@@ -1,7 +1,7 @@
-<% provide(:title, 'Editer ce contact') %>
+<% provide(:title, 'Editer cette société') %>
 <% provide(:button_text, 'Sauvegarder') %>
-<% if logged_in? && current_user.admin? %>
-  <h1>Editer un contact</h1>
+<% if logged_in? %>
+  <h1>Editer une société</h1>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <%= render 'form' %>
