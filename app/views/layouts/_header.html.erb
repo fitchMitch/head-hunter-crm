@@ -27,7 +27,9 @@
                         <li><%= link_to "Paramétrage", edit_user_path(current_user) %></li>
                         <% if current_user.admin? %>
                         <li>
-                            <%= link_to "Créer un compte", signup_path %></li><% end %>
+                            <%= link_to "Créer un compte", signup_path %>
+                          </li>
+                        <% end %>
                         <li class="divider"></li>
                         <li>
                             <%= link_to "Déconnexion", logout_path, method: "delete" %>
