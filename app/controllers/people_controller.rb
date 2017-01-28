@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
     @people = Person.paginate(page: params[:page])
     #TODO : c'est un foreach ici pour ajouter à people un attribut username avec User.find(pers.user_id)
     @people.each do |pers|
-      
+
     end
   end
 
@@ -19,7 +19,9 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    @user = User.find(@person.user_id)
+    #@user = User.find(@person.user_id)
+    @comp_names = Company.all
+    @class_client = @person.is_client ? "client" : "candidate"
   end
 
   def create

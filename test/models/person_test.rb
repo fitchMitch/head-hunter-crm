@@ -15,6 +15,7 @@
 #  is_jj_hired       :boolean
 #  is_client         :boolean
 #  note              :text
+#  user_id           :integer
 #
 
 require 'test_helper'

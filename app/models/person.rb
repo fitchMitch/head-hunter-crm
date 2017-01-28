@@ -15,6 +15,7 @@
 #  is_jj_hired       :boolean
 #  is_client         :boolean
 #  note              :text
+#  user_id           :integer
 #
 
 class Person < ApplicationRecord
@@ -34,7 +35,7 @@ class Person < ApplicationRecord
   validates :cell_phone_number,  length: { minimum:10,maximum: 16 }
 
   def full_name
-    firstname +" "+ lastname.upcase
+    title + "  " + firstname + " " + lastname.upcase
   end
 
   # ------------------------
