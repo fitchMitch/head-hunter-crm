@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126205036) do
+ActiveRecord::Schema.define(version: 20170126215610) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "company_name"
@@ -52,7 +52,9 @@ ActiveRecord::Schema.define(version: 20170126205036) do
     t.boolean  "is_jj_hired"
     t.boolean  "is_client"
     t.text     "note"
+    t.integer  "user_id"
     t.index ["email"], name: "index_people_on_email"
+    t.index ["user_id"], name: "index_people_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

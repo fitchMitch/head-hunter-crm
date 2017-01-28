@@ -7,6 +7,10 @@ class PeopleController < ApplicationController
 
   def index
     @people = Person.paginate(page: params[:page])
+    #TODO : c'est un foreach ici pour ajouter à people un attribut username avec User.find(pers.user_id)
+    @people.each do |pers|
+      
+    end
   end
 
   def edit
@@ -15,10 +19,12 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
+    @user = User.find(@person.user_id)
   end
 
   def create
-    @person = Person.new(person_params)    # Not the final implementation!
+    @person = Person.new(person_params)
+    @person.user_id = current_user.id
     if @person.save
       flash[:info] = "Contact sauvegardé."
       render 'show'
@@ -28,6 +34,7 @@ class PeopleController < ApplicationController
   end
 
   def update
+    @person.user_id = current_user.id
     if @person.update_attributes(person_params)
       flash[:success] = "Contact mis à jour"
       redirect_to @person

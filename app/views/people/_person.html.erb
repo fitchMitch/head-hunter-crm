@@ -1,5 +1,7 @@
 <li>
-  <%= person.title %> <%= person.firstname %> <%= link_to person.lastname, person %> né le <%= person.birthdate %> enregistré le <%= person.created_at %>
+  <%= person.title %> <%= person.firstname %>
+  <%= link_to person.lastname, person %> né le <%= person.birthdate %>
+  enregistré le <%= person.created_at.to_formatted_s(:short)  %> par <%=person.user.name%>
 
   <% if logged_in? %>
     | <%= link_to "delete", person, method: :delete, data: { confirm: "C'est sûr ?" } %>

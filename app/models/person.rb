@@ -19,6 +19,7 @@
 
 class Person < ApplicationRecord
   has_one :job_history
+  belongs_to :user
   before_save   :downcase_email
   before_save   :upcase_name
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
@@ -33,7 +34,7 @@ class Person < ApplicationRecord
   validates :cell_phone_number,  length: { minimum:10,maximum: 16 }
 
   def full_name
-    firstname+" "+lastname.upcase
+    firstname +" "+ lastname.upcase
   end
 
   # ------------------------
