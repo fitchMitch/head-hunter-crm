@@ -13,6 +13,7 @@
                     <ul class="dropdown-menu">
                         <li><%= link_to "Liste des contacts", people_path %></li>
                         <li><%= link_to "Créer un contact", new_person_path %></li>
+                        <li><%= link_to "Chercher un contact", "/people/search" %></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -29,7 +30,7 @@
                 <li><%= link_to "Utilisateurs", users_path %></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Compte
+                        <span class="glyphicon glyphicon-user"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">

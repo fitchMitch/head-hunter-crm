@@ -14,5 +14,18 @@
 #
 
 class Job < ApplicationRecord
-  has_one  :job_history
+  belongs_to  :job_history
+
+  #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
+  #:time, :date, :binary, :boolean, :references
+
+
+  validates :job_title , presence: true, length: { maximum: 50 }
+  validates :salary , length: { maximum: 50 } # TODO : numeric only !
+  validates :start_date,  presence: true
+
+  # ------------------------
+  # --    PRIVATE        ---
+  # ------------------------
+  private
 end

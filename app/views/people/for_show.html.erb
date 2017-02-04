@@ -1,0 +1,16 @@
+<%= simple_form_for(@job) do |f| %>
+<div class="row">
+    <div class="col-sm-12">
+        <%= f.input :job_title, label: "Poste", input_html: {class:" input-sm"}%>
+        <%= f.input :salary, label: "Salaire",input_html:{class:" input-sm" } %>
+        <%= f.input :start_date, label: "Début d'activité",input_html:{class:" input-sm" } %>
+        <%= f.input :end_date, label: "fin d'activité" ,input_html: {class:" input-sm"}%>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 "></div>
+    <div class="col-sm-6 ">
+        <%= f.button :submit,"Ajouter cette expérience", class: "btn btn-primary" %>
+    </div>
+</div>
+<% end %>

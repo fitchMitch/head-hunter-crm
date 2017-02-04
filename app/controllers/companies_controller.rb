@@ -13,6 +13,10 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 
+  def search
+    @search_companies = Company.find(params[:q]) #.paginate(page: params[:page])
+  end
+
   def show
     @company = Company.find(params[:id])
   end

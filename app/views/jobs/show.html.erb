@@ -10,40 +10,35 @@
                 <strong>Fixe</strong>
             </div>
             <div class="col-xs-6">
-                <%= @person.phone_number %>
-            </div>
+                <%= @person.phone_number %></div>
         </div>
         <div class="row">
             <div class="col-xs-5">
                 <strong>Mobile</strong>
             </div>
             <div class="col-xs-6">
-                <%= @person.cell_phone_number %>
-            </div>
+                <%= @person.cell_phone_number %></div>
         </div>
         <div class="row">
             <div class="col-xs-5">
                 <strong>Email</strong>
             </div>
             <div class="col-xs-6">
-                <%= @person.email %>
-            </div>
+                <%= @person.email %></div>
         </div>
         <div class="row">
             <div class="col-xs-5">
                 <strong>Date de naissance</strong>
             </div>
             <div class="col-xs-6">
-                <%= @person.birthdate %>
-            </div>
+                <%= @person.birthdate %></div>
         </div>
         <div class="row">
             <div class="col-xs-5">
                 <strong>Age</strong>
             </div>
             <div class="col-xs-6">
-                <%=time_ago_in_words(@person.birthdate) %>
-            </div>
+                <%=time_ago_in_words(@person.birthdate) %></div>
         </div>
     </div>
     <div class="col-md-8">
@@ -56,9 +51,24 @@
             </div>
             <div class="col-md-6">
                 <p>Ajouter une expérience</p>
-
+                <%= simple_form_for(@job) do |f| %>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <%= f.input :job_title, label: "Poste", input_html: {class:" input-sm"}%>
+                        <%= f.input :salary, label: "Salaire",input_html:{class:" input-sm" } %>
+                        <%= f.input :start_date, label: "Début d'activité",input_html:{class:" input-sm" } %>
+                        <%= f.input :end_date, label: "fin d'activité" ,input_html: {class:" input-sm"}%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 "></div>
+                    <div class="col-sm-6 ">
+                        <%= f.button :submit,"Ajouter cette expérience", class: "btn btn-primary" %>
+                    </div>
+                </div>
+                <% end %>
                 <%= link_to new_job_path do %>
-                <button class="btn btn-primary">Ajouter une expérience</button>
+                <button class="btn btn-success">Ajouter une expérience</button>
                 <% end %>
             </div>
         </div>

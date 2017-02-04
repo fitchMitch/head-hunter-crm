@@ -1,0 +1,18 @@
+    <% provide(:title, 'Recherche de contacts') %>
+
+<%= form_tag("/people/searchByName", method: "get") do %>
+  <%= label_tag(:q, " ?") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Rechercher") %>
+<% end %>
+<% if(@search_results.any?) %>
+  <h1 class="center">Liste des résulats de la recherche</h1>
+
+  <ul class="contacts">
+    <%= render @search_results %>
+  </ul>
+
+  <%= will_paginate %>
+<% else %>
+  <p>Aucun résultat trouvé</p>
+<% end %>
