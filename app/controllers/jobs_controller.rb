@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update,:destroy]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :get_job,   only: [:edit, :update]
 
   def new
     @job = Job.new
@@ -17,17 +17,19 @@ class JobsController < ApplicationController
   def show
     @job = Job.find(params[:id])
     #@user = User.find(@job.user_id)
-    @comp_names = Company.all
   end
 
   def create
-    @job = Job.new(job_params)
+    @person = Person.find(params[:person_id])
+    @job = @person.jobs.build(job_params)
     if @job.save
-      flash[:info] = "Emploi sauvegardé."
-      render 'show'
+      @company = Company.find(@job.company_id)
+      @job.company = @company unless @company.nil?
+      flash[:info] = "Emploi sauvegardé pour " + @job.person.firstname
     else
-      render 'new'
+      flash[:alert] = "Cette expérience n'a pas pu être ajoutée"
     end
+    redirect_to person_path(@person.id) 
   end
 
   def update
@@ -47,7 +49,7 @@ class JobsController < ApplicationController
   end
   private
     def job_params
-      params.require(:job).permit(:job_title, :salary, :start_date, :end_date,:jj_job,:id_job_history,:id_company)
+      params.require(:job).permit(:job_title, :salary, :start_date, :end_date,:jj_job,:company_id)
     end
     def logged_in_user
       unless logged_in?
@@ -56,8 +58,7 @@ class JobsController < ApplicationController
         redirect_to login_url
       end
     end
-    def correct_user
-      #flash[:danger] = "Logguez vous d'abord"
+    def get_job
       @job = Job.find(params[:id])
     end
 end

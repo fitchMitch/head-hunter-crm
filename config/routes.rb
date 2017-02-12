@@ -20,7 +20,12 @@ Rails.application.routes.draw do
   #get    '/people/searchByName',   to: 'people#searchByName'
 
   resources :account_activations, only: [:edit]
-  resources :users , :people , :companies , :jobs
+  resources :people do
+    resources :jobs
+  end
+  resources :users
+  resources :companies
+  resources :jobs
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
 

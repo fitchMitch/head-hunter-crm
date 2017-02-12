@@ -1,65 +1,70 @@
 <% provide(:title, @person.firstname) %>
+<% provide(:action, @action) %>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 ">
         <h1>
             <%= link_to @person.full_name, edit_person_path(@person),class:@class_client %>
         </h1>
         <hr>
-        <div class="row">
-            <div class="col-xs-5">
-                <strong>Fixe</strong>
+        <div class="frameMe">
+            <div class="row">
+                <div class="col-xs-5">
+                    <strong>Fixe</strong>
+                </div>
+                <div class="col-xs-6">
+                    <%= @person.phone_number %>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <%= @person.phone_number %>
+            <div class="row">
+                <div class="col-xs-5">
+                    <strong>Mobile</strong>
+                </div>
+                <div class="col-xs-6">
+                    <%= @person.cell_phone_number %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5">
+                    <strong>Email</strong>
+                </div>
+                <div class="col-xs-6">
+                    <%= @person.email %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5">
+                    <strong>Date de naissance</strong>
+                </div>
+                <div class="col-xs-6">
+                    <%= @person.birthdate %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5">
+                    <strong>Age</strong>
+                </div>
+                <div class="col-xs-6">
+                    <%=time_ago_in_words(@person.birthdate) %>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-5">
-                <strong>Mobile</strong>
-            </div>
-            <div class="col-xs-6">
-                <%= @person.cell_phone_number %>
+            <div class="col-xs-12">
+                <h1>Expériences (sociétés)</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-5">
-                <strong>Email</strong>
-            </div>
-            <div class="col-xs-6">
-                <%= @person.email %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-5">
-                <strong>Date de naissance</strong>
-            </div>
-            <div class="col-xs-6">
-                <%= @person.birthdate %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-5">
-                <strong>Age</strong>
-            </div>
-            <div class="col-xs-6">
-                <%=time_ago_in_words(@person.birthdate) %>
+            <div class="col-xs-12">
+                <%= render @jobs || 'shared/empty_list'%>
             </div>
         </div>
     </div>
-    <div class="col-md-8">
-        <h1>Historique</h1>
+    <div class="col-md-6">
+        <h1>Ajouter une expérience</h1>
         <hr>
         <div class="row">
-            <div class="col-md-6">
-                <p>Sociétés (fake)</p>
-                <%= render(partial: "comp_name", collection: @comp_names) || "Créez la première société !" %>
-            </div>
-            <div class="col-md-6">
-                <p>Ajouter une expérience</p>
-
-                <%= link_to new_job_path do %>
-                <button class="btn btn-primary">Ajouter une expérience</button>
-                <% end %>
+            <div class="col-md-11 col-md-offset-1">
+                <%= render 'jobs/job_form' %>
             </div>
         </div>
     </div>

@@ -11,10 +11,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  company_id :integer
+#  person_id  :integer
 #
 
 class Job < ApplicationRecord
-  belongs_to  :job_history
+  belongs_to  :person, dependent: :destroy
+  belongs_to  :company
 
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
   #:time, :date, :binary, :boolean, :references

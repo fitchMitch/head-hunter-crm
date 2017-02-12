@@ -7,25 +7,12 @@ class PeopleController < ApplicationController
 
   def index
     @people = Person.paginate(page: params[:page])
-    #TODO : c'est un foreach ici pour ajouter à people un attribut username avec User.find(pers.user_id)
-
   end
 
   def search
-    @search_results = params[:q].nil? ? [] : Person.where(" lastname LIKE  ? or firstname LIKE  ? ", perc(params[:q]), perc(params[:q])).paginate(page: params[:page])
-    #@search_results = Person.where("lastname LIKE %?% or firstname LIKE %?%", params[:q], params[:q])
+    @search_results = params[:q].nil? ? [] : Person.where(" lastname LIKE  ? or firstname LIKE  ? ", sqlPerc(params[:q]), sqlPerc(params[:q])).paginate(page: params[:page])
     @people = @search_results.paginate(page: params[:page]) unless @search_results.empty?
-    #@search_results = Person.where("is_client = ?", true)
     render  'search'
-  end
-
-  def searchByName
-    @search_results = []
-    #@search_results = Person.where("lastname LIKE %?% or firstname LIKE %?%", params[:q], params[:q])
-    #@search_results = Person.where("lastname LIKE % ? % or firstname LIKE % ? %", params[:q], params[:q])
-    #@search_results = Person.take(2).paginate(page: params[:page]) unless @search_results.empty?
-    #@search_results = Person.where("is_client = ?", true)
-    render 'search'
   end
 
   def edit
@@ -34,18 +21,11 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    @comp_names = Company.all
+    @action = "/people/" + @person.id.to_s + "/jobs"
+    @job = @person.jobs.build
+    @jobs = @person.jobs.reload
+    @jobs = @person.jobs.includes(:company)
     @class_client = @person.is_client ? "client" : "candidate"
-  end
-
-  def add_job
-    #@micropost = current_user.microposts.build(micropost_params)
-    @person = Person.find(params[:id])
-    @job = @person.job.build(job_params)
-    if @job.save
-      flash[:info] = "Emploi sauvegardé."
-    end
-    render 'show'
   end
 
   def create
@@ -53,7 +33,7 @@ class PeopleController < ApplicationController
     @person.user_id = current_user.id
     if @person.save
       flash[:info] = "Contact sauvegardé."
-      render 'show'
+      redirect_to 'show'
     else
       render 'new'
     end
@@ -80,14 +60,10 @@ class PeopleController < ApplicationController
   #      PRIVATE
   #--------------------
   private
-    def perc(s)
-      '%' + s.to_s + '%'
-    end
+
     def person_params
-      params.require(:person).permit(:title, :firstname, :lastname, :email,:phone_number, :cell_phone_number, :birthdate, :is_jj_hired,:is_client,:note)
-    end
-    def job_params
-      params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job)
+      #params.require(:person).permit(:title, :firstname, :lastname, :email,:phone_number, :cell_phone_number, :birthdate, :is_jj_hired,:is_client,:note,jobs: [:job_title, :salary, :start_date, :end_date, :jj_job])
+      params.require(:person).permit(:title, :firstname, :lastname, :email,:phone_number, :cell_phone_number, :birthdate, :is_jj_hired,:is_client,:note ,jobs_attributes: [:id, :salary, :job_title, :start_date,:end_date, :jj_job])
     end
     def logged_in_user
       unless logged_in?
@@ -95,7 +71,12 @@ class PeopleController < ApplicationController
         flash[:danger] = "Logguez-vous d'abord"
         redirect_to login_url
       end
+      unless params[:id].nil?
+        @person = Person.find(params[:id])
+        @jobs = @person.jobs.includes(:company).reload
+      end
     end
+
     def correct_user
       #flash[:danger] = "Logguez vous d'abord"
       @person = Person.find(params[:id])

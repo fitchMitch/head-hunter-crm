@@ -19,10 +19,9 @@
 #
 
 class Person < ApplicationRecord
-  has_one :job_history
-  has_many :jobs, through: :job_history
+  has_many :jobs
+  #accepts_nested_attributes_for :jobs
   belongs_to :user
-  accepts_nested_attributes_for :job_history
   before_save   :downcase_email
   before_save   :upcase_name
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,

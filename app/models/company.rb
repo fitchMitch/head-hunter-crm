@@ -9,8 +9,7 @@
 #
 
 class Company < ApplicationRecord
-  has_many :jobs
-  has_many :job_histories ,through: :jobs
+  has_many :jobs #, -> { includes :person }
 
   validates :company_name,  presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
 
