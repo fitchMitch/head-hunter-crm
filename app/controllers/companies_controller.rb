@@ -25,7 +25,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)    # Not the final implementation!
     if @company.save
       flash[:info] = "Société sauvegardée."
-      render 'show'
+      goto_next_url (root_url)
     else
       render 'new'
     end
@@ -46,10 +46,12 @@ class CompaniesController < ApplicationController
     flash[:success] = "Société supprimée"
     redirect_to root_url
   end
+
   private
     def company_params
       params.require(:company).permit(:company_name)
     end
+
     def logged_in_user
       unless logged_in?
         store_location

@@ -1,7 +1,7 @@
 <% provide(:title, 'Ajouter une expérience') %>
 <% provide(:button_text, 'Ajouter cette expérience') %>
-<% if logged_in? && current_user.admin? %>
-  <h1 class="center">Ajouter un contact</h1>
+<% if logged_in? %>
+  <h1 class="center">Ajouter une expérience</h1>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <%= render 'job_form' %>

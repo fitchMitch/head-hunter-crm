@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get    '/people/search',   to: 'people#search'
   get    '/people/searchByName',   to: 'people#search'
-  #get    '/people/searchByName',   to: 'people#searchByName'
+  get    '/people/:id/addCompany',   to: 'people#add_company'
 
   resources :account_activations, only: [:edit]
   resources :people do
@@ -28,6 +28,4 @@ Rails.application.routes.draw do
   resources :jobs
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

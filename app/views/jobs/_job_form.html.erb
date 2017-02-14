@@ -1,22 +1,30 @@
 <%= simple_form_for @job, url: yield(:action)  do |f| %>
 
   <div class="row ">
-      <div class="col-sm-5">
-          <%= f.input :job_title, label: "Poste occupé",input_html: {class:" input-sm"}%>
-          <%= f.input :salary, label: "Salaire",input_html:{class:" input-sm" } %>
-          <%= f.association :company , label:"Société", label_method: :company_name, value_method: :id, include_blank: false %>
-      </div>
-      <div class="col-sm-7 ">
-        <%= f.input :start_date, label: "Date de prise de fonction",as: :date, start_year: Date.today.year - 40, end_year: Date.today.year, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
-        <%= f.input :end_date, label: "Date de fin de contrat" ,as: :date, start_year: Date.today.year - 40, end_year: Date.today.year, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
-        <%= f.input :jj_job , label:"Poste fourni par JuinJuillet", as: :boolean  %>
-      </div>
+    <div class="col-sm-5">
+        <%= f.input :job_title, label: "Poste occupé",input_html: {class:" input-sm"}%>
+    </div>
+    <div class="col-sm-7 ">
+      <%= f.input :start_date, label: "Date de prise de fonction",as: :date, start_year: Date.today.year - 40, end_year: Date.today.year, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
+    </div>
+    <div class="col-sm-5">
+        <%= f.input :salary, label: "Salaire",input_html:{class:" input-sm" } %>
+    </div>
+    <div class="col-sm-7 ">
+      <%= f.input :end_date, label: "Date de fin de contrat" ,as: :date, start_year: Date.today.year - 40, end_year: Date.today.year, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
+    </div>
+    <div class="col-sm-5">
+        <%= f.association :company , label:"Société", label_method: :company_name, value_method: :id, include_blank: false %>
+    </div>
+    <div class="col-sm-7 ">
+      <%= f.input :jj_job , label:"Poste fourni par JuinJuillet", as: :boolean ,input_html:{class:" checkBelow" }  %><br>
+      <%= link_to "Ajouter une nouvelle société", '/people/' + @job.person.id.to_s + '/addCompany'%> 
+
+    </div>
   </div>
   <div class="row">
-      <div class="col-sm-5 ">
-      </div>
-      <div class="col-sm-7 ">
-          <%= f.button :submit,"Ajouter",class: "btn btn-primary btnSubmitCtr" %>
+      <div class="col-sm-12 ">
+          <%= f.button :submit,"Ajouter",class: "btn btn-primary " %>
       </div>
   </div>
   <% end %>

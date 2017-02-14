@@ -56,6 +56,11 @@ class PeopleController < ApplicationController
     redirect_to people_url
   end
 
+  def add_company
+    set_next_url(person_path(params[:id]))
+    redirect_to new_company_path
+  end
+
   #--------------------
   #      PRIVATE
   #--------------------
