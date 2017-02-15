@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
   end
 
   def index
-    @people = Person.paginate(page: params[:page])
+    @people = Person.all.paginate(page: params[:page]).includes(:user)
   end
 
   def search

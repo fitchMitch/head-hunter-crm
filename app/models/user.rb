@@ -19,7 +19,6 @@
 
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
-
   before_save   :downcase_email
   before_create :create_activation_digest
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
@@ -31,6 +30,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
   # Returns the hash digest of the given string.
   class << self
     def digest(string)

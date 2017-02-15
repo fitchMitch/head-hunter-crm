@@ -11,9 +11,21 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><%= link_to "Liste des contacts", people_path %></li>
-                        <li><%= link_to "Créer un contact", new_person_path %></li>
-                        <li><%= link_to "Chercher un contact", "/people/search" %></li>
+                        <li>
+                          <%= link_to  people_path do %>
+                            <span class="glyphicon glyphicon-list-alt"></span> Lister les contacts
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to  new_person_path do %>
+                            <span class="glyphicon glyphicon-plus"></span> Créer un contact
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to  "/people/search" do %>
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Chercher un contact
+                          <% end %>
+                        </li>
                     </ul>
                 </li>
                 <li class="dropdown">

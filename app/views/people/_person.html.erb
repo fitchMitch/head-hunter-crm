@@ -1,10 +1,22 @@
+<% unless @people.nil? %>
 <li>
   <%= person.title %> <%= person.firstname %>
-  <%= link_to person.lastname, person %> né le <%= person.birthdate %>
-  enregistré le <%= person.created_at.to_formatted_s(:short)  %> par <%=person.user.name%>
+  <%= person.lastname %> né le <%= person.birthdate %>
+  enregistré le <%= person.created_at.to_formatted_s(:short)  %> par <%= person.user.name %>
 
   <% if logged_in? %>
-    | <%= link_to "delete", person, method: :delete, data: { confirm: "C'est sûr ?" } %>
-    | <%= link_to "Editer ce contact", edit_person_path(person) %>
+    | <%= link_to person, method: :delete, data: { confirm: "C'est sûr,ça ?" } do %>
+        <span class="glyphicon glyphicon-trash"> </span>
+      <% end %>
+    | <%= link_to edit_person_path(person) do %>
+        <span class="glyphicon glyphicon-pencil"> </span>
+      <% end %>
+    | <%= link_to person do %>
+        Voir les jobs <span class="glyphicon glyphicon-lock"> </span>
+      <% end %>
+
   <% end %>
 </li>
+<% else %>
+  <h3>Personne n'est encore inscrit</h3>
+<% end %>

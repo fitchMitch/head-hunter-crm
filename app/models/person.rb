@@ -40,9 +40,8 @@ class Person < ApplicationRecord
   end
 
   # ------------------------
-  # --    PRIVATE        ---
-  # ------------------------
   private
+  # ------------------------
   def downcase_email
     self.email = email.downcase
   end
