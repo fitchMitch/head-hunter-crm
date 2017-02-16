@@ -25,11 +25,16 @@ class JobsController < ApplicationController
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
-      flash[:info] = "Emploi sauvegardé pour " + @job.person.firstname
+      message = "Emploi sauvegardé pour " + @job.person.firstname
+      if @job.incomplete_jobs(@person.id) 
+        flash[:warning] = message + " (profil imprécis)"
+      else
+        flash[:info] =  message
+      end
     else
       flash[:alert] = "Cette expérience n'a pas pu être ajoutée"
     end
-    redirect_to person_path(@person.id) 
+    redirect_to person_path(@person.id)
   end
 
   def update

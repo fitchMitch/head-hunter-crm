@@ -26,6 +26,10 @@ class Job < ApplicationRecord
   validates :salary , length: { maximum: 50 } # TODO : numeric only !
   validates :start_date,  presence: true
 
+  def incomplete_jobs(person_id)
+    Job.where("person_id = ? AND end_date = null",person_id).count>1
+  end
+
   # ------------------------
   # --    PRIVATE        ---
   # ------------------------

@@ -4,6 +4,13 @@
 $light-gray: #777;
 $gray-medium-light: #eaeaea;
 
+body{
+  background-color: #d9cdd9;
+}
+.navbar-inverse{
+  background-color: #2f0c2f;
+}
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;

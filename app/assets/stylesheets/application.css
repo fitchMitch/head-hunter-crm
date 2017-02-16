@@ -12,10 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require select2
+ *= require select2-bootstrap
+
  */
- body{
-   background-color: #d9cdd9;
- }
- .navbar-inverse{
-   background-color: #2f0c2f;
- }
