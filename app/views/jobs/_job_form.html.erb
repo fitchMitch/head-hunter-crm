@@ -1,4 +1,4 @@
-<%= simple_form_for @job, url: yield(:action)  do |f| %>
+<%= simple_form_for @job, url: yield(:action) ,remote: true do |f| %>
 
   <div class="row ">
     <div class="col-sm-5">
@@ -18,7 +18,7 @@
     </div>
     <div class="col-sm-7 ">
       <%= f.input :jj_job , label:"Poste fourni par JuinJuillet", as: :boolean ,input_html:{class:" checkBelow" }  %><br>
-      <%= link_to "Ajouter une nouvelle société", '/people/' + @job.person.id.to_s + '/addCompany'%> 
+      <%= link_to "Ajouter une nouvelle société", '/people/' + @job.person.id.to_s + '/addCompany'%>
 
     </div>
   </div>

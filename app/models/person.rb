@@ -24,6 +24,7 @@ class Person < ApplicationRecord
   belongs_to :user
   before_save   :downcase_email
   before_save   :upcase_name
+  has_and_belongs_to_many :tags
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
   #:time, :date, :binary, :boolean, :references
 

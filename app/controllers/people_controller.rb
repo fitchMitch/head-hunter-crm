@@ -21,7 +21,7 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    @action = "/people/" + @person.id.to_s + "/jobs"
+    @action = "/people/" + @person.id.to_s + "/jobs" 
     @job = @person.jobs.build
     @jobs = @person.jobs.reload
     @jobs = @person.jobs.includes(:company)
