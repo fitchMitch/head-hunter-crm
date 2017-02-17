@@ -4,7 +4,8 @@
   <%= person.lastname %> né le <%= person.birthdate %>
   enregistré le <%= person.created_at.to_formatted_s(:short)  %> par <%= person.user.name %>
 
-  <% if logged_in? %>
+  <p>
+    <% if logged_in? %>
     | <%= link_to person, method: :delete, data: { confirm: "C'est sûr,ça ?" } do %>
         <span class="glyphicon glyphicon-trash"> </span>
       <% end %>
@@ -16,6 +17,7 @@
       <% end %>
 
   <% end %>
+</p>
 </li>
 <% else %>
   <h3>Personne n'est encore inscrit</h3>

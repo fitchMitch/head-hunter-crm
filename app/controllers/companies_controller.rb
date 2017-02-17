@@ -21,11 +21,12 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 
+
   def create
     @company = Company.new(company_params)    # Not the final implementation!
     if @company.save
       flash[:info] = "Société sauvegardée."
-      goto_next_url (root_url)
+      goto_next_url companies_path
     else
       render 'new'
     end
@@ -44,7 +45,12 @@ class CompaniesController < ApplicationController
   def destroy
     Company.find(params[:id]).destroy
     flash[:success] = "Société supprimée"
-    redirect_to root_url
+    redirect_to companies_path
+  end
+
+  def list_people
+    @comp_people = Company.where("company_id = ? AND job.person_id=person.id" , params[:id]).includes(:people).paginate(page: params[:page])
+    render 'company_person'
   end
 
   private
