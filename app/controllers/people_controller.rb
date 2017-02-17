@@ -21,7 +21,7 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    @action = "/people/" + @person.id.to_s + "/jobs" 
+    @action = "/people/" + @person.id.to_s + "/jobs"
     @job = @person.jobs.build
     @jobs = @person.jobs.reload
     @jobs = @person.jobs.includes(:company)
@@ -32,8 +32,8 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     @person.user_id = current_user.id
     if @person.save
-      flash[:info] = "Contact sauvegardé."
-      redirect_to 'show'
+      flash[:info] = "Contact sauvegardé (" + @person.full_name + ")."
+      redirect_to @person
     else
       render 'new'
     end

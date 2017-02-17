@@ -25,8 +25,8 @@ class JobsController < ApplicationController
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
-      message = "Emploi sauvegardé pour " + @job.person.firstname
-      if @job.incomplete_jobs(@person.id) 
+      message = "Nouvel emploi de " + @job.person.firstname + " sauvegardé " 
+      if @job.incomplete_jobs(@person.id)
         flash[:warning] = message + " (profil imprécis)"
       else
         flash[:info] =  message
