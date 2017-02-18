@@ -49,8 +49,9 @@ class CompaniesController < ApplicationController
   end
 
   def list_people
-    @comp_people = Company.where("company_id = ? AND job.person_id=person.id" , params[:id]).includes(:people).paginate(page: params[:page])
-    render 'company_person'
+    @company = Company.find(params[:id])
+    @people = @company.people.distinct
+    render 'companies/company_people'
   end
 
   private

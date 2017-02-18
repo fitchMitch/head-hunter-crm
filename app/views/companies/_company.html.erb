@@ -1,8 +1,9 @@
 <li>
-  <%= company.company_name %> enregistré le <%= company.created_at %>
+  <div class="label label-warning"><%= company.company_name %></div> enregistré il y a <%= time_ago_in_words company.created_at %>
 
   <% if logged_in? %>
-    | <%= link_to "delete", company, method: :delete, data: { confirm: "C'est sûr ?" } %>
+    | <%= link_to "Supprimer", company, method: :delete, data: { confirm: "C'est sûr ?" } %>
     | <%= link_to "Editer cette société", edit_company_path(company) %>
   <% end %>
+  <hr>
 </li>

@@ -1,24 +1,31 @@
 <% unless @people.nil? %>
-<li>
-  <%= person.title %> <%= person.firstname %>
-  <%= person.lastname %> né le <%= person.birthdate %>
-  enregistré le <%= person.created_at.to_formatted_s(:short)  %> par <%= person.user.name %>
+<div class="row">
+  <div class="col-sm-6">
+    <%= link_to person do %>
+        Voir les emplois <span class="glyphicon glyphicon-lock"> </span>
+      <% end %>
+    de <%= person.full_name %>
+    <small>
+      <%= time_ago_in_words(person.birthdate) %>
+      enregistré il y a <%= time_ago_in_words(person.created_at)  %>
+      par <%= person.user.name %>
+    </small>
+  </div>
+  <div class="col-sm-6">
+    <p>
+      <% if logged_in? %>
+        <%= link_to person, method: :delete, data: { confirm: "C'est sûr,ça ?" } do %>
+          <span class="glyphicon glyphicon-trash"> </span>
+        <% end %>
+      | <%= link_to edit_person_path(person) do %>
+          <span class="glyphicon glyphicon-pencil"> </span>
+        <% end %>
 
-  <p>
-    <% if logged_in? %>
-    | <%= link_to person, method: :delete, data: { confirm: "C'est sûr,ça ?" } do %>
-        <span class="glyphicon glyphicon-trash"> </span>
-      <% end %>
-    | <%= link_to edit_person_path(person) do %>
-        <span class="glyphicon glyphicon-pencil"> </span>
-      <% end %>
-    | <%= link_to person do %>
-        Voir les jobs <span class="glyphicon glyphicon-lock"> </span>
-      <% end %>
 
-  <% end %>
-</p>
-</li>
+    <% end %>
+    </p>
+  </div>
+</div>
 <% else %>
-  <h3>Personne n'est encore inscrit</h3>
+<h3>Personne n'est encore inscrit</h3>
 <% end %>

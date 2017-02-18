@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update,:destroy]
-  before_action :get_job,   only: [:edit, :update]
+  before_action :get_job,   only: [:edit, :show, :update]
 
   def new
     @job = Job.new
@@ -11,11 +11,12 @@ class JobsController < ApplicationController
   end
 
   def edit
-    @job = Job.find(params[:id])
+    #@job = Job.find(params[:id])
+    @person = Person.find(@job.person_id)
   end
 
   def show
-    @job = Job.find(params[:id])
+    #@job = Job.find(params[:id])
     #@user = User.find(@job.user_id)
   end
 
@@ -25,7 +26,7 @@ class JobsController < ApplicationController
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
-      message = "Nouvel emploi de " + @job.person.firstname + " sauvegardé " 
+      message = "Nouvel emploi de " + @job.person.firstname + " sauvegardé "
       if @job.incomplete_jobs(@person.id)
         flash[:warning] = message + " (profil imprécis)"
       else
@@ -40,7 +41,8 @@ class JobsController < ApplicationController
   def update
     if @job.update_attributes(job_params)
       flash[:success] = "Emploi mis à jour"
-      redirect_to @job
+      @person = Person.find(@job.person_id)
+      redirect_to @person
     else
       flash[:alert] = "Le contact n'a pas pu être mis à jour"
       render 'edit'
@@ -54,7 +56,7 @@ class JobsController < ApplicationController
   end
   private
     def job_params
-      params.require(:job).permit(:job_title, :salary, :start_date, :end_date,:jj_job,:company_id)
+      params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job, :company_id)
     end
     def logged_in_user
       unless logged_in?

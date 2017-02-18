@@ -15,7 +15,7 @@
 #
 
 class Job < ApplicationRecord
-  belongs_to  :person, dependent: :destroy
+  belongs_to  :person
   belongs_to  :company
 
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,

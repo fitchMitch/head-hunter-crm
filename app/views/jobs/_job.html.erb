@@ -1,10 +1,19 @@
 
   <div class="row">
-    <div class="col-xs-3"><%= job.job_title %></div>
-    <div class="col-xs-3">
-      <%= link_to '/companies/1/listPeople' %>
+    <div class="col-xs-4">
+      <%= link_to  edit_person_job_path(@person,job)  do%>
+      <span class="glyphicon glyphicon-pencil"> </span>
+      <%= job.job_title %>
+      <% end %>
+    </div>
+    <div class="col-xs-4">
+      <%= link_to  list_people_company_path  do%>
       <span class="label label-warning"><%= job.company.company_name %></span>
       <% end %>
       </div>
-    <div class="col-xs-3">(<%= job.salary %> euros)</div>
+    <div class="col-xs-3">
+      <small>
+        <%= job.salary %> euros
+      </small>
+    </div>
   </div>

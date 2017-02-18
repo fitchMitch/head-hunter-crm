@@ -19,14 +19,16 @@ Rails.application.routes.draw do
   get    '/people/searchByName',   to: 'people#search'
   get    '/people/:id/addCompany',   to: 'people#add_company'
 
-  get    '/companies/:id/listPeople',   to: 'companies#list_people'
-
   resources :account_activations, only: [:edit]
   resources :people do
     resources :jobs
   end
   resources :users
-  resources :companies
+  resources :companies do
+    member do
+      get 'list_people'
+    end
+  end
   resources :jobs
   resources :password_resets,     only: [:new, :create, :edit, :update]
 

@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update,:destroy]
-  before_action :correct_user,   only: [:edit, :update]
+
   def new
     @person = Person.new
   end
@@ -40,6 +40,7 @@ class PeopleController < ApplicationController
   end
 
   def update
+    #@person = Person.find(params[:id])
     @person.user_id = current_user.id
     if @person.update_attributes(person_params)
       flash[:success] = "Contact mis à jour"
@@ -80,10 +81,5 @@ class PeopleController < ApplicationController
         @person = Person.find(params[:id])
         @jobs = @person.jobs.includes(:company).reload
       end
-    end
-
-    def correct_user
-      #flash[:danger] = "Logguez vous d'abord"
-      @person = Person.find(params[:id])
     end
 end
