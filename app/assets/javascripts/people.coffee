@@ -2,5 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
-  $("#job_company_id").select2
+  $("#person_job_company_id").select2
     theme: "bootstrap"

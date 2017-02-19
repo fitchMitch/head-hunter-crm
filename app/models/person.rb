@@ -20,7 +20,7 @@
 
 class Person < ApplicationRecord
   has_many :jobs , dependent: :destroy
-  #accepts_nested_attributes_for :jobs
+  #accepts_nested_attributes_for :jobs, allow_destroy: true
   belongs_to :user
   before_save   :downcase_email
   before_save   :upcase_name

@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update,:destroy]
-  before_action :get_job,   only: [:edit, :show, :update]
+  before_action :get_job,   only: [:edit, :show, :update, :destroy]
 
   def new
     @job = Job.new
@@ -11,17 +11,14 @@ class JobsController < ApplicationController
   end
 
   def edit
-    #@job = Job.find(params[:id])
     @person = Person.find(@job.person_id)
   end
 
   def show
-    #@job = Job.find(params[:id])
-    #@user = User.find(@job.user_id)
   end
 
   def create
-    @person = Person.find(params[:person_id])
+    @person = Person.find(job_params[:person_id])
     @job = @person.jobs.build(job_params)
     if @job.save
       @company = Company.find(@job.company_id)
@@ -50,13 +47,13 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    Job.find(params[:id]).destroy
+    @job.destroy
     flash[:success] = "Emploi supprimé"
     redirect_to jobs_url
   end
   private
     def job_params
-      params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job, :company_id)
+      params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job, :company_id, :person_id)
     end
     def logged_in_user
       unless logged_in?

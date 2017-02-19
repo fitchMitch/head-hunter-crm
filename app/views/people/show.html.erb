@@ -1,9 +1,10 @@
 <% provide(:title, @person.firstname) %>
+<% provide(:button_text, 'Ajouter') %>
 <% provide(:action, @action) %>
 <div class="row">
     <div class="col-md-6 ">
         <h1>
-            <%= @person.full_name %>
+          <%= link_to @person.full_name, edit_person_path(@person),class:@class_client  %>
         </h1>
         <hr>
         <div class="frameMe">
@@ -70,7 +71,7 @@
         <hr>
         <div class="row">
             <div class="col-md-11 col-md-offset-1">
-                <%= render 'jobs/job_form' %>
+                <%= render 'jobs/job_form'  %>
             </div>
         </div>
     </div>

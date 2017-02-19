@@ -165,7 +165,9 @@ aside {
     margin: auto;
     text-align: right;
 }
-
+.labelDown{
+  padding-bottom: 1em;
+}
 .uneditable-input,
 input,
 textarea {
@@ -225,6 +227,12 @@ abbr {
     box-shadow: 2px 2px 2px 2px #633961;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
+}
+.frame{
+  border: 1px #888888 solid;
+  background-color: #E7DCF4;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
 
 .checkBelow {

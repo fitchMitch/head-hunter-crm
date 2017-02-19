@@ -1,9 +1,25 @@
-<li>
-  <div class="label label-warning"><%= company.company_name %></div> enregistré il y a <%= time_ago_in_words company.created_at %>
-
-  <% if logged_in? %>
-    | <%= link_to "Supprimer", company, method: :delete, data: { confirm: "C'est sûr ?" } %>
-    | <%= link_to "Editer cette société", edit_company_path(company) %>
-  <% end %>
-  <hr>
-</li>
+<div class="row">
+    <div class="col-xs-2">
+        <span class="label label-warning"><%= company.company_name %></span>
+    </div>
+    <div class="col-xs-2"><% if logged_in? %>
+        <%= link_to  company, method: :delete, data: { confirm: "C'est sûr ?" } do %>
+        <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
+        |
+        <%= link_to  edit_company_path(company) do %>
+        Editer
+        <span class="glyphicon glyphicon-pencil"></span>
+        <% end %>
+        <% end %></div>
+    <div class="col-xs-2">
+        <small>
+            enregistré il y a
+            <%= time_ago_in_words company.created_at %>
+        </small>
+    </div>
+    <div class="col-xs-6"></div>
+</div>
+<div class="row">
+    <div class="col-xs-12"><hr></div>
+</div>

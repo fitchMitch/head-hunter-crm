@@ -3,5 +3,13 @@
   <%= @company.company_name%>
 </h3>
 <ul>
-  <%= render @people %>
+  <%= @jobs.each do |j|  %>
+  <li> <%= j.person.full_name %>
+    <ul>
+      <li>
+        <%= j.job_title %> du <%= j.start_date %> au <%= j.end_date %>
+      </li>
+    </ul>
+  </li>
+  <% end %>
 </ul>

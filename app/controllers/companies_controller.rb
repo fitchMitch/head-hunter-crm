@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
   def update
     if @company.update_attributes(company_params)
       flash[:success] = "Société mise à jour"
-      redirect_to @company
+      redirect_to companies_path
     else
       flash[:alert] = "Le contact n'a pas pu être mis à jour"
       render 'edit'
@@ -50,7 +50,7 @@ class CompaniesController < ApplicationController
 
   def list_people
     @company = Company.find(params[:id])
-    @people = @company.people.distinct
+    @jobs = Job.where('company_id = ?',params[:id]).order(person_id: :asc)
     render 'companies/company_people'
   end
 

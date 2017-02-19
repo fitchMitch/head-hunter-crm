@@ -20,16 +20,12 @@ Rails.application.routes.draw do
   get    '/people/:id/addCompany',   to: 'people#add_company'
 
   resources :account_activations, only: [:edit]
-  resources :people do
-    resources :jobs
-  end
-  resources :users
+  resources :users , :jobs , :people
   resources :companies do
     member do
       get 'list_people'
     end
   end
-  resources :jobs
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
 end
