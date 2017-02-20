@@ -7,13 +7,10 @@
       <small> - <%= @nr_jobs%> occurences</small>
     </h3>
   </div>
-  <div class="col-xs-2">
-
-  </div>
 </div>
 <ul>
   <%= @jobs.each do |j|  %>
-  <li> <%= j.person.full_name %>
+  <li> <%= link_to j.person.full_name, person_path(j.person_id) %> 
     <ul>
       <li>
         <%= j.job_title %> du <%= j.start_date %> au <%= j.end_date %>

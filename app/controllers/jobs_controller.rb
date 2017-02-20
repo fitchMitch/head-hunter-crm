@@ -20,6 +20,9 @@ class JobsController < ApplicationController
   def create
     @person = Person.find(job_params[:person_id])
     @job = @person.jobs.build(job_params)
+    if(@job.no_end?)
+      @job.end_date=nil
+    end
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
@@ -56,7 +59,7 @@ class JobsController < ApplicationController
   private
   #---------------
     def job_params
-      params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job, :company_id, :person_id)
+      params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job, :company_id, :person_id, :no_end)
     end
     def logged_in_user
       unless logged_in?

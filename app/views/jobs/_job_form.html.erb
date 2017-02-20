@@ -14,12 +14,15 @@
       </div>
       <div class="col-sm-7 ">
           <%= f.input :end_date, label: "Date de fin de contrat" ,as: :date, start_year: Date.today.year - 40, end_year: Date.today.year, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
+          <%= f.input :no_end , label:"en poste", as: :boolean ,input_html:{class:" pushUp" }  %><br>
       </div>
   </div>
   <div class="row  ">
       <div class="col-sm-5 ">
           <%= f.association :company , label:"Société", label_method: :company_name, value_method: :id, include_blank: false %>
-          <small><%= link_to "Ajouter une nouvelle société", '/people/' + @job.person_id.to_s + '/addCompany'%></small>
+          <%= link_to  '/people/' + @job.person_id.to_s + '/addCompany' do%>
+            <button type="button" class="btn btn-xs">Ajouter une nouvelle société</button>
+          <% end %>
       </div>
       <div class="col-sm-7 checkBelow ">
           <%= f.input :jj_job , label:"Poste fourni par JuinJuillet", as: :boolean ,input_html:{class:" checkBelow" }  %><br>
@@ -27,7 +30,7 @@
   </div>
   <div class="row ">
       <div class="col-sm-5 ">
-          <%= f.button :submit,yield(:button_text),class: "btn btn-primary " %>
+          <%= f.button :submit,yield(:button_text),class: "btn btn-primary checkBelow" %>
 
       </div>
       <div class="col-sm-7  "></div>

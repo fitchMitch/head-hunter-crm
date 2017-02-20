@@ -4,3 +4,10 @@
 $(document).on "turbolinks:load", ->
   $("#person_job_company_id").select2
     theme: "bootstrap"
+
+  $("#job_no_end").bind 'change', ->
+    if @checked
+      $('.job_end_date').fadeToggle()
+    else
+      $('.job_end_date').fadeIn()
+  return

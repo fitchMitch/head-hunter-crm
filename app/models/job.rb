@@ -12,6 +12,7 @@
 #  updated_at :datetime         not null
 #  company_id :integer
 #  person_id  :integer
+#  no_end     :boolean
 #
 
 class Job < ApplicationRecord
