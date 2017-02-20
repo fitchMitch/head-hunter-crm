@@ -47,11 +47,14 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    person_id = @job.person_id
     @job.destroy
     flash[:success] = "Emploi supprimé"
-    redirect_to jobs_url
+    redirect_to person_path(person_id)
   end
+  #---------------
   private
+  #---------------
     def job_params
       params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job, :company_id, :person_id)
     end

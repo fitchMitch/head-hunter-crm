@@ -50,7 +50,8 @@ class CompaniesController < ApplicationController
 
   def list_people
     @company = Company.find(params[:id])
-    @jobs = Job.where('company_id = ?',params[:id]).order(person_id: :asc)
+    @jobs = Job.where('company_id = ?',params[:id]).joins(:person)
+    @nr_jobs = @jobs.count
     render 'companies/company_people'
   end
 
