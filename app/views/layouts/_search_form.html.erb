@@ -1,0 +1,9 @@
+<%= form_tag  ({controller: 'static_pages' ,action: '/search', method: "get",class: "navbar-form navbar-right"} ) do %>
+  <div class="input-group">
+    <%= text_field_tag(:q)  %>
+  </div>
+  <%= submit_tag   do%>
+    <span class="glyphicon glyphicon-search"></span>
+  <% end %>
+</form>
+<% end %>
