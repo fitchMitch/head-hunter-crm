@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: missions
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  reward      :float
+#  paid_amount :float
+#  min_salary  :float
+#  max_salary  :float
+#  criteria    :string
+#  min_age     :integer
+#  max_age     :integer
+#  signed      :boolean
+#  is_done     :boolean
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  person_id   :integer
+#  company_id  :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reward: 
+  min_salary: 
+  max_salary: 
+  criteria,: MyString
+  min_age: 
+  name,paid_amount: 
+
+two:
+  reward: 
+  min_salary: 
+  max_salary: 
+  criteria,: MyString
+  min_age: 
+  name,paid_amount: 
