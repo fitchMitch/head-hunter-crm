@@ -49,17 +49,20 @@ class CompaniesController < ApplicationController
   end
 
   def list_people
-    distinct_people = {}
     @company = Company.find(params[:id])
-    @jobs = Job.where('company_id = ?',params[:id]).joins(:person).includes(:person).select('jobs.job_title as job_t,jobs.start_date start_d,jobs.end_date as end_d,people.firstname as first_n,people.lastname as last_n,people.title as title')
-    #puts @jobs.pluck[:last_n]
-    @jobs.each do |j|
-      #distinct_people<< j[people.title] + " " + j.j
-      #distinct_people[j.last_n]+=1
-      flash[:alert] = j[:job_t].to_s + "fd "
-    end
-    @nr_jobs =5 # @jobs.count
-    @people = Person.all
+    @jobs = Job.where('company_id = ?',params[:id]).joins(:person).includes(:person).select('jobs.job_title as job_t,jobs.start_date start_d,jobs.end_date as end_d,jobs.person_id,people.firstname as first_n,people.lastname as last_n,people.title as title')
+
+    distinct_people_ids = @jobs.pluck(:person_id).uniq || []
+    @people_jobs = {}
+    distinct_people_ids.each  {|val|
+      @people_jobs[val] = { 'jobs' => [],'person' => {}}
+    }
+
+    @jobs.each { |j|
+      @people_jobs[j.person_id]['jobs'] << {"job_title" =>j.job_title,"start_date" =>j.start_date,"end_date" =>j.end_date}
+      @people_jobs[j.person_id]['person'] = {'title'=>j.person.title , 'firstname'=>j.person.firstname,'lastname'=>j.person.lastname}
+    }
+    @nb_people = distinct_people_ids.count #distinct_people.count
 
     render 'companies/company_people'
   end

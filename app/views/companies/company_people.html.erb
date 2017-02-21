@@ -1,21 +1,38 @@
 <% provide(:title, @company.company_name) %>
 
 <div class="row">
-  <div class="col-xs-4">
-    <h3>
-      <%= @company.company_name%>
-      <small> - <%= @nr_jobs%> occurences</small>
-    </h3>
-  </div>
+    <div class="col-xs-4">
+        <h3>
+            <%= @company.company_name%>
+            <small>
+                - <%= @nb_people%> personnes y ont travaillé</small>
+        </h3>
+    </div>
 </div>
-<ul>
-  <%= @jobs.each do |j|  %>
-  <li> <%= link_to j.person.full_name, person_path(j.person_id) %> 
-    <ul>
-      <li>
-        <%= j.job_title %> du <%= j.start_date %> au <%= j.end_date %>
-      </li>
-    </ul>
-  </li>
-  <% end %>
-</ul>
+<% @people_jobs.each do |key,val|  %>
+<div class="row">
+    <div class="col-xs-3">
+        <%=  link_to person_path(key) do %>
+        <%= val['person']['title']%>
+        <%= val['person']['firstname']%>
+        <%= val['person']['lastname']%>
+        <% end %>
+    </div>
+    <div class="col-xs-5">
+        <% val['jobs'].each do |j| %>
+        <div class="row">
+            <div class="col-xs-5"><%= j['job_title'] %></div>
+            <div class="col-xs-7">Du
+                <%= j['start_date'] %>
+                <% if j['end_date'].nil? %>
+                à aujourd'hui
+                <%else%>
+                au
+                <%= j['end_date'] %>
+            </div>
+            <% end %>
+        </div>
+        <% end %>
+    </div>
+</div>
+<% end %>

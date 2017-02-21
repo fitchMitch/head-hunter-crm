@@ -5,24 +5,24 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
   end
-
+  #-----------------
   def index
     @jobs = Job.paginate(page: params[:page])
   end
-
+  #-----------------
   def edit
     @person = Person.find(@job.person_id)
   end
-
+  #-----------------
   def show
   end
-
+  #-----------------
   def create
     @person = Person.find(job_params[:person_id])
+
     @job = @person.jobs.build(job_params)
-    if(@job.no_end?)
-      @job.end_date=nil
-    end
+    @job.end_date = nil if(@job.no_end?)
+
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
@@ -37,7 +37,7 @@ class JobsController < ApplicationController
     end
     redirect_to person_path(@person.id)
   end
-
+  #-----------------
   def update
     if @job.update_attributes(job_params)
       flash[:success] = "Emploi mis à jour"
@@ -48,13 +48,15 @@ class JobsController < ApplicationController
       render 'edit'
     end
   end
-
+  #-----------------
   def destroy
     person_id = @job.person_id
     @job.destroy
     flash[:success] = "Emploi supprimé"
     redirect_to person_path(person_id)
   end
+  #-----------------
+
   #---------------
   private
   #---------------
