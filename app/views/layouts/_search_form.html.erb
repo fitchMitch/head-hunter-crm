@@ -1,9 +1,8 @@
-<%= form_tag({action: 'search', method: 'get'}, {class: 'navbar-form navbar-right',method: 'get'}) do %>
+<%= form_tag({action: 'search', controller: 'static_pages', method: 'get'}, {class: 'navbar-form navbar-right', method: 'get'}) do %>
   <div class="input-group">
-    <%= text_field_tag :q,"", class: "form-control", placeholder: "Noms, sociétés, etc.." %>
+    <%= text_field_tag :q, "", class: "form-control", placeholder: "Noms, sociétés, etc.." %>
   </div>
   <%= button_tag(type: "submit", class: "btn btn-default") do %>
     <span class="glyphicon glyphicon-search"></span>
   <% end %>
-
 <% end %>

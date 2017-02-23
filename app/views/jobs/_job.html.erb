@@ -1,24 +1,29 @@
-
-  <div class="row">
+<div class="row">
     <div class="col-xs-4">
-      <%= link_to  edit_job_path(job)  do%>
-      <span class="glyphicon glyphicon-pencil"> </span>
-      <%= job.job_title %>
+      <%= link_to  person_path(job.person_id)  do%>
+        <span class="glyphicon glyphicon-user"></span>
       <% end %>
+      |
+      <%= link_to  edit_job_path(job)  do%>
+        <span class="glyphicon glyphicon-pencil"></span>
+        <%= job.job_title %>
+      <% end %>
+      |
     </div>
     <div class="col-xs-1">
-      <%= link_to  job_path(job), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
-      <span class="glyphicon glyphicon-trash"> </span>
-      <% end %>
+        <%= link_to  job_path(job), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
+          <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
     </div>
     <div class="col-xs-4">
-      <%= link_to  list_people_company_path(job.company_id)  do%>
-      <span class="label label-warning"><%= job.company.company_name %></span>
-      <% end %>
-      </div>
-    <div class="col-xs-3">
-      <small>
-        <%= job.salary %> euros
-      </small>
+        <%= link_to  list_people_company_path(job.company_id)  do%>
+          <span class="label label-warning"><%= job.company.company_name %></span>
+        <% end %>
     </div>
-  </div>
+    <div class="col-xs-3">
+        <small>
+            <%= job.salary %>
+            euros
+        </small>
+    </div>
+</div>

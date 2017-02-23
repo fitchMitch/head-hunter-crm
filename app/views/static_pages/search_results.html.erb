@@ -1,8 +1,8 @@
-<h1>This is it !</h1>
+<h1>Résultats de recherche</h1>
 
-<H2>Contacts</H2>
+<H2>Contacts <span class="badge"> <%= @people.count %> </span> </H2>
 <%= render @people %>
-<H2>Jobs</H2>
+<H2>Jobs <span class="badge"> <%= @jobs.count %> </span> </H2>
 <%= render @jobs %>
-<H2>Entreprises</H2>
-<%= render @companies %> 
+<H2>Entreprises <span class="badge"> <%= @companies.count %> </span> </H2>
+<%= render @companies %>

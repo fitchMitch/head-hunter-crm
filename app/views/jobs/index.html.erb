@@ -1,4 +1,10 @@
-<% provide(:title, 'Liste des emolois') %>
+<% provide(:title, 'Liste des emplois') %>
+<% content_for :show_people_link do %>
+  <%= link_to  person_path(job.person_id)  do %>
+    <span class="glyphicon glyphicon-user"></span>
+  <% end %>
+  |
+<% end %>
 <h1 class="center">Liste des emplois</h1>
 
 <%= will_paginate %>
