@@ -1,8 +1,26 @@
-<h1>Résultats de recherche</h1>
+<h1>Résultats <span class="glyphicon glyphicon-search"></span></h1>
 
-<H2>Contacts <span class="badge"> <%= @people.count %> </span> </H2>
-<%= render @people %>
-<H2>Jobs <span class="badge"> <%= @jobs.count %> </span> </H2>
-<%= render @jobs %>
-<H2>Entreprises <span class="badge"> <%= @companies.count %> </span> </H2>
-<%= render @companies %>
+<% unless @no_result %>
+  <p>Aucun résultat pour votre recherche <strong><%= params[:q] %></strong> </p>
+<% else %>
+  <p>Votre recherche : <strong><%= params[:q] %></strong> </p>
+  <!-- false -->
+  <% if @people.any? %>
+  <H2>Contacts <span class="badge"> <%= @people.count %> </span> </H2>
+  <%= render @people %>
+  <hr>
+  <% end %>
+
+  <% if @jobs.any? %>
+  <H2>Jobs <span class="badge"> <%= @jobs.count %> </span> </H2>
+  <%= render @jobs %>
+  <hr>
+  <% end %>
+
+  <% if @companies.any? %>
+  <H2>Entreprises <span class="badge"> <%= @companies.count %> </span> </H2>
+  <%= render @companies %>
+  <hr>
+  <% end %>
+
+<% end %>

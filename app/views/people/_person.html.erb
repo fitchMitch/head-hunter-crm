@@ -2,13 +2,13 @@
 <div class="row">
   <div class="col-sm-6">
     <%= link_to person do %>
-        Voir les emplois <span class="glyphicon glyphicon-lock"> </span>
+        Voir <span class="glyphicon glyphicon-lock"> </span>
       <% end %>
     de <%= person.full_name %>
     <small>
-      <%= time_ago_in_words(person.birthdate) %>
-      enregistré il y a <%= time_ago_in_words(person.created_at)  %>
-      par <%= person.user.name %>
+      ajouté il y a 
+       <%= time_ago_in_words(person.created_at)  %>
+       [<%= person.user.name %>]
     </small>
   </div>
   <div class="col-sm-6">

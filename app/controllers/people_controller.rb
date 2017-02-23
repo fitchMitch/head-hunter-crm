@@ -9,12 +9,6 @@ class PeopleController < ApplicationController
     @people = Person.all.paginate(page: params[:page]).includes(:user)
   end
 
-  def search
-    @search_results = params[:q].nil? ? [] : Person.where(" lastname LIKE  ? or firstname LIKE  ? ", sqlPerc(params[:q]), sqlPerc(params[:q])).paginate(page: params[:page])
-    @people = @search_results.paginate(page: params[:page]) unless @search_results.empty?
-    render  'search'
-  end
-
   def edit
     @person = Person.find(params[:id])
   end
