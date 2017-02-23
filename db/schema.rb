@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221162149) do
+ActiveRecord::Schema.define(version: 20170223215624) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "company_name"
@@ -52,10 +52,11 @@ ActiveRecord::Schema.define(version: 20170221162149) do
     t.integer  "max_age"
     t.boolean  "signed"
     t.boolean  "is_done"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "person_id"
     t.integer  "company_id"
+    t.date     "whished_start_date"
     t.index ["company_id"], name: "index_missions_on_company_id"
     t.index ["person_id"], name: "index_missions_on_person_id"
   end

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'sessions/new'
-
   root 'static_pages#home'
 
   get  '/search',     to: 'static_pages#search'
@@ -21,7 +19,7 @@ Rails.application.routes.draw do
   get    '/people/:id/addCompany',   to: 'people#add_company'
 
   resources :account_activations, only: [:edit]
-  resources :users , :jobs , :people
+  resources :users , :jobs , :people , :missions
   resources :companies do
     member do
       get 'list_people'
