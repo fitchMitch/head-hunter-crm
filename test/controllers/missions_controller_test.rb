@@ -1,38 +1,33 @@
 require 'test_helper'
 
 class MissionsControllerTest < ActionDispatch::IntegrationTest
-  test "should get create" do
-    get missions_create_url
-    assert_response :success
+  def setup
+    @mission = missions(:one)
   end
 
   test "should get edit" do
-    get missions_edit_url
+    get edit_mission_path(@mission)
     assert_response :success
   end
 
   test "should get new" do
-    get missions_new_url
+    get new_mission_path
     assert_response :success
   end
 
-  test "should get destroy" do
-    get missions_destroy_url
-    assert_response :success
-  end
 
   test "should get update" do
-    get missions_update_url
+    get update_mission_path(@mission)
     assert_response :success
   end
 
   test "should get show" do
-    get missions_show_url
+    get mission_path(@mission)
     assert_response :success
   end
 
   test "should get index" do
-    get missions_index_url
+    get missions_path
     assert_response :success
   end
 

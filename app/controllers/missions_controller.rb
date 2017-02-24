@@ -66,5 +66,3 @@ class MissionsController < ApplicationController
       @mission = Mission.find(params[:id])
     end
 end
-
-end

@@ -21,7 +21,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
   title: MyString
   firstname: MyString
   lastname: MyString
@@ -31,7 +30,6 @@ one:
   birthdate: 2017-01-21
 
 two:
-  type: 
   title: MyString
   firstname: MyString
   lastname: MyString

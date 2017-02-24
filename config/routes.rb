@@ -18,13 +18,13 @@ Rails.application.routes.draw do
   get    '/people/searchByName',   to: 'people#search'
   get    '/people/:id/addCompany',   to: 'people#add_company'
 
-  resources :account_activations, only: [:edit]
+  resources :account_activations,               only: [:edit]
   resources :users , :jobs , :people , :missions
   resources :companies do
     member do
       get 'list_people'
     end
   end
-  resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :password_resets,                   only: [:new, :create, :edit, :update]
 
 end

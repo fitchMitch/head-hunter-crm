@@ -7,7 +7,11 @@ $gray-medium-light: #eaeaea;
 body {
     background-color: #d9cdd9;
 }
-
+.brandt{
+  background-color: #f2d9f2;
+  -webkit-border-radius: 75px 75px 75px 75px;
+  border-radius: 75px 75px 75px 75px;
+}
 .navbar-inverse {
     background-color: #2f0c2f;
 }

@@ -23,17 +23,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  reward: 
-  min_salary: 
-  max_salary: 
-  criteria,: MyString
-  min_age: 
-  name,paid_amount: 
+  reward: 1000
+  min_salary: 900
+  max_salary: 1100
+  criteria: MyStringCriterium
+  min_age: 20
+  name : for Vuitton
+  paid_amount: 50
 
 two:
-  reward: 
-  min_salary: 
-  max_salary: 
-  criteria,: MyString
-  min_age: 
-  name,paid_amount: 
+  reward: 1000
+  min_salary: 900
+  max_salary: 11050
+  criteria: MyStringCriterium
+  min_age: 20
+  paid_amount: 53
+  name : for Chanel
