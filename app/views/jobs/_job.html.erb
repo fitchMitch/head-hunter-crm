@@ -1,17 +1,19 @@
 <div class="row">
     <div class="col-xs-4">
       <% if @show_people_details %>
+      <!-------   if show people    ---->
       <%= link_to  person_path(job.person_id)  do%>
       <%= job.person.full_name %>
           <span class="glyphicon glyphicon-user"></span>
         <% end %>
         |
+        <!------- end ---->
       <% end %>
       <%= link_to  edit_job_path(job)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <%= job.job_title %>
       <% end %>
-      
+
     </div>
     <div class="col-xs-1">
         <%= link_to  job_path(job), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
