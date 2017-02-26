@@ -14,8 +14,8 @@ class JobsController < ApplicationController
     @person = Person.find(@job.person_id)
   end
   #-----------------
-  def show
-  end
+  # def show
+  # end
   #-----------------
   def create
     @person = Person.find(job_params[:person_id])

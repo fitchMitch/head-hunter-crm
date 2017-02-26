@@ -62,7 +62,7 @@ class CompaniesController < ApplicationController
       @people_jobs[j.person_id]['jobs'] << {"job_title" =>j.job_title,"start_date" =>j.start_date,"end_date" =>j.end_date}
       @people_jobs[j.person_id]['person'] = {'title'=>j.person.title , 'firstname'=>j.person.firstname,'lastname'=>j.person.lastname}
     }
-    @nb_people = distinct_people_ids.count #distinct_people.count
+    @nb_people = distinct_people_ids.count
 
     render 'companies/company_people'
   end

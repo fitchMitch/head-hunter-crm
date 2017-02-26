@@ -210,3 +210,7 @@ fr:
       long: "%A %d %B %Y %Hh%M"
       short: "%d %b %Hh%M"
     pm: pm
+
+  will_paginate:
+    next_label: "Suiv. »"
+    previous_label: "« Préc."

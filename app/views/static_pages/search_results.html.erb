@@ -1,26 +1,46 @@
-<h1>Résultats <span class="glyphicon glyphicon-search"></span></h1>
+<h1>Résultats
+    <span class="glyphicon glyphicon-search"></span>
+</h1>
+
+<p>Votre recherche :
+    <strong><%= params[:q] %></strong>
+</p>
+
 
 <% unless @no_result %>
-  <p>Aucun résultat pour votre recherche <strong><%= params[:q] %></strong> </p>
+<p>Aucun résultat pour votre recherche
+    <strong><%= params[:q] %></strong>
+</p>
 <% else %>
-  <p>Votre recherche : <strong><%= params[:q] %></strong> </p>
-  <!-- false -->
-  <% if @people.any? %>
-  <H2>Contacts <span class="badge"> <%= @people.count %> </span> </H2>
-  <%= render @people %>
-  <hr>
-  <% end %>
+<!-- Nav tabs -->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <% if @people.any? %>
+        <li role="presentation" class="active">
+            <a href="#tab_people" aria-controls="tab_people" role="tab" data-toggle="tab">Contacts <span class="badge"> <%= @people.count %></a>
+        </li>
+        <% end %>
+        <% if @jobs.any? %>
+        <li role="presentation">
+            <a href="#tab_jobs" aria-controls="tab_jobs" role="tab" data-toggle="tab">Emplois <span class="badge"> <%= @jobs.count %> </span></a>
+        </li>
+        <% end %>
+        <% if @companies.any? %>
+        <li role="presentation">
+            <a href="#tab_companies" aria-controls="tab_companies" role="tab" data-toggle="tab">Sociétés <span class="badge"> <%= @companies.count %> </span></a>
+        </li>
+        <% end %>
+    </ul>
+    <div class="tab-content tenPxDown">
 
-  <% if @jobs.any? %>
-  <H2>Jobs <span class="badge"> <%= @jobs.count %> </span> </H2>
-  <%= render @jobs %>
-  <hr>
-  <% end %>
-
-  <% if @companies.any? %>
-  <H2>Entreprises <span class="badge"> <%= @companies.count %> </span> </H2>
-  <%= render @companies %>
-  <hr>
-  <% end %>
-
+        <div role="tabpanel" class="tab-pane active" id="tab_people">
+            <%= render @people %></div>
+        <div role="tabpanel" class="tab-pane" id="tab_jobs">
+            <%= render @jobs %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab_companies">
+            <%= render @companies %>
+        </div>
+    </div>
+</div>
 <% end %>

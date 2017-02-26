@@ -11,7 +11,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  company_name: MyString
+  company_name: Alcatel
 
 two:
-  company_name: MyString
+  company_name: Siemens

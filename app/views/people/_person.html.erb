@@ -1,17 +1,12 @@
 <% unless @people.nil? %>
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-3">
     <%= link_to person do %>
-        Voir <span class="glyphicon glyphicon-lock"> </span>
+        <i class="fa fa-user-o fa-2x"></i> <%= person.full_name %>
       <% end %>
-    de <%= person.full_name %>
-    <small>
-      ajouté il y a 
-       <%= time_ago_in_words(person.created_at)  %>
-       [<%= person.user.name %>]
-    </small>
+
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-2">
     <p>
       <% if logged_in? %>
         <%= link_to person, method: :delete, data: { confirm: "C'est sûr,ça ?" } do %>
@@ -25,7 +20,15 @@
     <% end %>
     </p>
   </div>
+  <div class="col-sm-3">
+    <small>
+      ajouté il y a
+       <%= time_ago_in_words(person.created_at)  %>
+       [<%= person.user.name %>]
+    </small>
+  </div>
 </div>
+<hr>
 <% else %>
 <h3>Personne n'est encore inscrit</h3>
 <% end %>

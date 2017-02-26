@@ -23,6 +23,8 @@ one:
   start_date: 2017-01-25
   end_date: 2017-01-25
   jj_job: false
+  person: one
+  company: one
 
 two:
   job_title: MyString
@@ -30,3 +32,16 @@ two:
   start_date: 2017-01-25
   end_date: 2017-01-25
   jj_job: false
+  person: two
+  company: one
+
+<% 30.times do |n| %>
+job_<%= n %>:
+  job_title: <%=  Faker::Company.name %>
+  salary: n*1000 -1 -n
+  start_date: 2017-01-25
+  end_date: 2017-01-25
+  jj_job: false
+  company: one
+  person: two
+<% end %>

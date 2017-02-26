@@ -37,3 +37,34 @@ two:
   phone_number: MyString
   cell_phone_number: MyString
   birthdate: 2017-01-21
+
+three:
+  title: MyString
+  firstname: MyString
+  lastname: MyString
+  email: MyString
+  phone_number: MyString
+  cell_phone_number: MyString
+  birthdate: 2017-01-21
+
+four:
+  title: MyString
+  firstname: MyString
+  lastname: MyString
+  email: MyString
+  phone_number: MyString
+  cell_phone_number: MyString
+  birthdate: 2017-01-21
+
+<% 30.times do |n| %>
+person_<%= n %>:
+  title: <%= Faker::Name.title %>
+  firstname: <%= Faker::Name.first_name %>
+  lastname: <%= Faker::Name.last_name %>
+  email: <%= Faker::Internet.email %>
+  phone_number: <%= Faker::PhoneNumber.phone_number %>
+  cell_phone_number: <%= Faker::PhoneNumber.cell_phone %>
+  birthdate: <%=  (Date.today - (18..70).to_a.sample*365 + (1..364).to_a.sample).strftime("%F") %>
+  created_at: <%= 42.days.ago %>
+  user_id: michael.id
+<% end %>

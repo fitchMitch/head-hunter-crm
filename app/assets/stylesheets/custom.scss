@@ -242,3 +242,20 @@ abbr {
 .checkBelow {
     margin-top: 20px;
 }
+
+.tenPxDown{
+  margin: 10px;
+  padding : 10px;
+}
+.redFrame {
+    border: 2px #F0AD4E solid;
+    padding: 3px 5px 2px 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #dd9f49;
+    background-color: white;
+    /*-webkit-box-shadow: 1px 1px 1px 1px #633961;
+    box-shadow: 1px 1px 1px 1px #633961;*/
+    -webkit-border-radius:4px 4px 4px 4px;
+    border-radius:4px 4px 4px 4px;
+}

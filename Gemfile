@@ -22,12 +22,12 @@ gem 'simple_form'
 gem 'log4r'
 gem 'select2-rails'
 gem "font-awesome-rails"
-#gem 'country_select'
 
 
 group :development, :test do
   gem 'sqlite3', '1.3.12'
   gem 'byebug',  '9.0.0', platform: :mri
+  gem 'as-duration'
 end
 
 group :development do

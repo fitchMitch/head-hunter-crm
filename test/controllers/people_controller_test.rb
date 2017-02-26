@@ -2,8 +2,10 @@ require 'test_helper'
 
 class PeopleControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user       = users(:michael)
-    @person    = people(:one)
+    @user     = users(:michael)
+    @person   = people(:person_3)
+    @job      = jobs(:one)
+    @company  = companies(:one)
     log_in_as(@user)
   end
 
@@ -18,12 +20,7 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get person_path(@person)
-    assert_response :success
-  end
-
-  test "should get index" do
-    get people_path
+    get person_path(@person.id)
     assert_response :success
   end
 

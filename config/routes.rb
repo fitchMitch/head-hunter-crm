@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get    '/people/:id/addCompany',   to: 'people#add_company'
 
   resources :account_activations,               only: [:edit]
-  resources :users , :jobs , :people , :missions
+  resources :jobs,                              only: [:new, :create, :edit, :update, :index, :destroy]
+  resources :users , :people , :missions
   resources :companies do
     member do
       get 'list_people'
