@@ -10,7 +10,14 @@ body {
 .brandt{
   background-color: #f2d9f2;
   -webkit-border-radius: 75px 75px 75px 75px;
-  border-radius: 75px 75px 75px 75px;
+  border-radius: 100px;
+  padding: 50px;
+  float:right;
+}
+.metaBrandt{
+  float:left;
+  text-indent: -400px;
+  z-index: 1000;
 }
 .navbar-inverse {
     background-color: #2f0c2f;
