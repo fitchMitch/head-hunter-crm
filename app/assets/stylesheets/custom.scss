@@ -7,18 +7,6 @@ $gray-medium-light: #eaeaea;
 body {
     background-color: #d9cdd9;
 }
-.brandt{
-  background-color: #f2d9f2;
-  -webkit-border-radius: 75px 75px 75px 75px;
-  border-radius: 100px;
-  padding: 50px;
-  float:right;
-}
-.metaBrandt{
-  float:left;
-  text-indent: -400px;
-  z-index: 1000;
-}
 .navbar-inverse {
     background-color: #2f0c2f;
 }
@@ -55,6 +43,7 @@ textarea {
 .center h1 {
     margin-bottom: 10px;
 }
+
 /* typography */
 h1,
 h2,
@@ -70,6 +59,14 @@ h1 {
     letter-spacing: -2px;
     margin-bottom: 30px;
     text-align: center;
+}
+h1.center.cfirst{
+  margin-bottom: -40px;
+  text-indent: -55px;
+}
+h1.center.clast {
+  text-indent: -3px;
+  margin-bottom: -00px;
 }
 
 h2 {
@@ -87,6 +84,14 @@ p {
     margin-bottom: 0.3em;
 }
 /* header */
+.circle{
+  background-color: #f79bd4;
+  -webkit-border-radius: 75px 75px 75px 75px;
+  border-radius: 100px;
+  min-height:66px;
+  max-width: 66px;
+  vertical-align: middle;
+}
 #logo {
     float: left;
     margin-right: 10px;
