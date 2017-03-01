@@ -72,4 +72,13 @@
 </div>
 
 <% end %>
+<div class="row">
+    <div class="col-xs-8">
+        <small>
+          de <%= t job.start_date.strftime("%B %Y") %> à
+          <% if job.no_end%> aujourd'hui
+          <% else %> <%= t job.end_date.strftime("%B %Y") %><%end%>
+        </small>
+    </div>
+</div>
 <hr>
