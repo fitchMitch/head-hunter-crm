@@ -35,6 +35,7 @@ class JobsController < ApplicationController
     else
       flash[:alert] = "Cette expérience n'a pas pu être ajoutée"
     end
+    
     redirect_to person_path(@person.id)
   end
   #-----------------

@@ -22,10 +22,10 @@ class Job < ApplicationRecord
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
   #:time, :date, :binary, :boolean, :references
 
-
   validates :job_title , presence: true, length: { maximum: 50 }
-  validates :salary , length: { maximum: 50 } # TODO : numeric only !
-  validates :start_date,  presence: true
+  validates :salary , length: { maximum: 10 }
+  validates :start_date,  presence: true, date: true
+  validates :end_date, presence: true, date: { after: :start_date }, unless: :no_end?
 
   def double_jobs(person_id)
     Job.where("person_id = ? AND no_end = ?",person_id,true).count>1
@@ -35,4 +35,5 @@ class Job < ApplicationRecord
   # --    PRIVATE        ---
   # ------------------------
   private
+
 end

@@ -12,17 +12,15 @@ module JjFloApp
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    # class Minitest::Unit::TestCase
-    #   include FactoryGirl::Syntax::Methods
-    # end
-    # class Minitest::Spec
-    #   include FactoryGirl::Syntax::Methods
-    # end
 
+    # config.logger = Logger.new(STDOUT)
+    # config.logger = Log4r::Logger.new("Application Log")
 
-
-    # config.generators do |g|
-    #   g.factory_girl false
-    # end
+    config.generators do |g|
+      g.factory_girl false
+    end
+    config.generators do |g|
+      g.test_framework :minitest, spec: true
+    end
   end
 end

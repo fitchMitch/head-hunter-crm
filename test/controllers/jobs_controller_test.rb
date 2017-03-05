@@ -2,9 +2,10 @@ require 'test_helper'
 
 class JobsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user   = users(:michael)
-    @person = people(:one)
-    @job    = jobs(:one)
+    @job= create(:job)
+    @company = @job.company
+    @person = @job.person
+    @user= @job.person.user
 
     log_in_as(@user)
   end
@@ -15,7 +16,10 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update" do
-    patch job_path(@job), params: { job: { salary: 1111,job_title:'testeur',start_date: '2016-01-25'} }
+    patch job_path(@job), params: { job: {  salary: 1111,
+                                            job_title:'testeur',
+                                            start_date: '1933-01-25'}
+                                   }
     assert_redirected_to person_path(@person)
   end
 
@@ -29,12 +33,10 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show double jobs at creation time" do
-    post jobs_path, params: { job: {salary: 1111,job_title:'testeur',start_date: '2016-01-25',no_end:true,person_id: @person.id} }
-    follow_redirect!
-    assert_template 'people/show'
-    get new_job_path
-    post jobs_path, params: { job: {salary: 22222,job_title:'monogamer',start_date: '2016-01-26',no_end:true,person_id:  @person.id} }
-    assert flash[:alert]=="Cette expérience n'a pas pu être ajoutée"
+  test "should show double jobs" do
+    job1 = create(:job, no_end:  true, person: @person)
+    job2 = create(:job, no_end:  true, person: @person)
+    assert job2.double_jobs(@person.id)
   end
+
 end

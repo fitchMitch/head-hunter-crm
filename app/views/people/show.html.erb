@@ -8,7 +8,7 @@
           <i class="fa fa-user-o" aria-hidden="true"></i>
           <%= link_to @person.full_name, edit_person_path(@person), class:@class_client  %>
           <% if @person.is_jj_hired %>
-          <i class="fa fa-anchor" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
           <% end %>
         </h1>
         <hr>
@@ -66,11 +66,13 @@
             </div>
           </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col-xs-12">
-                <h1><i class="fa fa-building-o" aria-hidden="true"></i> Expériences</h1>
+                <h3><i class="fa fa-building-o" aria-hidden="true"></i> Expériences</h3>
             </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col-xs-12">
                 <%= render @jobs || 'shared/empty_list'%>

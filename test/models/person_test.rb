@@ -21,7 +21,50 @@
 require 'test_helper'
 
 class PersonTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @person = build(:person)
+  end
+
+  test 'should be valid' do
+    assert @person.valid?
+  end
+
+  test 'should firstname exist' do
+    @person.firstname=''
+    refute @person.valid?
+  end
+
+  test 'should lastname exist' do
+    @person.lastname=''
+    refute @person.valid?
+  end
+
+  test "email validation should accept valid addresses" do
+    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
+    valid_addresses.each do |valid_address|
+      @person.email = valid_address
+      assert @person.valid?, "#{valid_address.inspect} should be valid"
+    end
+  end
+
+  test 'phone_number should be long enough' do
+    @person.phone_number='a'*9
+    refute @person.valid?
+  end
+
+  test 'phone_number should not be too long ' do
+    @person.phone_number='a'*19
+    refute @person.valid?
+  end
+
+  test 'cell_phone_number should be long enough' do
+    @person.cell_phone_number='a'*9
+    refute @person.valid?
+  end
+
+  test 'cell_phone_number should not be too long ' do
+    @person.cell_phone_number='a'*19
+    refute @person.valid?
+  end
+
 end

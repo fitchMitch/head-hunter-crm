@@ -19,16 +19,15 @@ gem 'faker',          '1.6.6'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'simple_form'
-gem 'log4r'
 gem 'select2-rails'
 gem "font-awesome-rails"
-
+gem 'date_validator',         '~> 0.9.0'
+gem "factory_girl_rails",     "~> 4.0"
 
 group :development, :test do
   gem 'sqlite3', '1.3.12'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'as-duration'
-  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do

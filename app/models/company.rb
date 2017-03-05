@@ -12,7 +12,7 @@ class Company < ApplicationRecord
   has_many :jobs , dependent: :destroy #, -> { includes :person }
   has_many :people, through: :jobs
 
-  validates :company_name,  presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
+  validates :company_name,  presence: true, length: { maximum: 40 }, uniqueness: { case_sensitive: false }
 
   # ------------------------
   # --    PRIVATE        ---

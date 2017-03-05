@@ -29,8 +29,8 @@ class Person < ApplicationRecord
   #:time, :date, :binary, :boolean, :references
 
 
-  validates :firstname,  presence: true, length: { maximum: 50 }
-  validates :lastname,  presence: true, length: { maximum: 50 }
+  validates :firstname,  presence: true, length: { maximum: 35 }
+  validates :lastname,  presence: true, length: { maximum: 40 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :phone_number,  length: { minimum:10,maximum: 18 }
