@@ -28,6 +28,7 @@ one:
   phone_number: MyString
   cell_phone_number: MyString
   birthdate: 2017-01-21
+  user: michael
 
 two:
   title: MyString
@@ -37,6 +38,7 @@ two:
   phone_number: MyString
   cell_phone_number: MyString
   birthdate: 2017-01-21
+  user: michael
 
 three:
   title: MyString
@@ -46,6 +48,7 @@ three:
   phone_number: MyString
   cell_phone_number: MyString
   birthdate: 2017-01-21
+  user: michael
 
 four:
   title: MyString
@@ -55,16 +58,17 @@ four:
   phone_number: MyString
   cell_phone_number: MyString
   birthdate: 2017-01-21
+  user: michael
 
-<% 30.times do |n| %>
-person_<%= n %>:
-  title: <%= Faker::Name.title %>
-  firstname: <%= Faker::Name.first_name %>
-  lastname: <%= Faker::Name.last_name %>
-  email: <%= Faker::Internet.email %>
-  phone_number: <%= Faker::PhoneNumber.phone_number %>
-  cell_phone_number: <%= Faker::PhoneNumber.cell_phone %>
-  birthdate: <%=  (Date.today - (18..70).to_a.sample*365 + (1..364).to_a.sample).strftime("%F") %>
-  created_at: <%= 42.days.ago %>
-  user_id: michael.id
-<% end %>
+# <% 30.times do |n| %>
+# person_<%= n %>:
+#   title: <%= %w[M. Mme Mlle].sample %>
+#   firstname: <%= Faker::Name.first_name %>
+#   lastname: <%= Faker::Name.last_name %>
+#   email: <%= Faker::Internet.email %>
+#   phone_number: <%= Faker::PhoneNumber.phone_number %>
+#   cell_phone_number: <%= Faker::PhoneNumber.cell_phone %>
+#   birthdate: <%=  (Date.today - (18..70).to_a.sample*365 + (1..364).to_a.sample).strftime("%F") %>
+#   created_at: <%= 42.days.ago %>
+#   user_id: michael.id
+# <% end %>
