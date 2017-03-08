@@ -30,8 +30,9 @@ class PeopleTest < ActionDispatch::IntegrationTest
     assert_template 'people/index'
     first_page_of_people = Person.paginate(page: 1)
     @person=first_page_of_people.first
-    first_page_of_people.each do |person|
-      assert_select 'span.glyphicon.glyphicon-trash', person_path(person)
+    puts "stress ..."
+    first_page_of_people.each do |per|
+      assert_select 'a[href=?]', person_path(per)
     end
     assert_difference 'Person.count', -1 do
       delete person_path(@person)
