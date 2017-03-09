@@ -39,6 +39,15 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "there's an access to people's detail page" do
+    get people_path
+    Person.paginate(page: 1).each do |per|
+      assert_select 'a[href=?]', person_path(per)
+      follow_redirect!
+      
+    end
+  end
+
   test "dependent resources shoud be destroyed when people are" do
     @job = create(:job)
     @person = @job.person
