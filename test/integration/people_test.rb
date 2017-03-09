@@ -30,7 +30,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     assert_template 'people/index'
     first_page_of_people = Person.paginate(page: 1)
     @person=first_page_of_people.first
-    puts "stress ..."
+    puts "just some indications"
     first_page_of_people.each do |per|
       assert_select 'a[href=?]', person_path(per)
     end
@@ -43,8 +43,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     get people_path
     Person.paginate(page: 1).each do |per|
       assert_select 'a[href=?]', person_path(per)
-      follow_redirect!
-      
+      assert_select 'a[href=?]', edit_person_path(per)
     end
   end
 

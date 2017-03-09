@@ -34,4 +34,10 @@ class CompanyTest < ActiveSupport::TestCase
     @company.company_name = "a"*41
     refute @company.valid?
   end
+
+  test "company_name should be unique" do
+    @company2 = create(:company)
+    @company.company_name = @company2.company_name
+    refute @company.valid?
+  end
 end
