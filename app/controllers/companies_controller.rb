@@ -6,7 +6,24 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.paginate(page: params[:page])
+    @companies = Company.all
+
+    if params[:filter]
+      posts = posts.where(["category = ?", params[:filter]])
+    end
+
+    if params['sort']
+      f = params['sort'].split(',').first
+      field = f[0] == '-' ? f[1..-1] : f
+      order = f[0] == '-' ? 'DESC' : 'ASC'
+      if Company.new.has_attribute?(field)
+        @companies = @companies.order("#{field} #{order}")
+      end
+    else
+        @companies = @companies.order("company_name ASC")
+    end
+    @companies = @companies.page(params[:page] ? params[:page].to_i: 1)
+
   end
 
   def edit

@@ -2,19 +2,35 @@
 <h1 class="center">Liste des sociétés</h1>
 
 <%= will_paginate %>
-<hr>
-<div class="row">
+<div class="row array_header">
     <div class="col-xs-3">
-        Nom de société
+<strong>Nom de société</strong>
+<% if params[:sort] && params[:sort].first != "-" %>
+  <%= link_to companies_path(:sort => "-company_name"), class: "btn" do %>
+    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+  <% end %>
+<% else %>
+  <%= link_to companies_path(:sort => "company_name"), class: "btn" do %>
+    <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+  <% end %>
+<% end %>
+    </div>
+    <div class="col-xs-2">
+
     </div>
     <div class="col-xs-3">
-      
-    </div>
-    <div class="col-xs-3">
-        Date d'enregistrement
+      <strong>Date d'enregistrement</strong>
+      <% if params[:sort] && params[:sort].first != "-" %>
+        <%= link_to companies_path(:sort => "-created_at"), class: "btn" do %>
+          <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+        <%= link_to companies_path(:sort => "created_at"), class: "btn" do %>
+          <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
     </div>
     <div class="col-xs-3"></div>
 </div>
-<hr>
   <%= render @companies %>
 <%= will_paginate %>

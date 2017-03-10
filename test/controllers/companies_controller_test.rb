@@ -49,4 +49,10 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_template 'companies/company_people'
   end
+
+  test "Should get properly sorted list" do
+    post = Company.order('company_name DESC').first
+    get :index, params: { sort: '-company_name' }
+    assert_response :success
+  end
 end
