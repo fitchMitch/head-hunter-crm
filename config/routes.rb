@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  get    '/people/searchByName',   to: 'people#search'
   get    '/people/:id/addCompany',   to: 'people#add_company'
+
+  get    '/companies/sort',   to: 'companies#sort_col'
 
   resources :account_activations,               only: [:edit]
   resources :jobs,                              only: [:new, :create, :edit, :update, :index, :destroy]

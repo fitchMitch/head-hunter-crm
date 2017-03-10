@@ -23,22 +23,7 @@ class CompaniesTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_match /Société sauvegardée/, flash[:info]
   end
-  #
-  # test "companies should get destroyed" do
-  #   get companies_path
-  #   assert_response :success
-  #   assert_template 'companies/index'
-  #   first_page_of_companies = company.paginate(page: 1)
-  #   @company=first_page_of_companies.first
-  #   puts "just some indications"
-  #   first_page_of_companies.each do |per|
-  #     assert_select 'a[href=?]', company_path(per)
-  #   end
-  #   assert_difference 'company.count', -1 do
-  #     delete company_path(@company)
-  #   end
-  # end
-  #
+
   test "there's an access to companies's detail page" do
     get companies_path
     Company.paginate(page: 1).each do |com|
@@ -46,12 +31,4 @@ class CompaniesTest < ActionDispatch::IntegrationTest
       assert_select 'a[href=?]', edit_company_path(com)
     end
   end
-  #
-  # test "dependent resources shoud be destroyed when companies are" do
-  #   @job = create(:job)
-  #   @company = @job.company
-  #   assert_difference 'Job.count', -1 do
-  #     delete company_path(@company)
-  #   end
-  # end
 end

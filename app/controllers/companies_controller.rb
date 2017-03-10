@@ -66,6 +66,9 @@ class CompaniesController < ApplicationController
     render 'companies/company_people'
   end
 
+  def sort_col
+  end
+
   private
     def company_params
       params.require(:company).permit(:company_name)

@@ -6,10 +6,6 @@
     </div>
     <div class="col-xs-3">
       <% if logged_in? %>
-        <%= link_to  company, method: :delete, data: { confirm: "C'est sûr ?" } do %>
-        <span class="glyphicon glyphicon-trash"></span>
-        <% end %>
-        |
         <%= link_to  edit_company_path(company) do %>
         Editer
         <span class="glyphicon glyphicon-pencil"></span>

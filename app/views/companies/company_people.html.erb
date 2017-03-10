@@ -1,7 +1,7 @@
 <% provide(:title, @company.company_name) %>
 
 <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-12">
         <h3> <i class="fa fa-building-o" aria-hidden="true"></i>
             <%= @company.company_name%>
             <small>
@@ -21,7 +21,13 @@
     <div class="col-xs-5">
         <% val['jobs'].each do |j| %>
         <div class="row">
-            <div class="col-xs-5"><%= j['job_title'] %></div>
+            <div class="col-xs-5">
+              <% if j['end_date'].nil? %>
+                <strong><%= j['job_title'] %></strong>
+              <% else %>
+                <span class="fadingColor"><%= j['job_title'] %></span>
+              <% end %>
+            </div>
             <div class="col-xs-7">Du
                 <%= j['start_date'] %>
                 <%=  j['end_date'].nil? ? "à aujourd'hui" : "au #{j['end_date']}"%>
