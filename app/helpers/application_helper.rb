@@ -22,7 +22,7 @@ module ApplicationHelper
       adj = ''
       unless col['label'].empty?
         sign = parameters['params'][:sort] && parameters['params'][:sort] == "-"+ col['attribute'] ? '' : '-'
-        adj = parameters['params'][:sort] && parameters['params'][:sort].first == "-" ? ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>' : ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
+        adj = parameters['params'][:sort] && parameters['params'][:sort] == "-" + col['attribute'] ? ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>' : ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
         sorting = sign + col['attribute']
         res +=  link_to controller: parameters['tableDB'], sort: sorting, class: "btn" do
           adj.html_safe

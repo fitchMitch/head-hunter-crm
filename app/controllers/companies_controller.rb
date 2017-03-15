@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
     @companies = Company.all
 
     if params[:filter]
-      posts = posts.where(["category = ?", params[:filter]])
+      @companies = @companies.where(["category = ?", params[:filter]])
     end
 
     if params['sort']
@@ -26,7 +26,7 @@ class CompaniesController < ApplicationController
 
     @parameters = {'params'=> params, 'header' => [],'tableDB'=> "companies"}
     @parameters['header']<<{'width'=>3,'label'=>'Société','attribute'=>'company_name'}
-    @parameters['header']<<{'width'=>2,'label'=>'','attribute'=>'company_name'}
+    @parameters['header']<<{'width'=>2,'label'=>''}
     @parameters['header']<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
 
   end
