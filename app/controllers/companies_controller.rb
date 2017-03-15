@@ -24,14 +24,10 @@ class CompaniesController < ApplicationController
     end
     @companies = @companies.page(params[:page] ? params[:page].to_i: 1)
 
-    @params = params
-
-    @header=[]
-    @header<<{'width'=>3,'label'=>'Société','attribute'=>'company_name'}
-    @header<<{'width'=>2,'label'=>'','attribute'=>'company_name'}
-    @header<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
-
-    @tableDB =  "companies"
+    @parameters = {'params'=> params, 'header' => [],'tableDB'=> "companies"}
+    @parameters['header']<<{'width'=>3,'label'=>'Société','attribute'=>'company_name'}
+    @parameters['header']<<{'width'=>2,'label'=>'','attribute'=>'company_name'}
+    @parameters['header']<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
 
   end
 
