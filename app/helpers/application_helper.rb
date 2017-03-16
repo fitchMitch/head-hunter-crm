@@ -15,15 +15,22 @@ module ApplicationHelper
     # @parameters['header']<<{'width'=>3,'label'=>'Société','attribute'=>'company_name'}
     # @parameters['header']<<{'width'=>2,'label'=>'','attribute'=>'company_name'}
     # @parameters['header']<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
+    sort = parameters['params'][:sort]
     res ='<div class="row array_header">'
     parameters['header'].each do |col|
-      res += '<div class="col-xs-' + col['width'].to_s+ '"><strong>'
-      res +=  col['label'] +'</strong>'
+      res += '<div class="col-xs-' + col['width'].to_s+ '">'
       adj = ''
       unless col['label'].empty?
-        sign = parameters['params'][:sort] && parameters['params'][:sort] == "-"+ col['attribute'] ? '' : '-'
-        adj = parameters['params'][:sort] && parameters['params'][:sort] == "-" + col['attribute'] ? ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>' : ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
-        sorting = sign + col['attribute']
+        res +=  '<strong>' + col['label'] +'</strong>'
+
+        if sort == "-" + col['attribute']
+          adj =  ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>'
+          sorting =  col['attribute']
+        else
+          adj =  ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
+          sorting = "-" + col['attribute']
+        end
+
         res +=  link_to controller: parameters['tableDB'], sort: sorting, class: "btn" do
           adj.html_safe
         end
