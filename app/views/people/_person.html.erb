@@ -4,8 +4,8 @@
     <%= link_to person do %>
         <i class="fa fa-user-o fa-2x"></i> <%= person.full_name %>
       <% end %>
-
   </div>
+
   <div class="col-sm-2">
     <p>
       <% if logged_in? %>
@@ -15,11 +15,10 @@
       | <%= link_to edit_person_path(person) do %>
           <span class="glyphicon glyphicon-pencil"> </span>
         <% end %>
-
-
     <% end %>
     </p>
   </div>
+
   <div class="col-sm-3">
     <small>
       ajouté il y a

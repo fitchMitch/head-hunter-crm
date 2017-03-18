@@ -7,6 +7,29 @@ class PeopleController < ApplicationController
 
   def index
     @people = Person.all.paginate(page: params[:page]).includes(:user)
+
+    @people = Person.all
+
+    if params[:filter]
+      @people = @people.where(["category = ?", params[:filter]])
+    end
+
+    if params['sort']
+      f = params['sort'].split(',').first
+      field = f[0] == '-' ? f[1..-1] : f
+      order = f[0] == '-' ? 'DESC' : 'ASC'
+      if Person.new.has_attribute?(field)
+        @people = @people.order("#{field} #{order}")
+      end
+    else
+        @people = @people.order("firstname ASC")
+    end
+    @people = @people.page(params[:page] ? params[:page].to_i: 1).includes(:user)
+
+    @parameters = {'params'=> params, 'header' => [],'tableDB'=> "people"}
+    @parameters['header']<<{'width'=>3,'label'=>'Contact','attribute'=>'lastname'}
+    @parameters['header']<<{'width'=>2,'label'=>''}
+    @parameters['header']<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
   end
 
   def edit

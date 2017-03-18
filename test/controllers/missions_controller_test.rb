@@ -2,25 +2,25 @@ require 'test_helper'
 
 class MissionsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user       = users(:michael)
-    @mission    = missions(:one)
+    @user     = users(:michael)
+    mission   = create(:mission)
+    company   = mission.company
+    person    = mission.person
+    log_in_as(@user)
   end
 
   test "should get edit" do
-    log_in_as(@user)
-    get edit_mission_path(@mission)
+    get edit_mission_path(mission)
     assert_response :success
   end
 
   test "should get new" do
-    log_in_as(@user)
     get new_mission_path
     assert_response :success
   end
 
   test "should get show" do
-    log_in_as(@user)
-    get mission_path(@mission)
+    get mission_path(mission)
     assert_response :success
   end
 

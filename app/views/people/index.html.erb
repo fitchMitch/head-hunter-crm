@@ -2,9 +2,6 @@
 <h1 class="center">Liste des contacts</h1>
 
 <%= will_paginate %>
-
-<ul class="contacts">
-  <%= render @people %>
-</ul>
-
+<%= block_header(@parameters) %>
+<%= render @people %>
 <%= will_paginate %>

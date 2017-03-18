@@ -28,7 +28,6 @@ class CompaniesController < ApplicationController
     @parameters['header']<<{'width'=>3,'label'=>'Société','attribute'=>'company_name'}
     @parameters['header']<<{'width'=>2,'label'=>''}
     @parameters['header']<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
-
   end
 
   def edit

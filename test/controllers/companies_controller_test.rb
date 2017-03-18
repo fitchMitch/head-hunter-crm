@@ -51,8 +51,8 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "Should get properly sorted list" do
-    post = Company.order('company_name DESC').first
-    get :index, params: { sort: '-company_name' }
+    company = Company.order('company_name DESC').first
+    get companies_path, params: { sort: '-company_name' }
     assert_response :success
   end
 end

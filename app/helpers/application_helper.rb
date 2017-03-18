@@ -19,16 +19,16 @@ module ApplicationHelper
     res ='<div class="row array_header">'
     parameters['header'].each do |col|
       res += '<div class="col-xs-' + col['width'].to_s+ '">'
-      adj = ''
       unless col['label'].empty?
         res +=  '<strong>' + col['label'] +'</strong>'
 
-        if sort == "-" + col['attribute']
+        if sort == col['attribute']
           adj =  ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>'
-          sorting =  col['attribute']
+          sorting = "-" +  col['attribute']
+        # created_at should make exception
         else
           adj =  ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
-          sorting = "-" + col['attribute']
+          sorting =  col['attribute']
         end
 
         res +=  link_to controller: parameters['tableDB'], sort: sorting, class: "btn" do

@@ -22,9 +22,9 @@ gem 'simple_form'
 gem 'select2-rails'
 gem "font-awesome-rails"
 gem 'date_validator',         '~> 0.9.0'
-gem "factory_girl_rails",     "~> 4.0"
 
 group :development, :test do
+  gem "factory_girl_rails",     "~> 4.0"
   gem 'sqlite3', '1.3.12'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'as-duration'
@@ -38,6 +38,7 @@ group :development do
 end
 
 group :test do
+  gem 'color_pound_spec_reporter'
   gem 'rails-controller-testing', '0.1.1'
   gem 'minitest-reporters',       '1.1.9'
   gem 'guard',                    '2.13.0'
