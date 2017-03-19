@@ -4,5 +4,5 @@ class ApplicationController < ActionController::Base
   def sqlPerc(s)
     '%' + s.to_s + '%'
   end
-
+  
 end

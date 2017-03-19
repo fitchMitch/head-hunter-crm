@@ -79,15 +79,17 @@ class CompaniesController < ApplicationController
     }
 
     @jobs.each { |j|
-      @people_jobs[j.person_id]['jobs'] << {"job_title" =>j.job_title,"start_date" =>j.start_date,"end_date" =>j.end_date}
+      @people_jobs[j.person_id]['jobs'] << {"job_title" =>j.job_title,"start_date" =>j.start_date,"end_date" =>j.end_date, "no_end"=>j.no_end}
       @people_jobs[j.person_id]['person'] = {'title'=>j.person.title , 'firstname'=>j.person.firstname,'lastname'=>j.person.lastname}
     }
     @nb_people = distinct_people_ids.count
 
-    render 'companies/company_people'
-  end
+    @parameters = {'params'=> params, 'header' => [], 'tableDB'=> "jobs"}
+    @parameters['header']<<{'width'=>3,'label'=>'Personne','attribute'=>'none'}
+    @parameters['header']<<{'width'=>3,'label'=>'Emploi','attribute'=>'none'}
+    @parameters['header']<<{'width'=>3,'label'=>'Dates','attribute'=>'none'}
 
-  def sort_col
+    render 'companies/company_people'
   end
 
   private

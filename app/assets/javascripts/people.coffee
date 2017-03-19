@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
-  $("#person_job_company_id").select2
+  $("#job_company_id").select2
     theme: "bootstrap"
 
   $("#job_no_end").bind 'change', ->
@@ -10,4 +10,3 @@ $(document).on "turbolinks:load", ->
       $('.job_end_date').fadeToggle()
     else
       $('.job_end_date').fadeIn()
-  return

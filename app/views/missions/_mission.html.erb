@@ -1,0 +1,40 @@
+    <div class="<%= mission.is_done ? 'row mission_done' : 'row' %>">
+    <div class="col-xs-2">
+        <%= link_to  edit_mission_path(mission)  do%>
+        <%= mission.name %>
+        <span class="glyphicon glyphicon-pencil"></span>
+        <% end %>
+        <br>
+        <small>
+          Marché : <%= number_to_currency mission.reward %>
+          <br> Payé: <%= number_to_currency mission.paid_amount %>
+        </small>
+    </div>
+    <div class="col-xs-1">
+      <%= link_to  mission_path(mission), method: :delete, data: { confirm: "Wesh ? C'est sûr pour #{mission.person.full_name}?" } do %>
+      <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+    </div>
+    <div class="col-xs-2">
+        <%= link_to company_path(mission.company_id), class: "" do %>
+        <span class="label label-warning">
+          <%= mission.company.company_name %>
+        </span>
+        <% end %>
+        <br>
+        <small>
+          <%= link_to person_path mission.person_id, class: "btn btn-primary" do%>
+            <%=  fa_icon("user", text: mission.person.full_name) %>
+          <% end %>
+        </small>
+    </div>
+    <div class="col-xs-5">
+        <small>
+            <p><%= mission.criteria %></p>
+        </small>
+    </div>
+    <div class="col-xs-1">
+        <small><%= time_ago_in_words mission.updated_at %></small>
+    </div>
+</div>
+<hr>

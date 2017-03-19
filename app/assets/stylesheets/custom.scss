@@ -235,7 +235,7 @@ abbr {
 }
 
 .frameMe {
-    margin-top: 45px;
+    margin-top: 5px;
     border: 1px #888888 solid;
     padding: 2px 2px 2px 15px;
     background-color: #E7DCF4;
@@ -249,6 +249,11 @@ abbr {
   background-color: #E7DCF4;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
+}
+hr.sep{
+  color:#7e5986;
+  background-color: #7e5986;
+  height: 1px;
 }
 
 .checkBelow {
@@ -280,4 +285,15 @@ abbr {
   border-top: 2px #8b7193 solid;
   border-bottom: 2px #8b7193 solid;
   margin-bottom: 15px;
+}
+a > span.label-warning:hover{
+  text-decoration: none;
+}
+/* People */
+.spaceUp25{
+  margin-top: 25px;
+}
+/* Missions */
+.mission_done{
+  background-color: #CCC
 }

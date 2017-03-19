@@ -6,8 +6,6 @@ class PeopleController < ApplicationController
   end
 
   def index
-    @people = Person.all.paginate(page: params[:page]).includes(:user)
-
     @people = Person.all
 
     if params[:filter]
@@ -22,7 +20,7 @@ class PeopleController < ApplicationController
         @people = @people.order("#{field} #{order}")
       end
     else
-        @people = @people.order("firstname ASC")
+      @people = @people.order("firstname ASC")
     end
     @people = @people.page(params[:page] ? params[:page].to_i: 1).includes(:user)
 

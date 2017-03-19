@@ -21,18 +21,18 @@ module ApplicationHelper
       res += '<div class="col-xs-' + col['width'].to_s+ '">'
       unless col['label'].empty?
         res +=  '<strong>' + col['label'] +'</strong>'
-
-        if sort == col['attribute']
-          adj =  ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>'
-          sorting = "-" +  col['attribute']
-        # created_at should make exception
-        else
-          adj =  ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
-          sorting =  col['attribute']
-        end
-
-        res +=  link_to controller: parameters['tableDB'], sort: sorting, class: "btn" do
-          adj.html_safe
+        unless col['attribute'] == 'none'
+          if sort == col['attribute']
+            adj =  ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>'
+            sorting = "-" +  col['attribute']
+          # created_at should make exception
+          else
+            adj =  ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
+            sorting =  col['attribute']
+          end
+          res +=  link_to controller: parameters['tableDB'], sort: sorting, class: "btn" do
+            adj.html_safe
+          end
         end
       end
       res += '</div>'

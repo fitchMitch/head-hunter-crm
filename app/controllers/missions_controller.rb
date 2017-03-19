@@ -23,7 +23,31 @@ class MissionsController < ApplicationController
   end
   #-----------------
   def index
-    @missions = Mission.paginate(page: params[:page])
+    @missions = Mission.all
+
+    if params[:filter]
+      @missions = @missions.where(["category = ?", params[:filter]])
+    end
+
+    if params['sort']
+      f = params['sort'].split(',').first
+      field = f[0] == '-' ? f[1..-1] : f
+      order = f[0] == '-' ? 'DESC' : 'ASC'
+      if Mission.new.has_attribute?(field)
+        @missions = @missions.order("#{field} #{order}")
+      end
+    else
+        @missions = @missions.order("name ASC")
+    end
+    @missions = @missions.page(params[:page] ? params[:page].to_i: 1).includes(:company,:person)
+
+    @parameters = {'params'=> params, 'header' => [],'tableDB'=> "missions"}
+    @parameters['header']<<{'width'=>2,'label'=>'Mission','attribute'=>'name'}
+    @parameters['header']<<{'width'=>1,'label'=>''}
+    @parameters['header']<<{'width'=>2,'label'=>'Société','attribute'=>'none'}
+    @parameters['header']<<{'width'=>5,'label'=>'Contenu de la mission','attribute'=>'none'}
+    @parameters['header']<<{'width'=>1,'label'=>'Date d\'enr.','attribute'=>'updated_at'}
+
   end
   #-----------------
   def edit
@@ -35,13 +59,17 @@ class MissionsController < ApplicationController
   end
   #-----------------
   def create
-    # ...code
-    if @mission.save
-      flash[:warning] = message + " (profil imprécis)"
-      redirect_to person_path(@person.id)
+    @person = Person.find(mission_params[:person_id])
+    @company = Company.find(mission_params[:company_id])
+
+    @mission = @person.missions.build(mission_params)
+
+    unless (@person.nil? || @company.nil? || @mission.save
+      flash[:info] =  "Mission sauvegardée :-)"
+      redirect_to :index
     else
       flash[:alert] = "Cette expérience n'a pas pu être ajoutée"
-      redirect_to person_path(@person.id)
+      render :new
     end
   end
 
