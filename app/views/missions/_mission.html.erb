@@ -16,7 +16,7 @@
       <% end %>
     </div>
     <div class="col-xs-2">
-        <%= link_to company_path(mission.company_id), class: "" do %>
+        <%= link_to list_people_company_path(mission.company_id), class: "" do %>
         <span class="label label-warning">
           <%= mission.company.company_name %>
         </span>

@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   get    '/people/:id/addCompany',   to: 'people#add_company'
 
+  get    '/missions/add_ext',   to: 'missions#add_ext'
+  get    '/missions/:id/add_ext',   to: 'missions#add_ext'
+
   get    '/companies/sort',   to: 'companies#sort_col'
 
   resources :account_activations,               only: [:edit]
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
       get 'list_people'
     end
   end
+
   resources :password_resets,                   only: [:new, :create, :edit, :update]
 
 end

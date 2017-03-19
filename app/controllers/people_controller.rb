@@ -46,7 +46,8 @@ class PeopleController < ApplicationController
     @person.user_id = current_user.id
     if @person.save
       flash[:success] = "Contact sauvegardé (" + @person.full_name + ")."
-      redirect_to @person
+      #redirect_to @person
+      goto_next_url people_path
     else
       render 'new'
     end

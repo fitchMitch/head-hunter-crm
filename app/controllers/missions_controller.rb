@@ -64,20 +64,40 @@ class MissionsController < ApplicationController
 
     @mission = @person.missions.build(mission_params)
 
-    unless (@person.nil? || @company.nil? || @mission.save
+    if !@person.nil? && !@company.nil? && @mission.save
       flash[:info] =  "Mission sauvegardée :-)"
       redirect_to :index
     else
-      flash[:alert] = "Cette expérience n'a pas pu être ajoutée"
+      flash[:alert] = "Cette mission n'a pas pu être ajoutée"
       render :new
     end
   end
 
   def update
+    # if @job.update_attributes(job_params)
+    #   flash[:success] = "Emploi mis à jour"
+    #   @person = Person.find(@job.person_id)
+    #   redirect_to @person
+    # else
+    #   flash[:alert] = "Le contact n'a pas pu être mis à jour"
+    #   render 'edit'
+    # end
   end
 
   def destroy
   end
+
+  def add_ext
+    model = params['model'].to_s || 'person'
+    dest = "new_"+model+"_path"
+    if params[:id].nil?
+      set_next_url new_mission_path
+    else
+      set_next_url edit_mission_path(params[:id])
+    end
+    redirect_to send dest
+  end
+
   #---------------
   private
   #---------------
