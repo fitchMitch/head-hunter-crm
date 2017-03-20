@@ -1,7 +1,8 @@
     <div class="<%= mission.is_done ? 'row mission_done' : 'row' %>">
     <div class="col-xs-2">
+      <%= link_to mission.name, mission_path(mission) %>
+       |
         <%= link_to  edit_mission_path(mission)  do%>
-        <%= mission.name %>
         <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
         <br>
@@ -11,8 +12,10 @@
         </small>
     </div>
     <div class="col-xs-1">
-      <%= link_to  mission_path(mission), method: :delete, data: { confirm: "Wesh ? C'est sûr pour #{mission.person.full_name}?" } do %>
-      <span class="glyphicon glyphicon-trash"></span>
+      <% if logged_in? && current_user.admin? %>
+        <%= link_to  mission_path(mission), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
+        <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
       <% end %>
     </div>
     <div class="col-xs-2">

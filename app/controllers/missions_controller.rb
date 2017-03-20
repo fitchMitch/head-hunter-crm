@@ -66,7 +66,7 @@ class MissionsController < ApplicationController
 
     if !@person.nil? && !@company.nil? && @mission.save
       flash[:info] =  "Mission sauvegardée :-)"
-      redirect_to :index
+      redirect_to missions_path
     else
       flash[:alert] = "Cette mission n'a pas pu être ajoutée"
       render :new
@@ -74,17 +74,19 @@ class MissionsController < ApplicationController
   end
 
   def update
-    # if @job.update_attributes(job_params)
-    #   flash[:success] = "Emploi mis à jour"
-    #   @person = Person.find(@job.person_id)
-    #   redirect_to @person
-    # else
-    #   flash[:alert] = "Le contact n'a pas pu être mis à jour"
-    #   render 'edit'
-    # end
+    if @mission.update_attributes(mission_params)
+      flash[:success] = "Mission mise à jour"
+      redirect_to @mission
+    else
+      flash[:alert] = "Cette mission n'a pas pu être mise à jour"
+      render 'edit'
+    end
   end
 
   def destroy
+    @mission.destroy
+    flash[:success] = "Mission supprimée"
+    redirect_to missions_path
   end
 
   def add_ext
