@@ -21,7 +21,8 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'simple_form'
 gem 'select2-rails'
 gem "font-awesome-rails"
-gem 'date_validator',         '~> 0.9.0'
+gem 'date_validator',   '~> 0.9.0'
+gem 'paperclip',        "~> 5.0.0"
 
 group :development, :test do
   gem "factory_girl_rails",     "~> 4.0"
