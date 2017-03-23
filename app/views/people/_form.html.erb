@@ -5,6 +5,7 @@
         <%= f.input :firstname, label: "Prénom",input_html:{class:" input-sm" } %>
         <%= f.input :lastname, label: "Nom",input_html:{class:" input-sm" } %>
         <%= f.input :email, label: "Email" ,input_html: {class:" input-sm"}%>
+        <%= f.input :cv_docx, as: :file %>
     </div>
     <div class="col-sm-6 ">
         <%= f.input :phone_number, label: "Numéro de téléphone" ,input_html:{ maxlength: 16,class:" input-sm" } %>

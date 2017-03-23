@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317183823) do
+ActiveRecord::Schema.define(version: 20170323200950) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "company_name"
@@ -70,12 +70,16 @@ ActiveRecord::Schema.define(version: 20170317183823) do
     t.string   "phone_number"
     t.string   "cell_phone_number"
     t.date     "birthdate"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.boolean  "is_jj_hired"
     t.boolean  "is_client"
     t.text     "note"
     t.integer  "user_id"
+    t.string   "cv_docx_file_name"
+    t.string   "cv_docx_content_type"
+    t.integer  "cv_docx_file_size"
+    t.datetime "cv_docx_updated_at"
     t.index ["email"], name: "index_people_on_email"
     t.index ["user_id"], name: "index_people_on_user_id"
   end

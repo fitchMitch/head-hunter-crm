@@ -23,9 +23,18 @@ class Person < ApplicationRecord
   #accepts_nested_attributes_for :jobs, allow_destroy: true
   has_many :missions, dependent: :destroy
   belongs_to :user
+
   before_save   :downcase_email
   before_save   :upcase_name
+
   has_and_belongs_to_many :tags
+
+  #has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
+  has_attached_file :cv_docx
+  validates_attachment_content_type :cv_docx, content_type: /\Aapplication\/vnd\.openxmlformats/
+  validates_with AttachmentSizeValidator, attributes: :cv_docx, less_than: 4.megabytes
+  # Validate filename
+  #validates_attachment_file_name :avatar, matches: [/doc?\z/]
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
   #:time, :date, :binary, :boolean, :references
 

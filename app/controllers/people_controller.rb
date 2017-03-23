@@ -43,6 +43,7 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
+    @person.cv_docx = params[:person][:cv_docx]
     @person.user_id = current_user.id
     if @person.save
       flash[:success] = "Contact sauvegardé (" + @person.full_name + ")."
@@ -56,6 +57,7 @@ class PeopleController < ApplicationController
   def update
     #@person = Person.find(params[:id])
     @person.user_id = current_user.id
+    @person.cv_docx = params[:person][:cv_docx]
     if @person.update_attributes(person_params)
       flash[:success] = "Contact mis à jour"
       redirect_to @person
@@ -83,7 +85,7 @@ class PeopleController < ApplicationController
 
     def person_params
       #params.require(:person).permit(:title, :firstname, :lastname, :email,:phone_number, :cell_phone_number, :birthdate, :is_jj_hired,:is_client,:note,jobs: [:job_title, :salary, :start_date, :end_date, :jj_job])
-      params.require(:person).permit(:title, :firstname, :lastname, :email,:phone_number, :cell_phone_number, :birthdate, :is_jj_hired,:is_client,:note ,jobs_attributes: [:id, :salary, :job_title, :start_date,:end_date, :jj_job])
+      params.require(:person).permit(:title, :firstname, :lastname, :email,:phone_number, :cell_phone_number, :birthdate, :is_jj_hired,:is_client,:note ,:cv_docx,jobs_attributes: [:id, :salary, :job_title, :start_date,:end_date, :jj_job])
     end
     def logged_in_user
       unless logged_in?

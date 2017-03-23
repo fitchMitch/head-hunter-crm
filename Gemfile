@@ -23,6 +23,7 @@ gem 'select2-rails'
 gem "font-awesome-rails"
 gem 'date_validator',   '~> 0.9.0'
 gem 'paperclip',        "~> 5.0.0"
+gem 'paperclip-i18n'
 
 group :development, :test do
   gem "factory_girl_rails",     "~> 4.0"
