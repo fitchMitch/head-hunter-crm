@@ -18,7 +18,7 @@
 class Job < ApplicationRecord
   belongs_to  :person
   belongs_to  :company
-
+  default_scope -> { order(start_date: :desc) }
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
   #:time, :date, :binary, :boolean, :references
 

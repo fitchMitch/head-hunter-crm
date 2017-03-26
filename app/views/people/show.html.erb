@@ -36,11 +36,13 @@
               <strong>CV (au format docx)</strong>
             </div>
             <div class="col-xs-6">
-              <%= link_to  @person.cv_docx.url, class: "badge " do %>
+            <% if @person.cv_docx.file? %>
+              <%= link_to @person.cv_docx.url, class: "badge badge-primary" do %>
                 <%= @person.cv_docx_file_name %>
               <% end %>
-              <%=  %>
-
+            <% elsif !@person.is_client? %>
+              <span class="small_alert">CV !</span>
+            <% end %>
             </div>
           </div>
 

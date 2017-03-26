@@ -27,7 +27,8 @@ class PeopleController < ApplicationController
     @parameters = {'params'=> params, 'header' => [],'tableDB'=> "people"}
     @parameters['header']<<{'width'=>3,'label'=>'Contact','attribute'=>'lastname'}
     @parameters['header']<<{'width'=>2,'label'=>''}
-    @parameters['header']<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
+    @parameters['header']<<{'width'=>3,'label'=>'Date de mise à jour','attribute'=>'updated_at'}
+
   end
 
   def edit
@@ -68,7 +69,8 @@ class PeopleController < ApplicationController
   end
 
   def destroy
-    Person.find(params[:id]).destroy
+    @person.cv_docx = nil
+    @person.destroy
     flash[:success] = "Contact supprimé"
     redirect_to people_url
   end

@@ -23,33 +23,32 @@ class MissionsController < ApplicationController
   end
   #-----------------
   def index
-    @missions = Mission.all
+    @missions = Mission.joins(:company,:person).select("missions.*,companies.company_name").page(params[:page] ? params[:page].to_i: 1).reload
+    @missions = bin_filters(@missions, params)
+    unless @missions==nil
+      if params['sort']
+        f = params['sort'].split(',').first
+        field = f[0] == '-' ? f[1..-1] : f
+        order = f[0] == '-' ? 'DESC' : 'ASC'
 
-    if params[:filter]
-      @missions = @missions.where(["category = ?", params[:filter]])
-    end
-
-    if params['sort']
-      f = params['sort'].split(',').first
-      field = f[0] == '-' ? f[1..-1] : f
-      order = f[0] == '-' ? 'DESC' : 'ASC'
-      if Mission.new.has_attribute?(field)
         @missions = @missions.order("#{field} #{order}")
-      end
-    else
+      else
         @missions = @missions.order("name ASC")
+      end
     end
-    @missions = @missions.page(params[:page] ? params[:page].to_i: 1).includes(:company,:person)
+    @missions = @missions
 
     @parameters = {'params'=> params, 'header' => [],'tableDB'=> "missions"}
     @parameters['header']<<{'width'=>2,'label'=>'Mission','attribute'=>'name'}
     @parameters['header']<<{'width'=>1,'label'=>''}
-    @parameters['header']<<{'width'=>2,'label'=>'Société','attribute'=>'none'}
+    @parameters['header']<<{'width'=>2,'label'=>'Société','attribute'=>'companies.company_name'}
     @parameters['header']<<{'width'=>5,'label'=>'Contenu de la mission','attribute'=>'none'}
-    @parameters['header']<<{'width'=>1,'label'=>'Date d\'enr.','attribute'=>'updated_at'}
+    @parameters['header']<<{'width'=>1,'label'=>'Mise à jour','attribute'=>'updated_at'}
 
   end
+
   #-----------------
+
   def edit
     @person = Person.find(@mission.person_id)
     @company = Company.find(@mission.company_id)

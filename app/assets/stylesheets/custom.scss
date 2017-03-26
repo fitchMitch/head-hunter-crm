@@ -293,7 +293,28 @@ a > span.label-warning:hover{
 .spaceUp25{
   margin-top: 25px;
 }
+.spaceDown{
+  margin-bottom: 25px;
+}
 /* Missions */
 .mission_done{
   background-color: #BBB
+}
+.small_alert{
+  font-size: 0.7em;
+  line-height: normal;
+  vertical-align: middle;
+  color: red;
+  background-color: #BBB;
+  padding: 0.4em;
+  -webkit-border-radius:8px 8px 8px 8px;
+  border-radius:8px 8px 8px 8px;
+}
+.word_cv_badge{
+  color:black;
+  //background-color: #FFF;
+  padding:0.2em;
+  -webkit-border-radius:8px 8px 8px 8px;
+  border-radius:8px 8px 8px 8px;
+  border: 1px solid #b299b2;
 }

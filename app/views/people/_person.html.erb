@@ -2,8 +2,15 @@
 <div class="row">
   <div class="col-sm-3">
     <%= link_to person do %>
-        <i class="fa fa-user-o fa-2x"></i> <%= person.full_name %>
+        <i class="fa fa-user"></i> <%= person.full_name %>
+    <% end %>
+    <% if person.cv_docx.file? %>
+      <%= link_to person.cv_docx.url ,class:'word_cv_badge' do %>
+      <i class="fa fa-file-word-o" aria-hidden="true"></i>
       <% end %>
+    <% elsif !person.is_client? %>
+      <span class="small_alert">CV !</span>
+    <% end %>
   </div>
 
   <div class="col-sm-2">
@@ -22,7 +29,7 @@
   <div class="col-sm-3">
     <small>
       ajouté il y a
-       <%= time_ago_in_words(person.created_at)  %>
+       <%= time_ago_in_words(person.updated_at)  %>
        [<%= person.user.name %>]
     </small>
   </div>

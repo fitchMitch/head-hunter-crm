@@ -2,20 +2,24 @@
 #
 # Table name: people
 #
-#  id                :integer          not null, primary key
-#  title             :string
-#  firstname         :string
-#  lastname          :string
-#  email             :string
-#  phone_number      :string
-#  cell_phone_number :string
-#  birthdate         :date
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  is_jj_hired       :boolean
-#  is_client         :boolean
-#  note              :text
-#  user_id           :integer
+#  id                   :integer          not null, primary key
+#  title                :string
+#  firstname            :string
+#  lastname             :string
+#  email                :string
+#  phone_number         :string
+#  cell_phone_number    :string
+#  birthdate            :date
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  is_jj_hired          :boolean
+#  is_client            :boolean
+#  note                 :text
+#  user_id              :integer
+#  cv_docx_file_name    :string
+#  cv_docx_content_type :string
+#  cv_docx_file_size    :integer
+#  cv_docx_updated_at   :datetime
 #
 
 class Person < ApplicationRecord
@@ -32,7 +36,7 @@ class Person < ApplicationRecord
   #has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
   has_attached_file :cv_docx
   validates_attachment_content_type :cv_docx, content_type: /\Aapplication\/vnd\.openxmlformats/
-  validates_with AttachmentSizeValidator, attributes: :cv_docx, less_than: 4.megabytes
+  validates_with AttachmentSizeValidator, attributes: :cv_docx, less_than: 2.megabytes
   # Validate filename
   #validates_attachment_file_name :avatar, matches: [/doc?\z/]
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,

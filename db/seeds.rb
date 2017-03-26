@@ -62,7 +62,7 @@ Person.create!( title:              "Mme",
 10.times do |n|
   company=companies.sample
   user = users.sample
-  title=              Faker::Name.title
+  title=              %w[M. Mme Mlle].sample
   firstname=          Faker::Name.first_name
   lastname=           Faker::Name.last_name
   email=              Faker::Internet.email

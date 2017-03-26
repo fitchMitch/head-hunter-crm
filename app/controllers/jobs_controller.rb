@@ -8,6 +8,10 @@ class JobsController < ApplicationController
   #-----------------
   def index
     @jobs = Job.paginate(page: params[:page])
+    for i in [0..@jobs.count-1] do
+      @jobs<< Job.build('job_title'=> "Sans emploi" , 'start_date'=> @jobs[i+1].end_date, 'end_date' => @jobs[i].start_date)
+    end
+    @jobs.order("end_date")
   end
   #-----------------
   def edit
@@ -35,7 +39,7 @@ class JobsController < ApplicationController
     else
       flash[:alert] = "Cette expérience n'a pas pu être ajoutée"
     end
-    
+
     redirect_to person_path(@person.id)
   end
   #-----------------

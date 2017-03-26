@@ -2,20 +2,24 @@
 #
 # Table name: people
 #
-#  id                :integer          not null, primary key
-#  title             :string
-#  firstname         :string
-#  lastname          :string
-#  email             :string
-#  phone_number      :string
-#  cell_phone_number :string
-#  birthdate         :date
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  is_jj_hired       :boolean
-#  is_client         :boolean
-#  note              :text
-#  user_id           :integer
+#  id                   :integer          not null, primary key
+#  title                :string
+#  firstname            :string
+#  lastname             :string
+#  email                :string
+#  phone_number         :string
+#  cell_phone_number    :string
+#  birthdate            :date
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  is_jj_hired          :boolean
+#  is_client            :boolean
+#  note                 :text
+#  user_id              :integer
+#  cv_docx_file_name    :string
+#  cv_docx_content_type :string
+#  cv_docx_file_size    :integer
+#  cv_docx_updated_at   :datetime
 #
 
 require 'test_helper'

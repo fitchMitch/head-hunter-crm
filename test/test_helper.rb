@@ -3,7 +3,8 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require "minitest/reporters"
 require 'color_pound_spec_reporter'
-Minitest::Reporters.use! [ColorPoundSpecReporter.new]
+#Minitest::Reporters.use! [ColorPoundSpecReporter.new]
+Minitest::Reporters.use!
 
 
 class ActiveSupport::TestCase

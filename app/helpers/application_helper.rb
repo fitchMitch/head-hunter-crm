@@ -22,6 +22,7 @@ module ApplicationHelper
       unless col['label'].empty?
         res +=  '<strong>' + col['label'] +'</strong>'
         unless col['attribute'] == 'none'
+          sorting=''
           if sort == col['attribute']
             adj =  ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>'
             sorting = "-" +  col['attribute']
@@ -30,8 +31,14 @@ module ApplicationHelper
             adj =  ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
             sorting =  col['attribute']
           end
-          res +=  link_to controller: parameters['tableDB'], sort: sorting, class: "btn" do
-            adj.html_safe
+          if parameters['params'][:bin_filter] == nil
+            res +=  link_to controller: parameters['tableDB'], sort: sorting  do
+              adj.html_safe
+            end
+          else
+            res +=  link_to controller: parameters['tableDB'], sort: sorting ,bin_filter: parameters['params']['bin_filter'] do
+              adj.html_safe
+            end
           end
         end
       end
@@ -40,4 +47,11 @@ module ApplicationHelper
     res += '</div>'
     res.html_safe
   end
+  #-----------------
+  def active_classes(attr,val)
+      request.query_parameters['bin_filter'] = val== 1 ? attr : "-" + attr
+      request.query_parameters['page']=1
+      request.query_parameters
+  end
+
 end

@@ -23,6 +23,7 @@
 class Mission < ApplicationRecord
   belongs_to :person
   belongs_to :company
+  has_many :comactions, dependent: :destroy
 
   validates :name , presence: true, length: { maximum: 50 }
   validates :reward , presence: true
