@@ -30,7 +30,13 @@ class Job < ApplicationRecord
   def double_jobs(person_id)
     Job.where("person_id = ? AND no_end = ?",person_id,true).count>1
   end
+  def next
+    self.class.unscoped.where("start_date <= ? AND id != ?", start_date, id).order("start_date DESC").first
+  end
 
+  def previous
+    self.class.unscoped.where("start_date >= ? AND id != ?", start_date, id).order("start_date ASC").first
+  end
   # ------------------------
   # --    PRIVATE        ---
   # ------------------------

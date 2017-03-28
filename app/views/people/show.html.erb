@@ -3,104 +3,163 @@
 <% provide(:action, @action) %>
 
 <div class="row">
-  <div class="col-xs-6">
-    <h3>
-      <i class="fa fa-user-o" aria-hidden="true"></i>
-      <%= link_to @person.full_name, edit_person_path(@person), class:@class_client  %>
-      <% if @person.is_jj_hired %>
-      <i class="fa fa-star" aria-hidden="true"></i>
-      <% end %>
-    </h3>
-    <hr>
-    <div class="frameMe">
-      <div class="row">
-        <div class="col-xs-1">
-          <p>
-            <%= link_to  edit_person_path(@person), class:@class_client do %>
-            <!-- <i class="fa fa-id-card-o fa-2x " aria-hidden="true" ></i> --><br>
-            <i class="fa fa-id-badge fa-3x" aria-hidden="true"></i>
-            <% end%>
-          </p>
-        </div>
-        <div class="col-xs-10">
-          <div class="row">
-            <div class="col-xs-5 ">
-              <strong>Fixe</strong>
-            </div>
-            <div class="col-xs-6">
-              <%= @person.phone_number %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-5 ">
-              <strong>CV (au format docx)</strong>
-            </div>
-            <div class="col-xs-6">
-            <% if @person.cv_docx.file? %>
-              <%= link_to @person.cv_docx.url, class: "badge badge-primary" do %>
-                <%= @person.cv_docx_file_name %>
-              <% end %>
-            <% elsif !@person.is_client? %>
-              <span class="small_alert">CV !</span>
-            <% end %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-xs-5">
-              <strong>Mobile</strong>
-            </div>
-            <div class="col-xs-6">
-              <%= @person.cell_phone_number %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-5">
-              <strong>Email</strong>
-            </div>
-            <div class="col-xs-6">
-              <%= @person.email %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-5">
-              <strong>Date de naissance</strong>
-            </div>
-            <div class="col-xs-6">
-              <%= @person.birthdate %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-5">
-              <strong>Age</strong>
-            </div>
-            <div class="col-xs-6">
-              <%=time_ago_in_words(@person.birthdate) %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row spaceUp25">
-      <div class="col-xs-12">
-        <h4 >
-          <i class="fa fa-plus" aria-hidden="true"></i>
-          Ajouter une expérience
-        </h4>
-      </div>
-    </div>
-    <hr class="sep"/>
-    <%= render 'jobs/job_form'  %>
-  <div class="col-xs-6">
-    <div class="row">
-      <div class="col-xs-1"></div>
-      <div class="col-xs-11">
+    <div class="col-xs-6">
         <h3>
-          <i class="fa fa-building-o" aria-hidden="true"></i>
-          Expériences
+            <i class="fa fa-user-o" aria-hidden="true"></i>
+            <%= link_to @person.full_name, edit_person_path(@person), class:@class_client  %>
+            <% if @person.is_jj_hired %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <% end %>
         </h3>
         <hr>
-        <%= render @jobs || 'shared/empty_list' %></div>
+        <div class="frameMe">
+            <div class="row">
+                <div class="col-xs-1">
+                    <p>
+                        <%= link_to  edit_person_path(@person), class:@class_client do %>
+                        <!-- <i class="fa fa-id-card-o fa-2x " aria-hidden="true" ></i> --><br>
+                        <i class="fa fa-id-badge fa-3x" aria-hidden="true"></i>
+                        <% end%>
+                    </p>
+                </div>
+                <div class="col-xs-10">
+                    <div class="row">
+                        <div class="col-xs-5 ">
+                            <strong>Fixe</strong>
+                        </div>
+                        <div class="col-xs-6">
+                            <%= @person.phone_number %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5 ">
+                            <strong>CV (au format docx)</strong>
+                        </div>
+                        <div class="col-xs-6">
+                            <% if @person.cv_docx.file? %>
+                            <%= link_to @person.cv_docx.url, class: "badge badge-primary" do %>
+                            <%= @person.cv_docx_file_name %>
+                            <% end %>
+                            <% elsif !@person.is_client? %>
+                            <span class="small_alert">CV !</span>
+                            <% end %>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <strong>Mobile</strong>
+                        </div>
+                        <div class="col-xs-6">
+                            <%= @person.cell_phone_number %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <strong>Email</strong>
+                        </div>
+                        <div class="col-xs-6">
+                            <%= @person.email %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <strong>Date de naissance</strong>
+                        </div>
+                        <div class="col-xs-6">
+                            <%= @person.birthdate %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <strong>Age</strong>
+                        </div>
+                        <div class="col-xs-6">
+                            <%=time_ago_in_words(@person.birthdate) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row spaceUp25">
+            <div class="col-xs-12">
+                <h4 >
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Ajouter une expérience
+                </h4>
+            </div>
+        </div>
+        <hr class="sep"/>
+        <%= render 'jobs/job_form'  %>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-11 col-xs-offset-1">
+                    <h3>
+                        <i class="fa fa-building-o" aria-hidden="true"></i>
+                        Expériences
+                    </h3>
+                    <% if @alljobs.nil? || @alljobs.empty? %>
+                    <%= render 'shared/empty_list' %>
+                <% else %>
+                    <%  @alljobs.each do |a| %>
+                    <% if a.company_name=="Pôle emploi" %>
+                    Sans emploi de <%= a.start_date %> à <%= a.end_date %>
+                    <hr>
+                    <% else %>
+                    <div class="row">
+                        <!-- true -->
+
+                        <div class="col-xs-4">
+                            <%= link_to  edit_job_path(a.id)  do%>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <%= a.job_title %>
+                            <% end %>
+                        </div>
+                        <div class="col-xs-4">
+                            <% unless a.no_end  %>
+                            <%= link_to  list_people_company_path(a.company_id)  do%>
+                            <span class="label label-warning"><%= a.company_name %>
+                            </span>
+                            <% end %>
+                        <% else %>
+                            <%= link_to  list_people_company_path(a.company_id)  do%>
+                            <span class="redFrame"><%= a.company_name %></span>
+                            <% end %>
+                            <% end %>
+                        </div>
+                        <div class="col-xs-3">
+                            <small>
+                                <%= a.salary %>
+                                euros
+                            </small>
+                        </div>
+                        <div class="col-xs-1">
+                            <%= link_to  job_path(a.id), method: :delete, data: { confirm: "Wesh ? C'est sûr pour ?" } do %>
+                            <span class="glyphicon glyphicon-trash"></span>
+                            <% end %>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <small>
+                                de
+                                <%= t a.start_date.strftime("%B %Y") %>
+                                à
+                                <% if a.no_end%>
+                                aujourd'hui
+                            <% else %>
+                                <%= t a.end_date.strftime("%B %Y") %>
+                                <%end%>
+                            </small>
+                        </div>
+                    </div>
+                    <% end %>
+                    <% end %>
+                    <% end %>
+
+                    <!-- <%= render @jobs || 'shared/empty_list' %></div> -->
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>

@@ -16,6 +16,7 @@ class PeopleController < ApplicationController
       f = params['sort'].split(',').first
       field = f[0] == '-' ? f[1..-1] : f
       order = f[0] == '-' ? 'DESC' : 'ASC'
+      # this next condition might diseapear in case of a junction
       if Person.new.has_attribute?(field)
         @people = @people.order("#{field} #{order}")
       end
@@ -34,11 +35,50 @@ class PeopleController < ApplicationController
   def edit
     @person = Person.find(params[:id])
   end
+  class Alljob
+    include ActiveModel::AttributeAssignment
+    attr_accessor :id, :job_title, :start_date, :end_date, :company_name , :salary , :person_id, :no_end, :company_id
+  end
 
   def show
     @person = Person.find(params[:id])
     @job = @person.jobs.build
     @jobs = @person.jobs.reload.includes(:company)
+
+    @jobs.order("end_date")
+    last_job = @jobs.last
+    @alljobs = []
+
+    @jobs.each do |job|
+      job1 = Alljob.new
+      job1.assign_attributes({
+        id: job.id,
+        job_title: job.job_title,
+        start_date: job.start_date,
+        end_date: job.end_date,
+        company_name: job.company.company_name,
+        salary: job.salary,
+        person_id: job.person_id,
+        no_end: job.no_end,
+        company_id: job.company_id})
+
+      @alljobs << job1
+      puts @alljobs
+      unless job == last_job
+        job2 = Alljob.new
+        job2.assign_attributes({
+          id: 0,
+          job_title: "Sans emploi",
+          start_date: job.next.end_date,
+          end_date: job.start_date,
+          company_name: "Pôle emploi",
+          company_id: 0,
+          salary: 0,
+          person_id: job.person_id,
+          no_end: false})
+        @alljobs << job2
+      end
+    end
     @class_client = @person.is_client ? "client" : "candidate"
   end
 
