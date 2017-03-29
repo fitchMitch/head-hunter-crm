@@ -1,0 +1,54 @@
+<%  @alljobs.each do |a| %>
+  <% if a.company_name=="Pôle emploi" %>
+  <div class="row">
+    <% delay_bar((a.end_date - a.start_date).to_i) %>
+  </div>
+  <hr>
+  <% else %>
+  <div class="row">
+      <div class="col-xs-4">
+          <%= link_to  edit_job_path(a.id)  do%>
+          <span class="glyphicon glyphicon-pencil"></span>
+          <%= a.job_title %>
+          <% end %>
+      </div>
+      <div class="col-xs-4">
+          <% unless a.no_end  %>
+          <%= link_to  list_people_company_path(a.company_id)  do%>
+          <span class="label label-warning"><%= a.company_name %>
+          </span>
+          <% end %>
+      <% else %>
+          <%= link_to  list_people_company_path(a.company_id)  do%>
+          <span class="redFrame"><%= a.company_name %></span>
+          <% end %>
+          <% end %>
+      </div>
+      <div class="col-xs-3">
+          <small>
+              <%= a.salary %>
+              euros
+          </small>
+      </div>
+      <div class="col-xs-1">
+          <%= link_to  job_path(a.id), method: :delete, data: { confirm: "Wesh ? C'est sûr pour ?" } do %>
+          <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-xs-8">
+          <small>
+              de
+              <%= t a.start_date.strftime("%B %Y") %>
+              à
+              <% if a.no_end%>
+              aujourd'hui
+          <% else %>
+              <%= t a.end_date.strftime("%B %Y") %>
+              <%end%>
+          </small>
+      </div>
+  </div>
+  <% end %>
+<% end %>
