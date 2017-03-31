@@ -1,9 +1,8 @@
 <%  @alljobs.each do |a| %>
   <% if a.company_name=="Pôle emploi" %>
   <div class="row">
-    <% delay_bar((a.end_date - a.start_date).to_i) %>
+    <%= delay_bar((a.end_date - a.start_date).to_i) %>
   </div>
-  <hr>
   <% else %>
   <div class="row">
       <div class="col-xs-4">
@@ -31,7 +30,7 @@
           </small>
       </div>
       <div class="col-xs-1">
-          <%= link_to  job_path(a.id), method: :delete, data: { confirm: "Wesh ? C'est sûr pour ?" } do %>
+          <%= link_to  job_path(a.id), method: :delete, data: { confirm: "Wesh ? C'est sûr  ?" } do %>
           <span class="glyphicon glyphicon-trash"></span>
           <% end %>
       </div>

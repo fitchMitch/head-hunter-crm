@@ -4,17 +4,15 @@ module PeopleHelper
   end
 
   def delay_bar(num)
-    num = (num>0) ? num : -num
+    # TODO parameter here is hard coded : 3 years
+    puts num
     step = 3*365 / 12
-    i=12
-    (0..12).each do  |j|
-      i = 12 - j.to_i
-      break if(num > i * step)
-    end
+    i = [(num.abs/step).ceil, 12].min
     str = '<div class="row"> <div class="col-xs-'
     str += i.to_s
-    str += ' grav"></div> </div>'
+    str += ' grav'
     str += i.to_s
+    str += '"></div> </div>'
     str.html_safe
   end
 
