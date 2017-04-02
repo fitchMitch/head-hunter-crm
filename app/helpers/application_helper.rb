@@ -53,5 +53,38 @@ module ApplicationHelper
       request.query_parameters['page']=1
       request.query_parameters
   end
+  #-----------------
+  def future_time_in_words(t1)
+    s = t1.strftime('%s').to_i - Date.today.strftime('%s').to_i
+
+    resolution = if s > 60*60*24*365 # seconds in a year
+      ["dans",(s/29030400), 'année']
+    elsif s > 60*60*24*30
+      ["dans",(s/2419200), 'mois']
+    elsif s > 60*60*24*14
+      ["dans", (s/604800), 'semaines']
+    elsif s > 60*60*24*7
+      ['la semaine prochaine']
+    elsif s > 60*60*24*3
+      ["dans",(s/86400), 'jours']
+    elsif s > 60*60*24*2
+      ['après demain']
+    elsif s > 60*60*24
+      ['demain']
+    elsif s > 3600 # seconds in an hour
+      ["dans",(s/3600), 'heures']
+    elsif s > 60
+      ["dans",(s/60), 'minutes']
+    else
+      ["dans quelques secondes"]
+    end
+
+    # singular v. plural resolution
+    if resolution[0] == 1
+      resolution.join(' ')[0...-1]
+    else
+      resolution.join(' ')
+    end
+  end
 
 end

@@ -33,7 +33,7 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = Person.find(params[:id])
+    #@person = Person.find(params[:id])
   end
   class Alljob
     include ActiveModel::AttributeAssignment
@@ -48,8 +48,22 @@ class PeopleController < ApplicationController
     @jobs.order("end_date")
     last_job = @jobs.last
     @alljobs = []
+    memo = nil
 
     @jobs.each do |job|
+      unless memo.nil?
+        job2 = Alljob.new
+        job2.assign_attributes({
+          id: 0,
+          job_title: "Sans emploi",
+          start_date: job.end_date,
+          end_date: memo,
+          company_name: "Pôle emploi",
+          company_id: 0,
+          salary: 0,
+          person_id: job.person_id,
+          no_end: false})
+      end
       job1 = Alljob.new
       job1.assign_attributes({
         id: job.id,
@@ -61,23 +75,15 @@ class PeopleController < ApplicationController
         person_id: job.person_id,
         no_end: job.no_end,
         company_id: job.company_id})
-
-      @alljobs << job1
-      puts @alljobs
-      unless job == last_job
-        job2 = Alljob.new
-        job2.assign_attributes({
-          id: 0,
-          job_title: "Sans emploi",
-          start_date: job.next.end_date,
-          end_date: job.start_date,
-          company_name: "Pôle emploi",
-          company_id: 0,
-          salary: 0,
-          person_id: job.person_id,
-          no_end: false})
+      unless memo.nil?
         @alljobs << job2
+        puts "=======start_date=========="
+        puts job2.start_date
+        puts job2.end_date
+        puts "=======end_date=========="
       end
+      memo = job1.start_date
+      @alljobs << job1
     end
     @class_client = @person.is_client ? "client" : "candidate"
   end

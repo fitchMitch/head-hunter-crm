@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  # get 'comactions/create'
+  #
+  # get 'comactions/new'
+  #
+  # get 'comactions/index'
+  #
+  # get 'comactions/edit'
+  #
+  # get 'comactions/update'
+  #
+  # get 'comactions/show'
+  #
+  # get 'comactions/destroy'
+
   get 'sessions/new'
 
   root 'static_pages#home'
@@ -26,7 +40,7 @@ Rails.application.routes.draw do
 
   resources :account_activations,               only: [:edit]
   resources :jobs,                              only: [:new, :create, :edit, :update, :index, :destroy]
-  resources :users , :people , :missions
+  resources :users , :people , :missions, :comactions
   resources :companies do
     member do
       get 'list_people'

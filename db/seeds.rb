@@ -22,7 +22,7 @@ User.create!(name:                  "Etienne WEIL",
     activated: true,
     activated_at: Time.zone.now)
 
-55.times do |n|
+3.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
@@ -163,3 +163,32 @@ jobs= Job.all
     person_id:          person_id,
     )
 end
+missions = Mission.all
+#-----------------
+# Comactions
+#-----------------
+45.times do |n|
+
+  name   =            "Rendez-vous " + n.to_s
+  status =            ['en prospection', '1er appel', '2eme appel', '3eme appel', 'accord pour mission' ,'mission remplie'].sample
+  action_type   =     %w[Client Candidat].sample
+  person =            people.sample
+  user   =            users.sample
+  mission=            missions.sample
+  created_at =        Date.today - (200..480).to_a.sample
+  updated_at =        created_at +  (1..150).to_a.sample
+  due_date   =        Date.today + (0..10).to_a.sample
+
+  Comaction.create!(
+    name:               name,
+    status:             status,
+    action_type:        action_type,
+    due_date:           due_date,
+    created_at:         created_at,
+    updated_at:         updated_at,
+    mission_id:         mission.id,
+    person_id:          person.id,
+    user_id:            user.id
+    )
+end
+comactions = Comaction.all

@@ -105,13 +105,7 @@ class MissionsController < ApplicationController
     def mission_params
       params.require(:mission).permit(:name, :reward, :paid_amount, :min_salary, :max_salary, :criteria, :min_age, :max_age, :signed, :is_done,:person_id,:company_id,:whished_start_date)
     end
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Logguez-vous d'abord"
-        redirect_to login_url
-      end
-    end
+
     def get_mission
       @mission = Mission.find(params[:id])
     end

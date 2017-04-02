@@ -64,13 +64,7 @@ class JobsController < ApplicationController
     def job_params
       params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job, :company_id, :person_id, :no_end)
     end
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Logguez-vous d'abord"
-        redirect_to login_url
-      end
-    end
+
     def get_job
       @job = Job.find(params[:id])
     end

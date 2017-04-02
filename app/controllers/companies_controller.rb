@@ -97,13 +97,6 @@ class CompaniesController < ApplicationController
       params.require(:company).permit(:company_name)
     end
 
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Logguez-vous d'abord"
-        redirect_to login_url
-      end
-    end
     def get_company
       #flash[:danger] = "Logguez vous d'abord"
       @company = Company.find(params[:id])
