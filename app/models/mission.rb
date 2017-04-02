@@ -18,6 +18,7 @@
 #  person_id          :integer
 #  company_id         :integer
 #  whished_start_date :date
+#  status             :string
 #
 
 class Mission < ApplicationRecord
@@ -30,6 +31,7 @@ class Mission < ApplicationRecord
   validates :whished_start_date , presence: true
   validate :max_age_is_max
 
+  @@status = ['Opportunité', 'Contrat envoyé','Contrat signé', 'Mission facturée', 'Mission payée']
 
   # ------------------------
   # --    PRIVATE        ---

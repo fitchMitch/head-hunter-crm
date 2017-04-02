@@ -20,18 +20,19 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def index
-    @comactions = Comaction.joins(:user,:person, :mission).page(params[:page] ? params[:page].to_i: 1).reload
+    @comactions = Comaction.joins(:user, :person, :mission).select('missions.*, users.*, people.*,comactions.*').page(params[:page] ? params[:page].to_i: 1).reload
     @comactions = bin_filters(@comactions, params)
     @comactions = reorder(@comactions, params,'comactions.name')
 
     @parameters = {'params'=> params, 'header' => [],'tableDB'=> "comactions"}
 
     @parameters['header']<<{'width'=>2,'label'=>'Action','attribute'=>'name'}
-    @parameters['header']<<{'width'=>1,'label'=>''}
+    @parameters['header']<<{'width'=>1,'label'=>'Statut', 'attribute'=>'status'}
+    @parameters['header']<<{'width'=>1,'label'=>'Réalisé','attribute'=>'done_date'}
     @parameters['header']<<{'width'=>2,'label'=>'Mission','attribute'=>'missions.name'}
     @parameters['header']<<{'width'=>1,'label'=>'Resp.','attribute'=>'users.name'}
-    @parameters['header']<<{'width'=>2,'label'=>'Personne ressource','attribute'=>'people.lastname'}
-    @parameters['header']<<{'width'=>2,'label'=>'Date','attribute'=>'due_date'}
+    @parameters['header']<<{'width'=>2,'label'=>'Avec','attribute'=>'people.lastname'}
+    @parameters['header']<<{'width'=>2,'label'=>'Promis','attribute'=>'due_date'}
   end
   #-----------------
   def edit

@@ -30,7 +30,7 @@
     <small>
       ajouté il y a
        <%= time_ago_in_words(person.updated_at)  %>
-       [<%= person.user.name %>]
+       <%= user_badge(person.user) %>
     </small>
   </div>
 </div>

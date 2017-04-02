@@ -18,7 +18,9 @@
 #  person_id          :integer
 #  company_id         :integer
 #  whished_start_date :date
+#  status             :string
 #
+
 require 'test_helper'
 
 class MissionTest < ActiveSupport::TestCase

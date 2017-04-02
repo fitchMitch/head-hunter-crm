@@ -8,21 +8,8 @@ class PeopleController < ApplicationController
   def index
     @people = Person.all
 
-    if params[:filter]
-      @people = @people.where(["category = ?", params[:filter]])
-    end
-
-    if params['sort']
-      f = params['sort'].split(',').first
-      field = f[0] == '-' ? f[1..-1] : f
-      order = f[0] == '-' ? 'DESC' : 'ASC'
-      # this next condition might diseapear in case of a junction
-      if Person.new.has_attribute?(field)
-        @people = @people.order("#{field} #{order}")
-      end
-    else
-      @people = @people.order("firstname ASC")
-    end
+    @people = bin_filters(@people, params)
+    @people = reorder(@people, params,'people.lastname')
     @people = @people.page(params[:page] ? params[:page].to_i: 1).includes(:user)
 
     @parameters = {'params'=> params, 'header' => [],'tableDB'=> "people"}

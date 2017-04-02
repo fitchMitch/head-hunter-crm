@@ -54,29 +54,46 @@ module ApplicationHelper
       request.query_parameters
   end
   #-----------------
+  def user_badge(u)
+    str = '<span class="badge badge-default">' + u.trigram + '</span>'
+    str.html_safe
+  end
+  #-----------------
   def future_time_in_words(t1)
-    s = t1.strftime('%s').to_i - Date.today.strftime('%s').to_i
+    s = t1.strftime('%s').to_i - Time.zone.now.strftime('%s').to_i
+    tomorrow = 60*60*24
+    theDayAfter = tomorrow*2
+    threeDays = tomorrow*3
+    aWeek = tomorrow*7
+    twoWeeks = aWeek*2
+    aMonth = tomorrow*30
+    aYear = tomorrow*365
+    hm = t1.strftime('%Hh%M')
 
-    resolution = if s > 60*60*24*365 # seconds in a year
-      ["dans",(s/29030400), 'année']
-    elsif s > 60*60*24*30
-      ["dans",(s/2419200), 'mois']
-    elsif s > 60*60*24*14
-      ["dans", (s/604800), 'semaines']
-    elsif s > 60*60*24*7
+    resolution = if s<0
+      ['passé']
+    elsif s> aYear # seconds in a year
+      ["dans",(s/aYear), 'année']
+    elsif s > aMonth
+      ["dans",(s/aMonth), 'mois']
+    elsif s > twoWeeks
+      ["dans", (s/aWeek), 'semaines']
+    elsif s > aWeek
       ['la semaine prochaine']
-    elsif s > 60*60*24*3
-      ["dans",(s/86400), 'jours']
-    elsif s > 60*60*24*2
-      ['après demain']
-    elsif s > 60*60*24
-      ['demain']
+    elsif s > threeDays
+      ["dans",(s/tomorrow), 'jours']
+    elsif s > theDayAfter
+      [t1.strftime('%a à'),hm]
+    elsif s > tomorrow
+      ['demain à',hm]
     elsif s > 3600 # seconds in an hour
-      ["dans",(s/3600), 'heures']
+      ["dans",(s/3600), 'heures, à',hm]
     elsif s > 60
-      ["dans",(s/60), 'minutes']
-    else
+      ["à",hm]
+    elsif s > 0
       ["dans quelques secondes"]
+    else
+      [""]
     end
 
     # singular v. plural resolution

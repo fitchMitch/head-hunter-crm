@@ -42,9 +42,6 @@ class User < ApplicationRecord
     def new_token
       SecureRandom.urlsafe_base64
     end
-    def trigramm
-      trigramm = name.split(' ').count>1 ? name.split.take(3) : name.split(' ')[0].split.take(1) +  name.split(' ')[01].split.take(2)
-    end
   end
   def remember
     self.remember_token = User.new_token

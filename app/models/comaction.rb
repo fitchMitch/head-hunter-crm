@@ -2,23 +2,24 @@
 #
 # Table name: comactions
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  status     :string
-#  type_action:string
-#  due_date   :date
-#  done_date  :date
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :integer
-#  mission_id :integer
-#  person_id  :integer
+#  id          :integer          not null, primary key
+#  name        :string
+#  status      :string
+#  action_type :string
+#  due_date    :datetime
+#  done_date   :date
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :integer
+#  mission_id  :integer
+#  person_id   :integer
 #
 
 class Comaction < ApplicationRecord
   belongs_to :mission
   belongs_to :person
   belongs_to :user
+  default_scope -> {order(due_date: :asc)}
 
   #default_scope -> { select(user_id: current_user.id) }
 
@@ -26,7 +27,7 @@ class Comaction < ApplicationRecord
   validates :status , presence: true
   validates :action_type , presence: true
 
-  @@comstatus = ['en prospection', '1er appel', '2eme appel' ,'3eme appel', 'accord pour mission', 'mission remplie']
+  @@comstatus = ['Prospection', '1er appel', '2eme appel' ,'3eme appel', 'Accord pour mission', 'mission remplie']
   @@candidatesStatus = ['en prospection' '1er appel' '2eme appel' '3eme appel' 'accord pour mission' 'mission remplie']
   @@action_types = %w[Client Candidat]
 

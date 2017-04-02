@@ -59,7 +59,7 @@ Person.create!( title:              "Mme",
     note:               Faker::Lorem.sentence(1),
     user_id:            user.id
     )
-10.times do |n|
+13.times do |n|
   company=companies.sample
   user = users.sample
   title=              %w[M. Mme Mlle].sample
@@ -92,7 +92,7 @@ people = Person.all
 #-----------------
 # Jobs
 #-----------------
-45.times do |n|
+55.times do |n|
   person = people.sample
   company=companies.sample
 
@@ -127,8 +127,7 @@ end
 jobs= Job.all
 #-----------------
 # Missons
-#-----------------
-45.times do |n|
+35.times do |n|
   person = people.sample
   company = companies.sample
 
@@ -140,11 +139,12 @@ jobs= Job.all
   criteria  =         Faker::Lorem.paragraph(3, true, 4)
   min_age   =         (18..60).to_a.sample
   max_age   =         min_age + (10..20).to_a.sample
-  signed    =         false
-  is_done   =         false
   whished_start_date = Date.today + (0..200).to_a.sample
   company_id =        company.id
   person_id  =        person.id
+  status  =           ['Opportunité', 'Contrat envoyé','Contrat signé', 'Mission facturée', 'Mission payée'].sample
+  is_done   =          (status =='Mission payée' || status == 'Mission facturée') ? true : false
+  signed    =         ['Contrat signé', 'Mission facturée', 'Mission payée'].include?(status) 
   Mission.create!(
     name:               name,
     reward:             reward,
@@ -161,13 +161,14 @@ jobs= Job.all
     updated_at:         updated_at,
     company_id:         company_id,
     person_id:          person_id,
+    status:             status
     )
 end
 missions = Mission.all
 #-----------------
 # Comactions
 #-----------------
-45.times do |n|
+50.times do |n|
 
   name   =            "Rendez-vous " + n.to_s
   status =            ['en prospection', '1er appel', '2eme appel', '3eme appel', 'accord pour mission' ,'mission remplie'].sample
@@ -177,7 +178,8 @@ missions = Mission.all
   mission=            missions.sample
   created_at =        Date.today - (200..480).to_a.sample
   updated_at =        created_at +  (1..150).to_a.sample
-  due_date   =        Date.today + (0..10).to_a.sample
+  due_date   =        Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24
+  done_date =         Date.today - due_date > 8 ? due_date + (0..8).to_a.sample : nil
 
   Comaction.create!(
     name:               name,

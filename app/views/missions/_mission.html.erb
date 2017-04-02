@@ -5,18 +5,19 @@
         <%= link_to  edit_mission_path(mission)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
+        <% if logged_in? && current_user.admin? %>
+          | <%= link_to  mission_path(mission), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
+          <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        <% end %>
         <br>
         <small>
           Marché : <%= number_to_currency mission.reward %>
           <br> Payé: <%= number_to_currency mission.paid_amount %>
         </small>
     </div>
-    <div class="col-xs-1">
-      <% if logged_in? && current_user.admin? %>
-        <%= link_to  mission_path(mission), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
-        <span class="glyphicon glyphicon-trash"></span>
-        <% end %>
-      <% end %>
+    <div class="col-xs-2">
+      <%= mission.status %>
     </div>
     <div class="col-xs-2">
         <%= link_to list_people_company_path(mission.company_id), class: "" do %>
@@ -31,7 +32,7 @@
           <% end %>
         </small>
     </div>
-    <div class="col-xs-5">
+    <div class="col-xs-4">
         <small>
             <p><%= mission.criteria %></p>
         </small>

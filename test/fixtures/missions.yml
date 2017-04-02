@@ -18,6 +18,7 @@
 #  person_id          :integer
 #  company_id         :integer
 #  whished_start_date :date
+#  status             :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

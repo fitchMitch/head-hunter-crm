@@ -1,37 +1,47 @@
-    <div class=" row <%= comaction.done_date.nil? ? '' : 'mission_done' %>">
+<div class=" row <%= comaction.done_date.nil? ? '' : 'mission_done' %>">
     <div class="col-xs-2">
-      <%= link_to comaction.name, comaction_path(comaction)  %> |
+        <%= link_to comaction.name, comaction_path(comaction)  %>
+        |
         <%= link_to  edit_comaction_path(comaction)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
+        <% end %>
+        <% if logged_in? && current_user.id ==comaction.user_id %>
+          | <%= link_to  comaction_path(comaction), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
+          <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
         <% end %>
         <br>
     </div>
     <div class="col-xs-1">
-      <% if logged_in? && current_user.id ==comaction.user_id %>
-        <%= link_to  comaction_path(comaction), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
-        <span class="glyphicon glyphicon-trash"></span>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-xs-2">
-      <%= link_to comaction.mission.name, comaction_path(comaction)  %>
+      <small><%= comaction.status %></small>
     </div>
     <div class="col-xs-1">
-      <%= link_to comaction_path(comaction) do %>
-        <%= comaction.user.trigram %>
-      <% end %>
+      <% unless comaction.done_date.nil? %>
+        <small><%= time_ago_in_words comaction.done_date %></small>
+        <% end %>
     </div>
     <div class="col-xs-2">
-      <%= link_to  comaction_path(comaction)  do%>
-      <%= comaction.person.title %>
-      <%= comaction.person.firstname %>
-      <%= comaction.person.lastname %>
-      <% end %>
+        <%= link_to comaction.mission.name, comaction_path(comaction)  %><br>
+        <small>[<%= comaction.mission.company.company_name %>]</small>
+    </div>
+    <div class="col-xs-1">
+        <%= link_to comaction_path(comaction) do %>
+        <%= user_badge comaction.user  %></span>
+        <% end %>
     </div>
     <div class="col-xs-2">
-      <% unless comaction.due_date.nil? %>
-        <%= future_time_in_words comaction.due_date%>
-      <% end %>
+        <%= link_to  comaction_path(comaction)  do%>
+        <%= comaction.person.title %>
+        <%= comaction.person.firstname %>
+        <%= comaction.person.lastname %>
+        <% end %>
+    </div>
+    <div class="col-xs-2">
+        <% unless comaction.due_date.nil? %>
+        <small><%= future_time_in_words comaction.due_date%></small><br>
+        <small><%= comaction.due_date %></small>
+        <% end %>
     </div>
 </div>
+
 <%= render 'shared/sep' %>

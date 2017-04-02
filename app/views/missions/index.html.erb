@@ -2,16 +2,17 @@
 <h1 class="center">Liste des missions</h1>
 <div class="row spaceDown">
   <div class="col-xs-8"></div>
-  <div class="col-xs-2">
+  <div class="col-xs-4">
     <%= link_to  missions_path( active_classes('is_done', 1)), class: "btn" do %>
        Missions terminées   <%= fa_icon('filter') %>
     <% end %>
-  </div>
 
-    <div class="col-xs-2">
-    <%= link_to  missions_path( active_classes('is_done', 0)), class: "btn btn-primary" do %>
-       Missions  actives <%= fa_icon('filter') %>
-    <% end %>
+  <%= link_to  missions_path( active_classes('is_done', 0)), class: "btn btn-primary" do %>
+     Missions  actives <%= fa_icon('filter') %>
+  <% end %>
+  <%= link_to  missions_path do %>
+  <span class="btn btn-default"> <%= fa_icon('undo') %></span>
+  <% end %>
   </div>
 </div>
 <%= will_paginate %>
