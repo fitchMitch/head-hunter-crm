@@ -52,7 +52,7 @@ class MissionsController < ApplicationController
     @mission = @person.missions.build(mission_params)
     @mission.status = Mission::STATUS_HOPE
     @mission.is_done = false
-    @mission.is_signed = false
+    @mission.signed = false
 
     if !@person.nil? && !@company.nil? && @mission.save
       flash[:info] =  "Mission sauvegardée :-)"

@@ -22,7 +22,7 @@
     </div>
     <div class="col-xs-2">
         <%= link_to comaction.mission.name, comaction_path(comaction)  %><br>
-        <small>[<%= comaction.mission.company.company_name %>]</small>
+        <small><span class="label label-warning"><%= comaction.mission.company.company_name %></span></small>
     </div>
     <div class="col-xs-1">
         <%= link_to comaction_path(comaction) do %>

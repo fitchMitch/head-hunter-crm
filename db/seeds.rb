@@ -127,13 +127,13 @@ end
 jobs= Job.all
 #-----------------
 # Missons
+statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
 35.times do |n|
   person = people.sample
   company = companies.sample
 
   name   =            "Mission" + (1..4500).to_a.sample.to_s
   reward =            (17..45).to_a.sample*1000
-  paid_amount =       reward / 3
   min_salary =        (200..400).to_a.sample*100
   max_salary  =       min_salary +(1..10).to_a.sample*1000
   criteria  =         Faker::Lorem.paragraph(3, true, 4)
@@ -142,9 +142,10 @@ jobs= Job.all
   whished_start_date = Date.today + (0..200).to_a.sample
   company_id =        company.id
   person_id  =        person.id
-  status  =           ['Opportunité', 'Contrat envoyé','Contrat signé', 'Mission facturée', 'Mission payée'].sample
-  is_done   =          (status =='Mission payée' || status == 'Mission facturée') ? true : false
-  signed    =         ['Contrat signé', 'Mission facturée', 'Mission payée'].include?(status) 
+  status  =           statuses.sample
+  is_done   =         [statuses[3], statuses[4]].include?(status)
+  signed    =          [statuses[2],statuses[3], statuses[4]].include?(status)
+  paid_amount =       signed ? reward / 3 : 0
   Mission.create!(
     name:               name,
     reward:             reward,

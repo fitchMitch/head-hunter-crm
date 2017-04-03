@@ -1,2 +1,10 @@
-<h1>Comactions#new</h1>
-<p>Find me in app/views/comactions/new.html.erb</p>
+<% provide(:title, 'Ajouter un rendez-vous') %>
+<% provide(:button_text, 'Ajouter') %>
+<% if logged_in? %>
+  <h1 class="center">Ajouter un rendez-vous </h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= render 'comaction_form' %>
+    </div>
+  </div>
+<% end %>

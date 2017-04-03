@@ -27,9 +27,18 @@ class Comaction < ApplicationRecord
   validates :status , presence: true
   validates :action_type , presence: true
 
-  @@comstatus = ['Prospection', '1er appel', '2eme appel' ,'3eme appel', 'Accord pour mission', 'mission remplie']
-  @@candidatesStatus = ['en prospection' '1er appel' '2eme appel' '3eme appel' 'accord pour mission' 'mission remplie']
-  @@action_types = %w[Client Candidat]
+  STATUSES = [STATUS_SOURCED = 'Sourcé',
+      STATUS_PRESELECTED= 'Préselectionné',
+      STATUS_APPOINT = 'RDV JJ',
+      STATUS_PRES = 'Présentation client',
+      STATUS_O_PRES = 'Autre RDV client',
+      STATUS_HIRED = 'Engagé',
+      STATUS_WORKING = 'En poste']
+  ACTION_TYPES = [CLIENT_TYPE = 'Rendez-vous Client',
+      PROSPECTION_TYPE= 'Rendez-vous Candidat',
+      OTHER_TYPE = 'Autre']
+  validates :status, inclusion: {in: STATUSES}
+  validates :action_type, inclusion: {in: ACTION_TYPES}
 
   # ------------------------
   # --    PRIVATE        ---
