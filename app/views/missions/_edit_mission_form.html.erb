@@ -24,7 +24,7 @@
 </div>
 <div class="row ">
     <div class="col-sm-5">
-        
+        <%= f.input :status, label: "Statut" , collection: Mission::STATUSES %>
     </div>
     <div class="col-sm-7 ">
         <%= f.input :criteria, label: "Personne recherchée" , as: :text ,input_html:{class:" input-sm" } %>

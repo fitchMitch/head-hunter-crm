@@ -31,7 +31,8 @@ class Mission < ApplicationRecord
   validates :whished_start_date , presence: true
   validate :max_age_is_max
 
-  @@status = ['Opportunité', 'Contrat envoyé','Contrat signé', 'Mission facturée', 'Mission payée']
+  STATUSES = [STATUS_HOPE = 'Opportunité', STATUS_SENT= 'Contrat envoyé', STATUS_SIGNED = 'Contrat signé', STATUS_BILLED = 'Mission facturée', STATUS_PAYED = 'Mission payée']
+  validates :status, inclusion: {in: STATUSES}
 
   # ------------------------
   # --    PRIVATE        ---

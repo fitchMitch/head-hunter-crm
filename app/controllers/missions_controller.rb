@@ -35,7 +35,6 @@ class MissionsController < ApplicationController
     @parameters['header']<<{'width'=>1,'label'=>'Mise à jour','attribute'=>'updated_at'}
 
   end
-
   #-----------------
 
   def edit
@@ -51,6 +50,9 @@ class MissionsController < ApplicationController
     @company = Company.find(mission_params[:company_id])
 
     @mission = @person.missions.build(mission_params)
+    @mission.status = Mission::STATUS_HOPE
+    @mission.is_done = false
+    @mission.is_signed = false
 
     if !@person.nil? && !@company.nil? && @mission.save
       flash[:info] =  "Mission sauvegardée :-)"
@@ -62,6 +64,9 @@ class MissionsController < ApplicationController
   end
 
   def update
+    @mission.is_done    = [Mission::STATUS_BILLED, Mission::STATUS_PAYED].include?(mission_params[:status])
+    @mission.signed     = [Mission::STATUS_SIGNED, Mission::STATUS_BILLED, Mission::STATUS_PAYED].include?(mission_params[:status])
+
     if @mission.update_attributes(mission_params)
       flash[:success] = "Mission mise à jour"
       redirect_to @mission
@@ -92,7 +97,7 @@ class MissionsController < ApplicationController
   private
   #---------------
     def mission_params
-      params.require(:mission).permit(:name, :reward, :paid_amount, :min_salary, :max_salary, :criteria, :min_age, :max_age, :signed, :is_done,:person_id,:company_id,:whished_start_date)
+      params.require(:mission).permit(:name, :reward, :paid_amount, :min_salary, :max_salary, :criteria, :min_age, :max_age, :status, :person_id,:company_id,:whished_start_date)
     end
 
     def get_mission
