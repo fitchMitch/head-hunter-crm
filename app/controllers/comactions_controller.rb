@@ -3,7 +3,7 @@
 #  id         :integer          not null, primary key
 #  name       :string
 #  status     :string
-#  type_action:string
+#  action_type:string
 #  due_date   :date
 #  done_date  :date
 #  created_at :datetime         not null
@@ -44,8 +44,8 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def create
-    @person = Person.find(mission_params[:person_id])
-    @comaction = @person.missions.build(mission_params)
+    @person = Person.find(comaction_params[:person_id])
+    @comaction = @person.missions.build(comaction_params[:mission_id])
 
     if !@person.nil? && !@company.nil? && @comaction.save
       flash[:info] =  "Comaction sauvegardée :-)"
@@ -76,7 +76,7 @@ class ComactionsController < ApplicationController
   private
   #---------------
     def comaction_params
-      params.require(:comaction).permit(:name , :status, :type_action, :due_date, :done_date, :user_id, :mission_id, :person_id)
+      params.require(:comaction).permit(:name , :status, :action_type, :due_date, :done_date, :user_id, :mission_id, :person_id)
     end
 
     def get_comaction

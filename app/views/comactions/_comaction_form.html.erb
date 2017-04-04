@@ -26,8 +26,8 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <%= f.input :due_date, label: "Date et heure", start_year: Date.today.year ,
-                              end_year: Date.today.year + 2 ,input_html:{class:" input-sm" } %>
+    <%= f.input :due_date, label: "Date et heure", as: :datepicker, required: false,
+    :placeholder => 'Select date', input_html: {class: "form-control"} %>
   </div>
 </div>
 <div class="row ">
