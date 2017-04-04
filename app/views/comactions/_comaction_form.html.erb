@@ -1,40 +1,39 @@
 <%= simple_form_for @comaction  do |f| %>
-
 <div class="row">
-  <div class="col-sm-7 ">
-      <%= f.association :person , label:"Pour", label_method: :full_name, value_method: :id, include_blank: false %>
-      <%= link_to  'add_ext?model=person'  do%>
-      <button type="button" class="btn btn-xs">Ajouter un nouveau contact</button>
-      <% end %>
-  </div>
-  <div class="col-sm-5 ">
-    <%= f.input :status, label: "Progression" , collection: Comaction::STATUSES %>
-  </div>
-</div>
-<div class="row ">
-    <div class="col-sm-12">
-        <%= f.input :name, label: "Libellé du RDV",input_html: {class:" input-sm"}%>
+    <div class="col-sm-7 ">
+        <%= f.association :person , label:"Pour", label_method: :full_name, value_method: :id, include_blank: false %>
+        <%= link_to  'add_ext?model=person'  do%>
+        <button type="button" class="btn btn-xs">Ajouter un nouveau contact</button>
+        <% end %>
+    </div>
+    <div class="col-sm-5 ">
+        <%= f.input :status, label: "Progression" , collection: Comaction::STATUSES %>
     </div>
 </div>
 <div class="row ">
-  <div class="col-sm-5 ">
-      <%= f.association :mission , label:"Mission",  value_method: :id, include_blank: false %>
-  </div>
+    <div class="col-sm-12">
+        <%= f.input :name, label: "Libellé du RDV", input_html: {class:" input-sm"}%>
+    </div>
+</div>
+<div class="row ">
+    <div class="col-sm-5 ">
+        <%= f.association :mission , label:"Mission", value_method: :id, include_blank: false %>
+    </div>
     <div class="col-sm-7 ">
         <%= f.input :action_type, label: "Type" , collection: Comaction::ACTION_TYPES %>
     </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    <%= f.input :due_date, label: "Date et heure", as: :datepicker, required: false,
-    :placeholder => 'Select date', input_html: {class: "form-control"} %>
+  <div class="col-xs-2">
+     <%= f.input :is_dated, as: :boolean, label: "RdV ?",  required: false , input_html: {class: "tenPxDown"} %>
+  </div>
+  <div class="col-xs-10">
+     <%= f.input :due_date, label: "Date et heure",  required: false,  input_html: {class: "form-control"} %>
   </div>
 </div>
 <div class="row ">
     <div class="col-sm-5 ">
         <%= f.button :submit,yield(:button_text),class: "btn btn-primary checkBelow" %>
     </div>
-    <div class="col-sm-7  "></div>
-</div>
 </div>
 <% end %>

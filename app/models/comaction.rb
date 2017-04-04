@@ -23,6 +23,8 @@ class Comaction < ApplicationRecord
 
   #default_scope -> { select(user_id: current_user.id) }
 
+  attr_accessor :is_dated
+
   validates :name , presence: true, length: { maximum: 50 }
   validates :status , presence: true
   validates :action_type , presence: true
