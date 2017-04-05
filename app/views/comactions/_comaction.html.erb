@@ -5,7 +5,7 @@
         <%= link_to  edit_comaction_path(comaction)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-        <% if logged_in? && current_user.id ==comaction.user_id %>
+        <% if logged_in? && current_user.id == comaction.user_id %>
           | <%= link_to  comaction_path(comaction), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
           <span class="glyphicon glyphicon-trash"></span>
           <% end %>
@@ -16,8 +16,8 @@
       <small><%= comaction.status %></small>
     </div>
     <div class="col-xs-1">
-      <% unless comaction.done_date.nil? %>
-        <small><%= time_ago_in_words comaction.done_date %></small>
+      <% unless comaction.due_date.nil? %>
+        <small><%= time_ago_in_words comaction.due_date %></small>
         <% end %>
     </div>
     <div class="col-xs-2">

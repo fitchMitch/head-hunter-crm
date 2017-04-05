@@ -1,19 +1,4 @@
 Rails.application.routes.draw do
-
-  # get 'comactions/create'
-  #
-  # get 'comactions/new'
-  #
-  # get 'comactions/index'
-  #
-  # get 'comactions/edit'
-  #
-  # get 'comactions/update'
-  #
-  # get 'comactions/show'
-  #
-  # get 'comactions/destroy'
-
   get 'sessions/new'
 
   root 'static_pages#home'
@@ -35,6 +20,9 @@ Rails.application.routes.draw do
 
   get    '/missions/add_ext',   to: 'missions#add_ext'
   get    '/missions/:id/add_ext',   to: 'missions#add_ext'
+
+  get    '/comactions/:id/add_ext',   to: 'comactions#add_ext'
+  get    '/comactions/add_ext',   to: 'comactions#add_ext'
 
   get    '/companies/sort',   to: 'companies#sort_col'
 

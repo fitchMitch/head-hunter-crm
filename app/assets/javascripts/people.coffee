@@ -6,7 +6,4 @@ $(document).on "turbolinks:load", ->
     theme: "bootstrap"
 
   $("#job_no_end").bind 'change', ->
-    if @checked
-      $('.job_end_date').fadeToggle()
-    else
-      $('.job_end_date').fadeIn()
+    $('.job_end_date').fadeToggle()
