@@ -169,18 +169,17 @@ missions = Mission.all
 #-----------------
 # Comactions
 #-----------------
-50.times do |n|
+250.times do |n|
 
   name   =            "Rendez-vous " + n.to_s
-  status =            ['en prospection', '1er appel', '2eme appel', '3eme appel', 'accord pour mission' ,'mission remplie'].sample
-  action_type   =     %w[Client Candidat].sample
+  status =            [STATUS_SOURCED = 'Sourcé', STATUS_PRESELECTED= 'Préselectionné', STATUS_APPOINT = 'RDV JJ', STATUS_PRES = 'Présentation client', STATUS_O_PRES = 'Autre RDV client', STATUS_HIRED = 'Engagé', STATUS_WORKING = 'En poste'].sample
+  action_type   =      [CLIENT_TYPE = 'Rendez-vous Client', PROSPECTION_TYPE= 'Rendez-vous Candidat', OTHER_TYPE = 'Autre'].sample
   person =            people.sample
   user   =            users.sample
   mission=            missions.sample
   created_at =        Date.today - (200..480).to_a.sample
   updated_at =        created_at +  (1..150).to_a.sample
-  due_date   =        Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24
-  done_date =         Date.today - due_date > 8 ? due_date + (0..8).to_a.sample : nil
+  due_date   =        (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
 
   Comaction.create!(
     name:               name,

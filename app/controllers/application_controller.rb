@@ -15,14 +15,16 @@ class ApplicationController < ActionController::Base
   end
 
   def bin_filters(klasses , params)
-    if params[:bin_filter]
-      filters = params[:bin_filter].split(",")
-      query_elems ={}
-      filters.each { |fil|
+    if params[:bin_filter] !=nil
+      query_elems = {}
+      #query_elems = params[:filter].nil? ? {} :  {'filter' => params[:filter]}
+      bin_filter = params[:bin_filter].split(",")
+      bin_filter.each { |fil|
         fil[0] =='-' ? query_elems[fil[1..-1]] = false : query_elems[fil] = true
       }
       query_k = ''
       query_elems.each_key { |key| query_k += key + " = ?," }
+
       klasses = klasses.where(query_k.chop,query_elems.each_value.to_a)
     else
       klasses

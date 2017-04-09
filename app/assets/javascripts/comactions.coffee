@@ -9,4 +9,7 @@ $(document).on "page:load ready", ->
 
   $(".comaction_is_dated").bind 'change', ->
     el = $('#comaction_due_date_1i')
-    el.parent().fadeToggle()
+    if $('#comaction_is_dated').val()==1
+      el.parent().fadeIn()
+    else
+      el.parent().fadeOut()

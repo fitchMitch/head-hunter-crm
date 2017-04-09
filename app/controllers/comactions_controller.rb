@@ -5,7 +5,6 @@
 #  status     :string
 #  action_type:string
 #  due_date   :date
-#  done_date  :date
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
@@ -21,24 +20,50 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def index
-    @comactions = Comaction.joins(:user, :person, :mission).page(params[:page] ? params[:page].to_i: 1).reload
+    if params[:filter] != nil
+      filter = params[:filter]
+      if filter == 'unscheduled'
+        @comactions = Comaction.unscheduled.newer_than(7)
+      elsif filter == 'future'
+        @comactions = Comaction.older_than(0).newer_than(7)
+      elsif filter == 'sourced'
+        @comactions = Comaction.sourced.newer_than(7)
+      elsif filter == 'preselected'
+        @comactions = Comaction.preselected.newer_than(7)
+      elsif filter == 'appoint'
+        @comactions = Comaction.appoint.newer_than(7)
+      elsif filter == 'pres'
+        @comactions = Comaction.pres.newer_than(7)
+      elsif filter == 'opres'
+        @comactions = Comaction.opres.newer_than(7)
+      elsif filter == 'hired'
+        @comactions = Comaction.hired.newer_than(7)
+      elsif filter == 'working'
+        @comactions = Comaction.working.newer_than(7)
+      else
+        @comactions = Comaction.all
+      end
+    else
+      @comactions = Comaction.newer_than(3)
+    end
+    @comactions = @comactions.joins(:user, :person, :mission).page(params[:page] ? params[:page].to_i: 1).reload
     @comactions = bin_filters(@comactions, params)
     @comactions = reorder(@comactions, params,'comactions.name')
+    #byebug
 
     @parameters = {'params'=> params, 'header' => [],'tableDB'=> "comactions"}
 
     @parameters['header']<<{'width'=>2,'label'=>'Action','attribute'=>'name'}
     @parameters['header']<<{'width'=>1,'label'=>'Statut', 'attribute'=>'status'}
-    @parameters['header']<<{'width'=>1,'label'=>'Réalisé','attribute'=>'done_date'}
     @parameters['header']<<{'width'=>2,'label'=>'Mission','attribute'=>'missions.name'}
     @parameters['header']<<{'width'=>1,'label'=>'Resp.','attribute'=>'users.name'}
     @parameters['header']<<{'width'=>2,'label'=>'Avec','attribute'=>'people.lastname'}
-    @parameters['header']<<{'width'=>2,'label'=>'Promis','attribute'=>'due_date'}
+    @parameters['header']<<{'width'=>2,'label'=>'Date','attribute'=>'due_date'}
   end
   #-----------------
   def edit
-    @person = Person.find(comaction_params[:person_id])
-    @mission = Mission.find(comaction_params[:mission_id])
+    #@person = Person.find(comaction_params[:person_id])
+    #@mission = Mission.find(comaction_params[:mission_id])
     #@comaction.is_dated  = @comaction.due_date.nil? ? false : true
     @user = current_user
   end
@@ -96,7 +121,7 @@ class ComactionsController < ApplicationController
   private
   #---------------
     def comaction_params
-      params.require(:comaction).permit(:name , :status, :action_type, :due_date, :done_date, :user_id, :mission_id, :person_id, :is_dated)
+      params.require(:comaction).permit(:name , :status, :action_type, :due_date, :user_id, :mission_id, :person_id, :is_dated)
     end
 
     def get_comaction

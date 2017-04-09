@@ -1,0 +1,41 @@
+<div class="row spaceDown">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-10">
+        <div class="btn-toolbar" role="toolbar" aria-label="...">
+            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <button class="btn btn-default">
+                  <%= fa_icon('filter') %>
+                </button>
+                <%= link_to  comactions_path(:filter => 'sourced'), class: "btn btn-primary" do %>
+                Sourcé
+                <% end %>
+                <%= link_to  comactions_path(:filter => 'preselected'), class: "btn btn-primary" do %>
+                Préselectionné
+                <% end %>
+                <%= link_to  comactions_path(:filter => 'appoint'), class: "btn btn-primary" do %>
+                RDV JJ
+                <% end %>
+                <%= link_to  comactions_path(:filter => 'pres'), class: "btn btn-primary" do %>
+                Présentation client
+                <% end %>
+                <%= link_to  comactions_path(:filter => 'opres'), class: "btn btn-primary" do %>
+                Autre RDV client
+                <% end %>
+                <%= link_to  comactions_path(:filter => 'hired'), class: "btn btn-primary" do %>
+                Engagé
+                <% end %>
+                <%= link_to  comactions_path(:filter => 'working'), class: "btn btn-primary" do %>
+                En poste
+                <% end %>
+            </div>
+            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <%= link_to  comactions_path(:filter => 'unscheduled'), class: "btn btn-default" do %>
+                Sans Rendez-vous
+                <% end %>
+                <%= link_to  comactions_path , class: "btn btn-default" do %>
+                    <%= fa_icon('undo') %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

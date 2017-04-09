@@ -32,12 +32,24 @@ module ApplicationHelper
             sorting =  col['attribute']
           end
           if parameters['params'][:bin_filter] == nil
-            res +=  link_to controller: parameters['tableDB'], sort: sorting  do
-              adj.html_safe
+            if parameters['params'][:filter] == nil
+              res +=  link_to controller: parameters['tableDB'], sort: sorting  do
+                adj.html_safe
+              end
+            else
+              res +=  link_to controller: parameters['tableDB'], sort: sorting , filter: parameters['params']['filter']  do
+                adj.html_safe
+              end
             end
           else
-            res +=  link_to controller: parameters['tableDB'], sort: sorting ,bin_filter: parameters['params']['bin_filter'] do
-              adj.html_safe
+            if parameters['params'][:filter] == nil
+              res +=  link_to controller: parameters['tableDB'], sort: sorting ,bin_filter: parameters['params']['bin_filter'] do
+                adj.html_safe
+              end
+            else
+              res +=  link_to controller: parameters['tableDB'], sort: sorting ,bin_filter: parameters['params']['bin_filter'] , filter: parameters['params']['filter'] do
+                adj.html_safe
+              end
             end
           end
         end

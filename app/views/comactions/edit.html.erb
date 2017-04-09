@@ -1,2 +1,10 @@
-<h1>Comactions#edit</h1>
-<p>Find me in app/views/comactions/edit.html.erb</p>
+<% provide(:title, 'rendez-vous') %>
+<% provide(:button_text, 'Valider') %>
+<% if logged_in? %>
+  <h1 class="center">Mettre à jour un rendez-vous </h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= render 'comaction_form' %>
+    </div>
+  </div>
+<% end %>

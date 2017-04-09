@@ -1,5 +1,5 @@
 <!-- <% provide(:title, 'Liste des actions commerciales') %> -->
-<h1 class="center">Liste des rendez-vous commerciaux</h1>
+<h1 class="center">Liste des rendez-vous</h1>
 <div class="row spaceDown">
   <div class="col-xs-8"></div>
   <!-- <div class="col-xs-2">
@@ -15,6 +15,7 @@
   </div> -->
 </div>
 <%= will_paginate %>
+<%= render 'block_filters' %>
 <%= block_header(@parameters) %>
 <%= render @comactions %>
 <%= will_paginate %>
