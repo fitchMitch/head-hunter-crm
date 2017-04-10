@@ -91,11 +91,11 @@ module ApplicationHelper
     elsif s > twoWeeks
       ["dans", (s/aWeek), 'semaines']
     elsif s > aWeek
-      ['la semaine prochaine']
+      [I18n.t(t1.strftime('%A')),'prochain à', hm]
     elsif s > threeDays
-      ["dans",(s/tomorrow), 'jours']
+      [I18n.t(t1.strftime('%A')),'à', hm]
     elsif s > theDayAfter
-      [t1.strftime('%a à'),hm]
+      [I18n.t(t1.strftime('%a à')),hm]
     elsif s > tomorrow
       ['demain à',hm]
     elsif s > 3600 # seconds in an hour

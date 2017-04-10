@@ -1,5 +1,20 @@
 ---
 fr:
+  Sunday: dimanche
+  Monday: lundi
+  Tuesday: mardi
+  Wednesday: mercredi
+  Thursday: jeudi
+  Friday: vendredi
+  Saturday: samedi
+  Sun: dim
+  Mon: lun
+  Tue: mar
+  Wed: mer
+  Thu: jeu
+  Fri: ven
+  Sat: sam
+
   activerecord:
     errors:
       messages:
