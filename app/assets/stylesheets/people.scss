@@ -13,6 +13,35 @@ h1>a.client{
 h1>a.candidate{
   color: #000000;
 }
+.light_frame{
+  padding: 2em;
+  text-decoration-style: dashed;
+  font-style: italic;
+  border: 1px solid #888888;
+  background-color: #E7DCF4;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+/* People */
+.spaceUp25{
+  margin-top: 25px;
+}
+.spaceDown{
+  margin-bottom: 25px;
+}
+.grav1, .grav2,.grav5, .grav4,.grav5, .grav6,.grav7, .grav8,.grav9, .grav10,.grav11, .grav12 {
+  background-color: #a577c4;
+  height:3px;
+  margin:10px
+}
+.frameMe {
+    margin-top: 5px;
+    border: 1px #888888 solid;
+    padding: 1em 1em 1em 1em;
+    background-color: #E7DCF4;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
 /*
 .pushUp{
   margin-top: -10px;

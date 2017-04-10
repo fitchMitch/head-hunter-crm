@@ -16,7 +16,7 @@
       <small><%= comaction.status %></small>
     </div>
     <div class="col-xs-2">
-        <%= link_to comaction.mission.name, comaction_path(comaction)  %><br>
+        <%= link_to comaction.mission.name, mission_path(comaction.mission)  %><br>
         <small><span class="label label-warning"><%= comaction.mission.company.company_name %></span></small>
     </div>
     <div class="col-xs-1">
@@ -25,7 +25,7 @@
         <% end %>
     </div>
     <div class="col-xs-2">
-        <%= link_to  comaction_path(comaction)  do%>
+        <%= link_to  person_path(comaction.person)  do%>
         <%= comaction.person.title %>
         <%= comaction.person.firstname %>
         <%= comaction.person.lastname %>

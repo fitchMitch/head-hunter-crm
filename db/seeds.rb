@@ -37,7 +37,7 @@ users = User.all
 #-----------------
 # Companies
 #-----------------
-10.times do |n|
+9.times do |n|
   company_name = Faker::Company.name
   Company.create!( company_name:      company_name )
 end
@@ -59,7 +59,7 @@ Person.create!( title:              "Mme",
     note:               Faker::Lorem.sentence(1),
     user_id:            user.id
     )
-13.times do |n|
+18.times do |n|
   company=companies.sample
   user = users.sample
   title=              %w[M. Mme Mlle].sample
@@ -92,7 +92,7 @@ people = Person.all
 #-----------------
 # Jobs
 #-----------------
-55.times do |n|
+75.times do |n|
   person = people.sample
   company=companies.sample
 
@@ -172,8 +172,8 @@ missions = Mission.all
 250.times do |n|
 
   name   =            "Rendez-vous " + n.to_s
-  status =            [STATUS_SOURCED = 'Sourcé', STATUS_PRESELECTED= 'Préselectionné', STATUS_APPOINT = 'RDV JJ', STATUS_PRES = 'Présentation client', STATUS_O_PRES = 'Autre RDV client', STATUS_HIRED = 'Engagé', STATUS_WORKING = 'En poste'].sample
-  action_type   =      [CLIENT_TYPE = 'Rendez-vous Client', PROSPECTION_TYPE= 'Rendez-vous Candidat', OTHER_TYPE = 'Autre'].sample
+  status =            [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT , Comaction::STATUS_PRES , Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED , Comaction::STATUS_WORKING ].sample
+  action_type   =     [Comaction::CLIENT_TYPE , Comaction::PROSPECTION_TYPE, Comaction::OTHER_TYPE ].sample
   person =            people.sample
   user   =            users.sample
   mission=            missions.sample

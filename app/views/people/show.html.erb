@@ -30,6 +30,21 @@
                         <i class="fa fa-building-o" aria-hidden="true"></i>
                         Expériences
                     </h3>
+                    <hr>
+                    <div class="row light_frame">
+                      <div class="col-xs-1">
+                        <%= fa_icon('file-text-o 2x') %>
+                      </div>
+
+                      <div class="col-xs-11 ">
+                        <%= @person.note %>
+                        <br>
+                        <%= link_to edit_person_path(@person), class:@class_client do %>
+                          <%= fa_icon('pencil pull-right') %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <hr>
                     <% if @alljobs.nil? || @alljobs.empty? %>
                         <%= render 'shared/empty_list' %>
                     <% else %>
