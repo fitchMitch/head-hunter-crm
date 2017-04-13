@@ -9,37 +9,19 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Contacts
+                        Rendez-vous
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                          <%= link_to  people_path do %>
-                            <span class="glyphicon glyphicon-list-alt"></span> Lister les contacts
-                          <% end %>
+                        <li><%= link_to new_comaction_path  do %>
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Créer un rendez-vous
+                            <% end %>
                         </li>
-                        <li>
-                          <%= link_to  new_person_path do %>
-                            <span class="glyphicon glyphicon-plus"></span> Créer un contact
-                          <% end %>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Sociétés
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><%= link_to  companies_path do %>
-                          <span class="glyphicon glyphicon-list-alt"></span>
-                          Liste des sociétés
-                      <% end %>
-                    </li>
-                        <li><%= link_to new_company_path  do %>
-                          <span class="glyphicon glyphicon-plus"></span>
-                          Créer une société
-                          <% end %>
+                        <li><%= link_to  comactions_path do %>
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                            Liste des rendez-vous
+                            <% end %>
                         </li>
                     </ul>
                 </li>
@@ -49,38 +31,54 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><%= link_to  missions_path do %>
-                          <span class="glyphicon glyphicon-list-alt"></span>
-                          Liste des missions
-                      <% end %>
-                    </li>
                         <li><%= link_to new_mission_path  do %>
-                          <span class="glyphicon glyphicon-plus"></span>
-                          Créer une mission
-                          <% end %>
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Créer une mission
+                            <% end %>
                         </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Rendez-vous
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><%= link_to  comactions_path do %>
-                          <span class="glyphicon glyphicon-list-alt"></span>
-                          Liste des rendez-vous
-                      <% end %>
-                    </li>
-                        <li><%= link_to new_comaction_path  do %>
-                          <span class="glyphicon glyphicon-plus"></span>
-                          Créer un rendez-vous
-                          <% end %>
+                        <li><%= link_to  missions_path do %>
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                            Liste des missions
+                            <% end %>
                         </li>
                     </ul>
                 </li>
 
-                <li><%= link_to  users_path do  %>JJ's <i class="fa fa-users" aria-hidden="true"></i> <% end %>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Contacts et sociétés
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                          <%= link_to  new_person_path do %>
+                          <span class="glyphicon glyphicon-plus"></span>
+                          Créer un contact
+                          <% end %>
+                      </li>
+                        <li>
+                            <%= link_to  people_path do %>
+                            <%= fa_icon('users') %>
+                            Lister les contacts
+                            <% end %>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li><%= link_to new_company_path  do %>
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Créer une société
+                            <% end %>
+                        </li>
+                        <li><%= link_to  companies_path do %>
+                            <%= fa_icon('building-o') %>
+                            Liste des sociétés
+                            <% end %>
+                        </li>
+                    </ul>
+                </li>
+
+                <li><%= link_to  users_path do  %>JJ's
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <% end %>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -93,7 +91,7 @@
                         <% if current_user.admin? %>
                         <li>
                             <%= link_to "Créer un compte", signup_path %>
-                          </li>
+                        </li>
                         <% end %>
                         <li class="divider"></li>
                         <li>

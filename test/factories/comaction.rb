@@ -4,7 +4,8 @@
 #  name       :string
 #  status     :string
 #  type       :string
-#  due_date   :date
+#  start_time   :datetime
+#  end_time   :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
@@ -24,7 +25,8 @@ FactoryGirl.define do
     name                    {"action commerciale" + (17..4500).to_a.sample.to_s}
     status                  {Comaction::comstatus.sample}
     action_type             {Comaction::action_types.sample}
-    due_date                { Date.today +(1..40).to_a.sample}
+    start_time              { Date.today +(1..40).to_a.sample}
+    end_time                { start_time + (1..4).to_a.sample/24}
     user
     misssion
     person

@@ -16,19 +16,24 @@
 <div>
     <ul class="nav nav-tabs" role="tablist">
         <% if @people.any? %>
-        <li role="presentation" class="active">
-            <a href="#tab_people" aria-controls="tab_people" role="tab" data-toggle="tab">Contacts <span class="badge"> <%= @people.count %></a>
-        </li>
+          <li role="presentation" class="active">
+              <a href="#tab_people" aria-controls="tab_people" role="tab" data-toggle="tab">Contacts <span class="badge"> <%= @people.count %></a>
+          </li>
         <% end %>
         <% if @jobs.any? %>
-        <li role="presentation">
-            <a href="#tab_jobs" aria-controls="tab_jobs" role="tab" data-toggle="tab">Emplois <span class="badge"> <%= @jobs.count %> </span></a>
-        </li>
+          <li role="presentation">
+              <a href="#tab_jobs" aria-controls="tab_jobs" role="tab" data-toggle="tab">Emplois <span class="badge"> <%= @jobs.count %> </span></a>
+          </li>
         <% end %>
         <% if @companies.any? %>
-        <li role="presentation">
-            <a href="#tab_companies" aria-controls="tab_companies" role="tab" data-toggle="tab">Sociétés <span class="badge"> <%= @companies.count %> </span></a>
-        </li>
+          <li role="presentation">
+              <a href="#tab_companies" aria-controls="tab_companies" role="tab" data-toggle="tab">Sociétés <span class="badge"> <%= @companies.count %> </span></a>
+          </li>
+        <% end %>
+        <% if @missions.any? %>
+          <li role="presentation">
+              <a href="#tab_missions" aria-controls="tab_missions" role="tab" data-toggle="tab">Missions <span class="badge"> <%= @missions.count %> </span></a>
+          </li>
         <% end %>
     </ul>
     <div class="tab-content tenPxDown">
@@ -40,6 +45,9 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab_companies">
             <%= render @companies %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab_missions">
+            <%= render @missions %>
         </div>
     </div>
 </div>

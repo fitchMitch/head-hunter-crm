@@ -1,4 +1,4 @@
-<div class=" row <%= comaction.due_date == nil || comaction.due_date > Time.now ? '' : 'mission_done' %>">
+<div class=" row <%= comaction.start_time == nil || comaction.start_time > Time.now ? '' : 'mission_done' %>">
     <div class="col-xs-2">
         <%= link_to comaction.name, comaction_path(comaction)  %>
         |
@@ -32,9 +32,9 @@
         <% end %>
     </div>
     <div class="col-xs-2">
-        <% unless comaction.due_date.nil? %>
-        <small><%= future_time_in_words comaction.due_date%></small><br>
-        <small><%= comaction.due_date %></small>
+        <% unless comaction.start_time.nil? %>
+        <small><%= future_time_in_words comaction.start_time%></small><br>
+        <small><%= comaction.start_time %></small>
         <% end %>
     </div>
 </div>

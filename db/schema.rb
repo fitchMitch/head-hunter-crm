@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406171722) do
+ActiveRecord::Schema.define(version: 20170413112213) do
 
   create_table "comactions", force: :cascade do |t|
     t.string   "name"
     t.string   "status"
     t.string   "action_type"
-    t.datetime "due_date"
+    t.datetime "start_time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "mission_id"
     t.integer  "person_id"
+    t.datetime "end_time"
     t.index ["mission_id"], name: "index_comactions_on_mission_id"
     t.index ["person_id"], name: "index_comactions_on_person_id"
     t.index ["user_id"], name: "index_comactions_on_user_id"

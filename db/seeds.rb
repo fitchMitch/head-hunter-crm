@@ -179,13 +179,15 @@ missions = Mission.all
   mission=            missions.sample
   created_at =        Date.today - (200..480).to_a.sample
   updated_at =        created_at +  (1..150).to_a.sample
-  due_date   =        (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
+  start_time   =      (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
+  end_time    =       start_time + (1..4).to_a.sample / 24
 
   Comaction.create!(
     name:               name,
     status:             status,
     action_type:        action_type,
-    due_date:           due_date,
+    start_time:         start_time,
+    end_time:           end_time,
     created_at:         created_at,
     updated_at:         updated_at,
     mission_id:         mission.id,

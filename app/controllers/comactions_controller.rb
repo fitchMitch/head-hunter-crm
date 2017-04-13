@@ -4,7 +4,8 @@
 #  name       :string
 #  status     :string
 #  action_type:string
-#  due_date   :date
+#  start_time   :datetime
+#  end_time   :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
@@ -20,33 +21,34 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def index
+    @comactions = Comaction.includes(:user, :person, :mission)
     if params[:filter] != nil
       filter = params[:filter]
       if filter == 'unscheduled'
-        @comactions = Comaction.unscheduled.newer_than(7)
+        @comactions = @comactions.unscheduled.newer_than(7)
       elsif filter == 'future'
-        @comactions = Comaction.older_than(0).newer_than(7)
+        @comactions = @comactions.scheduled.newer_than(0)
       elsif filter == 'sourced'
-        @comactions = Comaction.sourced.newer_than(7)
+        @comactions = @comactions.sourced.newer_than(7)
       elsif filter == 'preselected'
-        @comactions = Comaction.preselected.newer_than(7)
+        @comactions = @comactions.preselected.newer_than(7)
       elsif filter == 'appoint'
-        @comactions = Comaction.appoint.newer_than(7)
+        @comactions = @comactions.appoint.newer_than(7)
       elsif filter == 'pres'
-        @comactions = Comaction.pres.newer_than(7)
+        @comactions = @comactions.pres.newer_than(7)
       elsif filter == 'opres'
-        @comactions = Comaction.opres.newer_than(7)
+        @comactions = @comactions.opres.newer_than(7)
       elsif filter == 'hired'
-        @comactions = Comaction.hired.newer_than(7)
+        @comactions = @comactions.hired.newer_than(7)
       elsif filter == 'working'
-        @comactions = Comaction.working.newer_than(7)
+        @comactions = @comactions.working.newer_than(7)
       else
-        @comactions = Comaction.all
+        #
       end
     else
-      @comactions = Comaction.newer_than(3)
+      @comactions = @comactions.newer_than(3)
     end
-    @comactions = @comactions.joins(:user, :person, :mission).page(params[:page] ? params[:page].to_i: 1).reload
+    @comactions = @comactions.page(params[:page] ? params[:page].to_i: 1)
     @comactions = bin_filters(@comactions, params)
     @comactions = reorder(@comactions, params,'comactions.name')
     #byebug
@@ -58,13 +60,10 @@ class ComactionsController < ApplicationController
     @parameters['header']<<{'width'=>2,'label'=>'Mission','attribute'=>'missions.name'}
     @parameters['header']<<{'width'=>1,'label'=>'Resp.','attribute'=>'users.name'}
     @parameters['header']<<{'width'=>2,'label'=>'Avec','attribute'=>'people.lastname'}
-    @parameters['header']<<{'width'=>2,'label'=>'Date','attribute'=>'due_date'}
+    @parameters['header']<<{'width'=>2,'label'=>'Date','attribute'=>'start_time'}
   end
   #-----------------
   def edit
-    #@person = Person.find(comaction_params[:person_id])
-    #@mission = Mission.find(comaction_params[:mission_id])
-    #@comaction.is_dated  = @comaction.due_date.nil? ? false : true
     @user = current_user
   end
   #-----------------
@@ -73,7 +72,7 @@ class ComactionsController < ApplicationController
   #-----------------
   def add_ext
     model = params['model'].to_s || 'person'
-    dest = "new_"+model+"_path"
+    dest = "new_" + model + "_path"
     if params[:id].nil?
       set_next_url new_comaction_path
     else
@@ -89,7 +88,7 @@ class ComactionsController < ApplicationController
     @comaction = @person.comactions.build(comaction_params)
     @comaction.mission_id = @mission.id
     @comaction.user_id = current_user.id
-    @comaction.due_date = comaction_params[:is_dated].to_i == 1 ? @comaction.due_date : nil
+    @comaction.start_time = comaction_params[:is_dated].to_i == 1 ? @comaction.start_time : nil
 
     if @comaction.save
       flash[:info] =  "Rendez-vous sauvegardé"
@@ -101,7 +100,7 @@ class ComactionsController < ApplicationController
   end
 
   def update
-    @comaction.due_date = comaction_params[:is_dated].to_i == 1 ? @comaction.due_date : nil
+    @comaction.start_time = comaction_params[:is_dated].to_i == 1 ? @comaction.start_time : nil
     if @comaction.update_attributes(comaction_params)
       flash[:success] = "Rendez-vous mis à jour"
       redirect_to @comaction
@@ -121,7 +120,7 @@ class ComactionsController < ApplicationController
   private
   #---------------
     def comaction_params
-      params.require(:comaction).permit(:name , :status, :action_type, :due_date, :user_id, :mission_id, :person_id, :is_dated)
+      params.require(:comaction).permit(:name , :status, :action_type, :start_time, :end_time, :user_id, :mission_id, :person_id, :is_dated)
     end
 
     def get_comaction

@@ -6,12 +6,13 @@
 #  name        :string
 #  status      :string
 #  action_type :string
-#  due_date    :datetime
+#  start_time  :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :integer
 #  mission_id  :integer
 #  person_id   :integer
+#  end_time    :datetime
 #
 
 class Comaction < ApplicationRecord
@@ -32,16 +33,17 @@ class Comaction < ApplicationRecord
     ACTION_TYPES = [CLIENT_TYPE = 'Rendez-vous Client',
       PROSPECTION_TYPE= 'Rendez-vous Candidat',
       OTHER_TYPE = 'Autre']
-  #default_scope -> {order(due_date: :asc)}
+  #default_scope -> {order(start_time: :asc)}
   scope :older_than, ->(d) {
     d ||=7
-    where('due_date < ? OR due_date is null', d.days.ago)
+    where('start_time < ? OR start_time is null', d.days.ago)
   }
   scope :newer_than, ->(d) {
     d ||=7
-    where('due_date >= ? OR due_date is null', d.days.ago)
+    where('start_time >= ? OR start_time is null', d.days.ago)
   }
-  scope :unscheduled, -> { where('due_date is null') }
+  scope :unscheduled, -> { where('start_time is null') }
+  scope :scheduled, -> { where('start_time is not null') }
   scope :sourced, -> { where('comactions.status = ?' ,STATUS_SOURCED ) }
   scope :preselected, -> { where('comactions.status = ?' , STATUS_PRESELECTED ) }
   scope :appoint, -> { where('comactions.status = ?' , STATUS_APPOINT) }
@@ -57,10 +59,17 @@ class Comaction < ApplicationRecord
 
   validates :status, inclusion: {in: STATUSES}
   validates :action_type, inclusion: {in: ACTION_TYPES}
+  validate  :end_time_is_after
 
   # ------------------------
   # --    PRIVATE        ---
   # ------------------------
   private
+  def end_time_is_after
+    if is_dated == true  && end_time - start_time < 0
+      puts ("yolooo")
+      errors.add(:end_time, "La fin vient après le début :-)")
+    end
+  end
 
 end
