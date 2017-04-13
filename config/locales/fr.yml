@@ -21,6 +21,7 @@ fr:
   Thu.: jeu
   Fri.: ven
   Sat.: sam
+  fr.Sun: dim
 
   activerecord:
     errors:

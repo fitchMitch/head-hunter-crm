@@ -1,21 +1,40 @@
 <!-- <% provide(:title, 'Liste des actions commerciales') %> -->
 <h1 class="center">Liste des rendez-vous</h1>
 <div class="row spaceDown">
-  <div class="col-xs-8"></div>
-  <!-- <div class="col-xs-2">
-    <%= link_to  missions_path( active_classes('is_done', 1)), class: "btn" do %>
-       actions commerciales   <%= fa_icon('filter') %>
-    <% end %>
-  </div>
+  <%= render 'block_filters' %>
+    <div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#tab_list" aria-controls="tab_list" role="tab" data-toggle="tab"> <%= fa_icon("list 2x") %>
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#tab_cal" aria-controls="tab_cal" role="tab" data-toggle="tab">
+                  <%= fa_icon("calendar-o 2x") %>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content tenPxDown">
+            <div role="tabpanel" class="tab-pane active" id="tab_list">
+                <%= will_paginate %>
 
-    <div class="col-xs-2">
-    <%= link_to  missions_path( active_classes('is_done', 0)), class: "btn btn-primary" do %>
-       Missions  actives <%= fa_icon('filter') %>
-    <% end %>
-  </div> -->
-</div>
-<%= will_paginate %>
-<%= render 'block_filters' %>
-<%= block_header(@parameters) %>
-<%= render @comactions %>
-<%= will_paginate %>
+                <%= block_header(@parameters) %>
+                <%= render @comactions %>
+                <%= will_paginate %>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab_cal">
+              <%= month_calendar events: @comactions do |date, comactions| %>
+                <small><strong>
+                    <%= date.strftime("%d %b") %>
+                </strong></small>
+                <% comactions.each do |comaction| %>
+                  <div>
+                    <%= link_to comaction_path(comaction) do %>
+                      <%= comaction.name %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+        </div>
+    </div>
