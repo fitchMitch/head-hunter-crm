@@ -8,29 +8,21 @@ $(document).on "page:load ready", ->
   $("#comaction_person_id").select2
     theme: "bootstrap"
 
+
   el  = ("#comaction_start_time_#{i}i" for i in[1..6])
   ele  = ("#comaction_end_time_#{i}i" for i in[1..6])
 
+  closures  = []
+  for i in [0..5]
+    closures[i] = do (i) ->
+      $(el[i]).on 'change', ->
+        $(ele[i]).val($(el[i]).val())
+  for i in [0..5]
+    closures[i]()
+
+
   $("input[type=checkbox]").on 'click', ->
-    if !($('input').is(':checked'))
-      $(el[0]).parent().parent().parent().fadeOut("slow")
-    else
+    if ($('input').is(':checked'))
       $(el[0]).parent().parent().parent().fadeIn("slow")
-
-  $(el[0]).on 'change', ->
-    $(ele[0]).val($(el[0]).val())
-
-  $(el[1]).on 'change', ->
-    $(ele[1]).val($(el[1]).val())
-
-  $(el[2]).on 'change', ->
-    $(ele[2]).val($(el[2]).val())
-
-  $(el[3]).on 'change', ->
-    $(ele[3]).val($(el[3]).val())
-
-  $(el[4]).on 'change', ->
-    $(ele[4]).val($(el[4]).val())
-
-  $(el[5]).on 'change', ->
-    $(ele[5]).val($(el[5]).val())
+    else
+      $(el[0]).parent().parent().parent().fadeOut("slow")

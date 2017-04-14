@@ -28,7 +28,7 @@
                     <%= date.strftime("%d %b") %>
                 </strong></small>
                 <% comactions.each do |comaction| %>
-                  <div>
+                  <div><%= comaction.start_time.strftime("%H:%M") %>
                     <%= link_to comaction_path(comaction) do %>
                       <%= comaction.name %>
                     <% end %>

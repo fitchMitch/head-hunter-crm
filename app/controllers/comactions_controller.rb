@@ -125,5 +125,6 @@ class ComactionsController < ApplicationController
 
     def get_comaction
       @comaction = Comaction.find(params[:id])
+      @comaction.is_dated = @comaction.nil? || @comaction.start_time == nil ? false : true
     end
 end

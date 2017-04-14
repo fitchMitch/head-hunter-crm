@@ -22,7 +22,19 @@ fr:
   Fri.: ven
   Sat.: sam
   fr.Sun: dim
-
+  Jan: Jan
+  Feb: Feb
+  Mar: Mar
+  Apr: Avr
+  May: Mai
+  Jun: Juin
+  Jul: juil
+  Aug: Aou
+  Sep:  Sept
+  Sept: Sept
+  Oct: Oct
+  Nov: Nov
+  Dec: Dec
   activerecord:
     errors:
       messages:
