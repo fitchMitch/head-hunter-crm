@@ -32,7 +32,7 @@ class Comaction < ApplicationRecord
 
     ACTION_TYPES = [CLIENT_TYPE = 'Rendez-vous Client',
       PROSPECTION_TYPE= 'Rendez-vous Candidat',
-      OTHER_TYPE = 'Autre']
+      OTHER_TYPE = 'Autre rendez-vous']
   #default_scope -> {order(start_time: :asc)}
   scope :older_than, ->(d) {
     d ||=7

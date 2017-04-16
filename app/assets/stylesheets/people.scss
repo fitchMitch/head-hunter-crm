@@ -34,16 +34,15 @@ h1>a.candidate{
   height:3px;
   margin:10px
 }
-.frameMe {
-    margin-top: 5px;
-    border: 1px #888888 solid;
-    padding: 1em 1em 1em 1em;
-    background-color: #E7DCF4;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
+
+.word_cv_badge{
+  color:black;
+  //background-color: #FFF;
+  padding:0.2em;
+  -webkit-border-radius:8px 8px 8px 8px;
+  border-radius:8px 8px 8px 8px;
+  border: 1px solid #b299b2;
 }
-/*
-.pushUp{
-  margin-top: -10px;
-  padding-top: -10px;
-}*/
+.fa-user.client {
+  color:#f0ad4e;
+}

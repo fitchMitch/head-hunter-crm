@@ -1,3 +1,60 @@
 // Place all the styles related to the Comactions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.mission.frame{
+  background-color: #E7DCF4;
+}
+.comaction.mission{
+  font-family: "Verdana"
+}
+table.rdv>td{
+  padding : 20px;
+  margin: 30px;
+}
+/* calendar*/
+.day.start-date{
+  border: 2px solid #f0ad4e;
+}
+.day.future{
+  border: 2px solid #8c4ba0;
+}
+.day.past{
+  border: 1px dashed grey;
+  color:grey;
+}
+.cal_date{
+  font-size: 0.7em;
+  font-family: "Verdana";
+  font-stretch: semi-condensed;
+  font-weight: bold;
+  background-color: #d1bddb;
+  color:#4b425f;
+}
+.current-month>hr.sep{
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+.simple-calendar .day {
+  height: 30px;
+}
+/*
+Enable tabbable tabs via JavaScript (each tab needs to be activated individually):
+Copy
+
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+You can activate individual tabs in several ways:
+Copy
+
+$('#myTabs a[href="#profile"]').tab('show') // Select tab by name
+$('#myTabs a:first').tab('show') // Select first tab
+$('#myTabs a:last').tab('show') // Select last tab
+$('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)
+
+Markup
+
+You can activate a tab or pill navigation without writing any JavaScript by simply specifying data-toggle="tab" or data-toggle="pill" on an element. Adding the nav and nav-tabs classes to the tab ul will apply the Bootstrap tab styling, while adding the nav and nav-pills classes will apply pill styling.
+*/

@@ -27,6 +27,7 @@ gem 'date_validator',   '~> 0.9.0'
 gem 'paperclip',        "~> 5.0.0"
 gem 'paperclip-i18n'
 gem 'simple_calendar', '~> 2.2', '>= 2.2.5'
+gem 'icalendar', '~> 2.4', '>= 2.4.1'
 
 group :development, :test do
   gem "factory_girl_rails",     "~> 4.0"

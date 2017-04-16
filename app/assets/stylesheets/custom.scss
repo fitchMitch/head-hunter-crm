@@ -55,7 +55,7 @@ h6 {
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 2.7em;
     letter-spacing: -2px;
     margin-bottom: 30px;
     text-align: center;
@@ -70,12 +70,18 @@ h1.center.clast {
 }
 
 h2 {
-    font-size: 1.2em;
+    font-size: 2em;
     letter-spacing: -1px;
-    margin-bottom: 30px;
-    text-align: center;
+    margin-bottom: 20px;
     font-weight: normal;
     color: $light-gray;
+}
+h3{
+      font-size: 1.6em;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+      font-weight: normal;
+      color: $light-gray;
 }
 
 p {
@@ -251,6 +257,8 @@ hr.sep{
   color:#7e5986;
   background-color: #7e5986;
   height: 1px;
+  margin-top:0.5em;
+  margin-bottom:1em;
 }
 
 .checkBelow {
@@ -272,6 +280,15 @@ hr.sep{
     box-shadow: 1px 1px 1px 1px #633961;*/
     -webkit-border-radius:4px 4px 4px 4px;
     border-radius:4px 4px 4px 4px;
+}
+.cartel{
+  color:#555;
+  align-content: flex-end;
+  margin-top: 2em;
+  font-size: 0.85em;
+  -webkit-border-radius:4px 4px 4px 4px;
+  border-radius:4px 4px 4px 4px;
+  border: 1px solid #999;
 }
 .fadingColor{
   color : #777;
@@ -301,11 +318,28 @@ a > span.label-warning:hover{
   -webkit-border-radius:8px 8px 8px 8px;
   border-radius:8px 8px 8px 8px;
 }
-.word_cv_badge{
-  color:black;
-  //background-color: #FFF;
-  padding:0.2em;
-  -webkit-border-radius:8px 8px 8px 8px;
-  border-radius:8px 8px 8px 8px;
-  border: 1px solid #b299b2;
+.frameMe {
+    margin-top: 5px;
+    border: 1px #888888 solid;
+    padding: 1em 1em 1em 1em;
+    background-color: #E7DCF4;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+.midway{
+  vertical-align: middle;
+  line-height:5em;
+}
+.emptyline{
+  display:block;
+  height:2em;
+  line-height:1.6em;
+}
+.elbowSpace{
+  padding-right: 2em;
+  padding-left: 2em;
+}
+.lightlooks{
+  color:#888;
+  font-size:0.9em;
 }

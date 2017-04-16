@@ -12,13 +12,15 @@ class StaticPagesController < ApplicationController
   end
 
   def search
+    # TODO : trim :q
     que = sqlPerc(params[:q])
     @people = params[:q].nil? ? [] : Person.where(" lastname LIKE  ? or firstname LIKE  ? ", que, sqlPerc(params[:q])).paginate(page: params[:page])
     @companies = params[:q].nil? ? [] : Company.where(" company_name LIKE ? ", que).paginate(page: params[:page])
     @jobs = params[:q].nil? ? [] : Job.where(" job_title LIKE ? ", que).paginate(page: params[:page]).joins(:person).includes(:person)
     @missions = params[:q].nil? ? [] : Mission.where(" name LIKE ? OR criteria LIKE ? ", que,que).paginate(page: params[:page]).joins(:person).includes(:person)
+    #@comactions = params[:q].nil? ? [] : Comaction.where(" name LIKE ? OR comactions.person.firstname LIKE ? ", que,que).paginate(page: params[:page]).joins(:person).includes(:person)
     @show_people_details = true
-    @no_result = (@people.count + @companies.count + @jobs.count) > 0
+    @no_result = (@people.count + @companies.count + @jobs.count + @missions.count ) > 0
     render 'static_pages/search_results'
   end
 

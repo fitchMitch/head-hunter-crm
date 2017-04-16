@@ -35,9 +35,13 @@
               <a href="#tab_missions" aria-controls="tab_missions" role="tab" data-toggle="tab">Missions <span class="badge"> <%= @missions.count %> </span></a>
           </li>
         <% end %>
+        <% if @missions.any? %>
+          <li role="presentation">
+              <a href="#tab_missions" aria-controls="tab_comactions" role="tab" data-toggle="tab">Rendez-vous <span class="badge"> <%= @comactions.count %> </span></a>
+          </li>
+        <% end %>
     </ul>
     <div class="tab-content tenPxDown">
-
         <div role="tabpanel" class="tab-pane active" id="tab_people">
             <%= render @people %></div>
         <div role="tabpanel" class="tab-pane" id="tab_jobs">
@@ -49,6 +53,7 @@
         <div role="tabpanel" class="tab-pane" id="tab_missions">
             <%= render @missions %>
         </div>
+      
     </div>
 </div>
 <% end %>

@@ -55,12 +55,12 @@ class ComactionsController < ApplicationController
 
     @parameters = {'params'=> params, 'header' => [],'tableDB'=> "comactions"}
 
-    @parameters['header']<<{'width'=>2,'label'=>'Action','attribute'=>'name'}
+    @parameters['header']<<{'width'=>3,'label'=>'Nom','attribute'=>'name'}
+    @parameters['header']<<{'width'=>2,'label'=>'Date','attribute'=>'start_time'}
     @parameters['header']<<{'width'=>1,'label'=>'Statut', 'attribute'=>'status'}
     @parameters['header']<<{'width'=>2,'label'=>'Mission','attribute'=>'missions.name'}
     @parameters['header']<<{'width'=>1,'label'=>'Resp.','attribute'=>'users.name'}
     @parameters['header']<<{'width'=>2,'label'=>'Avec','attribute'=>'people.lastname'}
-    @parameters['header']<<{'width'=>2,'label'=>'Date','attribute'=>'start_time'}
   end
   #-----------------
   def edit

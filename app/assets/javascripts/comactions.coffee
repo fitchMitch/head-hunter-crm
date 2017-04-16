@@ -2,25 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "page:load ready", ->
-
   $("#comaction_mission_id").select2
     theme: "bootstrap"
   $("#comaction_person_id").select2
-    theme: "bootstrap"
-
-
+    theme: "bootstrap" 
+  #---------------------------------------------------
   el  = ("#comaction_start_time_#{i}i" for i in[1..6])
   ele  = ("#comaction_end_time_#{i}i" for i in[1..6])
-
   closures  = []
   for i in [0..5]
     closures[i] = do (i) ->
       $(el[i]).on 'change', ->
         $(ele[i]).val($(el[i]).val())
-  for i in [0..5]
-    closures[i]()
-
-
+  #---------------------------------------------------
   $("input[type=checkbox]").on 'click', ->
     if ($('input').is(':checked'))
       $(el[0]).parent().parent().parent().fadeIn("slow")
