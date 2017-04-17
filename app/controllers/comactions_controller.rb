@@ -91,7 +91,12 @@ class ComactionsController < ApplicationController
     @comaction.start_time = comaction_params[:is_dated].to_i == 1 ? @comaction.start_time : nil
 
     if @comaction.save
-      flash[:info] =  "Rendez-vous sauvegardé"
+      if(@comaction.start_time == nil || @comaction.end_time == nil)
+        flash[:info] =  "Rendez-vous sauvegardé"
+      else
+        @comaction.send_meeting_email(current_user,1)
+        flash[:info] =  "Rendez-vous sauvegardé (un email a été envoyé)"
+      end
       redirect_to comactions_path
     else
       flash[:alert] = "Ce rendez-vous n'a pas pu être ajouté"
@@ -102,7 +107,12 @@ class ComactionsController < ApplicationController
   def update
     @comaction.start_time = comaction_params[:is_dated].to_i == 1 ? @comaction.start_time : nil
     if @comaction.update_attributes(comaction_params)
-      flash[:success] = "Rendez-vous mis à jour"
+      if(@comaction.start_time == nil || @comaction.end_time == nil)
+        flash[:success] =  "Rendez-vous sauvegardé"
+      else
+        @comaction.send_meeting_email(current_user,0)
+        flash[:success] =  "Rendez-vous mis à jour (un email a été envoyé)"
+      end
       redirect_to @comaction
     else
       flash[:alert] = "Ce rendez-vous n'a pas pu être mis à jour"

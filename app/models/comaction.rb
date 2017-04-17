@@ -61,6 +61,11 @@ class Comaction < ApplicationRecord
   validates :action_type, inclusion: {in: ACTION_TYPES}
   validate  :end_time_is_after
 
+  # Sends meeting email.
+  def send_meeting_email(u,is_new)
+    is_new == 1 ? ComactionMailer.event_saving(self,u).deliver_now : ComactionMailer.maj_event_saving(self,u).deliver_now  
+  end
+
   # ------------------------
   # --    PRIVATE        ---
   # ------------------------

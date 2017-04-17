@@ -89,17 +89,25 @@
             </div>
             <div class="col-xs-10">
                 <h3> <%= @comaction.mission.name %></h3>
-                    <span class="label label-warning"><%= @comaction.mission.company.company_name %></span>
-                    <br>
-                    Contact :
-                    <%= link_to @comaction.mission.person.full_name, person_path(@comaction.mission.person) %>
-                    <br>
-                    Date de début souhaitée par l'entreprise :
-                    <bold>
-                    <%= future_time_in_words @comaction.mission.whished_start_date %> <%= link_to mission_path(@comaction.mission), class: "btn" do %>
-                    <%= fa_icon("pencil") %>
+                <div class="row">
+                  <div class="col-xs-3"><%= fa_icon("building-o") %></div>
+                  <div class="col-xs-8"><span class="label label-warning"><%= @comaction.mission.company.company_name %></span></div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-3">Contact</div>
+                  <div class="col-xs-8"><%= link_to @comaction.mission.person.full_name, person_path(@comaction.mission.person) %></div>
+                </div>
+                <div class="row ">
+                  <div class="col-xs-3">Fin souhaitée</div>
+                  <div class="col-xs-7">
+                    <%= future_time_in_words @comaction.mission.whished_start_date %>
+                  </div>
+                  <div class="col-xs-1">
+                    <%= link_to mission_path(@comaction.mission), class: "btn" do %>
+                      <%= fa_icon("pencil") %>
                     <% end %>
-                    </bold>
+                  </div>
+                </div>
             </div>
         </div>
         <div class="row emptyline"></div>

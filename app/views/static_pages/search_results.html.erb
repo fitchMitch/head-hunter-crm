@@ -35,9 +35,9 @@
               <a href="#tab_missions" aria-controls="tab_missions" role="tab" data-toggle="tab">Missions <span class="badge"> <%= @missions.count %> </span></a>
           </li>
         <% end %>
-        <% if @missions.any? %>
+        <% if @comactions.any? %>
           <li role="presentation">
-              <a href="#tab_missions" aria-controls="tab_comactions" role="tab" data-toggle="tab">Rendez-vous <span class="badge"> <%= @comactions.count %> </span></a>
+              <a href="#tab_comactions" aria-controls="tab_comactions" role="tab" data-toggle="tab">Rendez-vous <span class="badge"> <%= @comactions.count %> </span></a>
           </li>
         <% end %>
     </ul>
@@ -53,7 +53,10 @@
         <div role="tabpanel" class="tab-pane" id="tab_missions">
             <%= render @missions %>
         </div>
-      
+        <div role="tabpanel" class="tab-pane" id="tab_comactions">
+            <%= render @comactions %>
+        </div>
+
     </div>
 </div>
 <% end %>

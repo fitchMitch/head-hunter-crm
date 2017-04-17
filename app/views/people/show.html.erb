@@ -48,7 +48,9 @@
                         <% end %>
                       </div>
                     </div>
-                    <hr>
+                    <div class="row">
+                      <div class="col-xs-12 emptyline"> </div>
+                    </div>
                     <% if @alljobs.nil? || @alljobs.empty? %>
                         <%= render 'shared/empty_list' %>
                     <% else %>
