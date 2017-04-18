@@ -2,14 +2,20 @@
 <h1 class="center">Log in</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= simple_form_for(:session, url: login_path) do |f| %>
-      <%= f.input :email %>
-      <%= f.input :password , label:"Mot de passe"%>
-      <%= f.input :remember_me , as: :boolean, label:" Se souvenir de moi", label_html: { class: 'decalTxt10' }%>
-      <%= f.button :submit, "Login", class: "btn btn-primary" %>
-      <%= link_to "mot de passe oublié", new_password_reset_path %>
-    <% end %>
-    <!--<p>Nouvel utilisateur ? <%= link_to "S'enregistrer", signup_path %></p>-->
-  </div>
+    <div class="col-md-6 col-md-offset-3">
+        <%= simple_form_for(:session, url: login_path) do |f| %>
+        <%= f.input :email %>
+        <%= f.input :password , label:"Mot de passe"%>
+        <%= f.input :remember_me , as: :boolean, label:" Se souvenir de moi", label_html: { class: 'decalTxt10' }%>
+        <%= f.button :submit, "Login", class: "btn btn-primary center-block" %>
+        <div class="row">
+          <div class="col-xs-12 emptyline"></div>
+        </div>
+        <div class="row ">
+            <div class="col-xs-12 centrage">
+                <small class="centrage"><%= link_to "mot de passe oublié", new_password_reset_path %></small>
+            </div>
+        </div>
+        <% end %>
+    </div>
 </div>

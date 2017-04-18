@@ -29,6 +29,7 @@ gem 'paperclip-i18n'
 gem 'simple_calendar', '~> 2.2', '>= 2.2.5'
 gem 'icalendar', '~> 2.4', '>= 2.4.1'
 
+
 group :development, :test do
   gem "factory_girl_rails",     "~> 4.0"
   gem 'sqlite3', '1.3.12'
