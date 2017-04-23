@@ -21,37 +21,36 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def index
-    @comactions = Comaction.includes(:user, :person, :mission)
+    @comactions = Comaction.includes(:user, :person, mission: [:company])
     if params[:filter] != nil
       filter = params[:filter]
       if filter == 'unscheduled'
-        @comactions = @comactions.unscheduled.newer_than(7)
+        @comactions = @comactions.unscheduled.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'future'
-        @comactions = @comactions.scheduled.newer_than(0)
+        @comactions = @comactions.scheduled.newer_than(0).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'sourced'
-        @comactions = @comactions.sourced.newer_than(7)
+        @comactions = @comactions.sourced.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'preselected'
-        @comactions = @comactions.preselected.newer_than(7)
+        @comactions = @comactions.preselected.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'appoint'
-        @comactions = @comactions.appoint.newer_than(7)
+        @comactions = @comactions.appoint.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'pres'
-        @comactions = @comactions.pres.newer_than(7)
+        @comactions = @comactions.pres.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'opres'
-        @comactions = @comactions.opres.newer_than(7)
+        @comactions = @comactions.opres.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'hired'
-        @comactions = @comactions.hired.newer_than(7)
+        @comactions = @comactions.hired.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'working'
-        @comactions = @comactions.working.newer_than(7)
+        @comactions = @comactions.working.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
       else
-        #
+        @comactions = @comactions.page(params[:page] ? params[:page].to_i: 1)
       end
     else
-      @comactions = @comactions.newer_than(3)
+      @comactions = @comactions.newer_than(3).page(params[:page] ? params[:page].to_i: 1)
     end
-    @comactions = @comactions.page(params[:page] ? params[:page].to_i: 1)
+
     @comactions = bin_filters(@comactions, params)
     @comactions = reorder(@comactions, params,'comactions.name')
-    #byebug
 
     @parameters = {'params'=> params, 'header' => [],'tableDB'=> "comactions"}
 
@@ -61,6 +60,12 @@ class ComactionsController < ApplicationController
     @parameters['header']<<{'width'=>2,'label'=>'Mission','attribute'=>'missions.name'}
     @parameters['header']<<{'width'=>1,'label'=>'Resp.','attribute'=>'users.name'}
     @parameters['header']<<{'width'=>2,'label'=>'Avec','attribute'=>'people.lastname'}
+
+    if params[:calendar_view].nil? || params[:calendar_view].to_i == 1
+      render 'calendar'
+    else
+      render 'index'
+    end
   end
   #-----------------
   def edit

@@ -1,0 +1,24 @@
+<% provide(:title, 'Liste des RdV') %>
+<% provide(:calender_view, '1') %>
+<h1 class="center">Liste des rendez-vous</h1>
+<!-- <div class="row spaceDown"> -->
+<%= render 'block_filters' %>
+
+<%= month_calendar events: @comactions do |date, comactions| %>
+  <span class="cal_date"><%= date.strftime("%d")%>
+      <%= t date.strftime("%b") %></span>
+  <hr class="sep">
+  <% comactions.each do |comaction| %>
+    <small>
+        <div class="row">
+            <div class="col-xs-2"><%= idtype(comaction) %></div>
+            <div class="col-xs-3"><%= comaction.start_time.strftime("%H:%M") %></div>
+            <div class="col-xs-6">
+              <%= link_to comaction_path(comaction) do %>
+                  <%= comaction.person.firstname %>
+              <% end %>
+            </div>
+        </div>
+    </small>
+  <% end %>
+<% end %>

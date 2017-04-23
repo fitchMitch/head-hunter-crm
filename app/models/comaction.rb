@@ -30,9 +30,19 @@ class Comaction < ApplicationRecord
     STATUS_HIRED = 'Engagé',
     STATUS_WORKING = 'En poste']
 
-    ACTION_TYPES = [CLIENT_TYPE = 'Rendez-vous Client',
-      PROSPECTION_TYPE= 'Rendez-vous Candidat',
-      OTHER_TYPE = 'Autre rendez-vous']
+  ACTION_TYPES = [CLIENT_TYPE = 'Rendez-vous Client',
+    PROSPECTION_TYPE= 'Rendez-vous Candidat',
+    OTHER_TYPE = 'Autre rendez-vous']
+
+  STATUS_RELATED = {
+    STATUS_SOURCED =>:sourced,
+    STATUS_PRESELECTED => :preselected,
+    STATUS_APPOINT => :appoint,
+    STATUS_PRES => :pres,
+    STATUS_O_PRES => :opres,
+    STATUS_HIRED => :hired,
+    STATUS_WORKING => :working
+  }
   #default_scope -> {order(start_time: :asc)}
   scope :older_than, ->(d) {
     d ||=7
@@ -63,7 +73,7 @@ class Comaction < ApplicationRecord
 
   # Sends meeting email.
   def send_meeting_email(u,is_new)
-    is_new == 1 ? ComactionMailer.event_saving(self,u).deliver_now : ComactionMailer.maj_event_saving(self,u).deliver_now  
+    is_new == 1 ? ComactionMailer.event_saving(self,u).deliver_now : ComactionMailer.maj_event_saving(self,u).deliver_now
   end
 
   # ------------------------

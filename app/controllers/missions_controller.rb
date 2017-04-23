@@ -23,7 +23,7 @@ class MissionsController < ApplicationController
   end
   #-----------------
   def index
-    @missions = Mission.joins(:company,:person).select("missions.*,companies.company_name").page(params[:page] ? params[:page].to_i: 1).reload
+    @missions = Mission.includes(:company,:person).page(params[:page] ? params[:page].to_i: 1)
     @missions = bin_filters(@missions, params)
     @missions = reorder(@missions,params,'updated_at')
 
