@@ -44,23 +44,23 @@ class Comaction < ApplicationRecord
     STATUS_WORKING => :working
   }
   #default_scope -> {order(start_time: :asc)}
-  scope :older_than, ->(d) {
+  scope :older_than, ->(d,being_id) {
     d ||=7
-    where('start_time < ? OR start_time is null', d.days.ago)
+    where('start_time < ? OR start_time is null AND user_id = ?', d.days.ago,being_id)
   }
-  scope :newer_than, ->(d) {
+  scope :newer_than, ->(d,being_id) {
     d ||=7
-    where('start_time >= ? OR start_time is null', d.days.ago)
+    where('start_time >= ? OR start_time is null AND user_id = ?', d.days.ago,being_id)
   }
-  scope :unscheduled, -> { where('start_time is null') }
-  scope :scheduled, -> { where('start_time is not null') }
-  scope :sourced, -> { where('comactions.status = ?' ,STATUS_SOURCED ) }
-  scope :preselected, -> { where('comactions.status = ?' , STATUS_PRESELECTED ) }
-  scope :appoint, -> { where('comactions.status = ?' , STATUS_APPOINT) }
-  scope :pres, -> { where('comactions.status = ?' ,STATUS_PRES ) }
-  scope :opres, -> { where('comactions.status = ?' , STATUS_O_PRES) }
-  scope :hired, -> { where('comactions.status = ?' ,STATUS_HIRED) }
-  scope :working, -> { where('comactions.status = ?' , STATUS_WORKING) }
+  scope :unscheduled, -> (being_id) { where('start_time is null AND user_id = ?', being_id) }
+  scope :scheduled, -> (being_id) { where('start_time is not null AND user_id = ?', being_id) }
+  scope :sourced, -> (being_id) { where('comactions.status = ? AND user_id = ?' ,STATUS_SOURCED, being_id ) }
+  scope :preselected, -> (being_id) { where('comactions.status = ? AND user_id = ?' , STATUS_PRESELECTED, being_id ) }
+  scope :appoint, -> (being_id) { where('comactions.status = ? AND user_id = ? ' , STATUS_APPOINT, being_id) }
+  scope :pres, -> (being_id) { where('comactions.status = ? AND user_id = ? ' ,STATUS_PRES, being_id ) }
+  scope :opres, -> (being_id) { where('comactions.status = ? AND user_id = ? ' , STATUS_O_PRES, being_id) }
+  scope :hired, -> (being_id) { where('comactions.status = ?  AND user_id = ?' ,STATUS_HIRED, being_id) }
+  scope :working, -> (being_id) { where('comactions.status = ? AND user_id = ?' , STATUS_WORKING, being_id) }
   #default_scope -> { select(user_id: current_user.id) }
 
   validates :name , presence: true, length: { maximum: 50 }
@@ -82,7 +82,6 @@ class Comaction < ApplicationRecord
   private
   def end_time_is_after
     if is_dated == true  && end_time - start_time < 0
-      puts ("yolooo")
       errors.add(:end_time, "La fin vient après le début :-)")
     end
   end

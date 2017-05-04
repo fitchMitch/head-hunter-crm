@@ -1,39 +1,41 @@
 <% provide(:title, @company.company_name) %>
-<div class="row">
+<div class="row spaceDown">
     <div class="col-xs-12">
         <h3> <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
             <span class="label label-warning"><%= @company.company_name%></span>
             <small>
-                - <span class="badge"><%= @nb_people%></span> personnes y ont travaillé</small>
+                - <span class="badge"><%= @nbr%></span> personnes y ont travaillé</small>
         </h3>
     </div>
 </div>
-<%= block_header(@parameters) %>
-<% @people_jobs.each do |key,val|  %>
-<div class="row">
-    <div class="col-xs-3">
-        <%=  link_to person_path(key) do %>
-        <%= val['person']['title']%>
-        <%= val['person']['firstname']%>
-        <%= val['person']['lastname']%>
-        <% end %>
-    </div>
-    <div class="col-xs-6">
-        <% val['jobs'].each do |j| %>
-        <div class="row">
-            <div class="col-xs-6">
-              <% if j['no_end'] %>
-                <strong><%= j['job_title'] %></strong>
-              <% else %>
-                <span class="fadingColor"><%= j['job_title'] %></span>
-              <% end %>
-            </div>
-            <div class="col-xs-6">De
-                <%= j['start_date'].strftime("%b %Y")   %>
-                <%=  j['no_end'] ? "à aujourd'hui" : "à #{j['end_date'].strftime("%b %Y")}"%>
-            </div>
+
+<div role="tabpanel" class="tab-pane " id="tab_list">
+    <%= block_header(@parameters) %>
+    <% @jobs.each do |job|  %>
+      <div class="row">
+        <div class="col-xs-3">
+          <%=  %>
+          <%= link_to job.person.full_name, person_path(job.person) %>
         </div>
-        <% end %>
-    </div>
+        <div class="col-xs-3">
+          <div class="row">
+            <div class="col-xs-2">
+              <small><span class="label label-default"><%= years_work(job)%> ans</span></small>
+            </div>
+            <div class="col-xs-10">
+              <%= job.job_title %>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          De <strong><%=  t job.start_date.strftime("%b") %> <%=  job.start_date.strftime("%Y") %></strong> à
+          <% if job.end_date.nil? %>
+            aujourd'hui
+          <% else %>
+           <%= t job.end_date.strftime("%b") %>  <%= job.end_date.strftime("%Y") %>
+          <% end %>
+        </div>
+      </div>
+      <hr class="sep">
+    <% end %>
 </div>
-<% end %>

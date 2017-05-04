@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails',        '5.0.1'
-gem 'puma',         '3.4.0'
 gem 'sass-rails',   '5.0.6'
 gem 'uglifier',     '3.0.0'
 gem 'coffee-rails', '4.2.1'
@@ -28,11 +27,14 @@ gem 'paperclip',        "~> 5.0.0"
 gem 'paperclip-i18n'
 gem 'simple_calendar', '~> 2.2', '>= 2.2.5'
 gem 'icalendar', '~> 2.4', '>= 2.4.1'
+gem 'sqlite3', '1.3.12'
+#temp
+
 
 
 group :development, :test do
+  gem 'puma',         '3.4.0'
   gem "factory_girl_rails",     "~> 4.0"
-  gem 'sqlite3', '1.3.12'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'as-duration'
 end
@@ -53,7 +55,9 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.18.4'
+  #gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+
+  #gem 'pg', '0.18.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

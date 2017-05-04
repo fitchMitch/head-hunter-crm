@@ -69,25 +69,19 @@ class CompaniesController < ApplicationController
   end
 
   def list_people
+    #@comactions = Comaction.includes(:user, :person, mission: [:company])
     @company = Company.find(params[:id])
-    @jobs = Job.where('company_id = ?',params[:id]).joins(:person).includes(:person).select('jobs.job_title as job_t,jobs.start_date start_d,jobs.end_date as end_d,jobs.person_id,people.firstname as first_n,people.lastname as last_n,people.title as title')
+    @jobs = Job.where('company_id = ?',params[:id]).includes(:person)
+    @jobs = bin_filters(@jobs, params)
+    @jobs = reorder(@jobs, params,'job_title')
 
-    distinct_people_ids = @jobs.pluck(:person_id).uniq || []
-    @people_jobs = {}
-    distinct_people_ids.each  {|val|
-      @people_jobs[val] = { 'jobs' => [],'person' => {}}
-    }
+    @nbr = Job.where('company_id = ?',params[:id]).distinct.pluck(:person_id).count
 
-    @jobs.each { |j|
-      @people_jobs[j.person_id]['jobs'] << {"job_title" =>j.job_title,"start_date" =>j.start_date,"end_date" =>j.end_date, "no_end"=>j.no_end}
-      @people_jobs[j.person_id]['person'] = {'title'=>j.person.title , 'firstname'=>j.person.firstname,'lastname'=>j.person.lastname}
-    }
-    @nb_people = distinct_people_ids.count
+    @parameters = {'params'=> params, 'header' => [], 'tableDB'=> "companies", "action"=>"list_people"}
 
-    @parameters = {'params'=> params, 'header' => [], 'tableDB'=> "jobs"}
-    @parameters['header']<<{'width'=>3,'label'=>'Personne','attribute'=>'none'}
-    @parameters['header']<<{'width'=>3,'label'=>'Emploi','attribute'=>'none'}
-    @parameters['header']<<{'width'=>3,'label'=>'Dates','attribute'=>'none'}
+    @parameters['header']<<{'width'=>3,'label'=>'Personne','attribute'=>'people.lastname'}
+    @parameters['header']<<{'width'=>3,'label'=>'Emploi','attribute'=>'job_title'}
+    @parameters['header']<<{'width'=>3,'label'=>'Dates','attribute'=>'start_date'}
 
     render 'companies/company_people'
   end

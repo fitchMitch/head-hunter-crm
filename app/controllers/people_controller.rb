@@ -30,9 +30,8 @@ class PeopleController < ApplicationController
   def show
     @person = Person.find(params[:id])
     @job = @person.jobs.build
-    @jobs = @person.jobs.reload.includes(:company)
+    @jobs = @person.jobs.reload.includes(:company).reversed_time
 
-    @jobs.order("end_date")
     last_job = @jobs.last
     @alljobs = []
     memo = nil

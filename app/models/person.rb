@@ -26,7 +26,7 @@ class Person < ApplicationRecord
   has_many :jobs , dependent: :destroy
   #accepts_nested_attributes_for :jobs, allow_destroy: true
   has_many :missions, dependent: :destroy
-  has_many :comactions
+  has_many :comactions ,dependent: :destroy
   belongs_to :user
 
   before_save   :downcase_email

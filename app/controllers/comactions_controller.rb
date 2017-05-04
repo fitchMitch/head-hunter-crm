@@ -21,47 +21,48 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def index
+    uid = current_user.id
     @comactions = Comaction.includes(:user, :person, mission: [:company])
     if params[:filter] != nil
       filter = params[:filter]
       if filter == 'unscheduled'
-        @comactions = @comactions.unscheduled.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.unscheduled(uid).newer_than(7,uid).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'future'
-        @comactions = @comactions.scheduled.newer_than(0).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.scheduled(uid).newer_than(0,uid).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'sourced'
-        @comactions = @comactions.sourced.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.sourced(uid).newer_than(7,uid).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'preselected'
-        @comactions = @comactions.preselected.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.preselected(uid).newer_than(7,uid).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'appoint'
-        @comactions = @comactions.appoint.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.appoint(uid).newer_than(7,uid).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'pres'
-        @comactions = @comactions.pres.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.pres(uid).newer_than(7,uid).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'opres'
-        @comactions = @comactions.opres.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.opres(uid).newer_than(7,uid).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'hired'
-        @comactions = @comactions.hired.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.hired(uid).newer_than(7,uid).page(params[:page] ? params[:page].to_i: 1)
       elsif filter == 'working'
-        @comactions = @comactions.working.newer_than(7).page(params[:page] ? params[:page].to_i: 1)
+        @comactions = @comactions.working(uid).newer_than(7,uid).page(params[:page] ? params[:page].to_i: 1)
       else
         @comactions = @comactions.page(params[:page] ? params[:page].to_i: 1)
       end
     else
-      @comactions = @comactions.newer_than(3).page(params[:page] ? params[:page].to_i: 1)
+      @comactions = @comactions.newer_than(3,uid).page(params[:page] ? params[:page].to_i: 1)
     end
 
     @comactions = bin_filters(@comactions, params)
     @comactions = reorder(@comactions, params,'comactions.name')
 
-    @parameters = {'params'=> params, 'header' => [],'tableDB'=> "comactions"}
+    @parameters = {'params'=> params, 'header' => [],'tableDB'=> "comactions", 'query'=>'table_view'}
 
     @parameters['header']<<{'width'=>3,'label'=>'Nom','attribute'=>'name'}
     @parameters['header']<<{'width'=>2,'label'=>'Date','attribute'=>'start_time'}
+    @parameters['header']<<{'width'=>2,'label'=>'Avec','attribute'=>'people.lastname'}
     @parameters['header']<<{'width'=>1,'label'=>'Statut', 'attribute'=>'status'}
     @parameters['header']<<{'width'=>2,'label'=>'Mission','attribute'=>'missions.name'}
     @parameters['header']<<{'width'=>1,'label'=>'Resp.','attribute'=>'users.name'}
-    @parameters['header']<<{'width'=>2,'label'=>'Avec','attribute'=>'people.lastname'}
 
-    if params[:calendar_view].nil? || params[:calendar_view].to_i == 1
+    if params[:query].nil? || params[:query] != 'table_view'
       render 'calendar'
     else
       render 'index'

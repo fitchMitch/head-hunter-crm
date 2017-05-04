@@ -3,12 +3,36 @@
 /* mixins, variables, etc. */
 $light-gray: #777;
 $gray-medium-light: #eaeaea;
+/* Coolors Exported Palette - coolors.co/00120b-35605a-6b818c-d8e4ff-31e981 */
+
+/* HSL */
+$color1: hsla(157%, 100%, 4%, 1);
+$color2: hsla(172%, 29%, 29%, 1);
+$color3: hsla(200%, 13%, 48%, 1);
+$color4: hsla(222%, 100%, 92%, 1);
+$color5: hsla(146%, 81%, 55%, 1);
+
+/* RGB */
+$color1: rgba(0, 18, 11, 1);
+$color2: rgba(53, 96, 90, 1);
+$color3: rgba(107, 129, 140, 1);
+$color4: rgba(216, 228, 255, 1);
+$color5: rgba(49, 233, 129, 1);
+$color9: rgba(49, 0, 0, 1);
 
 body {
-    background-color: #d9cdd9;
+    background-color: $color4;/* #d9cdd9;*/
 }
 .navbar-inverse {
-    background-color: #2f0c2f;
+    background-color: $color1; /*#2f0c2f;*/
+}
+.label-warning{
+  background-color: $color2;
+}
+.grav1, .grav2,.grav5, .grav4,.grav5, .grav6,.grav7, .grav8,.grav9, .grav10,.grav11, .grav12 {
+  background-color: $color3;
+  height:3px;
+  margin:10px
 }
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -76,14 +100,14 @@ h2 {
     letter-spacing: -1px;
     margin-bottom: 20px;
     font-weight: normal;
-    color: $light-gray;
+    color: $color1;
 }
 h3{
       font-size: 1.6em;
       letter-spacing: -1px;
       margin-bottom: 10px;
       font-weight: normal;
-      color: $light-gray;
+      color: $color3;
 }
 
 p {
@@ -99,8 +123,8 @@ p {
   border:solid black 1px;
 }
 .barr{
-  background-color: #DDD;
-  height:0.1em;
+  background-color: $color5;
+  height:2px;
   margin-top: 0.7em;
   margin-bottom: 0.5em;
 }
@@ -208,7 +232,7 @@ aside {
 .uneditable-input,
 input,
 textarea {
-    border: 1px solid #bbb;
+    border: 1px solid $color3;
     /*width: 100%;*/
     margin-bottom: 15px;
     @include box_sizing;
@@ -258,13 +282,13 @@ abbr {
 
 .frame{
   border: 1px #888888 solid;
-  background-color: #E7DCF4;
+  background-color: $color4;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
 hr.sep{
-  color:#7e5986;
-  background-color: #7e5986;
+  color:$color3;
+  background-color: $color3;
   height: 1px;
   margin-top:0.5em;
   margin-bottom:1em;
@@ -279,11 +303,11 @@ hr.sep{
   padding : 10px;
 }
 .redFrame {
-    border: 2px #F0AD4E solid;
+    border: 2px $color2 solid;
     padding: 3px 5px 2px 5px;
     font-size: 0.8em;
     font-weight: bold;
-    color: #dd9f49;
+    color: $color2;
     background-color: white;
     /*-webkit-box-shadow: 1px 1px 1px 1px #633961;
     box-shadow: 1px 1px 1px 1px #633961;*/
@@ -303,10 +327,12 @@ hr.sep{
   color : #777;
 }
 .array_header{
-  background-color: #ead3ea;
+  background-color: $color5; /* #ead3ea;*/
   padding: 10px;
   border-top: 2px #8b7193 solid;
   border-bottom: 2px #8b7193 solid;
+  border-top: 2px  $color1 solid;
+  border-bottom: 2px  $color1 solid;
   margin-bottom: 15px;
 }
 a > span.label-warning:hover{
@@ -315,14 +341,14 @@ a > span.label-warning:hover{
 
 /* Missions */
 .mission_done{
-  background-color: #BBB
+  background-color: $color3;
 }
 .small_alert{
   font-size: 0.7em;
   line-height: normal;
   vertical-align: middle;
-  color: red;
-  background-color: #BBB;
+  color: $color4;
+  background-color: $color3;
   padding: 0.4em;
   -webkit-border-radius:8px 8px 8px 8px;
   border-radius:8px 8px 8px 8px;

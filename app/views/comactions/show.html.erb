@@ -1,7 +1,7 @@
 <% provide(:title, @comaction.name) %>
 
 <div class="row">
-    <div class="col-xs-9">
+    <div class="col-xs-8 col-xs-offset-1">
         <table class="rdv">
           <tr>
               <td>
@@ -15,9 +15,7 @@
                     </h1>
                 </td>
                 <td>
-                    <%= link_to edit_comaction_path do %>
-                    <%= fa_icon('pencil 2x') %>
-                    <% end %>
+
                 </td>
             </tr>
 
@@ -37,91 +35,114 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-3 frameMe">
-        <div class="row ">
-            <% unless @comaction.start_time.nil? %>
-            <div class="col-xs-3">
-                <%= fa_icon('calendar-o 2x') %>
+  <div class="col-xs-1">
+<div class="row nav-ico">
+  <div class="col-xs-12 ">
+    <%= link_to edit_comaction_path do %>
+    <%= fa_icon('pencil 2x') %>
+    <% end %>
+  </div>
+  <div class="col-xs-12">
+    <%= link_to  @comactions do %>
+    <%= fa_icon('calendar-o 2x btn btn-default') %>
+    <% end %>
+  </div>
+  <div class="col-xs-12">
+    <%= link_to  @comaction, method: :delete, data: { confirm: "C'est sûr ?" } do %>
+    <%= fa_icon('trash 2x') %>
+    <% end %>
+  </div>
+</div>
+  </div>
+  <div class="col-xs-11">
+    <div class="row">
+        <div class="col-xs-3 frameMe">
+            <div class="row ">
+                <% unless @comaction.start_time.nil? %>
+                <div class="col-xs-3">
+                    <%= fa_icon('calendar-o 2x') %>
+                </div>
+                <div class="col-xs-9">
+                    <%= t (@comaction.start_time.strftime("%a")) %>
+                    <%= @comaction.start_time.strftime(" %d ") %>
+                    <%= t (@comaction.start_time.strftime("%b")) %>
+                    <br>
+                    <%= @comaction.start_time.strftime("%H:%M à ") %>
+                    <%= @comaction.end_time.strftime("%H:%M") %>
+                </div>
+                <hr>
+                <% end %>
             </div>
-            <div class="col-xs-9">
-                <%= t (@comaction.start_time.strftime("%a")) %>
-                <%= @comaction.start_time.strftime(" %d ") %>
-                <%= t (@comaction.start_time.strftime("%b")) %>
-                <br>
-                <%= @comaction.start_time.strftime("%H:%M à ") %>
-                <%= @comaction.end_time.strftime("%H:%M") %>
+            <div class="row emptyline"></div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <%= fa_icon('user-circle 2x') %>
+                </div>
+                <div class="col-xs-9">
+                    <strong>
+                        <%= link_to person_path(@comaction.person) do %>
+                        <%= @comaction.person.full_name %>
+                        <br>
+                        <% end %>
+                        <%= @comaction.status %>
+                    </strong>
+                </div>
             </div>
+            <% unless @comaction.person.note.nil? %>
             <hr>
+            <div class="row">
+                <div class="col-xs-3">
+                    <%= fa_icon('file-o 2x') %>
+                </div>
+                <div class="col-xs-9">
+                    <%= @comaction.person.note %>
+                </div>
+            </div>
             <% end %>
         </div>
-        <div class="row emptyline"></div>
-        <div class="row">
-            <div class="col-xs-3">
-                <%= fa_icon('user-circle 2x') %>
-            </div>
-            <div class="col-xs-9">
-                <strong>
-                    <%= link_to person_path(@comaction.person) do %>
-                    <%= @comaction.person.full_name %>
-                    <br>
-                    <% end %>
-                    <%= @comaction.status %>
-                </strong>
-            </div>
-        </div>
-        <% unless @comaction.person.note.nil? %>
-        <hr>
-        <div class="row">
-            <div class="col-xs-3">
-                <%= fa_icon('file-o 2x') %>
-            </div>
-            <div class="col-xs-9">
-                <%= @comaction.person.note %>
-            </div>
-        </div>
-        <% end %>
-    </div>
 
-    <div class="col-xs-8 col-xs-offset-1">
-        <div class="row ">
-            <div class="col-xs-2 midway">
-                <%= user_badge @comaction.user %>
-            </div>
-            <div class="col-xs-10">
-                <h3> <%= @comaction.mission.name %></h3>
-                <div class="row">
-                  <div class="col-xs-3"><%= fa_icon("building-o") %></div>
-                  <div class="col-xs-8"><span class="label label-warning"><%= @comaction.mission.company.company_name %></span></div>
+        <div class="col-xs-8 col-xs-offset-1">
+            <div class="row ">
+                <div class="col-xs-2 midway">
+                    <%= user_badge @comaction.user %>
                 </div>
-                <div class="row">
-                  <div class="col-xs-3">Contact</div>
-                  <div class="col-xs-8"><%= link_to @comaction.mission.person.full_name, person_path(@comaction.mission.person) %></div>
-                </div>
-                <div class="row ">
-                  <div class="col-xs-3">Fin souhaitée</div>
-                  <div class="col-xs-7">
-                    <%= future_time_in_words @comaction.mission.whished_start_date %>
-                  </div>
-                  <div class="col-xs-1">
-                    <%= link_to mission_path(@comaction.mission), class: "btn" do %>
-                      <%= fa_icon("pencil") %>
-                    <% end %>
-                  </div>
+                <div class="col-xs-10">
+                    <h3> <%= @comaction.mission.name %></h3>
+                    <div class="row">
+                      <div class="col-xs-3"><%= fa_icon("building-o") %></div>
+                      <div class="col-xs-8"><span class="label label-warning"><%= @comaction.mission.company.company_name %></span></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-3">Contact</div>
+                      <div class="col-xs-8"><%= link_to @comaction.mission.person.full_name, person_path(@comaction.mission.person) %></div>
+                    </div>
+                    <div class="row ">
+                      <div class="col-xs-3">Fin souhaitée</div>
+                      <div class="col-xs-7">
+                        <%= future_time_in_words @comaction.mission.whished_start_date %>
+                      </div>
+                      <div class="col-xs-1">
+                        <%= link_to mission_path(@comaction.mission), class: "btn" do %>
+                          <%= fa_icon("pencil") %>
+                        <% end %>
+                      </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row emptyline"></div>
-        <div class="row">
-            <div class="col-xs-2">
-                <%= fa_icon("bookmark-o 2x") %>
-            </div>
-            <div class="col-xs-10">
-                <p class='mission comaction'>
-                    <%= @comaction.mission.criteria %>
-                </p>
+            <div class="row emptyline"></div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <%= fa_icon("bookmark-o 2x") %>
+                </div>
+                <div class="col-xs-10">
+                    <p class='mission comaction'>
+                        <%= @comaction.mission.criteria %>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+  </div>
 </div>
 <div class="row">
   <div class="col-xs-11"></div>

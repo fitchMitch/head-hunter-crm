@@ -18,7 +18,12 @@
                             Créer un rendez-vous
                             <% end %>
                         </li>
-                        <li><%= link_to  comactions_path do %>
+                        <li><%= link_to  comactions_path(query: 'calendar_view') do %>
+                            <%= fa_icon("calendar-o") %>
+                            Calendrier des rendez-vous
+                            <% end %>
+                        </li>
+                        <li><%= link_to  comactions_path(query: 'table_view')  do %>
                             <span class="glyphicon glyphicon-list-alt"></span>
                             Liste des rendez-vous
                             <% end %>

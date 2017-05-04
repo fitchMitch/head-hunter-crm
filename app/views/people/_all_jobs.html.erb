@@ -13,16 +13,17 @@
           <small><span class="label label-default"><%= years_work(a)%> ans</span></small>
       </div>
       <div class="col-xs-4">
-          <% unless a.no_end  %>
+      <% unless a.no_end  %>
           <%= link_to  list_people_company_path(a.company_id)  do%>
-          <span class="label label-warning"><%= a.company_name %>
-          </span>
+            <span class="label label-warning">
+              <%= a.company_name %>
+            </span>
           <% end %>
       <% else %>
           <%= link_to  list_people_company_path(a.company_id)  do%>
-          <span class="redFrame"><%= a.company_name %></span>
+            <span class="redFrame"><%= a.company_name %></span>
           <% end %>
-          <% end %>
+      <% end %>
       </div>
       <div class="col-xs-3">
           <small>

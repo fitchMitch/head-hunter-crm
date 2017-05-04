@@ -16,6 +16,9 @@ module ApplicationHelper
     # @parameters['header']<<{'width'=>2,'label'=>'','attribute'=>'company_name'}
     # @parameters['header']<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
     sort = parameters['params'][:sort]
+    action = parameters['action'] || 'index'
+    query = parameters['query'].nil? ? 'none' : parameters['query']
+
     res ='<div class="row array_header">'
     parameters['header'].each do |col|
       res += '<div class="col-xs-' + col['width'].to_s+ '">'
@@ -26,28 +29,27 @@ module ApplicationHelper
           if sort == col['attribute']
             adj =  ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>'
             sorting = "-" +  col['attribute']
-          # created_at should make exception
           else
             adj =  ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
             sorting =  col['attribute']
           end
           if parameters['params'][:bin_filter] == nil
             if parameters['params'][:filter] == nil
-              res +=  link_to controller: parameters['tableDB'], sort: sorting  do
+              res +=  link_to controller: parameters['tableDB'], sort: sorting, action: action ,query: query do
                 adj.html_safe
               end
             else
-              res +=  link_to controller: parameters['tableDB'], sort: sorting , filter: parameters['params']['filter']  do
+              res +=  link_to controller: parameters['tableDB'], sort: sorting , action: action ,query: query, filter: parameters['params']['filter']  do
                 adj.html_safe
               end
             end
           else
             if parameters['params'][:filter] == nil
-              res +=  link_to controller: parameters['tableDB'], sort: sorting ,bin_filter: parameters['params']['bin_filter'] do
+              res +=  link_to controller: parameters['tableDB'], sort: sorting , action: action ,query: query, bin_filter: parameters['params']['bin_filter'] do
                 adj.html_safe
               end
             else
-              res +=  link_to controller: parameters['tableDB'], sort: sorting ,bin_filter: parameters['params']['bin_filter'] , filter: parameters['params']['filter'] do
+              res +=  link_to controller: parameters['tableDB'], sort: sorting , action: action ,query: query, bin_filter: parameters['params']['bin_filter'] , filter: parameters['params']['filter'] do
                 adj.html_safe
               end
             end

@@ -4,46 +4,47 @@
             <div class="col-xs-1"><%= idtype(comaction) %>
             </div>
             <div class="col-xs-7"><%= link_to comaction.name, comaction_path(comaction)  %></div>
-            <div class="col-xs-1"><%= link_to  edit_comaction_path(comaction)  do%>
+            <div class="col-xs-1">
+              <%= link_to  edit_comaction_path(comaction)  do%>
                 <span class="glyphicon glyphicon-pencil"></span>
               <% end %>
             </div>
             <div class="col-xs-2">
-              <% if logged_in? && current_user.id == comaction.user_id %>
-                <%= link_to  comaction_path(comaction), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
-                <span class="glyphicon glyphicon-trash"></span>
+                <% if logged_in? && current_user.id == comaction.user_id %>
+                  <%= link_to  comaction_path(comaction), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                  <% end %>
                 <% end %>
-              <% end %>
             </div>
         </div>
     </div>
     <div class="col-xs-2">
         <% unless comaction.start_time.nil? %>
-        <small><%= future_time_in_words comaction.start_time%></small><br>
+          <small><%= future_time_in_words comaction.start_time%></small><br>
+        <% end %>
+    </div>
+    <div class="col-xs-2">
+        <%= link_to  person_path(comaction.person)  do%>
+          <%= comaction.person.title %>
+          <%= comaction.person.firstname %>
+          <%= comaction.person.lastname %>
         <% end %>
     </div>
     <div class="col-xs-1">
         <small><%= comaction.status %></small>
     </div>
     <div class="col-xs-2">
-        <%= link_to comaction.mission.name, mission_path(comaction.mission)  %><br>
+        <%= link_to comaction.mission.name, mission_path(comaction.mission)  %>
+        <br>
         <small>
             <span class="label label-warning"><%= comaction.mission.company.company_name %></span>
         </small>
     </div>
     <div class="col-xs-1">
         <%= link_to comaction_path(comaction) do %>
-        <%= user_badge comaction.user  %></span>
-    <% end %>
-</div>
-<div class="col-xs-2">
-    <%= link_to  person_path(comaction.person)  do%>
-    <%= comaction.person.title %>
-    <%= comaction.person.firstname %>
-    <%= comaction.person.lastname %>
-    <% end %>
-</div>
+            <%= user_badge comaction.user  %></span>
+        <% end %>
+    </div>
 
 </div>
-
 <%= render 'shared/sep' %>
