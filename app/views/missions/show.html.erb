@@ -1,114 +1,150 @@
 <% provide(:title, @mission.name) %>
+<div class="row">
+    <div class="col-xs-1 nav-ico">
+        <div class="row">
+            <div class="col-xs-12 nav-ico">
+                <%= link_to edit_mission_path do %>
+                <button class="btn btn-info">
+                    <%= fa_icon('pencil ') %>
+                </button>
+                <% end %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 nav-ico">
+                <%= link_to missions_path do %>
+                <button class="btn btn-info">
+                    <%= fa_icon('list ') %>
+                </button>
+                <% end %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12  nav-ico">
+                <%= link_to  @mission, method: :delete, data: { confirm: "C'est sûr ?" } do %>
+                <button class="btn btn-primary">
+                    <%= fa_icon('trash ') %>
+                </button>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-11">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>
+                    <%= @mission.name %>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
 
-<div class="row">
-  <div class="col-xs-9">
-    <h1>
-        <%= link_to edit_mission_path do %>
-        <%= @mission.name %>
-        <% end %>
-    </h1>
-  </div>
-
-  <div class="col-xs-3 cartel">
-      <div class="row">
-          <div class="col-xs-5">Créé il y a</div>
-          <div class="col-xs-7"><%= time_ago_in_words @mission.created_at %></div>
-      </div>
-      <div class="row">
-          <div class="col-xs-5">Mis à jour</div>
-          <div class="col-xs-7"><%= time_ago_in_words @mission.updated_at %></div>
-      </div>
-  </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-4">
-        <% if @mission.signed %>
-        <h3>Mission signée :
-            <strong>
-                <i class="fa fa-handshake-o" aria-hidden="true"></i>
-            </strong>
-        </h3>
-        <% end %></div>
-    <div class="col-xs-4">
-        <% if @mission.is_done %>
-        <h3>Mission terminée :
-            <strong>
-                <i class="fa fa-gavel" aria-hidden="true"></i>
-            </strong>
-        </h3>
-        <% end %>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-xs-4 col-xs-offset-2">
-        <div class="row">
-            <div class="col-xs-6">Rémunération JuinJuillet</div>
-            <div class="col-xs-5">
-                <strong><%= number_to_currency @mission.reward %></strong>
+            <div class="col-xs-8">
+                <h3>
+                    <%= special_label @mission %></h3>
             </div>
         </div>
-    </div>
-    <div class="col-xs-5">
-        <div class="row">
-            <div class="col-xs-5">Déjà encaissé
-            </div>
-            <div class="col-xs-5"><strong><%= number_to_currency @mission.paid_amount %></strong></div>
-        </div>
-    </div>
-</div>
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-2">
-    <hr>
-  </div>
-</div>
-<div class="row">
-    <div class="col-xs-4 col-xs-offset-2">
-        <div class="row">
-            <div class="col-xs-2">
-                <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
-                <br>
-                <br>
-                <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
-            </div>
-            <div class="col-xs-9">
-                <p><strong><%= @mission.company.company_name %></strong></p>
-<br>
-                <p><strong><%= @mission.person.full_name %></strong></p>
-            </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12"><hr class="sep"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Salaire minimum</div>
-          <div class="col-xs-6"><strong><%= number_to_currency @mission.min_salary %></strong></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">Salaire maximum</div>
-          <div class="col-xs-6">
-            <strong><%= number_to_currency @mission.max_salary %></strong>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12"><hr class="sep"></div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">Tranche d'âge</div>
-            <div class="col-xs-6">
-              Entre <%= @mission.min_age %> et <%= @mission.max_age %> ans
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-5 frameMe">
-        <i class="fa fa-search" aria-hidden="true"></i> Date de début souhaitée :
-        <strong>
-          <%= (@mission.whished_start_date).strftime("%d ") %>
-          <%= t (@mission.whished_start_date.strftime("%B")) %>
-          <%= (@mission.whished_start_date).strftime(" %y") %>
-        </strong>
         <hr>
-        <i><%= @mission.criteria %></i>
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="row">
+                    <div class="col-xs-6">Rémunération JuinJuillet</div>
+                    <div class="col-xs-6">
+                        <strong><%= number_to_currency @mission.reward %></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <div class="row">
+                    <div class="col-xs-5">Déjà encaissé
+                    </div>
+                    <div class="col-xs-5">
+                        <strong><%= number_to_currency @mission.paid_amount %></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 ">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
+                        <br>
+                        <br>
+                        <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-xs-9">
+                        <p>
+                            <strong><%= @mission.company.company_name %></strong>
+                        </p>
+                        <br>
+                        <p>
+                            <strong><%= @mission.person.full_name %></strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row emptyline"></div>
+                <div class="row">
+                    <div class="col-xs-12"><hr class="sep"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">Salaire minimum</div>
+                    <div class="col-xs-6">
+                        <strong><%= number_to_currency @mission.min_salary %></strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">Salaire maximum</div>
+                    <div class="col-xs-6">
+                        <strong><%= number_to_currency @mission.max_salary %></strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12"><hr class="sep"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">Tranche d'âge</div>
+                    <div class="col-xs-6">
+                        Entre
+                        <%= @mission.min_age %>
+                        et
+                        <%= @mission.max_age %>
+                        ans
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-5 frameMe">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                Date de début souhaitée :
+                <strong>
+                    <%= (@mission.whished_start_date).strftime("%d ") %>
+                    <%= t (@mission.whished_start_date.strftime("%B")) %>
+                    <%= (@mission.whished_start_date).strftime(" %y") %>
+                </strong>
+                <hr>
+                <i>
+                    <strong>Mission</strong>
+                    :
+                    <%= @mission.criteria %></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-9"></div>
+    <div class="col-xs-3 cartel">
+        <div class="row">
+            <div class="col-xs-5">Créé il y a</div>
+            <div class="col-xs-7"><%= time_ago_in_words @mission.created_at %></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">Mis à jour</div>
+            <div class="col-xs-7"><%= time_ago_in_words @mission.updated_at %></div>
+        </div>
     </div>
 </div>

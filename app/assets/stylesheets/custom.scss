@@ -5,23 +5,19 @@ $light-gray: #777;
 $gray-medium-light: #eaeaea;
 /* Coolors Exported Palette - coolors.co/00120b-35605a-6b818c-d8e4ff-31e981 */
 
-/* HSL */
-$color1: hsla(157%, 100%, 4%, 1);
-$color2: hsla(172%, 29%, 29%, 1);
-$color3: hsla(200%, 13%, 48%, 1);
-$color4: hsla(222%, 100%, 92%, 1);
-$color5: hsla(146%, 81%, 55%, 1);
-
 /* RGB */
 $color1: rgba(0, 18, 11, 1);
 $color2: rgba(53, 96, 90, 1);
 $color3: rgba(107, 129, 140, 1);
 $color4: rgba(216, 228, 255, 1);
 $color5: rgba(49, 233, 129, 1);
-$color9: rgba(49, 0, 0, 1);
+$color6: #CCC;
 
 body {
     background-color: $color4;/* #d9cdd9;*/
+}
+.colorMe{
+  color:$color1;
 }
 .navbar-inverse {
     background-color: $color1; /*#2f0c2f;*/
@@ -341,7 +337,7 @@ a > span.label-warning:hover{
 
 /* Missions */
 .mission_done{
-  background-color: $color3;
+  background-color: $color6;
 }
 .small_alert{
   font-size: 0.7em;
@@ -357,7 +353,7 @@ a > span.label-warning:hover{
     margin-top: 5px;
     border: 1px #888888 solid;
     padding: 1em 1em 1em 1em;
-    background-color: #E7DCF4;
+    background-color: white;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
 }
