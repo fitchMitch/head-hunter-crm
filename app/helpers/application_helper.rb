@@ -93,11 +93,11 @@ module ApplicationHelper
       elsif s > twoWeeks
         ["il y a", (s/aWeek), 'semaines']
       elsif s > aWeek
-        [I18n.t(t1.strftime('%A')),'dernier à', hm]
+        [I18n.t(t1.strftime('%A')),' dernier à', hm]
       elsif s > threeDays
-        [I18n.t(t1.strftime('%A')),'dernier à', hm]
+        [I18n.t(t1.strftime('%A')),' dernier à', hm]
       elsif s > theDayAfter
-        [I18n.t(t1.strftime('%a hier à')),hm]
+        [I18n.t(t1.strftime('%a')),' hier à ',hm]
       elsif s > tomorrow
         ['hier à',hm]
       elsif s > 3600 # seconds in an hour
@@ -117,11 +117,11 @@ module ApplicationHelper
       elsif s > twoWeeks
         ["dans", (s/aWeek), 'semaines']
       elsif s > aWeek
-        [I18n.t(t1.strftime('%A')),'prochain à', hm]
+        [I18n.t(t1.strftime('%A')), ' prochain à', hm]
       elsif s > threeDays
-        [I18n.t(t1.strftime('%A')),'à', hm]
+        [I18n.t(t1.strftime('%A')),' à', hm]
       elsif s > theDayAfter
-        [I18n.t(t1.strftime('%a à')),hm]
+        [I18n.t(t1.strftime('%a')),' à',hm]
       elsif s > tomorrow
         ['demain à',hm]
       elsif s > 3600 # seconds in an hour
@@ -142,5 +142,6 @@ module ApplicationHelper
       resolution.join(' ')
     end
   end
+
 
 end

@@ -34,14 +34,15 @@ class Mission < ApplicationRecord
   STATUSES = [STATUS_HOPE = 'Opportunité', STATUS_SENT= 'Contrat envoyé', STATUS_SIGNED = 'Contrat signé', STATUS_BILLED = 'Mission facturée', STATUS_PAYED = 'Mission payée']
   validates :status, inclusion: {in: STATUSES}
 
+  def max_age_is_max
+    if min_age.present? && max_age.present? && min_age > max_age
+      errors.add(:max_age, "Plutôt un âge plus avancé")
+    end
+  end
   # ------------------------
   # --    PRIVATE        ---
   # ------------------------
   private
-    def max_age_is_max
-      if min_age.present? && max_age.present? && min_age > max_age
-        errors.add(:max_age, "Plutôt un âge plus avancé")
-      end
-    end
+
 
 end

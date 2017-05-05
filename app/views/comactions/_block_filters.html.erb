@@ -1,14 +1,13 @@
 <div class="row spaceDown">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-10">
+    <div class="col-xs-11 col-xs-offset-1">
         <div class="btn-toolbar" role="toolbar" aria-label="...">
             <div class="btn-group btn-group-sm" role="group" aria-label="...">
                 <button class="btn btn-default"> <%= fa_icon('filter') %> </button>
                 <%= button_filters(yield(:calender_view)) %>
             </div>
             <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                <%= link_to  comactions_path(:filter => 'unscheduled'), class: "btn btn-default " do %>
-                Sans Rendez-vous
+                <%= link_to  comactions_path(:filter => 'unscheduled',:query => 'table_view'), class: "btn btn-default " do %>
+                     <%= fa_icon("list", text: "Sans date") %>
                 <% end %>
                 <%= link_to  comactions_path(:filter => 'future'), class: "btn btn-default" do %>
                     Maintenant et +
