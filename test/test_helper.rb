@@ -13,11 +13,11 @@ class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
   include ApplicationHelper
   def is_logged_in?
-    !session[:user_id].nil?
+    !session[ :user_id].nil?
   end
   # Log in as a particular user.
   def log_in_as(user)
-    session[:user_id] = user.id
+    session[ :user_id] = user.id
   end
   # Add more helper methods to be used by all tests here...
 end

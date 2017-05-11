@@ -1,12 +1,12 @@
 <%= simple_form_for(@company) do |f| %>
-<div class="row">
+<div class='row'>
     <div class="col-sm-12">
         <%= f.input :company_name, label: "Nom de la société", input_html: {class:" input-sm"}%>
     </div>
 </div>
-<div class="row">
+<div class='row'>
     <div class="col-sm-12 ">
-        <%= f.button :submit,yield(:button_text),class: "btn btn-primary" %>
+        <%= f.button :submit, yield(:button_text), class: "btn btn-primary" %>
     </div>
 </div>
 <% end %>

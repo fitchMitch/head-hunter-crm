@@ -1,22 +1,22 @@
-<div class="row">
-    <div class="col-xs-3">
+<div class='row'>
+    <div class='col-xs-3'>
         <%= link_to list_people_company_path(company) do %>
           <span class="label label-warning"><%= company.company_name %></span>
        <% end %>
     </div>
-    <div class="col-xs-2">
+    <div class='col-xs-2'>
       <% if logged_in? %>
         <%= link_to  edit_company_path(company) do %>
         Editer
         <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
      <% end %></div>
-    <div class="col-xs-3">
+    <div class='col-xs-3'>
         <small>
             enregistré il y a
             <%= time_ago_in_words company.created_at %>
         </small>
     </div>
-    <div class="col-xs-3"></div>
+    <div class='col-xs-3'></div>
 </div>
 <%= render 'shared/sep' %>

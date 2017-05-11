@@ -1,14 +1,14 @@
 <%= simple_form_for @mission  do |f| %>
 
-<div class="row">
+<div class='row'>
     <div class="col-sm-5 ">
-        <%= f.association :company , label:"Société", label_method: :company_name, value_method: :id, include_blank: false %>
+        <%= f.association :company, label:"Société", label_method: :company_name, value_method: :id, include_blank: false %>
         <%= link_to  'add_ext?model=company' do%>
           <button type="button" class="btn btn-xs">Ajouter une nouvelle société</button>
         <% end %>
     </div>
     <div class="col-sm-7 ">
-        <%= f.association :person , label:"Contact", label_method: :full_name, value_method: :id, include_blank: false %>
+        <%= f.association :person, label:"Contact", label_method: :full_name, value_method: :id, include_blank: false %>
         <%= link_to  'add_ext?model=person'  do%>
         <button type="button" class="btn btn-xs">Ajouter un nouveau contact</button>
         <% end %>
@@ -16,7 +16,7 @@
 </div>
 <div class="row ">
     <div class="col-sm-5">
-        <%= f.input :name, label: "Nom de la mission",input_html: {class:" input-sm"}%>
+        <%= f.input :name, label: "Nom de la mission", input_html: {class:" input-sm"}%>
     </div>
     <div class="col-sm-7 ">
         <%= f.input :reward, label: "Rémunération pour la mission",  input_html:{class:" input-sm" } %>
@@ -27,31 +27,31 @@
 
     </div>
     <div class="col-sm-7 ">
-        <%= f.input :criteria, label: "Personne recherchée" , as: :text ,input_html:{class:" input-sm" } %>
+        <%= f.input :criteria, label: "Personne recherchée", as: :text, input_html:{class:" input-sm" } %>
     </div>
 </div>
 <div class="row ">
     <div class="col-sm-5">
-        <%= f.input :min_age, label: "Age minimum",input_html:{class:" input-sm" } %>
+        <%= f.input :min_age, label:  'Age minimum', input_html:{class:" input-sm" } %>
     </div>
     <div class="col-sm-7 ">
-        <%= f.input :max_age, label: "Age maximum",input_html:{class:" input-sm" } %>
+        <%= f.input :max_age, label:  'Age maximum', input_html:{class:" input-sm" } %>
     </div>
 </div>
 
 <div class="row ">
     <div class="col-sm-5">
-        <%= f.input :max_salary, label: "Salaire annuel maximal",input_html:{class:" input-sm" } %>
+        <%= f.input :max_salary, label: "Salaire annuel maximal", input_html:{class:" input-sm" } %>
     </div>
 
     <div class="col-sm-7 ">
-        <%= f.input :whished_start_date, label:"Date de début de travail",as: :date, start_year: Date.today.year , end_year: Date.today.year+2, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
+        <%= f.input :whished_start_date, label:"Date de début de travail", as: :date, start_year: Date.today.year, end_year: Date.today.year+2, order: [ :day,:month, :year], input_html:{class:" input-sm" } %>
     </div>
 </div>
 
 <div class="row ">
     <div class="col-sm-5 ">
-        <%= f.button :submit,yield(:button_text),class: "btn btn-primary checkBelow" %>
+        <%= f.button :submit, yield(:button_text), class: "btn btn-primary checkBelow" %>
     </div>
     <div class="col-sm-7  "></div>
 </div>

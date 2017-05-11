@@ -15,10 +15,10 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update" do
+  test  'should update' do
     patch job_path(@job), params: { job: {  salary: 1111,
                                             job_title:'testeur',
-                                            start_date: '1933-01-25'}
+                                            start_date: '1933-01-25' }
                                    }
     assert_redirected_to person_path(@person)
   end

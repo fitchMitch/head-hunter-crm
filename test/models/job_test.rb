@@ -44,7 +44,7 @@ class JobTest < ActiveSupport::TestCase
   end
 
   test "start_date should be before end_date" do
-    @job.start_date , @job.end_date = @job.end_date , @job.start_date
+    @job.start_date, @job.end_date = @job.end_date, @job.start_date
     assert_no_difference 'Job.count' do
       @job.save
     end

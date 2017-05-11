@@ -1,11 +1,11 @@
 <% unless @people.nil? %>
-<div class="row">
+<div class='row'>
   <div class="col-sm-3">
     <%= link_to person do %>
         <i class="fa fa-user"></i> <%= person.full_name %>
     <% end %>
     <% if person.cv_docx.file? %>
-      <%= link_to person.cv_docx.url ,class:'word_cv_badge' do %>
+      <%= link_to person.cv_docx.url, class:'word_cv_badge' do %>
       <i class="fa fa-file-word-o" aria-hidden="true"></i>
       <% end %>
     <% elsif !person.is_client? %>

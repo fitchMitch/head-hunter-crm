@@ -32,14 +32,14 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   test "should redirect update" do
     log_in_as(@user)
     patch person_path(@person), params: { person: { firstname: @person.firstname, email: @person.email } }
-    refute flash[:success].empty?
+    refute flash[ :success].empty?
     assert_redirected_to person_url
   end
 
   test "should edit when wrong update" do
     log_in_as(@user)
-    patch person_path(@person), params: { person: { firstname:"" , email: @person.email } }
-    refute flash[:danger].empty?
+    patch person_path(@person), params: { person: { firstname:"", email: @person.email } }
+    refute flash[ :danger].empty?
     assert_template 'people/edit'
   end
 

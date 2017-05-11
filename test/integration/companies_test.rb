@@ -3,7 +3,7 @@ require 'test_helper'
 class CompaniesTest < ActionDispatch::IntegrationTest
   def setup
     @company = create(:company)
-    @user=  create(:user)
+    @user= create(:user)
     log_in_as(@user)
   end
 
@@ -21,7 +21,7 @@ class CompaniesTest < ActionDispatch::IntegrationTest
     post companies_path, params: { company: company2}
     follow_redirect!
     assert_response :success
-    assert_match /Société sauvegardée/, flash[:info]
+    assert_match /Société sauvegardée/, flash[ :info]
   end
 
   test "there's an access to companies's detail page" do

@@ -18,13 +18,13 @@ class ComactionMailer < ApplicationMailer
         mail.attachments[file_name] = { mime_type: 'application/ics', content: ical.to_ical }
     end
 
-    def one_event_saving(comaction,user)
-        make_ical_appointment(comaction,user.email)
+    def one_event_saving(comaction, user)
+        make_ical_appointment(comaction, user.email)
         subj = 'RdV JuinJuillet ' + comaction.person.full_name
         mail to: user.email, subject: subj
     end
-    def event_saving_upd(comaction,user)
-        make_ical_appointment(comaction,user.email)
+    def event_saving_upd(comaction, user)
+        make_ical_appointment(comaction, user.email)
         subj = 'Mise à jour du RdV JuinJuillet ' + comaction.person.full_name
         mail to: user.email, subject: subj
     end

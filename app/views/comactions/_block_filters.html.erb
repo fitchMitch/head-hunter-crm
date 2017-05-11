@@ -1,18 +1,18 @@
-<div class="row spaceDown">
+<div class= 'row spaceDown'>
     <div class="col-xs-11 col-xs-offset-1">
-        <div class="btn-toolbar" role="toolbar" aria-label="...">
-            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+        <div class="btn-toolbar" role='toolbar' aria-label="...">
+            <div class="btn-group btn-group-sm" role='group' aria-label="...">
                 <button class="btn btn-default"> <%= fa_icon('filter') %> </button>
                 <%= button_filters(yield(:calender_view)) %>
             </div>
-            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+            <div class="btn-group btn-group-sm" role='group' aria-label="...">
                 <%= link_to  comactions_path(:filter => 'unscheduled',:query => 'table_view'), class: "btn btn-default " do %>
-                     <%= fa_icon("list", text: "Sans date") %>
+                     <%= fa_icon('list', text:  'Sans date') %>
                 <% end %>
                 <%= link_to  comactions_path(:filter => 'future'), class: "btn btn-default" do %>
                     Maintenant et +
                 <% end %>
-                <%= link_to  comactions_path , class: "btn btn-default" do %>
+                <%= link_to  comactions_path, class: "btn btn-default" do %>
                     <%= fa_icon('undo') %>
                 <% end %>
             </div>

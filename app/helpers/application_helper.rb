@@ -1,7 +1,7 @@
 module ApplicationHelper
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
-    base_title = "JuinJuillet"
+    base_title = 'JuinJuillet'
     if page_title.empty?
       base_title
     else
@@ -11,45 +11,45 @@ module ApplicationHelper
 
   def block_header(parameters)
     # Example
-    # @parameters = {'params'=> params, 'header' => [],'tableDB'=> "companies"}
-    # @parameters['header']<<{'width'=>3,'label'=>'Société','attribute'=>'company_name'}
-    # @parameters['header']<<{'width'=>2,'label'=>'','attribute'=>'company_name'}
-    # @parameters['header']<<{'width'=>3,'label'=>'Date d\'enregistrement','attribute'=>'created_at'}
-    sort = parameters['params'][:sort]
+    # @parameters = { 'params'=> params, 'header' => [], 'tableDB'=> 'companies' }
+    # @parameters['header']<<{ 'width'=> 3, 'label'=>'Société', 'attribute'=>'company_name' }
+    # @parameters['header']<<{ 'width'=> 2, 'label'=>'', 'attribute'=>'company_name' }
+    # @parameters['header']<<{ 'width'=> 3, 'label'=>'Date d\'enregistrement', 'attribute'=>'created_at' }
+    sort = parameters['params'][ :sort]
     action = parameters['action'] || 'index'
     query = parameters['query'].nil? ? 'none' : parameters['query']
 
-    res ='<div class="row array_header">'
+    res ="<div class= 'row array_header'>"
     parameters['header'].each do |col|
       res += '<div class="col-xs-' + col['width'].to_s+ '">'
       unless col['label'].empty?
-        res +=  '<strong>' + col['label'] +'</strong>'
+        res += '<strong>' + col['label'] +'</strong>'
         unless col['attribute'] == 'none'
           sorting=''
           if sort == col['attribute']
-            adj =  ' <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>'
+            adj = " <i class='fa fa-sort-amount-desc' aria-hidden='true'></i>"
             sorting = "-" +  col['attribute']
           else
-            adj =  ' <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>'
-            sorting =  col['attribute']
+            adj = " <i class='fa fa-sort-amount-asc' aria-hidden='true'></i>"
+            sorting = col['attribute']
           end
-          if parameters['params'][:bin_filter] == nil
-            if parameters['params'][:filter] == nil
-              res +=  link_to controller: parameters['tableDB'], sort: sorting, action: action ,query: query do
+          if parameters['params'][ :bin_filter] == nil
+            if parameters['params'][ :filter] == nil
+              res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query do
                 adj.html_safe
               end
             else
-              res +=  link_to controller: parameters['tableDB'], sort: sorting , action: action ,query: query, filter: parameters['params']['filter']  do
+              res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query, filter: parameters['params']['filter']  do
                 adj.html_safe
               end
             end
           else
-            if parameters['params'][:filter] == nil
-              res +=  link_to controller: parameters['tableDB'], sort: sorting , action: action ,query: query, bin_filter: parameters['params']['bin_filter'] do
+            if parameters['params'][ :filter] == nil
+              res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query, bin_filter: parameters['params']['bin_filter'] do
                 adj.html_safe
               end
             else
-              res +=  link_to controller: parameters['tableDB'], sort: sorting , action: action ,query: query, bin_filter: parameters['params']['bin_filter'] , filter: parameters['params']['filter'] do
+              res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query, bin_filter: parameters['params']['bin_filter'], filter: parameters['params']['filter'] do
                 adj.html_safe
               end
             end
@@ -62,8 +62,8 @@ module ApplicationHelper
     res.html_safe
   end
   #-----------------
-  def active_classes(attr,val)
-      request.query_parameters['bin_filter'] = val== 1 ? attr : "-" + attr
+  def active_classes(attr, val)
+      request.query_parameters['bin_filter'] = val == 1 ? attr : "-" + attr
       request.query_parameters['page']=1
       request.query_parameters
   end
@@ -93,17 +93,17 @@ module ApplicationHelper
       elsif s > twoWeeks
         ["il y a", (s/aWeek), 'semaines']
       elsif s > aWeek
-        [I18n.t(t1.strftime('%A')),' dernier à', hm]
+        [I18n.t(t1.strftime('%A')), ' dernier à', hm]
       elsif s > threeDays
-        [I18n.t(t1.strftime('%A')),' dernier à', hm]
+        [I18n.t(t1.strftime('%A')), ' dernier à', hm]
       elsif s > theDayAfter
-        [I18n.t(t1.strftime('%a')),' hier à ',hm]
+        [I18n.t(t1.strftime('%a')), ' hier à ', hm]
       elsif s > tomorrow
-        ['hier à',hm]
+        ['hier à', hm]
       elsif s > 3600 # seconds in an hour
-        ["il y a",(s/3600), 'heures, à',hm]
+        ["il y a",(s/3600), 'heures, à', hm]
       elsif s > 60
-        ["depuis",s/36,'minutes']
+        ['depuis', s/36, 'minutes']
       elsif s > 0
         ["il y a secondes"]
       else
@@ -111,23 +111,23 @@ module ApplicationHelper
       end
     else
       if s> aYear # seconds in a year
-      ["dans",(s/aYear), 'année']
+      ['dans',(s/aYear), 'année']
       elsif s > aMonth
-        ["dans",(s/aMonth), 'mois']
+        ['dans',(s/aMonth), 'mois']
       elsif s > twoWeeks
-        ["dans", (s/aWeek), 'semaines']
+        ['dans', (s/aWeek), 'semaines']
       elsif s > aWeek
         [I18n.t(t1.strftime('%A')), ' prochain à', hm]
       elsif s > threeDays
-        [I18n.t(t1.strftime('%A')),' à', hm]
+        [I18n.t(t1.strftime('%A')), ' à', hm]
       elsif s > theDayAfter
-        [I18n.t(t1.strftime('%a')),' à',hm]
+        [I18n.t(t1.strftime('%a')), ' à', hm]
       elsif s > tomorrow
-        ['demain à',hm]
+        ['demain à', hm]
       elsif s > 3600 # seconds in an hour
-        ["dans",(s/3600), 'heures, à',hm]
+        ['dans',(s/3600), 'heures, à', hm]
       elsif s > 60
-        ["à",hm]
+        ["à", hm]
       elsif s > 0
         ["dans quelques secondes"]
       else

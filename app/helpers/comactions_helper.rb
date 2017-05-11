@@ -2,10 +2,10 @@ module ComactionsHelper
   def idtype(ev)
     if ev.action_type == Comaction::CLIENT_TYPE
       label_type = 'label-danger small_label '
-      letter = "C"
+      letter = 'C'
     elsif ev.action_type == Comaction::PROSPECTION_TYPE
       label_type = 'label-info small_label '
-      letter = "J"
+      letter = 'J'
     else
       label_type = ''
       letter = ''
@@ -18,9 +18,9 @@ module ComactionsHelper
     r=''
     Comaction::STATUSES.each { |status|
       if cal.to_i == 1
-        r += link_to   status ,comactions_path(:filter => Comaction::STATUS_RELATED[status],:query => 'calendar_view'), class: "btn btn-primary"
+        r += link_to   status, comactions_path(:filter => Comaction::STATUS_RELATED[status],:query => 'calendar_view'), class: "btn btn-primary"
       else
-        r += link_to   status ,comactions_path(:filter =>Comaction::STATUS_RELATED[status],:query => 'table_view'), class: "btn btn-primary"
+        r += link_to   status, comactions_path(:filter => Comaction::STATUS_RELATED[status],:query => 'table_view'), class: "btn btn-primary"
       end
     }
     r.html_safe

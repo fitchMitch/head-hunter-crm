@@ -22,7 +22,7 @@ FactoryGirl.define do
     # no_end                false
     # company
     # person
-    name                    {"action commerciale" + (17..4500).to_a.sample.to_s}
+    name                    { 'action commerciale' + (17..4500).to_a.sample.to_s}
     status                  {Comaction::comstatus.sample}
     action_type             {Comaction::action_types.sample}
     start_time              { Date.today +(1..40).to_a.sample}

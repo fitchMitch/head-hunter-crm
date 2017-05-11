@@ -1,13 +1,13 @@
 <%= simple_form_for @comaction  do |f| %>
-<div class="row">
+<div class='row'>
     <div class="col-sm-7 ">
-        <%= f.association :person , label:"Pour", label_method: :full_name, value_method: :id, include_blank: false %>
+        <%= f.association :person, label:'Pour', label_method: :full_name, value_method: :id, include_blank: false %>
         <%= link_to  'add_ext?model=person'  do%>
-        <button type="button" class="btn btn-xs">Ajouter un nouveau contact</button>
+        <button type='button' class="btn btn-xs">Ajouter un nouveau contact</button>
         <% end %>
     </div>
     <div class="col-sm-5 ">
-        <%= f.input :status, label: "Progression" , collection: Comaction::STATUSES %>
+        <%= f.input :status, label: 'Progression', collection: Comaction::STATUSES %>
     </div>
 </div>
 <div class="row ">
@@ -17,17 +17,17 @@
 </div>
 <div class="row ">
     <div class="col-sm-5 ">
-        <%= f.association :mission , label:"Mission", value_method: :id, include_blank: false %>
+        <%= f.association :mission, label:'Mission', value_method: :id, include_blank: false %>
     </div>
     <div class="col-sm-7 ">
-        <%= f.input :action_type, label: "Type" , collection: Comaction::ACTION_TYPES %>
+        <%= f.input :action_type, label: 'Type', collection: Comaction::ACTION_TYPES %>
     </div>
 </div>
-<div class="row">
-  <div class="col-xs-3">
-     <%= f.input :is_dated, as: :boolean, label: "Horaire ?",  required: false , input_html: {class: ""} %>
+<div class='row'>
+  <div class='col-xs-3'>
+     <%= f.input :is_dated, as: :boolean, label: "Horaire ?",  required: false, input_html: {class: ""} %>
   </div>
-  <div class="col-xs-9">
+  <div class='col-xs-9'>
      <%= f.input :start_time, label: "Date et heure de début",  required: false,  input_html: {class: "form-control input-sm"} %>
      <br>
      <%= f.input :end_time, label: "Date et heure de fin",  required: false,  input_html: {class: "form-control input-sm"} %>
@@ -35,7 +35,7 @@
 </div>
 <div class="row ">
     <div class="col-sm-2 pull-right  ">
-        <%= f.button :submit,yield(:button_text),class: "btn btn-primary checkBelow" %>
+        <%= f.button :submit, yield(:button_text), class: "btn btn-primary checkBelow" %>
     </div>
 </div>
 <% end %>

@@ -21,7 +21,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     post people_path, params: { person: person2}
     follow_redirect!
     assert_response :success
-    assert_match /Contact sauvegardé/, flash[:success]
+    assert_match /Contact sauvegardé/, flash[ :success]
   end
 
   test "people should get destroyed" do

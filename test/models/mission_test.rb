@@ -49,7 +49,7 @@ class MissionTest < ActiveSupport::TestCase
   end
 
   test "min_age should be lower than max_age" do
-    @mission.max_age , @mission.min_age = @mission.min_age, @mission.max_age
+    @mission.max_age, @mission.min_age = @mission.min_age, @mission.max_age
     refute @mission.valid?
   end
 

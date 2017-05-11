@@ -11,7 +11,7 @@
 require 'test_helper'
 
 class TagTest < ActiveSupport::TestCase
-  # test "the truth" do
+  # test  'the truth' do
   #   assert true
   # end
 end

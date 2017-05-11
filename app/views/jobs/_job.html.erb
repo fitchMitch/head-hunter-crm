@@ -1,6 +1,6 @@
 <% if @show_people_details %>
-<div class="row">
-    <div class="col-xs-3">
+<div class='row'>
+    <div class='col-xs-3'>
         <!--   if show people    ---->
           <%= link_to  person_path(job.person_id)  do%>
           <span class="glyphicon glyphicon-user"></span>
@@ -8,13 +8,13 @@
           <% end %>
         <!--  end ---->
     </div>
-    <div class="col-xs-3">
+    <div class='col-xs-3'>
         <%= link_to  edit_job_path(job)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <%= job.job_title %>
         <% end %>
     </div>
-    <div class="col-xs-3">
+    <div class='col-xs-3'>
       <% unless job.no_end  %>
         <%= link_to  list_people_company_path(job.company_id)  do%>
         <span class="label label-warning"><%= job.company.company_name %> </span>
@@ -25,13 +25,13 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-xs-2">
+    <div class='col-xs-2'>
         <small>
             <%= job.salary %>
             euros
         </small>
     </div>
-    <div class="col-xs-1">
+    <div class='col-xs-1'>
         <%= link_to  job_path(job), method: :delete, data: { confirm: "Wesh ? C'est sûr pour #{job.person.full_name}?" } do %>
         <span class="glyphicon glyphicon-trash"></span>
         <% end %>
@@ -40,14 +40,14 @@
 
 <% else %>
 
-<div class="row">
-    <div class="col-xs-4">
+<div class='row'>
+    <div class='col-xs-4'>
         <%= link_to  edit_job_path(job)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <%= job.job_title %>
         <% end %>
     </div>
-    <div class="col-xs-4">
+    <div class='col-xs-4'>
       <% unless job.no_end  %>
         <%= link_to  list_people_company_path(job.company_id)  do%>
         <span class="label label-warning"><%= job.company.company_name %> </span>
@@ -58,13 +58,13 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-xs-3">
+    <div class='col-xs-3'>
         <small>
             <%= job.salary %>
             euros
         </small>
     </div>
-    <div class="col-xs-1">
+    <div class='col-xs-1'>
         <%= link_to  job_path(job), method: :delete, data: { confirm: "Wesh ? C'est sûr pour #{job.person.full_name}?" } do %>
         <span class="glyphicon glyphicon-trash"></span>
         <% end %>
@@ -73,8 +73,8 @@
 
 <% end %>
 
-<div class="row">
-    <div class="col-xs-8">
+<div class='row'>
+    <div class='col-xs-8'>
         <small>
           de <%= t job.start_date.strftime("%B %Y") %> à
           <% if job.no_end%>

@@ -28,10 +28,9 @@ gem 'paperclip',        "~> 5.0.0"
 gem 'paperclip-i18n'
 gem 'simple_calendar', '~> 2.2', '>= 2.2.5'
 gem 'icalendar', '~> 2.4', '>= 2.4.1'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'sqlite3', '1.3.12'
-#temp
-
-
+# temp
 
 group :development, :test do
   gem 'puma',         '3.4.0'

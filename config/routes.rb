@@ -26,15 +26,15 @@ Rails.application.routes.draw do
 
   get    '/companies/sort',   to: 'companies#sort_col'
 
-  resources :account_activations,               only: [:edit]
-  resources :jobs,                              only: [:new, :create, :edit, :update, :index, :destroy]
-  resources :users , :people , :missions, :comactions
+  resources :account_activations,               only: [ :edit]
+  resources :jobs,                              only: [ :new, :create, :edit, :update, :index, :destroy]
+  resources :users, :people, :missions, :comactions
   resources :companies do
     member do
       get 'list_people'
     end
   end
 
-  resources :password_resets,                   only: [:new, :create, :edit, :update]
+  resources :password_resets,                   only: [ :new, :create, :edit, :update]
 
 end

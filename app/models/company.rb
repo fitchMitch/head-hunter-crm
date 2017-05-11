@@ -9,7 +9,7 @@
 #
 
 class Company < ApplicationRecord
-  has_many :jobs , dependent: :destroy #, -> { includes :person }
+  has_many :jobs, dependent: :destroy #, -> { includes :person }
   has_many :people, through: :jobs
   has_many :missions, dependent: :destroy
 

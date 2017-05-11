@@ -3,7 +3,7 @@ FactoryGirl.define do
     title {%w[M. Mme Mlle].sample}
     firstname { Faker::Name.first_name}
     lastname { Faker::Name.last_name}
-    #email { "#{firstname.sub(/\s/,'_')}.#{lastname.sub(/\s/,'_')}@tryme.com".downcase }
+    #email { "#{firstname.sub(/\s/, '_')}.#{lastname.sub(/\s/, '_')}@tryme.com".downcase }
     email {Faker::Internet.email}
     phone_number Faker::PhoneNumber.phone_number
     cell_phone_number Faker::PhoneNumber.cell_phone

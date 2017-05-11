@@ -1,34 +1,34 @@
 <%= simple_form_for @job  do |f| %>
   <div class="row ">
       <div class="col-sm-5">
-          <%= f.input :job_title, label: "Poste occupé",input_html: {class:" input-sm"}%>
+          <%= f.input :job_title, label: "Poste occupé", input_html: {class:" input-sm"}%>
           <%= f.input :person_id, as: :hidden %>
       </div>
       <div class="col-sm-7 ">
-          <%= f.input :start_date, label: "Date de prise de fonction",as: :date,  end_year: Date.today.year, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
+          <%= f.input :start_date, label: "Date de prise de fonction", as: :date,  end_year: Date.today.year, order: [ :day,:month, :year], input_html:{class:" input-sm" } %>
       </div>
   </div>
   <div class="row ">
       <div class="col-sm-5">
-          <%= f.input :salary, label: "Salaire",input_html:{class:" input-sm" } %>
+          <%= f.input :salary, label: "Salaire", input_html:{class:" input-sm" } %>
       </div>
       <div class="col-sm-7 ">
-          <%= f.input :end_date, label: "Date de fin de contrat" ,as: :date, end_year: Date.today.year, order: [:day,:month, :year], input_html:{class:" input-sm" } %>
+          <%= f.input :end_date, label: "Date de fin de contrat", as: :date, end_year: Date.today.year, order: [ :day,:month, :year], input_html:{class:" input-sm" } %>
       </div>
   </div>
 
   <div class="row ">
       <div class="col-sm-5">
-          <%= f.input :jj_job , label:"Poste fourni par JuinJuillet", as: :boolean ,input_html:{class:" checkBelow" }  %>
+          <%= f.input :jj_job, label:"Poste fourni par JuinJuillet", as: :boolean, input_html:{class:" checkBelow" }  %>
       </div>
       <div class="col-sm-7 ">
-          <%= f.input :no_end , label:"en poste", as: :boolean ,input_html:{class:" pushUp" }  %>
+          <%= f.input :no_end, label: 'en poste', as: :boolean, input_html:{class:" pushUp" }  %>
       </div>
   </div>
 
   <div class="row  ">
       <div class="col-sm-5 ">
-          <%= f.association :company , label:"Société", label_method: :company_name, value_method: :id, include_blank: false %>
+          <%= f.association :company, label:"Société", label_method: :company_name, value_method: :id, include_blank: false %>
           <%= link_to  '/people/' + @job.person_id.to_s + '/addCompany' do%>
             <button type="button" class="btn btn-xs">Ajouter une nouvelle société</button>
           <% end %>
@@ -39,7 +39,7 @@
   </div>
   <div class="row ">
       <div class="col-sm-5 ">
-          <%= f.button :submit,yield(:button_text),class: "btn btn-primary checkBelow" %>
+          <%= f.button :submit, yield(:button_text), class: "btn btn-primary checkBelow" %>
 
       </div>
       <div class="col-sm-7  "></div>

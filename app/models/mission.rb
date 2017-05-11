@@ -26,9 +26,9 @@ class Mission < ApplicationRecord
   belongs_to :company
   has_many :comactions, dependent: :destroy
 
-  validates :name , presence: true, length: { maximum: 50 }
-  validates :reward , presence: true
-  validates :whished_start_date , presence: true
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :reward, presence: true
+  validates :whished_start_date, presence: true
   validate :max_age_is_max
 
   STATUSES = [STATUS_HOPE = 'Opportunité', STATUS_SENT= 'Contrat envoyé', STATUS_SIGNED = 'Contrat signé', STATUS_BILLED = 'Mission facturée', STATUS_PAYED = 'Mission payée']

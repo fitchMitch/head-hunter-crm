@@ -9,19 +9,19 @@ require 'as-duration'
 #-----------------
 # Common
 #-----------------
-created_at=            Time.zone.now
-updated_at=            Time.zone.now
+created_at=           Time.zone.now
+updated_at=           Time.zone.now
 #-----------------
 # Users
 #-----------------
-User.create!(name:                  "Etienne WEIL",
+User.create!(name:                   'Etienne WEIL',
     email:                 "weil.etienne@hotmail.fr",
     password:              "123456",
     password_confirmation: "123456",
     admin:                  true,
     activated: true,
     activated_at: Time.zone.now)
-User.create!(name:                  "Flora CLERC",
+User.create!(name:                   'Flora CLERC',
     email:                 "flora.clerc@juinjuillet.fr",
     password:              "123456",
     password_confirmation: "123456",
@@ -69,18 +69,18 @@ Person.create!( title:              "Mme",
 18.times do |n|
   company=companies.sample
   user = users.sample
-  title=              %w[M. Mme Mlle].sample
-  firstname=          Faker::Name.first_name
-  lastname=           Faker::Name.last_name
-  email=              Faker::Internet.email
-  phone_number=       Faker::PhoneNumber.phone_number
-  cell_phone_number=  Faker::PhoneNumber.cell_phone
+  title=             %w[M. Mme Mlle].sample
+  firstname=         Faker::Name.first_name
+  lastname=          Faker::Name.last_name
+  email=             Faker::Internet.email
+  phone_number=      Faker::PhoneNumber.phone_number
+  cell_phone_number= Faker::PhoneNumber.cell_phone
 
-  birthdate=          (Date.today - (18..70).to_a.sample*365 + (1..364).to_a.sample).strftime("%F")
+  birthdate=         (Date.today - (18..70).to_a.sample*365 + (1..364).to_a.sample).strftime("%F")
   #Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
-  note=               Faker::Lorem.sentence(3)
-  is_client =         Faker::Boolean.boolean(0.1)
-  user_id=            user.id
+  note=              Faker::Lorem.sentence(3)
+  is_client =        Faker::Boolean.boolean(0.1)
+  user_id=           user.id
   Person.create!( title:              title,
     firstname:          firstname,
     lastname:           lastname,
@@ -103,22 +103,22 @@ people = Person.all
   person = people.sample
   company=companies.sample
 
-  job_title=             Faker::Company.profession
-  salary=                n*100-n*2
+  job_title=            Faker::Company.profession
+  salary=               n*100-n*2
 
-  start_date=            Date.today
-  start_date -=          (1..40).to_a.sample*365
-  start_date +=          (1..364).to_a.sample
-  end_date=              start_date + (100*(n+1))
+  start_date=           Date.today
+  start_date -=         (1..40).to_a.sample*365
+  start_date +=         (1..364).to_a.sample
+  end_date=             start_date + (100*(n+1))
 
-  end_date=              end_date.strftime("%F")
-  start_date=            start_date.strftime("%F")
+  end_date=             end_date.strftime("%F")
+  start_date=           start_date.strftime("%F")
   # puts start_date
   # puts end_date
   # puts "---------------------"
 
-  company_id=            company.id
-  person_id=             person.id
+  company_id=           company.id
+  person_id=            person.id
   Job.create!( job_title:             job_title,
     salary:                salary,
     start_date:            start_date,
@@ -139,20 +139,20 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
   person = people.sample
   company = companies.sample
 
-  name   =            "Mission" + (1..4500).to_a.sample.to_s
-  reward =            (17..45).to_a.sample*1000
-  min_salary =        (200..400).to_a.sample*100
-  max_salary  =       min_salary +(1..10).to_a.sample*1000
-  criteria  =         Faker::Lorem.paragraph(3, true, 4)
-  min_age   =         (18..60).to_a.sample
-  max_age   =         min_age + (10..20).to_a.sample
+  name   =           "Mission" + (1..4500).to_a.sample.to_s
+  reward =           (17..45).to_a.sample*1000
+  min_salary =       (200..400).to_a.sample*100
+  max_salary  =      min_salary +(1..10).to_a.sample*1000
+  criteria  =        Faker::Lorem.paragraph(3, true, 4)
+  min_age   =        (18..60).to_a.sample
+  max_age   =        min_age + (10..20).to_a.sample
   whished_start_date = Date.today + (0..200).to_a.sample
-  company_id =        company.id
-  person_id  =        person.id
-  status  =           statuses.sample
-  is_done   =         [statuses[3], statuses[4]].include?(status)
-  signed    =          [statuses[2],statuses[3], statuses[4]].include?(status)
-  paid_amount =       signed ? reward / 3 : 0
+  company_id =       company.id
+  person_id  =       person.id
+  status  =          statuses.sample
+  is_done   =        [statuses[3], statuses[4]].include?(status)
+  signed    =         [statuses[2], statuses[3], statuses[4]].include?(status)
+  paid_amount =      signed ? reward / 3 : 0
   Mission.create!(
     name:               name,
     reward:             reward,
@@ -178,16 +178,16 @@ missions = Mission.all
 #-----------------
 250.times do |n|
 
-  name   =            "Rendez-vous " + n.to_s
-  status =            [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT , Comaction::STATUS_PRES , Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED , Comaction::STATUS_WORKING ].sample
-  action_type   =     [Comaction::CLIENT_TYPE , Comaction::PROSPECTION_TYPE, Comaction::OTHER_TYPE ].sample
-  person =            people.sample
-  user   =            users.sample
-  mission=            missions.sample
-  created_at =        Date.today - (200..480).to_a.sample
-  updated_at =        created_at +  (1..150).to_a.sample
-  start_time   =      (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
-  end_time    =       start_time == nil ? nil : start_time+ (1..4).to_a.sample / 24
+  name   =           "Rendez-vous " + n.to_s
+  status =           [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT, Comaction::STATUS_PRES, Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED, Comaction::STATUS_WORKING ].sample
+  action_type   =    [Comaction::CLIENT_TYPE, Comaction::PROSPECTION_TYPE, Comaction::OTHER_TYPE ].sample
+  person =           people.sample
+  user   =           users.sample
+  mission=           missions.sample
+  created_at =       Date.today - (200..480).to_a.sample
+  updated_at =       created_at +  (1..150).to_a.sample
+  start_time   =     (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
+  end_time    =      start_time.nil?  ? nil : start_time+ (1..4).to_a.sample / 24
 
   Comaction.create!(
     name:               name,

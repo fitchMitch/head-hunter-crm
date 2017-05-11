@@ -1,9 +1,9 @@
 <% provide(:title, @mission.name) %>
 <% provide(:update_date, @mission.updated_at) %>
 <% provide(:creation_date, @mission.created_at) %>
-<div class="row">
+<div class='row'>
     <div class="col-xs-1 nav-ico">
-        <div class="row">
+        <div class='row'>
             <div class="col-xs-12 nav-ico">
                 <%= link_to edit_mission_path do %>
                 <button class="btn btn-info">
@@ -12,7 +12,7 @@
                 <% end %>
             </div>
         </div>
-        <div class="row">
+        <div class='row'>
             <div class="col-xs-12 nav-ico">
                 <%= link_to missions_path do %>
                 <button class="btn btn-info">
@@ -21,7 +21,7 @@
                 <% end %>
             </div>
         </div>
-        <div class="row">
+        <div class='row'>
             <div class="col-xs-12  nav-ico">
                 <%= link_to  @mission, method: :delete, data: { confirm: "C'est sûr ?" } do %>
                 <button class="btn btn-primary">
@@ -32,45 +32,45 @@
         </div>
     </div>
     <div class="col-xs-11">
-        <div class="row">
-            <div class="col-xs-8">
+        <div class='row'>
+            <div class='col-xs-8'>
                 <h1> <%= @mission.name %> </h1>
                 <h3> <%= special_label @mission %></h3>
             </div>
-            <div class="col-xs-4">
-              <div class="row emptyline"></div>
-              <div class="row emptyline"></div>
-                <div class="row">
-                    <div class="col-xs-7">Rémunération JuinJuillet</div>
-                    <div class="col-xs-5">
+            <div class='col-xs-4'>
+              <div class= 'row emptyline'></div>
+              <div class= 'row emptyline'></div>
+                <div class='row'>
+                    <div class='col-xs-7'>Rémunération JuinJuillet</div>
+                    <div class='col-xs-5'>
                         <strong class="pull-right"><%= number_to_currency @mission.reward %></strong>
                     </div>
                 </div>
-                <div class="row emptyline"></div>
-                <div class="row">
-                    <div class="col-xs-7">Déjà encaissé
+                <div class= 'row emptyline'></div>
+                <div class='row'>
+                    <div class='col-xs-7'>Déjà encaissé
                     </div>
-                    <div class="col-xs-5">
+                    <div class='col-xs-5'>
                         <strong class="pull-right"><%= number_to_currency @mission.paid_amount %></strong>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class='row'>
             <div class="col-xs-12 ">
                 <hr>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-5">
-                <div class="row">
-                    <div class="col-xs-2">
+        <div class='row'>
+            <div class='col-xs-5'>
+                <div class='row'>
+                    <div class='col-xs-2'>
                         <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
                         <br>
                         <br>
                         <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
                     </div>
-                    <div class="col-xs-9">
+                    <div class='col-xs-9'>
                         <p>
                             <strong><%= @mission.company.company_name %></strong>
                         </p>
@@ -80,28 +80,28 @@
                         </p>
                     </div>
                 </div>
-                <div class="row emptyline"></div>
-                <div class="row">
+                <div class= 'row emptyline'></div>
+                <div class='row'>
                     <div class="col-xs-12"><hr class="sep"></div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6">Salaire minimum</div>
-                    <div class="col-xs-6">
+                <div class='row'>
+                    <div class='col-xs-6'>Salaire minimum</div>
+                    <div class='col-xs-6'>
                         <strong><%= number_to_currency @mission.min_salary %></strong>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6">Salaire maximum</div>
-                    <div class="col-xs-6">
+                <div class='row'>
+                    <div class='col-xs-6'>Salaire maximum</div>
+                    <div class='col-xs-6'>
                         <strong><%= number_to_currency @mission.max_salary %></strong>
                     </div>
                 </div>
-                <div class="row">
+                <div class='row'>
                     <div class="col-xs-12"><hr class="sep"></div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6">Tranche d'âge</div>
-                    <div class="col-xs-6">
+                <div class='row'>
+                    <div class='col-xs-6'>Tranche d'âge</div>
+                    <div class='col-xs-6'>
                         Entre
                         <%= @mission.min_age %>
                         et
