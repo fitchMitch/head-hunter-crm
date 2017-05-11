@@ -11,17 +11,17 @@ module ApplicationHelper
 
   def block_header(parameters)
     # Example
-    # @parameters = { 'params'=> params, 'header' => [], 'tableDB'=> 'companies' }
-    # @parameters['header']<<{ 'width'=> 3, 'label'=>'Société', 'attribute'=>'company_name' }
-    # @parameters['header']<<{ 'width'=> 2, 'label'=>'', 'attribute'=>'company_name' }
-    # @parameters['header']<<{ 'width'=> 3, 'label'=>'Date d\'enregistrement', 'attribute'=>'created_at' }
-    sort = parameters['params'][ :sort]
+    # @parameters = { 'params' => params, 'header' => [], 'tableDB' => 'companies' }
+    # @parameters['header'] << { 'width' => 3, 'label' => 'Société', 'attribute' => 'company_name' }
+    # @parameters['header'] << { 'width' => 2, 'label' => '', 'attribute' => 'company_name' }
+    # @parameters['header'] << { 'width' => 3, 'label' => 'Date d\'enregistrement', 'attribute' => 'created_at' }
+    sort = parameters['params'][:sort]
     action = parameters['action'] || 'index'
     query = parameters['query'].nil? ? 'none' : parameters['query']
 
     res ="<div class= 'row array_header'>"
     parameters['header'].each do |col|
-      res += '<div class="col-xs-' + col['width'].to_s+ '">'
+      res += '<div class="col-xs-' + col['width'].to_s + '">'
       unless col['label'].empty?
         res += '<strong>' + col['label'] +'</strong>'
         unless col['attribute'] == 'none'
@@ -33,8 +33,8 @@ module ApplicationHelper
             adj = " <i class='fa fa-sort-amount-asc' aria-hidden='true'></i>"
             sorting = col['attribute']
           end
-          if parameters['params'][ :bin_filter] == nil
-            if parameters['params'][ :filter] == nil
+          if parameters['params'][:bin_filter] == nil
+            if parameters['params'][:filter] == nil
               res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query do
                 adj.html_safe
               end
@@ -44,7 +44,7 @@ module ApplicationHelper
               end
             end
           else
-            if parameters['params'][ :filter] == nil
+            if parameters['params'][:filter] == nil
               res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query, bin_filter: parameters['params']['bin_filter'] do
                 adj.html_safe
               end
@@ -75,13 +75,13 @@ module ApplicationHelper
   #-----------------
   def future_time_in_words(t1)
     s = t1.strftime('%s').to_i - Time.zone.now.strftime('%s').to_i
-    tomorrow = 60*60*24
-    theDayAfter = tomorrow*2
-    threeDays = tomorrow*3
-    aWeek = tomorrow*7
-    twoWeeks = aWeek*2
-    aMonth = tomorrow*30
-    aYear = tomorrow*365
+    tomorrow = 60 * 60 * 24
+    theDayAfter = tomorrow* 2
+    threeDays = tomorrow* 3
+    aWeek = tomorrow* 7
+    twoWeeks = aWeek* 2
+    aMonth = tomorrow* 30
+    aYear = tomorrow* 365
     hm = t1.strftime('%Hh%M')
 
     resolution = if s<0

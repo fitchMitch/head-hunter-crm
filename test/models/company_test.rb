@@ -31,7 +31,7 @@ class CompanyTest < ActiveSupport::TestCase
   end
 
   test "company_name should not be too long" do
-    @company.company_name = "a"*41
+    @company.company_name = "a"* 41
     refute @company.valid?
   end
 

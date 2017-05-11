@@ -11,17 +11,17 @@ class CompaniesTest < ActionDispatch::IntegrationTest
     get new_company_path
     assert_template 'companies/new'
     company2 = attributes_for(:company, company_name: '')
-    post companies_path, params: {company: company2}
+    post companies_path, params: {company: company2 }
     assert_template 'companies/new'
   end
 
   test "should land on show when saving" do
     company2 = attributes_for(:company)
     get new_company_path
-    post companies_path, params: { company: company2}
+    post companies_path, params: { company: company2 }
     follow_redirect!
     assert_response :success
-    assert_match /Société sauvegardée/, flash[ :info]
+    assert_match /Société sauvegardée/, flash[:info]
   end
 
   test "there's an access to companies's detail page" do

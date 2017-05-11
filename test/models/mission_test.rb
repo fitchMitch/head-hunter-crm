@@ -34,7 +34,7 @@ class MissionTest < ActiveSupport::TestCase
   end
 
   test "mission name should not be long" do
-    @mission.name = 'a'*51
+    @mission.name = 'a'* 51
     refute @mission.valid?
   end
 

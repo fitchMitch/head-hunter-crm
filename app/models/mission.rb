@@ -32,7 +32,7 @@ class Mission < ApplicationRecord
   validate :max_age_is_max
 
   STATUSES = [STATUS_HOPE = 'Opportunité', STATUS_SENT= 'Contrat envoyé', STATUS_SIGNED = 'Contrat signé', STATUS_BILLED = 'Mission facturée', STATUS_PAYED = 'Mission payée']
-  validates :status, inclusion: {in: STATUSES}
+  validates :status, inclusion: {in: STATUSES }
 
   def max_age_is_max
     if min_age.present? && max_age.present? && min_age > max_age

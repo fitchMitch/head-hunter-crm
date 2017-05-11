@@ -11,17 +11,17 @@ class PeopleTest < ActionDispatch::IntegrationTest
     get new_person_path
     assert_template 'people/new'
     person2 = attributes_for(:person, firstname: '')
-    post people_path, params: {person: person2}
+    post people_path, params: {person: person2 }
     assert_template 'people/new'
   end
 
   test "should land on show when saving" do
     person2 = attributes_for(:person)
     get new_person_path
-    post people_path, params: { person: person2}
+    post people_path, params: { person: person2 }
     follow_redirect!
     assert_response :success
-    assert_match /Contact sauvegardé/, flash[ :success]
+    assert_match /Contact sauvegardé/, flash[:success]
   end
 
   test "people should get destroyed" do

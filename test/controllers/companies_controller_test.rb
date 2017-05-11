@@ -32,14 +32,14 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
   test "should redirect update" do
     log_in_as(@user)
     patch company_path(@company), params: { company: { company_name: @company.company_name } }
-    refute flash[ :success].empty?
+    refute flash[:success].empty?
     assert_redirected_to companies_url
   end
 
   test "should edit when wrong update" do
     log_in_as(@user)
     patch company_path(@company), params: { company: { company_name:""} }
-    refute flash[ :danger].empty?
+    refute flash[:danger].empty?
     assert_template 'companies/edit'
   end
 

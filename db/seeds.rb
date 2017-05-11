@@ -31,7 +31,7 @@ User.create!(name:                   'Flora CLERC',
 
 3.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{ n+1 }@railstutorial.org"
   password = "password"
   User.create!(name:                  name,
     email:                 email,
@@ -46,7 +46,7 @@ users = User.all
 #-----------------
 9.times do |n|
   company_name = Faker::Company.name
-  Company.create!( company_name:      company_name )
+  Company.create!(company_name:      company_name )
 end
 companies=Company.all
 #-----------------
@@ -54,7 +54,7 @@ companies=Company.all
 #-----------------
 user = users.sample
 
-Person.create!( title:              "Mme",
+Person.create!(title:              "Mme",
     firstname:          "Yolande",
     lastname:           "Moreau",
     email:              "yolande.moreau@gmail.com",
@@ -76,12 +76,12 @@ Person.create!( title:              "Mme",
   phone_number=      Faker::PhoneNumber.phone_number
   cell_phone_number= Faker::PhoneNumber.cell_phone
 
-  birthdate=         (Date.today - (18..70).to_a.sample*365 + (1..364).to_a.sample).strftime("%F")
+  birthdate=         (Date.today - (18..70).to_a.sample* 365 + (1..364).to_a.sample).strftime("%F")
   #Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
   note=              Faker::Lorem.sentence(3)
   is_client =        Faker::Boolean.boolean(0.1)
   user_id=           user.id
-  Person.create!( title:              title,
+  Person.create!(title:              title,
     firstname:          firstname,
     lastname:           lastname,
     email:              email,
@@ -104,12 +104,12 @@ people = Person.all
   company=companies.sample
 
   job_title=            Faker::Company.profession
-  salary=               n*100-n*2
+  salary=               n* 100-n* 2
 
   start_date=           Date.today
-  start_date -=         (1..40).to_a.sample*365
+  start_date -=         (1..40).to_a.sample* 365
   start_date +=         (1..364).to_a.sample
-  end_date=             start_date + (100*(n+1))
+  end_date=             start_date + (100 *(n+1 ))
 
   end_date=             end_date.strftime("%F")
   start_date=           start_date.strftime("%F")
@@ -119,7 +119,7 @@ people = Person.all
 
   company_id=           company.id
   person_id=            person.id
-  Job.create!( job_title:             job_title,
+  Job.create!(job_title:             job_title,
     salary:                salary,
     start_date:            start_date,
     end_date:              end_date,
@@ -140,9 +140,9 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
   company = companies.sample
 
   name   =           "Mission" + (1..4500).to_a.sample.to_s
-  reward =           (17..45).to_a.sample*1000
-  min_salary =       (200..400).to_a.sample*100
-  max_salary  =      min_salary +(1..10).to_a.sample*1000
+  reward =           (17..45).to_a.sample* 1000
+  min_salary =       (200..400).to_a.sample* 100
+  max_salary  =      min_salary +(1..10).to_a.sample* 1000
   criteria  =        Faker::Lorem.paragraph(3, true, 4)
   min_age   =        (18..60).to_a.sample
   max_age   =        min_age + (10..20).to_a.sample
@@ -187,7 +187,7 @@ missions = Mission.all
   created_at =       Date.today - (200..480).to_a.sample
   updated_at =       created_at +  (1..150).to_a.sample
   start_time   =     (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
-  end_time    =      start_time.nil?  ? nil : start_time+ (1..4).to_a.sample / 24
+  end_time    =      start_time.nil?  ? nil : start_time + (1..4).to_a.sample / 24
 
   Comaction.create!(
     name:               name,

@@ -85,16 +85,16 @@ class Comaction < ApplicationRecord
 
             # there's overlapping in any case Ci below
             c1 = (other.start_time < start_time && start_time < other.end_time)
-            logger.debug("c1 #{c1}") if c1
+            logger.debug("c1 #{c1 }") if c1
             c2 = (other.start_time < end_time && end_time < other.end_time)
-            logger.debug("c2 #{c2}") if c2
+            logger.debug("c2 #{c2 }") if c2
             c3 = (start_time < other.start_time && other.end_time < end_time)
-            logger.debug("c3 #{c3}") if c3
+            logger.debug("c3 #{c3 }") if c3
             c4 = (other.start_time < start_time && end_time < other.end_time)
-            logger.debug("c4 #{c4}") if c4
+            logger.debug("c4 #{c4 }") if c4
             if c1 || c2 || c3 || c4
-                logger.debug("----------------occuring overlap : other's name : #{other.name} | self's name : #{name}-------------------")
-                errors.add(:end_time, "Superposition de rendez-vous v\u00E9rifiez votre agenda :-) : #{other.name} ")
+                logger.debug("----------------occuring overlap : other's name : #{other.name } | self's name : #{name }-------------------")
+                errors.add(:end_time, "Superposition de rendez-vous v\u00E9rifiez votre agenda :-) : #{other.name } ")
             end
         end
     end

@@ -1,13 +1,13 @@
 module PeopleHelper
   def titleList
-    %w{M. Mme Mlle}
+    %w(M. Mme Mlle )
   end
 
   def delay_bar(paul)
     # TODO parameter here is hard coded : 3 years
     #puts Date.parse(paul.end_date)
     num = (paul.end_date.jd - paul.start_date.jd)
-    step = 3*365 / 12
+    step = 3 * 365 / 12
     i = [(num.abs/step).ceil, 12].min
     str = "<div class='row'> <div class='col-xs-"
     str += i.to_s
