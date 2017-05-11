@@ -94,7 +94,7 @@ class ComactionsController < ApplicationController
     @comaction = @person.comactions.build(comaction_params)
     @comaction.mission_id = @mission.id
     @comaction.user_id = current_user.id
-    @comaction.start_time = comaction_params[:is_dated].to_i == 1 ? @comaction.start_time : nil
+    @comaction = trigger_nil_dates @comaction
 
     if @comaction.save
       if(@comaction.start_time == nil || @comaction.end_time == nil)
@@ -105,13 +105,14 @@ class ComactionsController < ApplicationController
       end
       redirect_to comactions_path
     else
-      flash[:alert] = "Ce rendez-vous n'a pas pu être ajouté"
+      flash[:danger] = "Ce rendez-vous n'a pas pu être ajouté"
       render :new
     end
   end
 
   def update
-    @comaction.start_time = comaction_params[:is_dated].to_i == 1 ? @comaction.start_time : nil
+    @comaction = trigger_nil_dates @comaction
+
     if @comaction.update_attributes(comaction_params)
       if(@comaction.start_time == nil || @comaction.end_time == nil)
         flash[:success] =  "Rendez-vous sauvegardé"
@@ -121,9 +122,16 @@ class ComactionsController < ApplicationController
       end
       redirect_to @comaction
     else
-      flash[:alert] = "Ce rendez-vous n'a pas pu être mis à jour"
+      logger.warn(" update won't work #{@comaction.inspect}")
+      flash[:danger] = "Ce rendez-vous n'a pas pu être mis à jour"
       render 'edit'
     end
+  end
+
+  def trigger_nil_dates (comaction)
+    comaction.start_time = nil if comaction_params[:is_dated].to_i == 1
+    comaction.end_time = nil if comaction_params[:is_dated].to_i == 1
+    comaction
   end
 
   def destroy
@@ -143,4 +151,6 @@ class ComactionsController < ApplicationController
       @comaction = Comaction.find(params[:id])
       @comaction.is_dated = @comaction.nil? || @comaction.start_time == nil ? false : true
     end
+
+
 end

@@ -1,7 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$(document).on "page:load ready", ->
+
+$(document).on "turbolinks:load", ->
   $("#comaction_mission_id").select2
     theme: "bootstrap"
   $("#comaction_person_id").select2

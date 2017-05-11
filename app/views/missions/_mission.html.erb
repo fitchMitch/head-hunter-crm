@@ -1,4 +1,4 @@
-    <div class="<%= mission.is_done ? 'row mission_done' : 'row' %>">
+    <div class="<%= latelyness mission %>" >
     <div class="col-xs-2">
       <%= link_to mission.name, mission_path(mission) %>
        |
@@ -40,5 +40,9 @@
     <div class="col-xs-1">
         <small><%= time_ago_in_words mission.updated_at %></small>
     </div>
+    <div class="col-xs-1">
+        <small><strong><%= future_time_in_words mission.whished_start_date %></strong></small>
+    </div>
+
 </div>
 <%= render 'shared/sep' %>

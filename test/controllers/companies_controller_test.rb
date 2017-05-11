@@ -39,7 +39,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
   test "should edit when wrong update" do
     log_in_as(@user)
     patch company_path(@company), params: { company: { company_name:""} }
-    refute flash[:alert].empty?
+    refute flash[:danger].empty?
     assert_template 'companies/edit'
   end
 

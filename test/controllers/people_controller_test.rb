@@ -39,7 +39,7 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   test "should edit when wrong update" do
     log_in_as(@user)
     patch person_path(@person), params: { person: { firstname:"" , email: @person.email } }
-    refute flash[:alert].empty?
+    refute flash[:danger].empty?
     assert_template 'people/edit'
   end
 

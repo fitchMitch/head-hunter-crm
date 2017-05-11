@@ -9,4 +9,13 @@ module MissionsHelper
     t.html_safe
   end
 
+  def latelyness (mission)
+    st = ' row '
+    if mission.is_done 
+      st += 'mission_done'
+    elsif mission.whished_start_date < Time.zone.now
+      st += 'late'
+    end
+  end
+
 end

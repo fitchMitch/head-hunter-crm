@@ -95,7 +95,7 @@ class PeopleController < ApplicationController
       flash[:success] = "Contact mis à jour"
       redirect_to @person
     else
-      flash[:alert] = "Le contact n'a pas pu être mis à jour"
+      flash[:danger] = "Le contact n'a pas pu être mis à jour"
       render 'edit'
     end
   end

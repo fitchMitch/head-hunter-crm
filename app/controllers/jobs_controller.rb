@@ -33,7 +33,7 @@ class JobsController < ApplicationController
         flash[:info] =  message
       end
     else
-      flash[:alert] = "Cette expérience n'a pas pu être ajoutée"
+      flash[:danger] = "Cette expérience n'a pas pu être ajoutée"
     end
 
     redirect_to person_path(@person.id)
@@ -45,7 +45,7 @@ class JobsController < ApplicationController
       @person = Person.find(@job.person_id)
       redirect_to @person
     else
-      flash[:alert] = "Le contact n'a pas pu être mis à jour"
+      flash[:danger] = "Le contact n'a pas pu être mis à jour"
       render 'edit'
     end
   end

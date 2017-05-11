@@ -33,6 +33,7 @@ class MissionsController < ApplicationController
     @parameters['header']<<{'width'=>2,'label'=>'Société','attribute'=>'companies.company_name'}
     @parameters['header']<<{'width'=>4,'label'=>'Contenu de la mission','attribute'=>'none'}
     @parameters['header']<<{'width'=>1,'label'=>'Mise à jour','attribute'=>'updated_at'}
+    @parameters['header']<<{'width'=>1,'label'=>'Echéance','attribute'=>'whished_start_date'}
 
   end
   #-----------------
@@ -58,7 +59,7 @@ class MissionsController < ApplicationController
       flash[:info] =  "Mission sauvegardée :-)"
       redirect_to missions_path
     else
-      flash[:alert] = "Cette mission n'a pas pu être ajoutée"
+      flash[:danger] = "Cette mission n'a pas pu être ajoutée"
       render :new
     end
   end
@@ -71,7 +72,7 @@ class MissionsController < ApplicationController
       flash[:success] = "Mission mise à jour"
       redirect_to @mission
     else
-      flash[:alert] = "Cette mission n'a pas pu être mise à jour"
+      flash[:danger] = "Cette mission n'a pas pu être mise à jour"
       render 'edit'
     end
   end

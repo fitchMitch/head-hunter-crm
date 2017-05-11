@@ -57,7 +57,7 @@ class CompaniesController < ApplicationController
       flash[:success] = "Société mise à jour"
       redirect_to companies_path
     else
-      flash[:alert] = "Le contact n'a pas pu être mis à jour"
+      flash[:danger] = "Le contact n'a pas pu être mis à jour"
       render 'edit'
     end
   end

@@ -13,6 +13,7 @@ $color4: rgba(216, 228, 255, 1);
 $color5: rgba(49, 233, 129, 1);
 $color6: #CCC;
 $color7 : white;
+$color8 : #951418;
 
 body {
     background-color: $color4;/* #d9cdd9;*/
@@ -347,6 +348,10 @@ a > span.label-warning:hover{
 }
 
 /* Missions */
+.late{
+  background-color: $color8;
+  color:white;
+}
 .mission_done{
   background-color: $color6;
 }
@@ -384,4 +389,14 @@ a > span.label-warning:hover{
 .lightlooks{
   color:#888;
   font-size:0.9em;
+}
+/* Calendars*/
+
+.cal_date{
+  font-size: 0.7em;
+  font-family: "Verdana";
+  font-stretch: semi-condensed;
+  font-weight: bold;
+  background-color: $color5;
+  color:#4b425f;
 }
