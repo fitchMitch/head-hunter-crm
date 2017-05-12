@@ -52,16 +52,36 @@ class Comaction < ApplicationRecord
         d ||= 7
         where('start_time >= ? OR start_time is null AND comactions.user_id = ?', d.days.ago, being_id)
     }
-    scope :mine, ->(being_id) { where('comactions.user_id = ?', being_id) }
-    scope :unscheduled, ->(being_id) { where('start_time is null AND comactions.user_id = ?', being_id) }
-    scope :scheduled, ->(being_id) { where('start_time is not null AND comactions.user_id = ?', being_id) }
-    scope :sourced, ->(being_id) { where('comactions.status = ? AND comactions.user_id = ?', STATUS_SOURCED, being_id) }
-    scope :preselected, ->(being_id) { where('comactions.status = ? AND comactions.user_id = ?', STATUS_PRESELECTED, being_id) }
-    scope :appoint, ->(being_id) { where('comactions.status = ? AND comactions.user_id = ? ', STATUS_APPOINT, being_id) }
-    scope :pres, ->(being_id) { where('comactions.status = ? AND comactions.user_id = ? ', STATUS_PRES, being_id) }
-    scope :opres, ->(being_id) { where('comactions.status = ? AND comactions.user_id = ? ', STATUS_O_PRES, being_id) }
-    scope :hired, ->(being_id) { where('comactions.status = ?  AND comactions.user_id = ?', STATUS_HIRED, being_id) }
-    scope :working, ->(being_id) { where('comactions.status = ? AND comactions.user_id = ?', STATUS_WORKING, being_id) }
+    scope :mine, ->(being_id) {
+      where('comactions.user_id = ?', being_id)
+    }
+    scope :unscheduled, ->(being_id) {
+       where('start_time is null AND comactions.user_id = ?', being_id)
+     }
+    scope :scheduled, ->(being_id) {
+       where('start_time is not null AND comactions.user_id = ?', being_id)
+     }
+    scope :sourced, ->(being_id) {
+       where('comactions.status = ? AND comactions.user_id = ?', STATUS_SOURCED, being_id)
+     }
+    scope :preselected, ->(being_id) {
+       where('comactions.status = ? AND comactions.user_id = ?', STATUS_PRESELECTED, being_id)
+     }
+    scope :appoint, ->(being_id) {
+       where('comactions.status = ? AND comactions.user_id = ? ', STATUS_APPOINT, being_id)
+     }
+    scope :pres, ->(being_id) {
+       where('comactions.status = ? AND comactions.user_id = ? ', STATUS_PRES, being_id)
+     }
+    scope :opres, ->(being_id) {
+       where('comactions.status = ? AND comactions.user_id = ? ', STATUS_O_PRES, being_id)
+     }
+    scope :hired, ->(being_id) {
+       where('comactions.status = ?  AND comactions.user_id = ?', STATUS_HIRED, being_id)
+     }
+    scope :working, ->(being_id) {
+       where('comactions.status = ? AND comactions.user_id = ?', STATUS_WORKING, being_id)
+     }
     # default_scope -> { select(user_id: current_user.id) }
 
     validates :name, presence: true, length: { maximum: 50 }

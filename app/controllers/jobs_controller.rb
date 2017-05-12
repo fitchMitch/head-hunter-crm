@@ -26,14 +26,14 @@ class JobsController < ApplicationController
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
-      message = "Nouvel emploi de " + @job.person.firstname + " sauvegardé "
+      message = 'Nouvel emploi de ' + @job.person.firstname + ' sauvegardé '
       if @job.double_jobs(@person.id)
-        flash[:warning] = message + " (ce profil a plusieurs emplois en parallèle)"
+        flash[:warning] = message + ' (ce profil a plusieurs emplois en parallèle)'
       else
         flash[:info] = message
       end
     else
-      flash[:danger] = "Cette expérience n'a pas pu être ajoutée"
+      flash[:danger] = 'Cette expérience n\'a pas pu être ajoutée'
     end
 
     redirect_to person_path(@person.id)
@@ -41,11 +41,11 @@ class JobsController < ApplicationController
   #-----------------
   def update
     if @job.update_attributes(job_params)
-      flash[:success] = "Emploi mis à jour"
+      flash[:success] = 'Emploi mis à jour'
       @person = Person.find(@job.person_id)
       redirect_to @person
     else
-      flash[:danger] = "Le contact n'a pas pu être mis à jour"
+      flash[:danger] = 'Le contact n\a pas pu être mis à jour'
       render 'edit'
     end
   end
@@ -53,7 +53,7 @@ class JobsController < ApplicationController
   def destroy
     person_id = @job.person_id
     @job.destroy
-    flash[:success] = "Emploi supprimé"
+    flash[:success] = 'Emploi supprimé'
     redirect_to person_path(person_id)
   end
   #-----------------
@@ -62,7 +62,15 @@ class JobsController < ApplicationController
   private
   #---------------
     def job_params
-      params.require(:job).permit(:job_title, :salary, :start_date, :end_date, :jj_job, :company_id, :person_id, :no_end)
+      params.require(:job).permit(
+        :job_title,
+        :salary,
+        :start_date,
+        :end_date,
+        :jj_job,
+        :company_id,
+        :person_id,
+        :no_end)
     end
 
     def get_job

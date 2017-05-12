@@ -10,10 +10,10 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
+      flash[:info] = 'Email sent with password reset instructions'
       redirect_to root_url
     else
-      flash.now[:danger] = "Email address not found"
+      flash.now[:danger] = 'Email address not found'
       render 'new'
     end
   end
@@ -23,11 +23,11 @@ class PasswordResetsController < ApplicationController
 
   def update
     if params[:user][:password].empty?                  # Case (3)
-      @user.errors.add(:password, "can't be empty")
+      @user.errors.add(:password, 'ne doit pas rester vide')
       render 'edit'
     elsif @user.update_attributes(user_params)          # Case (4)
       log_in @user
-      flash[:success] = "Password has been reset."
+      flash[:success] = 'Le mot de passe a été réinitialisé.'
       redirect_to @user
     else
       render 'edit'                                     # Case (2)
@@ -56,7 +56,7 @@ class PasswordResetsController < ApplicationController
     # Checks expiration of reset token.
     def check_expiration
       if @user.password_reset_expired?
-        flash[:danger] = "Password reset has expired."
+        flash[:danger] = 'Le mot de passe a expiré'
         redirect_to new_password_reset_url
       end
     end

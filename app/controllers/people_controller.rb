@@ -44,7 +44,7 @@ class PeopleController < ApplicationController
           job_title:  'Sans emploi',
           start_date: job.end_date,
           end_date: memo,
-          company_name: "Pôle emploi",
+          company_name: 'Pôle emploi',
           company_id: 0,
           salary: 0,
           person_id: job.person_id,
@@ -63,13 +63,8 @@ class PeopleController < ApplicationController
         no_end: job.no_end,
         company_id: job.company_id
         })
-      unless memo.nil?
-        @alljobs << job2
-        puts "======= start_date ========== "
-        puts job2.start_date
-        puts job2.end_date
-        puts "======= end_date ========== "
-      end
+
+      @alljobs << job2 unless memo.nil?
       memo = job1.start_date
       @alljobs << job1
     end
@@ -81,7 +76,7 @@ class PeopleController < ApplicationController
     @person.cv_docx = params[:person][:cv_docx]
     @person.user_id = current_user.id
     if @person.save
-      flash[:success] = "Contact sauvegardé (" + @person.full_name + ")."
+      flash[:success] = 'Contact sauvegardé (' + @person.full_name + ').'
       #redirect_to @person
       goto_next_url people_path
     else
@@ -94,10 +89,10 @@ class PeopleController < ApplicationController
     @person.user_id = current_user.id
     @person.cv_docx = params[:person][:cv_docx]
     if @person.update_attributes(person_params)
-      flash[:success] = "Contact mis à jour"
+      flash[:success] = 'Contact mis à jour'
       redirect_to @person
     else
-      flash[:danger] = "Le contact n'a pas pu être mis à jour"
+      flash[:danger] = 'Le contact n\'a pas pu être mis à jour'
       render 'edit'
     end
   end
@@ -105,7 +100,7 @@ class PeopleController < ApplicationController
   def destroy
     @person.cv_docx = nil
     @person.destroy
-    flash[:success] = "Contact supprimé"
+    flash[:success] = 'Contact supprimé'
     redirect_to people_url
   end
 
@@ -121,12 +116,25 @@ class PeopleController < ApplicationController
 
     def person_params
       #params.require(:person).permit(:title, :firstname, :lastname, :email, :phone_number, :cell_phone_number, :birthdate, :is_jj_hired, :is_client, :note, jobs: [:job_title, :salary, :start_date, :end_date, :jj_job])
-      params.require(:person).permit(:title, :firstname, :lastname, :email, :phone_number, :cell_phone_number, :birthdate, :is_jj_hired, :is_client, :note, :cv_docx, jobs_attributes: [:id, :salary, :job_title, :start_date, :end_date, :jj_job])
+      params.require(:person).permit(
+        :title,
+        :firstname,
+        :lastname,
+        :email,
+        :phone_number,
+        :cell_phone_number,
+        :birthdate,
+        :is_jj_hired,
+        :is_client,
+        :note,
+        :cv_docx #,
+        #jobs_attributes: [:id, :salary, :job_title, :start_date, :end_date, :jj_job]
+        )
     end
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:danger] = "Logguez-vous d'abord"
+        flash[:danger] = 'Logguez-vous d\'abord'
         redirect_to login_url
       end
       unless params[:id].nil?

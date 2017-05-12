@@ -10,7 +10,10 @@ module ComactionsHelper
       label_type = ''
       letter = ''
     end
-    res = '<span class="label label-mini ' + label_type +'">' + letter + '</span>'
+    res = '<span class="label label-mini '
+    res += label_type
+    res +='">'
+    res += letter + '</span>'
     res.html_safe
   end
 
@@ -18,9 +21,9 @@ module ComactionsHelper
     r=''
     Comaction::STATUSES.each { |status|
       if cal.to_i == 1
-        r += link_to   status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :query => 'calendar_view'), class: "btn btn-primary"
+        r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :query => 'calendar_view'), class: "btn btn-primary"
       else
-        r += link_to   status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :query => 'table_view'), class: "btn btn-primary"
+        r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :query => 'table_view'), class: "btn btn-primary"
       end
     }
     r.html_safe

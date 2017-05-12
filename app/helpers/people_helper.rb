@@ -21,7 +21,7 @@ module PeopleHelper
     if job.end_date.nil?
       "?"
     else
-      dif = ((job.end_date.jd-job.start_date.jd)/365).floor
+      dif = ((job.end_date.jd - job.start_date.jd) / 365).floor
       dif.to_s
     end
   end

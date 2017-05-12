@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     #  flash[:success] = "Welcome mon gaillard!"
     #  redirect_to @user
       @user.send_activation_email
-      flash[:info] = "Consultez votre boîte à lettres, nous vous avons envoyé un lien d'activation de compte."
+      flash[:info] = 'Consultez votre boîte à lettres, nous vous avons envoyé un lien d\'activation de compte.'
       redirect_to root_url
     else
       render 'new'
@@ -33,17 +33,17 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Profil mis à jour"
+      flash[:success] = 'Profil mis à jour'
       redirect_to @user
     else
-      flash[:danger] = "Le profil n'a pas pu être mis à jour"
+      flash[:danger] = 'Le profil n\'a pas pu être mis à jour'
       render 'edit'
     end
   end
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "Utilisateur supprimé"
+    flash[:success] = 'Utilisateur supprimé'
     redirect_to users_url
   end
 

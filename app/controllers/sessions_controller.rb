@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         redirect_back_or comactions_path
       else
-        message  = "Votre compte n'est pas activé"
-        message += "Vérifiez votre boîte à lettes : elle contient un email d'activation."
+        message  = 'Votre compte n\'est pas activé'
+        message += 'Vérifiez votre boîte à lettes : elle contient un email d\'activation.'
         flash[:warning] = message
         redirect_to root_url
       end

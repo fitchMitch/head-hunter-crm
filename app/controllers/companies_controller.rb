@@ -57,7 +57,7 @@ class CompaniesController < ApplicationController
       flash[:success] = "Société mise à jour"
       redirect_to companies_path
     else
-      flash[:danger] = "Le contact n'a pas pu être mis à jour"
+      flash[:danger] = "Le contact n\'a pas pu être mis à jour"
       render 'edit'
     end
   end
@@ -79,9 +79,21 @@ class CompaniesController < ApplicationController
 
     @parameters = { 'params' => params, 'header' => [], 'tableDB' => 'companies', 'action' => 'list_people' }
 
-    @parameters['header'] << { 'width' => 3, 'label' => 'Personne', 'attribute' => 'people.lastname' }
-    @parameters['header'] << { 'width' => 3, 'label' => 'Emploi', 'attribute' => 'job_title' }
-    @parameters['header'] << { 'width' => 3, 'label' => 'Dates', 'attribute' => 'start_date' }
+    @parameters['header'] << {
+      'width' => 3,
+      'label' => 'Personne',
+      'attribute' => 'people.lastname'
+    }
+    @parameters['header'] << {
+      'width' => 3,
+      'label' => 'Emploi',
+      'attribute' => 'job_title'
+    }
+    @parameters['header'] << {
+      'width' => 3,
+      'label' => 'Dates',
+      'attribute' => 'start_date'
+    }
 
     render 'companies/company_people'
   end

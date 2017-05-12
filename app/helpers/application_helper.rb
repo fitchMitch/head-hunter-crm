@@ -35,21 +35,36 @@ module ApplicationHelper
           end
           if parameters['params'][:bin_filter] == nil
             if parameters['params'][:filter] == nil
-              res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query do
+              res += link_to controller: parameters['tableDB'],
+                                sort: sorting,
+                                action: action,
+                                query: query do
                 adj.html_safe
               end
             else
-              res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query, filter: parameters['params']['filter']  do
+              res += link_to controller: parameters['tableDB'],
+                    sort: sorting, action: action,
+                    query: query,
+                    filter: parameters['params']['filter']  do
                 adj.html_safe
               end
             end
           else
             if parameters['params'][:filter] == nil
-              res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query, bin_filter: parameters['params']['bin_filter'] do
+              res += link_to controller: parameters['tableDB'],
+                    sort: sorting,
+                    action: action,
+                    query: query,
+                    bin_filter: parameters['params']['bin_filter'] do
                 adj.html_safe
               end
             else
-              res += link_to controller: parameters['tableDB'], sort: sorting, action: action, query: query, bin_filter: parameters['params']['bin_filter'], filter: parameters['params']['filter'] do
+              res += link_to controller: parameters['tableDB'],
+                    sort: sorting,
+                    action: action,
+                    query: query,
+                    bin_filter: parameters['params']['bin_filter'],
+                    filter: parameters['params']['filter'] do
                 adj.html_safe
               end
             end
@@ -101,13 +116,13 @@ module ApplicationHelper
       elsif s > tomorrow
         ['hier à', hm]
       elsif s > 3600 # seconds in an hour
-        ["il y a",(s/3600), 'heures, à', hm]
+        ['il y a',(s/3600), 'heures, à', hm]
       elsif s > 60
         ['depuis', s/36, 'minutes']
       elsif s > 0
-        ["il y a secondes"]
+        ['il y a secondes']
       else
-        [""]
+        ['']
       end
     else
       if s> aYear # seconds in a year
@@ -127,11 +142,11 @@ module ApplicationHelper
       elsif s > 3600 # seconds in an hour
         ['dans',(s/3600), 'heures, à', hm]
       elsif s > 60
-        ["à", hm]
+        ['à', hm]
       elsif s > 0
-        ["dans quelques secondes"]
+        ['dans quelques secondes']
       else
-        [""]
+        ['']
       end
     end
 
@@ -142,6 +157,4 @@ module ApplicationHelper
       resolution.join(' ')
     end
   end
-
-
 end
