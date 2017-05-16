@@ -61,7 +61,7 @@ class Person < ApplicationRecord
     length: { minimum:10, maximum: 18 }
 
   def full_name
-    title + "  " + firstname + " " + lastname.upcase
+    title + '  ' + firstname + ' ' + lastname.upcase
   end
 
   # ------------------------

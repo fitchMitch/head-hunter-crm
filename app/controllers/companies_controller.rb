@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
     @companies = Company.all
 
     if params[:filter]
-      @companies = @companies.where(["category = ?", params[:filter]])
+      @companies = @companies.where(['category = ?', params[:filter]])
     end
 
     if params['sort']
@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
       field = f[0] == '-' ? f[1..-1] : f
       order = f[0] == '-' ? 'DESC' : 'ASC'
       if Company.new.has_attribute?(field)
-        @companies = @companies.order("#{field } #{order }")
+        @companies = @companies.order('#{field } #{order }')
       end
     else
         @companies = @companies.order('company_name ASC')
@@ -25,9 +25,20 @@ class CompaniesController < ApplicationController
     @companies = @companies.page(params[:page] ? params[:page].to_i : 1)
 
     @parameters = { 'params' => params, 'header' => [], 'tableDB' => 'companies' }
-    @parameters['header'] << { 'width' => 3, 'label' => 'Société', 'attribute' => 'company_name' }
-    @parameters['header'] << { 'width' => 2, 'label' => '' }
-    @parameters['header'] << { 'width' => 3, 'label' => 'Date d\'enregistrement', 'attribute' => 'created_at' }
+    @parameters['header'] << {
+      'width' => 3,
+      'label' => 'Société',
+      'attribute' => 'company_name'
+    }
+    @parameters['header'] << {
+      'width' => 2,
+      'label' => ''
+    }
+    @parameters['header'] << {
+      'width' => 3,
+      'label' => 'Date d\'enregistrement',
+      'attribute' => 'created_at'
+    }
   end
 
   def edit
@@ -45,7 +56,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)    # Not the final implementation!
     if @company.save
-      flash[:info] = "Société sauvegardée."
+      flash[:info] = 'Société sauvegardée.'
       goto_next_url companies_path
     else
       render 'new'
@@ -54,17 +65,17 @@ class CompaniesController < ApplicationController
 
   def update
     if @company.update_attributes(company_params)
-      flash[:success] = "Société mise à jour"
+      flash[:success] = 'Société mise à jour'
       redirect_to companies_path
     else
-      flash[:danger] = "Le contact n\'a pas pu être mis à jour"
+      flash[:danger] = 'Le contact n\'a pas pu être mis à jour'
       render 'edit'
     end
   end
 
   def destroy
     Company.find(params[:id]).destroy
-    flash[:success] = "Société supprimée"
+    flash[:success] = 'Société supprimée'
     redirect_to companies_path
   end
 

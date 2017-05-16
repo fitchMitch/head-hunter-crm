@@ -15,6 +15,11 @@ $color6: #CCC;
 $color7 : white;
 $color8 : #951418;
 
+.color2, input.header{
+  color:white;
+  background-color: $color2
+}
+
 body {
     background-color: $color4;/* #d9cdd9;*/
 }
@@ -80,7 +85,7 @@ h6 {
 
 h1 {
     font-size: 2.7em;
-    letter-spacing: -2px;
+    #letter-spacing: -2px;
     margin-bottom: 30px;
     text-align: center;
 }
@@ -219,6 +224,7 @@ aside {
     margin-top: 15px;
 }
 /* forms */
+
 .btnSubmitCtr {
     width: 40%;
     margin: auto;
@@ -227,9 +233,7 @@ aside {
 .labelDown{
   padding-bottom: 1em;
 }
-.uneditable-input,
-input,
-textarea {
+.uneditable-input, input, textarea {
     border: 1px solid $color3;
     /*width: 100%;*/
     margin-bottom: 15px;
@@ -237,7 +241,7 @@ textarea {
 }
 
 input {
-    height: auto !important;
+    /*height: auto !important; */
 }
 
 #error_explanation {
@@ -260,6 +264,7 @@ input {
 abbr {
     color: red;
 }
+
 
 #session_remember_me {
     width: auto;
@@ -348,6 +353,9 @@ a > span.label-warning:hover{
 }
 
 /* Missions */
+#mission_search{
+  display:inline;
+}
 .late{
   background-color: $color8;
   color:white;
@@ -361,9 +369,16 @@ a > span.label-warning:hover{
   vertical-align: middle;
   color: $color4;
   background-color: $color3;
-  padding: 0.4em;
   -webkit-border-radius:8px 8px 8px 8px;
   border-radius:8px 8px 8px 8px;
+}
+.filter_box{
+  border: 1px solid $color3;
+  padding: 4px;
+  margin-right: 4px;
+  background-color: $color7;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
 .frameMe {
     margin-top: 5px;

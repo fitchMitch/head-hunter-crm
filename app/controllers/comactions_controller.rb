@@ -21,97 +21,23 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def index
+
     uid = current_user.id
-    @comactions = Comaction.includes(:user, :person, mission: [:company])
+    @q = Comaction.ransack(params[:q])
+    @comactions = @q.result.includes(:user, :person, mission: [:company])
     if params[:filter] != nil
       filter = params[:filter]
-      if filter == 'unscheduled'
-        @comactions = @comactions
-          .unscheduled(uid)
-          .newer_than(7, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      elsif filter == 'future'
-        @comactions = @comactions
-          .scheduled(uid).newer_than(0, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      elsif filter == 'sourced'
-        @comactions = @comactions
-          .sourced(uid)
-          .newer_than(7, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      elsif filter == 'preselected'
-        @comactions = @comactions
-          .preselected(uid)
-          .newer_than(7, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      elsif filter == 'appoint'
-        @comactions = @comactions
-          .appoint(uid)
-          .newer_than(7, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      elsif filter == 'pres'
-        @comactions = @comactions
-          .pres(uid)
-          .newer_than(7, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      elsif filter == 'opres'
-        @comactions = @comactions
-          .opres(uid)
-          .newer_than(7, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      elsif filter == 'hired'
-        @comactions = @comactions
-          .hired(uid)
-          .newer_than(7, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      elsif filter == 'working'
-        @comactions = @comactions
-          .working(uid)
-          .newer_than(7, uid)
-          .page(params[:page] ? params[:page].to_i: 1)
-      else
-        @comactions = @comactions
-          .page(params[:page] ? params[:page].to_i: 1)
+      Comaction::STATUS_RELATED.values.each do |key|
+        @comactions = @comactions.public_send(key, uid)  if params[:filter].to_sym == key
+        if params[:filter] === 'future'
+          @comactions = @comactions.newer_than 0, uid
+        else
+          @comactions = @comactions.newer_than 7 , uid
+        end
       end
-    else
-      @comactions = @comactions.newer_than(3, uid)
-        .page(params[:page] ? params[:page].to_i: 1)
     end
-
-    @comactions = bin_filters(@comactions, params)
-    @comactions = reorder(@comactions, params, 'comactions.name')
-
-    @parameters = { 'params' => params, 'header' => [], 'tableDB' => 'comactions', 'query' => 'table_view' }
-
-    @parameters['header'] << {
-        'width' => 3,
-        'label' => 'Nom',
-        'attribute' => 'name'
-      }
-    @parameters['header'] << {
-      'width' => 2,
-      'label' => 'Date',
-      'attribute' => 'start_time'
-    }
-    @parameters['header'] << {
-      'width' => 2,
-      'label' => 'Avec',
-      'attribute' => 'people.lastname'
-    }
-    @parameters['header'] << {
-      'width' => 1,
-      'label' => 'Statut',
-      'attribute' => 'status'
-    }
-    @parameters['header'] << { 'width' => 2,
-      'label' => 'Mission',
-      'attribute' => 'missions.name'
-    }
-    @parameters['header'] << { 'width' => 1,
-      'label' => 'Resp.',
-      'attribute' => 'users.name'
-    }
-
+    @comactions = @comactions.page(params[:page] ? params[:page].to_i : 1)
+    # ---------- view choice ---------------
     if params[:query].nil? || params[:query] != 'table_view'
       render 'calendar'
     else
@@ -147,7 +73,7 @@ class ComactionsController < ApplicationController
     @comaction = trigger_nil_dates @comaction
 
     if @comaction.save
-      if (@comaction.start_time.nil?  || @comaction.end_time.nil? )
+      if @comaction.start_time.nil?  || @comaction.end_time.nil?
         flash[:info] = 'Rendez-vous sauvegardé'
       else
         @comaction.send_meeting_email(current_user, 1)
@@ -164,7 +90,7 @@ class ComactionsController < ApplicationController
     @comaction = trigger_nil_dates @comaction
 
     if @comaction.update_attributes(comaction_params)
-      if (@comaction.start_time.nil? || @comaction.end_time.nil? )
+      if @comaction.start_time.nil? || @comaction.end_time.nil?
         flash[:success] = 'Rendez-vous sauvegardé'
       else
         @comaction.send_meeting_email(current_user, 0)
@@ -193,6 +119,11 @@ class ComactionsController < ApplicationController
   #---------------
   private
   #---------------
+  # A list of the param names that can be used for filtering the Product list
+    def filtering_params(params)
+      params.slice(Comaction::STATUS_RELATED.values)
+    end
+
     def comaction_params
       params.require(:comaction).permit(:name, :status, :action_type, :start_time, :end_time, :user_id, :mission_id, :person_id, :is_dated)
     end

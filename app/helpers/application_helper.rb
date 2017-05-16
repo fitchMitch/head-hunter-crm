@@ -9,6 +9,22 @@ module ApplicationHelper
     end
   end
 
+  # def block_header(parameters)
+  #   sort = parameters['params'][:sort]
+  #   action = parameters['action'] || 'index'
+  #   q =  parameters['quest']
+  #
+  #   res ="<div class= 'row array_header'>"
+  #   parameters['header'].each do |col|
+  #     res += '<div class="col-xs-' + col['width'].to_s + '">'
+  #     res += sort_link(quest,)
+  #
+  #     res += '</div>'
+  #   end
+  #   res += '</div>'
+  #   res.html_safe
+  # end
+
   def block_header(parameters)
     # Example
     # @parameters = { 'params' => params, 'header' => [], 'tableDB' => 'companies' }

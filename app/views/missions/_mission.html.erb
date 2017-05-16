@@ -1,35 +1,44 @@
-    <div class="<%= latelyness mission %>" >
+<div class="<%= latelyness mission %>">
+    <div class='col-xs-1'>
+        <small>
+            <strong><%= future_time_in_words mission.whished_start_date %></strong>
+        </small>
+    </div>
     <div class='col-xs-2'>
-      <%= link_to mission.name, mission_path(mission) %>
-       |
+        <%= link_to mission.name, mission_path(mission) %>
+        |
         <%= link_to  edit_mission_path(mission)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
         <% if logged_in? && current_user.admin? %>
-          | <%= link_to  mission_path(mission), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
-          <span class="glyphicon glyphicon-trash"></span>
-          <% end %>
+        |
+        <%= link_to  mission_path(mission), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
+        <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
         <% end %>
         <br>
         <small>
-          Marché : <%= number_to_currency mission.reward %>
-          <br> Payé: <%= number_to_currency mission.paid_amount %>
+            Marché :
+            <%= number_to_currency mission.reward %>
+            <br>
+            Payé:
+            <%= number_to_currency mission.paid_amount %>
         </small>
     </div>
     <div class='col-xs-2'>
-      <%= mission.status %>
+        <%= mission.status %>
     </div>
     <div class='col-xs-2'>
         <%= link_to list_people_company_path(mission.company_id), class: "" do %>
-        <span class="label label-warning">
-          <%= mission.company.company_name %>
+        <span class="label label-warning"> 
+            <%= mission.company.company_name %>
         </span>
         <% end %>
         <br>
         <small>
-          <%= link_to person_path mission.person_id, class: "btn btn-primary" do%>
+            <%= link_to person_path mission.person_id, class: "btn btn-primary" do%>
             <%= fa_icon("user", text: mission.person.full_name) %>
-          <% end %>
+            <% end %>
         </small>
     </div>
     <div class='col-xs-4'>
@@ -39,9 +48,6 @@
     </div>
     <div class='col-xs-1'>
         <small><%= time_ago_in_words mission.updated_at %></small>
-    </div>
-    <div class='col-xs-1'>
-        <small><strong><%= future_time_in_words mission.whished_start_date %></strong></small>
     </div>
 
 </div>

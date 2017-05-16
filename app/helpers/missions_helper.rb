@@ -12,12 +12,16 @@ module MissionsHelper
   end
 
   def latelyness (mission)
-    st = ' row '
+    st = 'row '
     if mission.is_done
       st += 'mission_done'
     elsif mission.whished_start_date < Time.zone.now
       st += 'late'
     end
+  end
+
+  def search_checkboxes_names (name,i)
+    (name + i.to_s).to_sym
   end
 
 end
