@@ -1,0 +1,11 @@
+<div class="row spaceDown">
+  <div class="col-xs-12">
+    <%= search_form_for @q, html: {class: "form-inline"} do |f| %>
+      <%= f.select :status_eq , options_for_select(Mission::STATUSES.collect { |t| [ t, t] },@status_selected), {},  {class: "form-control"} %>
+      <button type="submit" class="btn btn-info ">Filtrer <%= fa_icon("filter") %></button>
+    <% end %>
+    <%= link_to  missions_path, class: "btn btn-default" do %>
+      <%= fa_icon("circle-o-notch") %>
+    <% end %>
+  </div>
+</div>

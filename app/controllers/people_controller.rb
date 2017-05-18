@@ -6,17 +6,8 @@ class PeopleController < ApplicationController
   end
 
   def index
-    @people = Person.all
-
-    @people = bin_filters(@people, params)
-    @people = reorder(@people, params, 'people.lastname')
-    @people = @people.page(params[:page] ? params[:page].to_i: 1).includes(:user)
-
-    @parameters = { 'params' => params, 'header' => [], 'tableDB' => 'people' }
-    @parameters['header'] << { 'width' => 3, 'label' => 'Contact', 'attribute' => 'lastname' }
-    @parameters['header'] << { 'width' => 2, 'label' => '' }
-    @parameters['header'] << { 'width' => 3, 'label' => 'Date de mise à jour', 'attribute' => 'updated_at' }
-
+    @q = Person.ransack(params[:q])
+    @people = @q.result.page(params[:page] ? params[:page].to_i : 1)
   end
 
   def edit

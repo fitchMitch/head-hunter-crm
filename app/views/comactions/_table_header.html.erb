@@ -1,0 +1,32 @@
+<div class="row array_header">
+  <div class="col-xs-3">
+    <%= sort_link(@q, :name, default_sorting: :asc) do %>
+    <strong>Nom</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-2">
+    <%= sort_link(@q, :start_time, default_order: :asc) do %>
+      <strong>Date</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-2">
+    <%= sort_link(@q, :person_lastname, default_order: :asc) do %>
+      <strong>Avec</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-1">
+    <%= sort_link(@q, :status, default_order: :asc) do %>
+      <strong>Statut </strong>
+    <% end %>
+  </div>
+  <div class="col-xs-2">
+    <%= sort_link(@q, :mission_name, default_order: :asc) do %>
+      <strong>Mission</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-1">
+    <%= sort_link(@q, :user_name, default_order: :asc) do %>
+      <small>Resp</small>
+    <% end %>
+  </div>
+</div>

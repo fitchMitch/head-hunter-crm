@@ -1,0 +1,30 @@
+<div class="row array_header">
+  <div class="col-xs-1">
+    <%= sort_link(@q, :whished_start_date, default_sorting: :asc) do %>
+    <strong>Echéance</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-2">
+    <%= sort_link(@q, :name, default_order: :asc) do %>
+      <strong>Mission</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-2">
+    <%= sort_link(@q, :status, default_order: :asc) do %>
+      <strong>Statut</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-2">
+    <%= sort_link(@q, :company_company_name, default_order: :asc) do %>
+      <strong>Société</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-4">
+      <strong>Contenu de la mission</strong>
+  </div>
+  <div class="col-xs-1">
+    <%= sort_link(@q, :updated_at, default_order: :desc) do %>
+      <small>Mise à jour</small>
+    <% end %>
+  </div>
+</div>

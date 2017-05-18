@@ -21,7 +21,6 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def index
-
     uid = current_user.id
     @q = Comaction.ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])

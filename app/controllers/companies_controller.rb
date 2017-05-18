@@ -6,39 +6,8 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
-
-    if params[:filter]
-      @companies = @companies.where(['category = ?', params[:filter]])
-    end
-
-    if params['sort']
-      f = params['sort'].split(', ').first
-      field = f[0] == '-' ? f[1..-1] : f
-      order = f[0] == '-' ? 'DESC' : 'ASC'
-      if Company.new.has_attribute?(field)
-        @companies = @companies.order('#{field } #{order }')
-      end
-    else
-        @companies = @companies.order('company_name ASC')
-    end
-    @companies = @companies.page(params[:page] ? params[:page].to_i : 1)
-
-    @parameters = { 'params' => params, 'header' => [], 'tableDB' => 'companies' }
-    @parameters['header'] << {
-      'width' => 3,
-      'label' => 'Société',
-      'attribute' => 'company_name'
-    }
-    @parameters['header'] << {
-      'width' => 2,
-      'label' => ''
-    }
-    @parameters['header'] << {
-      'width' => 3,
-      'label' => 'Date d\'enregistrement',
-      'attribute' => 'created_at'
-    }
+    @q = Company.ransack(params[:q])
+    @companies = @q.result.page(params[:page] ? params[:page].to_i : 1)
   end
 
   def edit
@@ -46,7 +15,7 @@ class CompaniesController < ApplicationController
   end
 
   def search
-    @search_companies = Company.find(params[:q]) #.paginate(page: params[:page])
+    @search_companies = Company.find(params[:q])
   end
 
   def show
@@ -80,31 +49,13 @@ class CompaniesController < ApplicationController
   end
 
   def list_people
-    #@comactions = Comaction.includes(:user, :person, mission: [:company])
     @company = Company.find(params[:id])
-    @jobs = Job.where('company_id = ?', params[:id]).includes(:person)
-    @jobs = bin_filters(@jobs, params)
-    @jobs = reorder(@jobs, params, 'job_title')
-
     @nbr = Job.where('company_id = ?', params[:id]).distinct.pluck(:person_id).count
-
-    @parameters = { 'params' => params, 'header' => [], 'tableDB' => 'companies', 'action' => 'list_people' }
-
-    @parameters['header'] << {
-      'width' => 3,
-      'label' => 'Personne',
-      'attribute' => 'people.lastname'
-    }
-    @parameters['header'] << {
-      'width' => 3,
-      'label' => 'Emploi',
-      'attribute' => 'job_title'
-    }
-    @parameters['header'] << {
-      'width' => 3,
-      'label' => 'Dates',
-      'attribute' => 'start_date'
-    }
+    #@comactions = Comaction.includes(:user, :person, mission: [:company])
+    params[:q]={} if params[:q].nil?
+    params[:q]['company_id_eq'] = params[:id]
+    @q = Job.ransack(params[:q])
+    @jobs = @q.result.includes(:company, :person).page(params[:page] ? params[:page].to_i : 1)
 
     render 'companies/company_people'
   end
