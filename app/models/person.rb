@@ -31,6 +31,7 @@ class Person < ApplicationRecord
 
   before_save   :downcase_email
   before_save   :upcase_name
+  before_save   :phone_number_format
 
   has_and_belongs_to_many :tags
 
@@ -70,8 +71,24 @@ class Person < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
+
   def upcase_name
     self.lastname = lastname.upcase
+  end
+
+  def phone_number_format
+    self.cell_phone_number = format_by_two(cell_phone_number) unless (cell_phone_number.nil?)
+    self.phone_number = format_by_two(phone_number) unless (phone_number.nil?)
+  end
+
+  def format_by_two (nr)
+    nr = nr.sub( '+33' , '0').tr '^0-9', ''
+
+    reg2 = /(\d{2})(\d{2})(\d{2})(\d{2})(\d+)/
+    my_match = reg2.match(nr)
+    return nr if my_match == nil
+    my_match.captures.compact.join(" ")
+
   end
 
 end

@@ -16,13 +16,9 @@
                         <%= @comaction.name %>
                     </h1>
                 </td>
-                <td>
-
-                </td>
+                <td> </td>
             </tr>
-
         </table>
-
     </div>
 </div>
 
@@ -44,7 +40,7 @@
     <% end %>
   </div>
   <div class="col-xs-12  nav-ico">
-    <%= link_to  comactions_path(query: 'table_view') do %>
+    <%= link_to  comactions_path(v: 'table_view') do %>
     <button class="btn btn-info">
       <%= fa_icon('list ') %>
     </button>

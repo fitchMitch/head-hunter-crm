@@ -27,17 +27,17 @@ class ComactionsController < ApplicationController
     if params[:filter] != nil
       filter = params[:filter]
       Comaction::STATUS_RELATED.values.each do |key|
-        @comactions = @comactions.public_send(key, uid)  if params[:filter].to_sym == key
-        if params[:filter] === 'future'
-          @comactions = @comactions.newer_than 0, uid
-        else
-          @comactions = @comactions.newer_than 7 , uid
-        end
+        @comactions = @comactions.public_send(key)  if params[:filter].to_sym == key
+      end
+      if params[:filter] === 'future'
+        @comactions = @comactions.mine(uid).newer_than 0
+      else
+        @comactions = @comactions.mine(uid).newer_than 7
       end
     end
     @comactions = @comactions.page(params[:page] ? params[:page].to_i : 1)
     # ---------- view choice ---------------
-    if params[:query].nil? || params[:query] != 'table_view'
+    if params[:v].nil? || params[:v] != 'table_view'
       render 'calendar'
     else
       render 'index'

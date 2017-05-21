@@ -9,9 +9,9 @@
         <%= f.input :cv_docx, as: :file %>
     </div>
     <div class="col-sm-6 ">
-        <%= f.input :phone_number, label: "Numéro de téléphone", input_html:{ maxlength: 16, class:" input-sm" } %>
-        <%= f.input :cell_phone_number, label:"Numéro de mobile", input_html:{ maxlength: 16, class:" input-sm" } %>
-        <%= f.input :birthdate, label:"Né le ", as: :date, start_year: Date.today.year - 75, end_year: Date.today.year - 14, order: [:day, :month, :year], input_html:{class:" input-sm" } %>
+        <%= f.input :phone_number, label: "Numéro de téléphone", input_html:{ maxlength: 20, class:" input-sm" } %>
+        <%= f.input :cell_phone_number, label:"Numéro de mobile", input_html:{ maxlength: 20, class:" input-sm" } %>
+        <%= f.input :birthdate, label:"Né le ", as: :date, start_year: Date.today.year - 60, end_year: Date.today.year - 14, order: [:day, :month, :year], input_html:{class:" input-sm" } %>
         <%= f.input :is_jj_hired, label: "Embauché grâce à JJ", input_html: {class:" input-sm"}%>
         <%= f.input :note, label: "Commentaire" %>
     </div>

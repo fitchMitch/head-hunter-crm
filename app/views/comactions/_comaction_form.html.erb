@@ -28,7 +28,7 @@
      <%= f.input :is_dated, as: :boolean, label: "Horaire ?",  required: false, input_html: {class: ""} %>
   </div>
   <div class='col-xs-9'>
-     <%= f.input :start_time, label: "Date et heure de début",  required: false,  input_html: {class: "form-control input-sm"} %>
+     <%= f.input :start_time, :as => :datetime, :minute_step => 15, :min_hour => 7, label: "Date et heure de début",  required: false,  input_html: {class: "form-control input-sm"} %>
      <br>
      <%= f.input :end_time, label: "Date et heure de fin",  required: false,  input_html: {class: "form-control input-sm"} %>
   </div>

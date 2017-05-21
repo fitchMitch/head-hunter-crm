@@ -20,9 +20,6 @@ class Job < ApplicationRecord
   belongs_to  :company
 
   scope :reversed_time, -> { order(start_date: :desc) }
-  #default_scope -> { order(start_date: :desc) }
-  #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
-  #:time, :date, :binary, :boolean, :references
 
   validates :job_title, presence: true, length: { maximum: 50 }
   validates :salary, length: { maximum: 10 }
@@ -30,7 +27,7 @@ class Job < ApplicationRecord
   validates :end_date, presence: true, date: { after: :start_date }, unless: :no_end?
 
   def double_jobs(person_id)
-    Job.where("person_id = ? AND no_end = ?", person_id, true).count>1
+    Job.where("person_id = ? AND no_end = ?", person_id, true).count > 1
   end
 
   # ------------------------

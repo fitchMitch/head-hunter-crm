@@ -412,6 +412,9 @@ a > span.label-warning:hover{
   font-family: "Verdana";
   font-stretch: semi-condensed;
   font-weight: bold;
-  background-color: $color5;
+  border : 1px grey solid;
+  padding : 2px;
   color:#4b425f;
+  -webkit-border-radius:2px;
+  border-radius: 2px;
 }

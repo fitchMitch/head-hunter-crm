@@ -21,9 +21,9 @@ module ComactionsHelper
     r=''
     Comaction::STATUSES.each { |status|
       if cal.to_i == 1
-        r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :query => 'calendar_view'), class: "btn btn-primary"
+        r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :v => 'calendar_view'), class: "btn btn-primary"
       else
-        r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :query => 'table_view'), class: "btn btn-primary"
+        r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :v => 'table_view'), class: "btn btn-primary"
       end
     }
     r.html_safe

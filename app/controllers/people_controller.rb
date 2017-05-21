@@ -19,9 +19,20 @@ class PeopleController < ApplicationController
   end
 
   def show
+    require 'docx'
+
     @person = Person.find(params[:id])
+    if @person.cv_docx.file?
+      # url = @person.cv_docx.url.to_s.split("?")[0][1..-1]
+      pth = "public/" + @person.cv_docx.url.to_s.split("?")[0]
+      @doc = Docx::Document.open(pth)
+
+      # logger.info(" ------------------------ ")
+      # logger.info( @doc.paragraphs)
+    end
+
     @job = @person.jobs.build
-    @jobs = @person.jobs.reload.includes(:company).reversed_time
+    @jobs = @person.jobs.includes(:company).reversed_time
 
     # last_job = @jobs.last
     @alljobs = []

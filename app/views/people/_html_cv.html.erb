@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-xs-12">
+     <h3>Son CV</h3>
+      <% @doc.paragraphs.each do |pa|   %>
+        <p>
+          <%= pa.to_html.html_safe  %>
+        </p>
+      <% end %>
+  </div>
+  <!-- <div class="col-xs-12">
+     <h3>Son CV en texte</h3>
+      <% @doc.paragraphs.each do |pa|   %>
+        <p>
+          <%= pa.text  %>
+        </p>
+      <% end %>
+  </div> -->
+</div>

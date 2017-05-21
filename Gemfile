@@ -30,6 +30,7 @@ gem 'simple_calendar', '~> 2.2', '>= 2.2.5'
 gem 'icalendar', '~> 2.4', '>= 2.4.1'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'sqlite3', '1.3.12'
+gem 'docx', '~> 0.2.07', :require => ["docx"]
 # temp
 
 group :development, :test do
