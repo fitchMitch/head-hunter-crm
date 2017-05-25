@@ -1,16 +1,21 @@
-<div class="row array_header">
-  <div class="col-xs-3">
-    <%= sort_link(@q, :company_name, default_sorting: :asc) do %>
-      <strong>Société</strong>
-    <% end %>
+<div class="row">
+  <div class="col-xs-2 hidden-xs"></div>
+  <div class="col-xs-8">
+    <div class="row array_header">
+      <div class="col-xs-4">
+        <%= sort_link(@q, :company_name, default_sorting: :asc) do %>
+          <strong>Société</strong>
+        <% end %>
+      </div>
+      <div class="col-xs-4">
+        <strong>Action</strong>
+      </div>
+      <div class="col-xs-4">
+        <%= sort_link(@q, :updated_at, default_order: :desc) do %>
+          <strong>Mise à jour</strong>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-2">
-    <strong>Action</strong>
-  </div>
-  <div class="col-xs-2">
-    <%= sort_link(@q, :updated_at, default_order: :desc) do %>
-      <strong>Mise à jour</strong>
-    <% end %>
-  </div>
-
+  <div class="col-xs-2 hidden-xs"></div>
 </div>

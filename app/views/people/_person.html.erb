@@ -1,40 +1,52 @@
 <% unless @people.nil? %>
-<div class='row'>
-  <div class="col-sm-3">
-    <%= link_to person do %>
-        <i class="fa fa-user"></i> <%= person.full_name %>
-    <% end %>
-    <% if person.cv_docx.file? %>
-      <%= link_to person.cv_docx.url, class:'word_cv_badge' do %>
-      <i class="fa fa-file-word-o" aria-hidden="true"></i>
-      <% end %>
-    <% elsif !person.is_client? %>
-      <span class="small_alert">CV !</span>
-    <% end %>
-  </div>
+<div class="row">
+    <div class="col-xs-2 hidden-xs hidden-sm"></div>
+    <div class="col-xs-8 ">
+        <div class='row'>
+            <div class="col-xs-5">
+                <%= link_to person do %>
+                  <i class="fa fa-user"></i>
+                  <%= person.full_name %>
+                <% end %>
+                <% if person.cv_docx.file? %>
+                  <%= link_to person.cv_docx.url, class:'word_cv_badge' do %>
+                    <i class="fa fa-file-word-o" aria-hidden="true"></i>
+                  <% end %>
+                <% elsif !person.is_client? %>
+                  <span class="small_alert">CV !</span>
+                <% end %>
+            </div>
 
-  <div class="col-sm-2">
-    <p>
-      <% if logged_in? %>
-        <%= link_to person, method: :delete, data: { confirm: "C'est sûr,ça ?" } do %>
-          <span class="glyphicon glyphicon-trash"> </span>
-        <% end %>
-      | <%= link_to edit_person_path(person) do %>
-          <span class="glyphicon glyphicon-pencil"> </span>
-        <% end %>
-    <% end %>
-    </p>
-  </div>
+            <div class="col-xs-3">
+                <p>
+                    <% if logged_in? %>
+                      <%= link_to person, method: :delete, data: { confirm: "C'est sûr,ça ?" } do %>
+                        <span class="glyphicon glyphicon-trash"></span>
+                      <% end %>
+                      |
+                      <%= link_to edit_person_path(person) do %>
+                      <span class="glyphicon glyphicon-pencil"></span>
+                      <% end %>
+                    <% end %>
+                </p>
+            </div>
 
-  <div class="col-sm-3">
-    <small>
-      ajouté il y a
-       <%= time_ago_in_words(person.updated_at)  %>
-       <%= user_badge(person.user) %>
-    </small>
-  </div>
+            <div class="col-xs-4">
+                <small>
+                    ajouté il y a
+                    <%= time_ago_in_words(person.updated_at)  %>
+                    <%= user_badge(person.user) %>
+                </small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <%= render 'shared/sep' %>
+            </div>
+        </div>
+    </div>
+
 </div>
-<%= render 'shared/sep' %>
 <% else %>
-<h3>Personne n'est encore inscrit</h3>
+  <h3>Personne n'est encore inscrit</h3>
 <% end %>

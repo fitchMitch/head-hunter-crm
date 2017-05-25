@@ -23,12 +23,8 @@ class PeopleController < ApplicationController
 
     @person = Person.find(params[:id])
     if @person.cv_docx.file?
-      # url = @person.cv_docx.url.to_s.split("?")[0][1..-1]
       pth = "public/" + @person.cv_docx.url.to_s.split("?")[0]
       @doc = Docx::Document.open(pth)
-
-      # logger.info(" ------------------------ ")
-      # logger.info( @doc.paragraphs)
     end
 
     @job = @person.jobs.build
@@ -100,9 +96,13 @@ class PeopleController < ApplicationController
   end
 
   def destroy
-    @person.cv_docx = nil
+     mes = 'Contact supprimé'
+    if person.cv_dox.file?
+      @person.cv_docx = nil
+      mes += @person.save ? ' avec son CV' : ', mais son CV est resté sur le serveur'
+    end
     @person.destroy
-    flash[:success] = 'Contact supprimé'
+    flash[:success] = mes
     redirect_to people_url
   end
 

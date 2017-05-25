@@ -15,6 +15,16 @@ $color6: #CCC;
 $color7 : white;
 $color8 : #951418;
 
+/* RGB 2*/
+$color1: #103828;
+$color2: rgba(53, 96, 90, 1);
+$color3: rgba(107, 129, 140, 1);
+$color4: #f1f9fb;
+$color5: #8df5ba;
+$color6: #CCC;
+$color7 : white;
+$color8 : #951418;
+
 .color2, input.header{
   color:white;
   background-color: $color2
@@ -327,6 +337,12 @@ hr.sep{
     -webkit-border-radius:4px 4px 4px 4px;
     border-radius:4px 4px 4px 4px;
 }
+.col-right{
+  border-right: 1px solid grey;
+}
+.col-left{
+  border-left: 1px solid grey;
+}
 .cartel{
   color:#555;
   align-content: flex-end;
@@ -417,4 +433,21 @@ a > span.label-warning:hover{
   color:#4b425f;
   -webkit-border-radius:2px;
   border-radius: 2px;
+}
+.day.start-date{
+  border: 2px solid $color5;
+}
+.today {
+    background: $color5;
+}
+.simple-calendar.today{
+  background-color: white;
+
+}
+.day.future{
+  border: 2px solid $color1;
+}
+.day.past{
+  border: 1px dashed grey;
+  color:grey;
 }

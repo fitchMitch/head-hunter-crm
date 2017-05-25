@@ -58,7 +58,7 @@ end
 group :production do
   #gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
-  #gem 'pg', '0.18.4'
+  gem 'pg', '~> 0.20.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
