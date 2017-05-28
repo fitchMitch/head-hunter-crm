@@ -22,6 +22,7 @@ test:
 
 production:
   adapter: postgresql
+  host: localhost
   database: jjflo
   username: postgres
   password: DasAjKoin8
