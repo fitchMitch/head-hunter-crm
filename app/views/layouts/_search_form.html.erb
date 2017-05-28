@@ -1,6 +1,6 @@
 <%= form_tag({action: 'search', controller: 'static_pages', method: 'get' }, {class: 'navbar-form navbar-right', method: 'get' }) do %>
-  <div class="input-group ">
-    <span class="input-group-addon color2" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
+  <div class="input-group top_search ">
+    <span class="input-group-addon " id="basic-addon1"><span class="glyphicon glyphicon-search color5"></span></span>
     <%= text_field_tag :q, "", class: "form-control header ", placeholder: "Noms, sociétés, etc.." %>
   </div>
 <% end %>

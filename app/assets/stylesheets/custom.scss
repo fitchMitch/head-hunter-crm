@@ -52,6 +52,10 @@ body {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+.top_search > span,.top_search > input{
+  color: $color5;
+  background-color: $color1;
+}
 /* miscellaneous */
 .debug_dump {
     clear: both;
@@ -284,7 +288,6 @@ abbr {
 .users {
     list-style: none;
     margin: 0;
-
     li {
         overflow: auto;
         padding: 10px 0;
@@ -429,20 +432,16 @@ a > span.label-warning:hover{
   font-stretch: semi-condensed;
   font-weight: bold;
   border : 1px grey solid;
+  background-color: white;
   padding : 2px;
   color:#4b425f;
   -webkit-border-radius:2px;
   border-radius: 2px;
 }
 .day.start-date{
-  border: 2px solid $color5;
-}
-.today {
+    background-color: $color5;
     background: $color5;
-}
-.simple-calendar.today{
-  background-color: white;
-
+    border : 2px $color5 solid;
 }
 .day.future{
   border: 2px solid $color1;
