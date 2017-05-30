@@ -83,7 +83,7 @@ class Comaction < ApplicationRecord
        where('comactions.status = ? ', STATUS_WORKING)
      }
 
-    validates :name, presence: true, length: { maximum: 50 }
+    # validates :name, presence: true, length: { maximum: 50 }
     validates :status, presence: true
     validates :action_type, presence: true
 

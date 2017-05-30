@@ -45,31 +45,42 @@ class Person < ApplicationRecord
   #:time, :date, :binary, :boolean, :references
 
 
-  validates :firstname,
-    presence: true,
-    length: { maximum: 35 }
+  # validates :firstname,
+  #   presence: true,
+  #   length: { maximum: 35 }
   validates :lastname,
     presence: true,
     length: { maximum: 40 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true,
-    length: { maximum: 255 },
-    format: { with: VALID_EMAIL_REGEX },
-    uniqueness: { case_sensitive: false }
-  validates :phone_number,
-    length: { minimum:10, maximum: 18 }
-  validates :cell_phone_number,
-    length: { minimum:10, maximum: 18 }
+  SPACES = /\A\s*(.*)\s*\z/
+  # validates :email,
+  #   length: { maximum: 255 },
+  #   format: { with: VALID_EMAIL_REGEX },
+  #   uniqueness: { case_sensitive: false } ,
+  #   if: :email.present?
+  # validates :phone_number,
+  #   length: { minimum:10, maximum: 18 }
+  # validates :cell_phone_number,
+  #   length: { minimum:10, maximum: 18 }
+  validate :is_email_an_email
+
+  def is_email_an_email
+    if email.present? && VALID_EMAIL_REGEX.match(email) == nil
+      errors.add(:email, '... une erreur sur l\'email, certainement')
+    end
+  end
 
   def full_name
-    title + '  ' + firstname + ' ' + lastname.upcase
+    self.firstname.nil? ? title + '  ' + lastname.upcase : title + '  ' + firstname + ' ' + lastname.upcase
   end
 
   # ------------------------
   private
   # ------------------------
   def downcase_email
+    return if email.nil? || email === ""
     self.email = email.downcase
+    self.email = SPACES.match(email)[1]
   end
 
   def upcase_name

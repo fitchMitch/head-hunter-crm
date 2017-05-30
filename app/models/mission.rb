@@ -44,10 +44,8 @@ class Mission < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :reward, presence: true
   validates :whished_start_date, presence: true
-  validate :max_age_is_max
-
   validates :status, inclusion: {in: STATUSES }
-
+  validate :max_age_is_max
 
   def max_age_is_max
     if min_age.present? && max_age.present? && min_age > max_age

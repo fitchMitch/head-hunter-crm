@@ -71,6 +71,7 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
+    render 'new' if @person.nil?
     @person.cv_docx = params[:person][:cv_docx]
     @person.user_id = current_user.id
     if @person.save
@@ -97,7 +98,7 @@ class PeopleController < ApplicationController
 
   def destroy
      mes = 'Contact supprimé'
-    if person.cv_dox.file?
+    if @person.cv_docx.file?
       @person.cv_docx = nil
       mes += @person.save ? ' avec son CV' : ', mais son CV est resté sur le serveur'
     end
@@ -129,8 +130,7 @@ class PeopleController < ApplicationController
         :is_jj_hired,
         :is_client,
         :note,
-        :cv_docx #,
-        #jobs_attributes: [:id, :salary, :job_title, :start_date, :end_date, :jj_job]
+        :cv_docx
         )
     end
     def logged_in_user
