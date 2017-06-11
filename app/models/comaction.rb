@@ -44,6 +44,8 @@ class Comaction < ApplicationRecord
         STATUS_WORKING => :working
     }.freeze
 
+
+
     # scope :older_than, ->(d, being_id) {
     #     d ||= 7
     #     where('start_time < ? OR start_time is null AND comactions.user_id = ?', d.days.ago, being_id)

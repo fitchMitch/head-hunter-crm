@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413112213) do
+ActiveRecord::Schema.define(version: 20170603154621) do
 
   create_table "comactions", force: :cascade do |t|
     t.string   "name"
@@ -85,8 +85,6 @@ ActiveRecord::Schema.define(version: 20170413112213) do
     t.string   "lastname"
     t.string   "email"
     t.string   "phone_number"
-    t.string   "cell_phone_number"
-    t.date     "birthdate"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.boolean  "is_jj_hired"
@@ -97,6 +95,7 @@ ActiveRecord::Schema.define(version: 20170413112213) do
     t.string   "cv_docx_content_type"
     t.integer  "cv_docx_file_size"
     t.datetime "cv_docx_updated_at"
+    t.integer  "approx_age"
     t.index ["email"], name: "index_people_on_email"
     t.index ["user_id"], name: "index_people_on_user_id"
   end

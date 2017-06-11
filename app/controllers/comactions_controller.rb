@@ -18,6 +18,7 @@ class ComactionsController < ApplicationController
   def new
     @comaction = Comaction.new
     @comaction.is_dated = true
+    @comaction.name = "Rdv"
   end
   #-----------------
   def index

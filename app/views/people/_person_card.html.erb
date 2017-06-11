@@ -11,7 +11,7 @@
         <div class="col-xs-10">
             <div class='row'>
                 <div class="col-xs-5 ">
-                    <strong>Fixe</strong>
+                    <strong>Téléphone</strong>
                 </div>
                 <div class='col-xs-6'>
                     <%= @person.phone_number %>
@@ -23,21 +23,12 @@
                 </div>
                 <div class='col-xs-6'>
                     <% if @person.cv_docx.file? %>
-                      <%= link_to @person.cv_docx.url, class: "btn btn-primary btn-xs" do %>
+                      <%= link_to @person.cv_docx.url, class: "btn btn-success btn-xs" do %>
                       <%= @person.cv_docx_file_name %>
                     <% end %>
                     <% elsif !@person.is_client? %>
-                      <span class="small_alert">CV !</span>
+                      <span class="small_alert">Pas de CV !</span>
                     <% end %>
-                </div>
-            </div>
-
-            <div class='row'>
-                <div class='col-xs-5'>
-                    <strong>Mobile</strong>
-                </div>
-                <div class='col-xs-6'>
-                    <%= @person.cell_phone_number %>
                 </div>
             </div>
             <div class='row'>
@@ -50,18 +41,10 @@
             </div>
             <div class='row'>
                 <div class='col-xs-5'>
-                    <strong>Date de naissance</strong>
+                    <strong>Age approximatif</strong>
                 </div>
                 <div class='col-xs-6'>
-                    <%= @person.birthdate %>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-xs-5'>
-                    <strong>Age</strong>
-                </div>
-                <div class='col-xs-6'>
-                    <%=time_ago_in_words(@person.birthdate) %>
+                    <%= @person.approx_age %> ans
                 </div>
             </div>
         </div>

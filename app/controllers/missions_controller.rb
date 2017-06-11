@@ -24,7 +24,7 @@ class MissionsController < ApplicationController
   #-----------------
   def index
     @status_selected = params[:q].nil? || params[:q]['status_eq'].nil? ? nil : params[:q]['status_eq']
-    @q = Mission.ransack(params[:q].try(:merge, m: 'or'))
+    @q = Mission.ransack(params[:q])
     @missions = @q.result.includes(:company, :person).page(params[:page] ? params[:page].to_i: 1)
 
   end

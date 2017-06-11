@@ -53,12 +53,13 @@
     <% if @people.any? %>
         <%= render @people %>
         <p class="center checkBelow">
-          <%= link_to new_person_path do %>
-          <button type="submit" class="btn btn-success ">
+            <%= link_to new_person_path do %>
+            <button type="submit" class="btn btn-success ">
             <%= fa_icon("plus", text: "Ajouter un contact") %>
-          </button>
-          <% end %>
+            </button>
+            <% end %>
         </p>
+        <hr>
     <% else %>
         <div class="row">
             <div class="col-xs-3 hidden-xs"></div>
@@ -68,7 +69,7 @@
                 <%= render '/people/form' %>
             </div>
         </div>
-    <% end %>
+        <% end %>
     </div>
     <% if @jobs.any? %>
     <div role="tabpanel" class="tab-pane" id="tab_jobs">
@@ -76,39 +77,69 @@
     </div>
     <% end %>
     <div role="tabpanel" class="tab-pane" id="tab_companies">
-      <% if @companies.any? %>
+        <% if @companies.any? %>
         <%= render @companies %>
-      <% end %>
-      <p class="center checkBelow">
-        <%= link_to new_company_path do %>
-        <button type="submit" class="btn btn-success ">
-          <%= fa_icon("plus", text: "Ajouter une société") %>
-        </button>
+        <p class="center checkBelow">
+            <%= link_to new_company_path do %>
+            <button type="submit" class="btn btn-success ">
+            <%= fa_icon("plus", text: "Ajouter une société") %>
+            </button>
+            <% end %>
+        </p>
+        <hr>
+    <% else %>
+        <div class="row">
+            <div class="col-xs-3 hidden-xs"></div>
+            <div class="col-xs-6">
+                <h1 class='center'>Ajouter une société
+                </h1>
+                <%= render '/companies/form' %>
+            </div>
+        </div>
         <% end %>
-      </p>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab_missions">
         <% if @missions.any? %>
-          <%= render @missions %>
-        <% end %>
+        <%= render @missions %>
         <p class="center checkBelow">
-          <%= link_to new_mission_path do %>
-          <button type="submit" class="btn btn-success ">
+            <%= link_to new_mission_path do %>
+            <button type="submit" class="btn btn-success ">
             <%= fa_icon("plus", text: "Ajouter une mission") %>
-          </button>
-          <% end %>
+            </button>
+            <% end %>
         </p>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="tab_comactions">
-        <% if @comactions.any? %>
-          <%= render @comactions %>
+        <hr>
+        <% else %>
+        <div class="row">
+            <div class="col-xs-3 hidden-xs"></div>
+            <div class="col-xs-6">
+                <h1 class='center'>Ajouter une mission
+                </h1>
+                <%= render '/missions/form' %>
+            </div>
+        </div>
         <% end %>
+    </div>
+    <div role="tabpanel" class="tab-pane track-border" id="tab_comactions">
+        <% if @comactions.any? %>
+        <%= render @comactions %>
         <p class="center checkBelow">
-          <%= link_to new_comaction_path do %>
-          <button type="submit" class="btn btn-success ">
+            <%= link_to new_comaction_path do %>
+            <button type="submit" class="btn btn-success ">
             <%= fa_icon("plus", text: "Ajouter un rendez-vous") %>
-          </button>
-          <% end %>
+            </button>
+            <% end %>
         </p>
+        <hr>
+        <% else %>
+        <div class="row">
+            <div class="col-xs-3 hidden-xs"></div>
+            <div class="col-xs-6">
+                <h1 class='center'>Ajouter un rendez-vous
+                </h1>
+                <%= render '/comactions/form' %>
+            </div>
+        </div>
+        <% end %>
     </div>
 </div>

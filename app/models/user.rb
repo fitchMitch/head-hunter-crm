@@ -19,6 +19,7 @@
 
 class User < ApplicationRecord
   has_many :comactions, dependent: :destroy
+  # has_many :people, dependent: :destroy is not wished but they must be reaffected
   attr_accessor :remember_token,
     :activation_token,
     :reset_token
@@ -40,6 +41,8 @@ class User < ApplicationRecord
     presence: true,
     length: { minimum: 6 },
     allow_nil: true
+
+  scope :other_admins, ->(me) { where('admin = ? and id != ?', true , me.id ) }
 
   # Returns the hash digest of the given string.
   class << self

@@ -42,8 +42,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = 'Utilisateur supprimé'
+    @user = User.find(params[:id])
+    admin_list = User.other_admins(@user)
+    if admin_list.count === 0
+      flash[:success] = 'Cet utilisateur ne peut pas être supprimé'
+    else
+      Person.where('user_id = ?', @user.id ).update_all(user_id: admin_list.first.id)
+      @user.destroy
+      flash[:success] = 'Utilisateur supprimé'
+    end
     redirect_to users_url
   end
 

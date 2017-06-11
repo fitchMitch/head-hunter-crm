@@ -59,8 +59,7 @@ Person.create!(title:              "Mme",
     lastname:           "Moreau",
     email:              "yolande.moreau@gmail.com",
     phone_number:       "9876543210",
-    cell_phone_number:  "+33 12345679",
-    birthdate:          "04/07/1980",
+    approx_age:         65,
     is_jj_hired:        true,
     is_client:          false,
     note:               Faker::Lorem.sentence(1),
@@ -74,9 +73,8 @@ Person.create!(title:              "Mme",
   lastname=          Faker::Name.last_name
   email=             Faker::Internet.email
   phone_number=      Faker::PhoneNumber.phone_number
-  cell_phone_number= Faker::PhoneNumber.cell_phone
 
-  birthdate=         (Date.today - (18..70).to_a.sample* 365 + (1..364).to_a.sample).strftime("%F")
+  approx_age=         (18..70).to_a.sample
   #Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
   note=              Faker::Lorem.sentence(3)
   is_client =        Faker::Boolean.boolean(0.1)
@@ -86,8 +84,7 @@ Person.create!(title:              "Mme",
     lastname:           lastname,
     email:              email,
     phone_number:       phone_number,
-    cell_phone_number:  cell_phone_number,
-    birthdate:          birthdate,
+    approx_age:         approx_age,
     is_jj_hired:        is_client,
     is_client:          is_client,
     note:               note,

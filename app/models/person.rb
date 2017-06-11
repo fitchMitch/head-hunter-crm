@@ -43,8 +43,6 @@ class Person < ApplicationRecord
   #validates_attachment_file_name :avatar, matches: [/doc?\z/]
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
   #:time, :date, :binary, :boolean, :references
-
-
   # validates :firstname,
   #   presence: true,
   #   length: { maximum: 35 }
@@ -60,9 +58,12 @@ class Person < ApplicationRecord
   #   if: :email.present?
   # validates :phone_number,
   #   length: { minimum:10, maximum: 18 }
-  # validates :cell_phone_number,
-  #   length: { minimum:10, maximum: 18 }
+
   validate :is_email_an_email
+
+  scope :found_by, -> (user_id) {
+      where('user_id = ?', user_id)
+  }
 
   def is_email_an_email
     if email.present? && VALID_EMAIL_REGEX.match(email) == nil
@@ -88,7 +89,6 @@ class Person < ApplicationRecord
   end
 
   def phone_number_format
-    self.cell_phone_number = format_by_two(cell_phone_number) unless (cell_phone_number.nil?)
     self.phone_number = format_by_two(phone_number) unless (phone_number.nil?)
   end
 

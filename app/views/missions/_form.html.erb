@@ -1,5 +1,4 @@
 <%= simple_form_for @mission  do |f| %>
-
 <div class='row'>
     <div class="col-sm-5 ">
         <%= f.association :company, label:"Société", label_method: :company_name, value_method: :id, include_blank: false %>
@@ -51,7 +50,7 @@
 
 <div class="row ">
     <div class="col-sm-5 ">
-        <%= f.button :submit, yield(:button_text), class: "btn btn-primary checkBelow" %>
+        <%= f.button :submit, yield(:button_text), class: "btn btn-success checkBelow" %>
     </div>
     <div class="col-sm-7  "></div>
 </div>

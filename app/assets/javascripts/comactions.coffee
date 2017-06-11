@@ -7,6 +7,7 @@ $(document).on "turbolinks:load", ->
     theme: "bootstrap"
   $("#comaction_person_id").select2
     theme: "bootstrap"
+  #$(self._select2).parent().find(".select2-container").css('width', '');
   #---------------------------------------------------
   el  = ("#comaction_start_time_#{i}i" for i in[1..6])
   ele  = ("#comaction_end_time_#{i}i" for i in[1..6])

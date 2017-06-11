@@ -11,8 +11,7 @@
     <div class="col-sm-6 ">
         <%= f.input :is_jj_hired, label: "Embauché grâce à JJ", input_html: {class:" input-sm"}%>
         <%= f.input :phone_number, label: "Numéro de téléphone", input_html:{ maxlength: 20, class:" input-sm" } %>
-        <%= f.input :cell_phone_number, label:"Numéro de mobile", input_html:{ maxlength: 20, class:" input-sm" } %>
-        <%= f.input :birthdate, label:"Né le ", as: :date, start_year: Date.today.year - 60, end_year: Date.today.year - 14, order: [:day, :month, :year], input_html:{class:" input-sm" } %>
+        <%= f.input :approx_age, label:"Age approximatif ",  input_html:{class:" input-sm" } %>
         <%= f.input :note, label: "Commentaire" %>
     </div>
 </div>
@@ -20,7 +19,7 @@
     <div class="col-sm-8 ">
     </div>
     <div class="col-sm-4 ">
-        <%= f.button :submit, yield(:button_text), class: "btn btn-primary pull-right" %>
+        <%= f.button :submit, yield(:button_text), class: "btn btn-success pull-right" %>
     </div>
 </div>
 <% end %>

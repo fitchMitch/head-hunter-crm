@@ -118,15 +118,13 @@ class PeopleController < ApplicationController
   private
 
     def person_params
-      #params.require(:person).permit(:title, :firstname, :lastname, :email, :phone_number, :cell_phone_number, :birthdate, :is_jj_hired, :is_client, :note, jobs: [:job_title, :salary, :start_date, :end_date, :jj_job])
       params.require(:person).permit(
         :title,
         :firstname,
         :lastname,
         :email,
         :phone_number,
-        :cell_phone_number,
-        :birthdate,
+        :approx_age,
         :is_jj_hired,
         :is_client,
         :note,

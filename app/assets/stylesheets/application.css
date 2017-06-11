@@ -14,7 +14,8 @@
  *= require_self
  *= require select2
  *= require select2-bootstrap
+ *= select2-bootstrap-theme
  *= require font-awesome
- * require jquery-ui
+ *= require jquery-ui
  *= require simple_calendar
  */
