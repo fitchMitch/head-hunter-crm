@@ -18,7 +18,7 @@
 </div>
 <div class="row ">
   <div class="col-xs-5">
-    <%= f.input :action_type, label: 'Type2', collection: Comaction::ACTION_TYPES %>
+    <%= f.input :action_type, label: 'Type', collection: Comaction::ACTION_TYPES %>
   </div>
     <div class="col-xs-7">
         <%= f.association :mission, label:'Mission', value_method: :id, include_blank: false ,  input_html: {class: "form-control input-sm "} %>

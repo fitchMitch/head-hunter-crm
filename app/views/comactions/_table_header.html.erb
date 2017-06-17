@@ -25,8 +25,6 @@
     <% end %>
   </div>
   <div class="col-xs-1">
-    <%= sort_link(@q, :user_name, default_order: :asc) do %>
-      <small>Resp</small>
-    <% end %>
+    <%= sort_link(@q, :user_name, 'Resp', default_order: :asc)  %>
   </div>
 </div>

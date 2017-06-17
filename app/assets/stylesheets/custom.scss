@@ -212,35 +212,75 @@ footer {
     }
 }
 /* sidebar */
-aside {
-    section.user_info {
-        margin-top: 20px;
-    }
+// aside {
+//     section.user_info {
+//         margin-top: 20px;
+//     }
+//
+//     section {
+//         padding: 10px 0;
+//         margin-top: 20px;
+//
+//         &:first-child {
+//             border: 0;
+//             padding-top: 0;
+//         }
+//
+//         span {
+//             display: block;
+//             margin-bottom: 3px;
+//             line-height: 1;
+//         }
+//
+//         h1 {
+//             font-size: 1.4em;
+//             text-align: left;
+//             letter-spacing: -1px;
+//             margin-bottom: 3px;
+//             margin-top: 0;
+//         }
+//     }
+// }
 
-    section {
-        padding: 10px 0;
-        margin-top: 20px;
+/*  pagination  */
+.pagination{
+  text-align: right;
+  margin-top:5px;
+  margin-bottom:5px;
+  display: block;
 
-        &:first-child {
-            border: 0;
-            padding-top: 0;
-        }
-
-        span {
-            display: block;
-            margin-bottom: 3px;
-            line-height: 1;
-        }
-
-        h1 {
-            font-size: 1.4em;
-            text-align: left;
-            letter-spacing: -1px;
-            margin-bottom: 3px;
-            margin-top: 0;
-        }
-    }
+  em.current{
+    border: 1px solid grey;
+    padding : 5px;
+    font-weight: 400;
+  }
+  a{
+    border: 1px solid grey;
+    font-weight: 600;
+    padding : 5px;
+    background-color: $color5;
+    text-decoration: none;
+  }
+  span.next_page , span.previous_page, a.next_page , a.previous_page {
+    border: 1px solid grey;
+    padding : 5px;
+    background-color: $color5;
+  }
+  span.previous_page, a.previous_page{
+    -webkit-border-radius:  5px 0px 0px 5px;
+    border-radius: 5px 0px 0px 5px;
+  }
+  span.next_page, a.next_page{
+    -webkit-border-radius:  0px 5px 5px 0px;
+    border-radius: 0px 5px 5px 0px ;
+  }
+  span.next_page.disabled, span.previous_page.disabled{
+    background-color: $color6;
+    color:black;
+  }
 }
+
+/*  end of pagination  */
 
 .gravatar {
     float: left;
@@ -383,7 +423,10 @@ hr.sep{
 a > span.label-warning:hover{
   text-decoration: none;
 }
-
+/* People  */
+.fa-user.client {
+  color:$color5;
+}
 /* Missions */
 #mission_search{
   display:inline;

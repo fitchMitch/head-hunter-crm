@@ -1,6 +1,11 @@
 class PeopleController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
 
+  class Alljob
+    include ActiveModel::AttributeAssignment
+    attr_accessor :id, :job_title, :start_date, :end_date, :company_name, :salary, :person_id, :no_end, :company_id
+  end
+
   def new
     @person = Person.new
   end
@@ -12,10 +17,6 @@ class PeopleController < ApplicationController
 
   def edit
     #@person = Person.find(params[:id])
-  end
-  class Alljob
-    include ActiveModel::AttributeAssignment
-    attr_accessor :id, :job_title, :start_date, :end_date, :company_name, :salary, :person_id, :no_end, :company_id
   end
 
   def show
@@ -77,7 +78,7 @@ class PeopleController < ApplicationController
     if @person.save
       flash[:success] = 'Contact sauvegardé (' + @person.full_name + ').'
       #redirect_to @person
-      goto_next_url people_path
+      goto_next_url new_person_path
     else
       render 'new'
     end

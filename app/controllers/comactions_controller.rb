@@ -23,10 +23,10 @@ class ComactionsController < ApplicationController
   #-----------------
   def index
     uid = current_user.id
+    params[:page] ||= 1
     @q = Comaction.ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
     if params[:filter] != nil
-      filter = params[:filter]
       Comaction::STATUS_RELATED.values.each do |key|
         @comactions = @comactions.public_send(key)  if params[:filter].to_sym == key
       end
@@ -36,13 +36,13 @@ class ComactionsController < ApplicationController
         @comactions = @comactions.mine(uid).newer_than 7
       end
     end
-    @comactions = @comactions.page(params[:page] ? params[:page].to_i : 1)
+    @comactions = @comactions.page(params[:page])
     # ---------- view choice ---------------
     if params[:v].nil? || params[:v] != 'table_view'
       render 'calendar'
     else
       render 'index'
-    end
+     end
   end
   #-----------------
   def edit
