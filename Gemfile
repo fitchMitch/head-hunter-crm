@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails',        '5.0.1'
+# gem 'sqlite3', '1.3.12'
+gem 'pg', '~> 0.20.0'
 gem 'sass-rails',   '5.0.6'
 gem 'uglifier',     '3.0.0'
 gem 'coffee-rails', '4.2.1'
@@ -29,8 +31,8 @@ gem 'paperclip-i18n'
 gem 'simple_calendar', '~> 2.2', '>= 2.2.5'
 gem 'icalendar', '~> 2.4', '>= 2.4.1'
 gem 'ransack', github: 'activerecord-hackery/ransack'
-gem 'sqlite3', '1.3.12'
 gem 'docx', '~> 0.2.07', :require => ["docx"]
+gem 'pg_search'
 # temp
 
 group :development, :test do
@@ -58,7 +60,6 @@ end
 group :production do
   #gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
-  gem 'pg', '~> 0.20.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

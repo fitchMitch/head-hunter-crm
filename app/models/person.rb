@@ -8,8 +8,6 @@
 #  lastname             :string
 #  email                :string
 #  phone_number         :string
-#  cell_phone_number    :string
-#  birthdate            :date
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  is_jj_hired          :boolean
@@ -20,6 +18,7 @@
 #  cv_docx_content_type :string
 #  cv_docx_file_size    :integer
 #  cv_docx_updated_at   :datetime
+#  approx_age           :integer
 #
 
 class Person < ApplicationRecord
@@ -34,6 +33,24 @@ class Person < ApplicationRecord
   before_save   :phone_number_format
 
   has_and_belongs_to_many :tags
+  # ----- Searech part
+  include PgSearch
+  # multisearchable :against => [:firstname, :lastname, :email, :note]
+  pg_search_scope :search_name,
+                :against => [[:firstname , 'B'],[:lastname, 'A'], [:note, 'C']],
+                :associated_against => { :jobs => :job_title } ,
+                :using => {
+                  #:ignoring => :accents,
+                  :tsearch => {:any_word => true, :prefix => true},
+                  :trigram => {
+                      :threshold => 0.5
+                    }
+                }
+
+  def self.rebuild_pg_search_documents
+    find_each { |record| record.update_pg_search_document }
+  end
+  # ----- Searech part
 
   #has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
   has_attached_file :cv_docx

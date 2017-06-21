@@ -15,6 +15,22 @@ class Company < ApplicationRecord
 
   before_save   :upcase_company_name
 
+  include PgSearch
+  # multisearchable :against => :company_name
+  pg_search_scope :search_name,
+                :against => :company_name,
+                :using => {
+                  #:ignoring => :accents,
+                  :tsearch => {:any_word => true, :prefix => true},
+                  :trigram => {
+                      :threshold => 0.5
+                    }
+                }
+
+  def self.rebuild_pg_search_documents
+    find_each { |record| record.update_pg_search_document }
+  end
+
   validates :company_name,  presence: true, length: { maximum: 40 }, uniqueness: { case_sensitive: false }
 
   # ------------------------

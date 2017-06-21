@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603154621) do
+ActiveRecord::Schema.define(version: 20170620165335) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+  enable_extension "fuzzystrmatch"
+  enable_extension "unaccent"
 
   create_table "comactions", force: :cascade do |t|
     t.string   "name"
@@ -23,24 +29,16 @@ ActiveRecord::Schema.define(version: 20170603154621) do
     t.integer  "mission_id"
     t.integer  "person_id"
     t.datetime "end_time"
-    t.index ["mission_id"], name: "index_comactions_on_mission_id"
-    t.index ["person_id"], name: "index_comactions_on_person_id"
-    t.index ["user_id"], name: "index_comactions_on_user_id"
+    t.index ["mission_id"], name: "index_comactions_on_mission_id", using: :btree
+    t.index ["person_id"], name: "index_comactions_on_person_id", using: :btree
+    t.index ["user_id"], name: "index_comactions_on_user_id", using: :btree
   end
 
   create_table "companies", force: :cascade do |t|
     t.string   "company_name"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["company_name"], name: "index_companies_on_company_name"
-  end
-
-  create_table "job_histories", force: :cascade do |t|
-    t.integer  "job_id"
-    t.integer  "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_job_histories_on_person_id"
+    t.index ["company_name"], name: "index_companies_on_company_name", using: :btree
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -54,8 +52,8 @@ ActiveRecord::Schema.define(version: 20170603154621) do
     t.integer  "company_id"
     t.integer  "person_id"
     t.boolean  "no_end"
-    t.index ["company_id"], name: "index_jobs_on_company_id"
-    t.index ["person_id"], name: "index_jobs_on_person_id"
+    t.index ["company_id"], name: "index_jobs_on_company_id", using: :btree
+    t.index ["person_id"], name: "index_jobs_on_person_id", using: :btree
   end
 
   create_table "missions", force: :cascade do |t|
@@ -75,8 +73,8 @@ ActiveRecord::Schema.define(version: 20170603154621) do
     t.integer  "company_id"
     t.date     "whished_start_date"
     t.string   "status"
-    t.index ["company_id"], name: "index_missions_on_company_id"
-    t.index ["person_id"], name: "index_missions_on_person_id"
+    t.index ["company_id"], name: "index_missions_on_company_id", using: :btree
+    t.index ["person_id"], name: "index_missions_on_person_id", using: :btree
   end
 
   create_table "people", force: :cascade do |t|
@@ -96,15 +94,24 @@ ActiveRecord::Schema.define(version: 20170603154621) do
     t.integer  "cv_docx_file_size"
     t.datetime "cv_docx_updated_at"
     t.integer  "approx_age"
-    t.index ["email"], name: "index_people_on_email"
-    t.index ["user_id"], name: "index_people_on_user_id"
+    t.index ["email"], name: "index_people_on_email", using: :btree
+    t.index ["user_id"], name: "index_people_on_user_id", using: :btree
   end
 
   create_table "people_tags", id: false, force: :cascade do |t|
     t.integer "tag_id",    null: false
     t.integer "person_id", null: false
-    t.index ["person_id", "tag_id"], name: "index_people_tags_on_person_id_and_tag_id"
-    t.index ["tag_id", "person_id"], name: "index_people_tags_on_tag_id_and_person_id"
+    t.index ["person_id", "tag_id"], name: "index_people_tags_on_person_id_and_tag_id", using: :btree
+    t.index ["tag_id", "person_id"], name: "index_people_tags_on_tag_id_and_person_id", using: :btree
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.integer  "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -128,4 +135,12 @@ ActiveRecord::Schema.define(version: 20170603154621) do
     t.datetime "reset_sent_at"
   end
 
+  add_foreign_key "comactions", "missions"
+  add_foreign_key "comactions", "people"
+  add_foreign_key "comactions", "users"
+  add_foreign_key "jobs", "companies"
+  add_foreign_key "jobs", "people"
+  add_foreign_key "missions", "companies"
+  add_foreign_key "missions", "people"
+  add_foreign_key "people", "users"
 end

@@ -97,7 +97,6 @@ textarea {
 .center h1 {
     margin-bottom: 10px;
 }
-.centrage {text-align: center;}
 .bottomline{display: block;vertical-align: bottom;}
 
 /* typography */
@@ -347,8 +346,31 @@ abbr {
         border-bottom: 1px solid $gray-lighter;
     }
 }
+/* frames */
 
-
+.rightFrame{
+  border-right: 2px solid $color1;
+  padding-right: 10px;
+  text-align: right;
+  margin-right: 10px;
+}
+.leftFrame{
+  padding-left: 20px;
+  margin-left: 10px;
+  text-align: left;
+}
+.redFrame {
+    border: 2px $color2 solid;
+    padding: 3px 5px 2px 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: $color2;
+    background-color: $color7;
+    /*-webkit-box-shadow: 1px 1px 1px 1px #633961;
+    box-shadow: 1px 1px 1px 1px #633961;*/
+    -webkit-border-radius:4px 4px 4px 4px;
+    border-radius:4px 4px 4px 4px;
+}
 .frame{
   border: 1px #888888 solid;
   background-color: $color4;
@@ -364,6 +386,16 @@ abbr {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   color:$color1;
+}
+.frameMe {
+    margin-top: 5px;
+    border: 1px #888888 solid;
+    padding: 1em 1em 1em 1em;
+    background-color: $color5;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    color:black;
+    margin-top:15px;
 }
 hr.sep{
   color:$color3;
@@ -381,18 +413,7 @@ hr.sep{
   margin: 10px;
   padding : 10px;
 }
-.redFrame {
-    border: 2px $color2 solid;
-    padding: 3px 5px 2px 5px;
-    font-size: 0.8em;
-    font-weight: bold;
-    color: $color2;
-    background-color: $color7;
-    /*-webkit-box-shadow: 1px 1px 1px 1px #633961;
-    box-shadow: 1px 1px 1px 1px #633961;*/
-    -webkit-border-radius:4px 4px 4px 4px;
-    border-radius:4px 4px 4px 4px;
-}
+
 .col-right{
   border-right: 1px solid grey;
 }
@@ -457,14 +478,7 @@ a > span.label-warning:hover{
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
-.frameMe {
-    margin-top: 5px;
-    border: 1px #888888 solid;
-    padding: 1em 1em 1em 1em;
-    background-color: $color7;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-}
+
 .midway{
   vertical-align: middle;
   line-height:5em;

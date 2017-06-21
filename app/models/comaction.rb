@@ -20,6 +20,24 @@ class Comaction < ApplicationRecord
     belongs_to :person
     belongs_to :user
 
+    include PgSearch
+    pg_search_scope :search_name,
+                    :against => [ [:name, 'A'], [:status , 'B'], ],
+                    :associated_against => {
+                        :person => :firstname,
+                        :person => :lastname,
+                        :mission => :name } ,
+                    :using => {
+                      #:ignoring => :accents,
+                      :tsearch => {:any_word => true, :prefix => true},
+                      :trigram => {
+                          :threshold => 0.5
+                        }
+                    }
+    def self.rebuild_pg_search_documents
+      find_each { |record| record.update_pg_search_document }
+    end
+
     attr_accessor :is_dated
 
     STATUSES = [STATUS_SOURCED = 'Sourcé'.freeze,

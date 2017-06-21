@@ -5,7 +5,7 @@ class CustomLinkRenderer < WillPaginate::ActionView::LinkRenderer
 
   def symbolized_update(target, other)
     other.each do |key, value|
-      key , value = "q[s]" , value["s"]   if(key=="q") # ugly hack requires to use q for ransack queries all along
+      key , value = "q[s]" , value["s"]   if key==="q" && value["s"] != nil # ugly hack requires to use q for ransack queries all along
       key = key.to_sym
       existing = target[key]
 

@@ -1,0 +1,5 @@
+<%= people_index.each |person| do %>
+<p><%= person_index.content %>
+  <%= link_to person_index.content, person_path(person.searchable_id), class: "TODO" %>
+</p>
+<% end %>

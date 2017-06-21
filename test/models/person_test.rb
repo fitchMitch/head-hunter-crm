@@ -8,8 +8,6 @@
 #  lastname             :string
 #  email                :string
 #  phone_number         :string
-#  cell_phone_number    :string
-#  birthdate            :date
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  is_jj_hired          :boolean
@@ -20,6 +18,7 @@
 #  cv_docx_content_type :string
 #  cv_docx_file_size    :integer
 #  cv_docx_updated_at   :datetime
+#  approx_age           :integer
 #
 
 require 'test_helper'

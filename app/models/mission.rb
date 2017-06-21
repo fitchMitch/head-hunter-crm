@@ -32,11 +32,21 @@ class Mission < ApplicationRecord
     STATUS_BILLED = 'Mission facturée',
     STATUS_PAYED = 'Mission payée'
   ]
-  # attr_accessor :hope,
-  #   :sent,
-  #   :signed,
-  #   :billed,
-  #   :payed
+
+  include PgSearch
+  pg_search_scope :search_name,
+                  :against => [ [:name, 'A'], [:criteria , 'B'], ],
+                  :associated_against => { :company => :company_name } ,
+                  :using => {
+                    #:ignoring => :accents,
+                    :tsearch => {:any_word => true, :prefix => true},
+                    :trigram => {
+                        :threshold => 0.5
+                      }
+                  }
+  def self.rebuild_pg_search_documents
+    find_each { |record| record.update_pg_search_document }
+  end
 
   scope :active, -> { where('status != ? AND status != ?', STATUS_BILLED, STATUS_PAYED) }
   scope :not_paid, -> { where('status != ?', STATUS_PAYED) }

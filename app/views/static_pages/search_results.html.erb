@@ -5,12 +5,12 @@
 </h1>
 
 <p>Votre recherche :
-    <strong><%= params[:q] %></strong>
+    <strong><%= params[:quest] %></strong>
 </p>
 
 <% if @nb_result === 0 %>
 <p>Aucun résultat pour votre recherche
-    <strong><%= params[:q] %></strong>
+    <strong><%= params[:quest] %></strong>
 </p>
 <% end %>
 <!-- Nav tabs -->
@@ -21,14 +21,14 @@
           <span class="badge"> <%= @people.count %> </span>
         </a>
     </li>
-    <% if @jobs.any? %>
+     <!-- if @jobs.any? %>
     <li role="presentation">
         <a href="#tab_jobs" aria-controls="tab_jobs" role="tab" data-toggle="tab">
           Emplois
-          <span class="badge"> <%= @jobs.count %> </span>
+          <span class="badge"> = @jobs.count %> </span>
         </a>
     </li>
-    <% end %>
+     end %> -->
     <li role="presentation">
         <a href="#tab_companies" aria-controls="tab_companies" role="tab" data-toggle="tab">
           Sociétés
@@ -50,8 +50,10 @@
 </ul>
 <div class="tab-content tenPxDown">
     <div role="tabpanel" class="tab-pane active" id="tab_people">
-    <% if @people.any? %>
-        <%= render @people %>
+    <% if @people.count > 0 %>
+
+      <%= render @people %>
+
         <p class="center checkBelow">
           <%= link_to new_person_path do %>
           <button type="submit" class="btn btn-success ">
@@ -70,14 +72,16 @@
         </div>
     <% end %>
     </div>
-    <% if @jobs.any? %>
+    <!--  if @jobs.any? %>
     <div role="tabpanel" class="tab-pane" id="tab_jobs">
-        <%= render @jobs %>
+        = render @jobs %>
     </div>
-    <% end %>
+    end %> -->
     <div role="tabpanel" class="tab-pane" id="tab_companies">
       <% if @companies.any? %>
+
         <%= render @companies %>
+
       <% end %>
       <p class="center checkBelow">
         <%= link_to new_company_path do %>
@@ -89,7 +93,9 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="tab_missions">
         <% if @missions.any? %>
+
           <%= render @missions %>
+
         <% end %>
         <p class="center checkBelow">
           <%= link_to new_mission_path do %>
@@ -101,7 +107,9 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="tab_comactions">
         <% if @comactions.any? %>
+
           <%= render @comactions %>
+
         <% end %>
         <p class="center checkBelow">
           <%= link_to new_comaction_path do %>

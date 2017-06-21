@@ -19,6 +19,13 @@ class Job < ApplicationRecord
   belongs_to  :person
   belongs_to  :company
 
+  include PgSearch
+  # multisearchable :against => :job_title
+
+  def self.rebuild_pg_search_documents
+    find_each { |record| record.update_pg_search_document }
+  end
+
   scope :reversed_time, -> { order(start_date: :desc) }
 
   validates :job_title, presence: true, length: { maximum: 50 }
