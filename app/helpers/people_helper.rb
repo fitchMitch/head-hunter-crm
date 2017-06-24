@@ -18,12 +18,7 @@ module PeopleHelper
   end
 
   def years_work(job)
-    if job.end_date.nil?
-      "?"
-    else
-      dif = ((job.end_date.jd - job.start_date.jd) / 365).floor
-      dif.to_s
-    end
+    job.end_date.nil? ? "?" : ((job.end_date.jd - job.start_date.jd) / 365).floor.to_s
   end
 
 end

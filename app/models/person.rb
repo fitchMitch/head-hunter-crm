@@ -32,12 +32,12 @@ class Person < ApplicationRecord
   before_save   :upcase_name
   before_save   :phone_number_format
 
-  has_and_belongs_to_many :tags
-  # ----- Searech part
+
+  # ----- Search part
   include PgSearch
   # multisearchable :against => [:firstname, :lastname, :email, :note]
   pg_search_scope :search_name,
-                :against => [[:firstname , 'B'],[:lastname, 'A'], [:note, 'C']],
+                :against => [[:firstname , 'B'],[:lastname, 'A'], [:note, 'C'] , [:cv_content, 'D']],
                 :associated_against => { :jobs => :job_title } ,
                 :using => {
                   #:ignoring => :accents,
@@ -50,19 +50,12 @@ class Person < ApplicationRecord
   def self.rebuild_pg_search_documents
     find_each { |record| record.update_pg_search_document }
   end
-  # ----- Searech part
+  # ----- Search part
 
   #has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
   has_attached_file :cv_docx
   validates_attachment_content_type :cv_docx, content_type: /\Aapplication\/vnd\.openxmlformats/
   validates_with AttachmentSizeValidator, attributes: :cv_docx, less_than: 2.megabytes
-  # Validate filename
-  #validates_attachment_file_name :avatar, matches: [/doc?\z/]
-  #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
-  #:time, :date, :binary, :boolean, :references
-  # validates :firstname,
-  #   presence: true,
-  #   length: { maximum: 35 }
   validates :lastname,
     presence: true,
     length: { maximum: 40 }
@@ -92,6 +85,45 @@ class Person < ApplicationRecord
     self.firstname.nil? ? title + '  ' + lastname.upcase : title + '  ' + firstname + ' ' + lastname.upcase
   end
 
+  def get_cv
+    if cv_docx.file?
+      pth = "public/" + cv_docx.url.to_s.split("?")[0]
+      Docx::Document.open(pth)
+    end
+  end
+
+  def index_cv_content
+    doc = get_cv
+    return if doc == nil
+    ctt = []
+    doc.paragraphs.each do |pa|
+        ctt << pa.text.tr('\'' , ' ')
+    end
+    content =  ctt.join(' ')
+    ActiveRecord::Base.connection.execute <<-SQL
+    INSERT INTO pg_search_documents (searchable_type, searchable_id, content, created_at, updated_at)
+    VALUES ('Person' ,
+            #{self.id} ,
+            '#{content}'::text ,
+            now(),
+            now())
+    SQL
+  end
+
+  def remove_index_content
+    ActiveRecord::Base.connection.execute <<-SQL
+      DELETE FROM  pg_search_documents where searchable_id = #{self.id}
+    SQL
+  end
+
+  def set_cv_content
+    doc = get_cv
+    return if doc == nil
+    ctt = []
+    doc.paragraphs.each  { |pa| ctt << pa.text.tr('\'' , ' ')}
+    self.update(:cv_content => ctt.join(' '))
+
+  end
   # ------------------------
   private
   # ------------------------
@@ -116,7 +148,6 @@ class Person < ApplicationRecord
     my_match = reg2.match(nr)
     return nr if my_match == nil
     my_match.captures.compact.join(" ")
-
   end
 
 end

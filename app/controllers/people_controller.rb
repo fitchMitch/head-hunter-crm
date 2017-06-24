@@ -12,7 +12,7 @@ class PeopleController < ApplicationController
 
   def index
     @q = Person.ransack(params[:q])
-    @people = @q.result.page(params[:page] ? params[:page].to_i : 1)
+    @people = @q.result.includes(:jobs).page(params[:page] ? params[:page].to_i : 1)
   end
 
   def edit
@@ -23,10 +23,7 @@ class PeopleController < ApplicationController
     require 'docx'
 
     @person = Person.find(params[:id])
-    if @person.cv_docx.file?
-      pth = "public/" + @person.cv_docx.url.to_s.split("?")[0]
-      @doc = Docx::Document.open(pth)
-    end
+    @doc = @person.get_cv
 
     @job = @person.jobs.build
     @jobs = @person.jobs.includes(:company).reversed_time
@@ -69,13 +66,15 @@ class PeopleController < ApplicationController
     end
     @class_client = @person.is_client ? 'client' : 'candidate'
   end
-
+  # --------------------
   def create
     @person = Person.new(person_params)
     render 'new' if @person.nil?
     @person.cv_docx = params[:person][:cv_docx]
     @person.user_id = current_user.id
     if @person.save
+      #@person.index_cv_content
+      @person.set_cv_content
       flash[:success] = 'Contact sauvegardé (' + @person.full_name + ').'
       #redirect_to @person
       goto_next_url new_person_path
@@ -83,20 +82,21 @@ class PeopleController < ApplicationController
       render 'new'
     end
   end
-
+  # --------------------
   def update
     #@person = Person.find(params[:id])
     @person.user_id = current_user.id
     @person.cv_docx = params[:person][:cv_docx]
     if @person.update_attributes(person_params)
       flash[:success] = 'Contact mis à jour'
+      @person.set_cv_content
       redirect_to @person
     else
       flash[:danger] = 'Le contact n\'a pas pu être mis à jour'
       render 'edit'
     end
   end
-
+  # --------------------
   def destroy
      mes = 'Contact supprimé'
     if @person.cv_docx.file?
@@ -107,7 +107,7 @@ class PeopleController < ApplicationController
     flash[:success] = mes
     redirect_to people_url
   end
-
+  # --------------------
   def add_company
     set_next_url(person_path(params[:id]))
     redirect_to new_company_path

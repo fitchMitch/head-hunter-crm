@@ -7,6 +7,9 @@
         <%= f.input :lastname, label: "Nom", input_html:{class:" input-sm" } %>
         <%= f.input :email, label: "Email", input_html: {class:" input-sm"}%>
         <%= f.input :cv_docx, as: :file %>
+        <% if @person.cv_docx.present?  %>
+          <p class="close_comment"> <%= @person.cv_docx_file_name %> </p>
+        <% end %>
     </div>
     <div class="col-sm-6 ">
         <%= f.input :is_jj_hired, label: "Embauché grâce à JJ", input_html: {class:" input-sm"}%>

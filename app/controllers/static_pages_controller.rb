@@ -12,23 +12,21 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    # TODO : trim :quest and uppercase
     return if params[:quest] == nil || params[:quest]=~/\A\s+\z/
     params[:page] ||= 1
 
     @jobs = []
 
-    @people = Person.search_name(params[:quest]).page(params[:page])
+    @people = Person.search_name(params[:quest]).includes(:jobs).page(params[:page])
     @person = Person.new
     # --------------
     @companies = Company.search_name(params[:quest]).page(params[:page])
-    # --------------
     # --------------
     @missions = Mission.search_name(params[:quest]).includes(:company, :person).page(params[:page])
     # --------------
     @comactions = Comaction.search_name(params[:quest]).includes(:user, :person, mission: [:company]).page(params[:page])
     #
-    # @nb_results =  + @jobs.count
+    #
     @nb_results = @people.count + @companies.count + @missions.count + @comactions.count
     render 'static_pages/search_results'
   end

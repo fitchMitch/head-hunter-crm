@@ -21,14 +21,6 @@
           <span class="badge"> <%= @people.count %> </span>
         </a>
     </li>
-     <!-- if @jobs.any? %>
-    <li role="presentation">
-        <a href="#tab_jobs" aria-controls="tab_jobs" role="tab" data-toggle="tab">
-          Emplois
-          <span class="badge"> = @jobs.count %> </span>
-        </a>
-    </li>
-     end %> -->
     <li role="presentation">
         <a href="#tab_companies" aria-controls="tab_companies" role="tab" data-toggle="tab">
           Sociétés
@@ -51,8 +43,9 @@
 <div class="tab-content tenPxDown">
     <div role="tabpanel" class="tab-pane active" id="tab_people">
     <% if @people.count > 0 %>
-
-      <%= render @people %>
+      <%= will_paginate @people %>
+      <%= render @people  %>
+      <%= will_paginate @people %>
 
         <p class="center checkBelow">
           <%= link_to new_person_path do %>
@@ -72,15 +65,11 @@
         </div>
     <% end %>
     </div>
-    <!--  if @jobs.any? %>
-    <div role="tabpanel" class="tab-pane" id="tab_jobs">
-        = render @jobs %>
-    </div>
-    end %> -->
     <div role="tabpanel" class="tab-pane" id="tab_companies">
       <% if @companies.any? %>
-
+        <%= will_paginate @companies %>
         <%= render @companies %>
+        <%= will_paginate @companies %>
 
       <% end %>
       <p class="center checkBelow">
@@ -93,9 +82,9 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="tab_missions">
         <% if @missions.any? %>
-
+          <%= will_paginate @missions %>
           <%= render @missions %>
-
+          <%= will_paginate @missions %>
         <% end %>
         <p class="center checkBelow">
           <%= link_to new_mission_path do %>
@@ -107,8 +96,9 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="tab_comactions">
         <% if @comactions.any? %>
-
+          <%= will_paginate @comactions %>
           <%= render @comactions %>
+          <%= will_paginate @comactions %>
 
         <% end %>
         <p class="center checkBelow">

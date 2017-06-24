@@ -1,7 +1,5 @@
 delete from users;
 delete from people;
-delete from people_tags;
-delete from tags;
 delete from companies;
 delete from jobs;
 delete from missions;
