@@ -26,6 +26,7 @@ test:
   username: jjflo
 
 production:
+  <<: *default
   database: jjflo
   password: DasAjKoin8
   username: postgres
