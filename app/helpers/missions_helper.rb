@@ -1,6 +1,7 @@
 module MissionsHelper
 
   def special_label(mission)
+    # <div class="<%= latelyness mission %>">
     t = ''
     if (mission.is_done)
       t = "<h3><strong> <i class='fa fa-gavel colorMe' aria-hidden='true'></i> </strong> "

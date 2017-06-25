@@ -35,7 +35,7 @@ class Mission < ApplicationRecord
 
   include PgSearch
   pg_search_scope :search_name,
-                  :against => [ [:name, 'A'], [:criteria , 'B'], ],
+                  :against => [ [:name, 'A'], [:criteria , 'B'] ],
                   :associated_against => { :company => :company_name } ,
                   :using => {
                     #:ignoring => :accents,
@@ -52,10 +52,10 @@ class Mission < ApplicationRecord
   scope :not_paid, -> { where('status != ?', STATUS_PAYED) }
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :reward, presence: true
-  validates :whished_start_date, presence: true
-  validates :status, inclusion: {in: STATUSES }
-  validate :max_age_is_max
+  #validates :reward, presence: true
+  #validates :whished_start_date, presence: true
+  #validates :status, inclusion: {in: STATUSES }
+  #validate :max_age_is_max
 
   def max_age_is_max
     if min_age.present? && max_age.present? && min_age > max_age
