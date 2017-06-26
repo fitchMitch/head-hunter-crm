@@ -5,9 +5,12 @@
 <%= render 'block_filters' %>
 
 <%= month_calendar events: @comactions do |date, comactions| %>
-  <span class='cal_date'><%= date.strftime("%d")%>
-      <%= t date.strftime("%b") %></span>
-  <hr class='sep'>
+  <%= link_to new_comaction_path({:date => date})  do %>
+    <span class="cal_date">
+      <%= date.strftime("%d")%>
+      <%= t date.strftime("%b") %>
+    </span>
+  <% end %>
   <% comactions.each do |comaction| %>
     <small>
         <div class='row'>

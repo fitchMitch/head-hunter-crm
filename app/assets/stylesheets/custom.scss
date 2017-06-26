@@ -518,11 +518,13 @@ a > span.label-warning:hover{
   font-stretch: semi-condensed;
   font-weight: bold;
   border : 1px grey solid;
-  background-color: white;
-  padding : 2px;
+  padding : 2px 10px 2px 10px;
   color:#4b425f;
   -webkit-border-radius:2px;
   border-radius: 2px;
+  background-color: $color5;
+  margin-bottom: 4px;
+  display: inline-block;
 }
 // .day.start-date{
 //     background-color: $color5;
@@ -533,7 +535,7 @@ a > span.label-warning:hover{
   border: 2px solid $color1;
 }
 .day.past{
-  border: 1px dashed grey;
+  border: 1px solid grey;
   color:grey;
 }
 @media screen and (max-width: 767px) {

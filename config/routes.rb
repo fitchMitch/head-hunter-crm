@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'sessions/new'
 
-  root 'static_pages#home'
+  # root 'static_pages#home'
+  root 'comactions#index'
 
   get  '/search',     to: 'static_pages#search'
   get  '/help',       to: 'static_pages#help'
