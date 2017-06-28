@@ -103,12 +103,12 @@ class Comaction < ApplicationRecord
        where('comactions.status = ? ', STATUS_WORKING)
      }
 
-    # validates :name, presence: true, length: { maximum: 50 }
-    validates :status, presence: true
-    validates :action_type, presence: true
+    validates :name, presence: true, length: { maximum: 50 }
+    # validates :status, presence: true
+    # validates :action_type, presence: true
 
-    validates :status, inclusion: { in: STATUSES }
-    validates :action_type, inclusion: { in: ACTION_TYPES }
+    # validates :status, inclusion: { in: STATUSES }
+    # validates :action_type, inclusion: { in: ACTION_TYPES }
     validate  :end_time_is_after
     validate  :check_for_overlap
 

@@ -15,7 +15,10 @@ $(document).on "turbolinks:load", ->
   for i in [0..5]
     closures[i] = do (i) ->
       $(el[i]).on 'change', ->
-        $(ele[i]).val($(el[i]).val())
+        if(i != 3)
+          $(ele[i]).val($(el[i]).val())
+        else
+          $(ele[i]).val(parseInt($(el[i]).val(),10)+1)
   #---------------------------------------------------
   $("input[type=checkbox]").on 'click', ->
     if ($('input').is(':checked'))
