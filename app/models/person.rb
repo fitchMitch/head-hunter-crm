@@ -82,7 +82,11 @@ class Person < ApplicationRecord
   end
 
   def full_name
-    self.firstname.nil? ? title + '  ' + lastname.upcase : title + '  ' + firstname + ' ' + lastname.upcase
+    self.firstname. present? ? title + '  ' + lastname.upcase : title + '  ' + firstname + ' ' + lastname.upcase
+  end
+
+  def short_name
+    self.firstname.present? ? firstname : title + '  ' + lastname.upcase
   end
 
   def get_cv

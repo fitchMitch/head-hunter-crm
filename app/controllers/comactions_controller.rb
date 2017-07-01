@@ -17,15 +17,15 @@ class ComactionsController < ApplicationController
 
   def new
     @comaction = Comaction.new
-    @comaction.is_dated = true
+    @comaction.is_dated = 1
     @comaction.name = "Rdv"
-    @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d") 
+    @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
   end
   #-----------------
   def index
     uid = current_user.id
     params[:page] ||= 1
-    @q = Comaction.ransack(params[:q])
+    @q = Comaction.mine(uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
     if params[:filter] != nil
       Comaction::STATUS_RELATED.values.each do |key|
@@ -74,7 +74,7 @@ class ComactionsController < ApplicationController
     @comaction = trigger_nil_dates @comaction
 
     if @comaction.save
-      if @comaction.start_time.nil?  || @comaction.end_time.nil?
+      if @comaction.start_time == nil  || @comaction.end_time == nil
         flash[:info] = 'Rendez-vous sauvegardé'
       else
         @comaction.send_meeting_email(current_user, 1)
@@ -82,6 +82,7 @@ class ComactionsController < ApplicationController
       end
       redirect_to comactions_path
     else
+
       flash[:danger] = 'Ce rendez-vous n\'a pas pu être ajouté'
       render :new
     end
@@ -91,7 +92,7 @@ class ComactionsController < ApplicationController
     @comaction = trigger_nil_dates @comaction
 
     if @comaction.update_attributes(comaction_params)
-      if @comaction.start_time.nil? || @comaction.end_time.nil?
+      if @comaction.start_time == nil || @comaction.end_time == nil
         flash[:success] = 'Rendez-vous sauvegardé'
       else
         @comaction.send_meeting_email(current_user, 0)
@@ -99,15 +100,17 @@ class ComactionsController < ApplicationController
       end
       redirect_to @comaction
     else
-      logger.warn(' update won\'t work #{@comaction.inspect }')
+      logger.warn("update won\'t work #{@comaction.inspect }")
       flash[:danger] = 'Ce rendez-vous n\'a pas pu être mis à jour'
       render 'edit'
     end
   end
 
   def trigger_nil_dates (comaction)
-    comaction.start_time = nil if comaction_params[:is_dated].to_i == 1
-    comaction.end_time = nil if comaction_params[:is_dated].to_i == 1
+    if comaction_params[:is_dated].to_i != 1
+      comaction.start_time = nil
+      comaction.end_time = nil
+    end
     comaction
   end
 
@@ -132,6 +135,7 @@ class ComactionsController < ApplicationController
     def get_comaction
       @comaction = Comaction.find(params[:id])
       @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? false : true
+      @date = @comaction.start_time
     end
 
 

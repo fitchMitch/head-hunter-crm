@@ -6,7 +6,20 @@ $(document).on "turbolinks:load", ->
   $("#comaction_mission_id, #comaction_person_id").select2
     theme: "bootstrap"
   $("#comaction_mission_id, #comaction_person_id").attr('selectedIndex', 0)
-  #$(self._select2).parent().find(".select2-container").css('width', '');
+  $("#comaction_is_dated ").on 'click', ->
+    if($("#comaction_is_dated:checked").val()=="1")
+      d = new Date()
+      $("#comaction_start_time_1i").val(d.getFullYear())
+      $("#comaction_start_time_2i").val(d.getMonth()+1)
+      $("#comaction_start_time_3i").val(d.getDate())
+      $("#comaction_start_time_4i").val(d.getHours())
+      $("#comaction_start_time_5i").val(d.getMinutes())
+
+      $("#comaction_end_time_1i").val(d.getFullYear())
+      $("#comaction_end_time_2i").val(d.getMonth()+1)
+      $("#comaction_end_time_3i").val(d.getDate())
+      $("#comaction_end_time_4i").val(d.getHours()+1)
+      $("#comaction_end_time_5i").val(d.getMinutes())
   #---------------------------------------------------
   el  = ("#comaction_start_time_#{i}i" for i in[1..6])
   ele  = ("#comaction_end_time_#{i}i" for i in[1..6])
@@ -17,7 +30,9 @@ $(document).on "turbolinks:load", ->
         if(i != 3)
           $(ele[i]).val($(el[i]).val())
         else
-          $(ele[i]).val(parseInt($(el[i]).val(),10)+1)
+          hour = parseInt($(el[i]).val(), 10) + 1
+          hour = "0" + hour if hour < 10
+          $(ele[i]).val(hour.toString())
   #---------------------------------------------------
   $("input[type=checkbox]").on 'click', ->
     if ($('input').is(':checked'))

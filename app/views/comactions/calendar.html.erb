@@ -18,7 +18,7 @@
             <div class='col-xs-3'><%= comaction.start_time.strftime("%H:%M") %></div>
             <div class='col-xs-6'>
               <%= link_to comaction_path(comaction) do %>
-                  <%= comaction.person.firstname %>
+                  <%= comaction.person.short_name %>
               <% end %>
             </div>
         </div>

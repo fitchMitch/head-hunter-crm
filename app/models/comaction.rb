@@ -72,36 +72,16 @@ class Comaction < ApplicationRecord
         d ||= 7
         where('(start_time >= ? OR start_time is null) ', d.days.ago)
     }
-    scope :mine, ->(being_id) {
-      where('comactions.user_id = ?', being_id)
-    }
-    scope :unscheduled, -> {
-       where('start_time is null ')
-     }
-    scope :scheduled, -> {
-       where('start_time is not null ')
-     }
-    scope :sourced, -> {
-       where('comactions.status = ? ', STATUS_SOURCED)
-     }
-    scope :preselected, -> {
-       where('comactions.status = ? ', STATUS_PRESELECTED)
-     }
-    scope :appoint, -> {
-       where('comactions.status = ?  ', STATUS_APPOINT)
-     }
-    scope :pres, -> {
-       where('comactions.status = ?  ', STATUS_PRES)
-     }
-    scope :opres, -> {
-       where('comactions.status =  ? ', STATUS_O_PRES)
-     }
-    scope :hired, -> {
-       where('comactions.status = ? ', STATUS_HIRED)
-     }
-    scope :working, -> {
-       where('comactions.status = ? ', STATUS_WORKING)
-     }
+    scope :mine,          -> (uid) { where('comactions.user_id = ?', uid) }
+    scope :unscheduled,   -> { where('start_time is null ') }
+    scope :scheduled,     -> { where('start_time is not null ') }
+    scope :sourced,       -> { where('comactions.status = ? ', STATUS_SOURCED) }
+    scope :preselected,   -> { where('comactions.status = ? ', STATUS_PRESELECTED) }
+    scope :appoint,       -> { where('comactions.status = ?  ', STATUS_APPOINT) }
+    scope :pres,          -> { where('comactions.status = ?  ', STATUS_PRES) }
+    scope :opres,         -> { where('comactions.status = ? ', STATUS_O_PRES) }
+    scope :hired,         -> { where('comactions.status = ? ', STATUS_HIRED) }
+    scope :working,       -> { where('comactions.status = ? ', STATUS_WORKING) }
 
     validates :name, presence: true, length: { maximum: 50 }
     # validates :status, presence: true
@@ -109,39 +89,36 @@ class Comaction < ApplicationRecord
 
     # validates :status, inclusion: { in: STATUSES }
     # validates :action_type, inclusion: { in: ACTION_TYPES }
-    validate  :end_time_is_after
-    validate  :check_for_overlap
+    validate  :end_time_is_after_and_overlap
 
     # Sends meeting email.
     def send_meeting_email(u, is_new)
         is_new == 1 ? ComactionMailer.one_event_saving(self, u).deliver_now : ComactionMailer.event_saving_upd(self, u).deliver_now
     end
 
-    def check_for_overlap
-        Comaction.mine(user_id).each do |other|
-            c0 = other.user_id == user_id && !other.start_time.nil? && !other.end_time.nil? && !start_time.nil? && !end_time.nil? # overlap is possible only if c0 is true
-            next unless c0
+    def end_time_is_after_and_overlap
+      cond_current_time_data = start_time.present? && end_time.present?
+      if cond_current_time_data && end_time < start_time
+        errors.add(:end_time, 'La fin vient après le début :-)')
+      end
+      Comaction.all.each do |other|
+        test_condition_ok = other.user_id == user_id && other.start_time.present? && other.end_time.present? && cond_current_time_data # overlap is possible only if c0 is true
+        next unless test_condition_ok
 
-            # there's overlapping in any case Ci below
-            c1 = (other.start_time < start_time && start_time < other.end_time)
-            logger.debug('c1 #{c1 }') if c1
-            c2 = (other.start_time < end_time && end_time < other.end_time)
-            logger.debug('c2 #{c2 }') if c2
-            c3 = (start_time < other.start_time && other.end_time < end_time)
-            logger.debug('c3 #{c3 }') if c3
-            c4 = (other.start_time < start_time && end_time < other.end_time)
-            logger.debug('c4 #{c4 }') if c4
-            if c1 || c2 || c3 || c4
-                logger.debug('----------------occuring overlap : other\'s name : #{other.name } | self\'s name : #{name }-------------------')
-                errors.add(:end_time, 'Superposition de rendez-vous v\u00E9rifiez votre agenda :-) : #{other.name } ')
-            end
+        # there's overlapping in any case Ci below
+        c1 = (other.start_time < start_time && start_time < other.end_time)
+        logger.debug('c1 #{c1 }') if c1
+        c2 = (other.start_time < end_time && end_time < other.end_time)
+        logger.debug('c2 #{c2 }') if c2
+        c3 = (start_time < other.start_time && other.end_time < end_time)
+        logger.debug('c3 #{c3 }') if c3
+        c4 = (other.start_time < start_time && end_time < other.end_time)
+        logger.debug('c4 #{c4 }') if c4
+        if c1 || c2 || c3 || c4
+            logger.debug("----------------occuring overlap : other\'s name : #{other.name } | self\'s name : #{name }-------------------")
+            errors.add(:end_time, "Superposition de rendez-vous   #{other.name } avec : (#{other.person.full_name}) ")
         end
-    end
-
-    def end_time_is_after
-        if is_dated == true && end_time - start_time < 0
-            errors.add(:end_time, 'La fin vient apr\u00E8s le d\u00E9but :-)')
-        end
+      end
     end
     # ------------------------
     # --    PRIVATE        ---

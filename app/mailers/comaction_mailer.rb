@@ -7,8 +7,8 @@ class ComactionMailer < ApplicationMailer
         e.dtstart = comaction.start_time
         e.dtend = comaction.end_time
         e.organizer = %W(mailto:#{email })
-        e.summary  = 'Meeting avec #{comaction.person.full_name }'
-        e.description = 'Mission : #{comaction.mission.name } pour la société #{comaction.mission.company.company_name }'
+        e.summary  = "Meeting avec #{comaction.person.full_name }"
+        e.description = "Mission : #{comaction.mission.name } pour la société #{comaction.mission.company.company_name }"
         #e.uid = comaction.id
         file_name = comaction.person.firstname  + '\.ics'
 
