@@ -52,7 +52,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @nbr = Job.where('company_id = ?', params[:id]).distinct.pluck(:person_id).count
     #@comactions = Comaction.includes(:user, :person, mission: [:company])
-    params[:q]={} if params[:q].nil?
+    params[:q] = {} if params[:q].nil?
     params[:q]['company_id_eq'] = params[:id]
     @q = Job.ransack(params[:q])
     @jobs = @q.result.includes(:company, :person).page(params[:page] ? params[:page].to_i : 1)

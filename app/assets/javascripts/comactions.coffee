@@ -3,10 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on "turbolinks:load", ->
-  $("#comaction_mission_id").select2
+  $("#comaction_mission_id, #comaction_person_id").select2
     theme: "bootstrap"
-  $("#comaction_person_id").select2
-    theme: "bootstrap"
+  $("#comaction_mission_id, #comaction_person_id").attr('selectedIndex', 0)
   #$(self._select2).parent().find(".select2-container").css('width', '');
   #---------------------------------------------------
   el  = ("#comaction_start_time_#{i}i" for i in[1..6])

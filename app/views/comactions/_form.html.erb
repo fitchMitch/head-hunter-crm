@@ -2,7 +2,7 @@
 
 <div class='row'>
     <div class="col-sm-7 ">
-        <%= f.association :person, label:'Pour', label_method: :full_name, value_method: :id, include_blank: false %>
+        <%= f.association :person, collection: Person.order(updated_at: :desc), label:'Pour', label_method: :full_name, value_method: :id, include_blank: false %>
         <%= link_to  'add_ext?model=person'  do%>
         <button type='button' class="btn btn-xs">Ajouter un nouveau contact</button>
         <% end %>
@@ -21,7 +21,7 @@
     <%= f.input :action_type, label: 'Type', collection: Comaction::ACTION_TYPES %>
   </div>
     <div class="col-xs-7">
-        <%= f.association :mission, label:'Mission', value_method: :id, include_blank: false ,  input_html: {class: "form-control input-sm "} %>
+        <%= f.association :mission, collection: Mission.order(updated_at: :desc), label:'Mission', value_method: :id, include_blank: false ,  input_html: {class: "form-control input-sm "} %>
     </div>
 </div>
 <div class='row'>

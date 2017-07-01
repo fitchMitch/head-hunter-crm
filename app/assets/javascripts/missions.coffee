@@ -4,3 +4,4 @@
 $(document).on "turbolinks:load", ->
   $("#mission_company_id, #mission_person_id").select2
     theme: "bootstrap"
+  $("#mission_company_id, #mission_person_id").attr('selectedIndex', 0);
