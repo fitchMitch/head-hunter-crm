@@ -20,7 +20,7 @@
             <div class="col-xs-1">
                 <p>
                     <% if logged_in? %>
-                      <%= link_to person, method: :delete, data: { confirm: "C'est sûr, ça ?" } do %>
+                      <%= link_to person, method: :delete, data: { confirm: t("confirm") } do %>
                         <span class="glyphicon glyphicon-trash"></span>
                       <% end %>
                       |
@@ -43,7 +43,7 @@
 
             <div class="col-xs-2">
                 <small>
-                    ajouté il y a
+                    <%= t("added") %>
                     <%= time_ago_in_words(person.updated_at)  %>
                     <%= user_badge(person.user) %>
                 </small>
@@ -58,5 +58,7 @@
 
 </div>
 <% else %>
-  <h3>Personne n'est encore inscrit</h3>
+  <h3>
+    <%= t("person.no_one") %>
+  </h3>
 <% end %>

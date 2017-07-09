@@ -1,7 +1,9 @@
-<% provide(:title, 'rendez-vous') %>
-<% provide(:button_text, 'Mettre à jour') %>
+<% provide(:title, t("rdv")) %>
+<% provide(:button_text, t("update_button")) %>
 <% if logged_in? %>
-  <h1 class='center'>Mettre à jour un rendez-vous </h1>
+  <h1 class='center'>
+    <%= t("update_title") %>
+  </h1>
   <div class='row'>
     <div class="col-md-6 col-md-offset-3">
       <%= render 'form' %>

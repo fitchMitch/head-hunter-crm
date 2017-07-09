@@ -1,5 +1,7 @@
-<% provide(:title, "Mot de passe oublié") %>
-<h1>Mot de passe oublié</h1>
+<% provide(:title, t("user.forgotten_password")) %>
+<h1>
+  <%= t("user.forgotten_password") %>
+</h1>
 
 <div class='row'>
   <div class="col-md-6 col-md-offset-3">
@@ -7,7 +9,7 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.submit "Valider", class: "btn btn-success center-block" %>
+      <%= f.submit t("ok_button"), class: "btn btn-success center-block" %>
     <% end %>
   </div>
 </div>

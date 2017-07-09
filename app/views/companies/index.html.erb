@@ -1,6 +1,7 @@
-<% provide(:title, 'Liste des sociétés') %>
-<h1 class="center">Liste des sociétés</h1>
-
+<% provide(:title, t("company.list")) %>
+<h1 class="center">
+  <%= t("company.list") %>
+</h1>
 <%= will_paginate %>
 <%= render 'table_header' %>
 <%= render @companies %>

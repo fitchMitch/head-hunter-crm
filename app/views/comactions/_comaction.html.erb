@@ -11,7 +11,7 @@
             </div>
             <div class='col-xs-2'>
                 <% if logged_in? && current_user.id == comaction.user_id %>
-                  <%= link_to  comaction_path(comaction), method: :delete, data: { confirm: "Wesh ? C'est sûr ?" } do %>
+                  <%= link_to  comaction_path(comaction), method: :delete, data: { confirm: t("confirm") } do %>
                   <span class="glyphicon glyphicon-trash"></span>
                   <% end %>
                 <% end %>

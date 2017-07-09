@@ -2,13 +2,17 @@
     <div class='col-xs-9'></div>
     <div class="col-xs-3 cartel">
         <div class='row'>
-            <div class='col-xs-5'>Créé il y a</div>
+            <div class='col-xs-5'>
+              <%= t "created_at" %>
+            </div>
             <div class='col-xs-7'>
             <%= time_ago_in_words yield(:creation_date) %>
             </div>
         </div>
         <div class='row'>
-            <div class='col-xs-5'>Mis à jour</div>
+            <div class='col-xs-5'>
+              <%= t "update_date" %>
+            </div>
             <div class='col-xs-7'><%= time_ago_in_words yield(:update_date) %></div>
         </div>
     </div>

@@ -10,7 +10,8 @@ Bundler.require(*Rails.groups)
 
 module JjFloApp
   class Application < Rails::Application
-
+    #locale
+    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
     I18n.default_locale = :fr
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

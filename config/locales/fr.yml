@@ -1,5 +1,50 @@
 ---
 fr:
+  Name: Nom
+  Date: Date
+  Dates: Dates
+  With: Avec
+  Status: Statut
+  Mission: Mission
+  Missions: Missions
+  Company: Société
+  Companies: Sociétés
+  Contacts: Contacts
+  Client: Client
+  Action: Action
+  updated: mise à jour
+  today: aujourd'hui
+  user_resp: Resp
+  Edit: Editer
+  Create: Créer
+  update: Changer
+  add_button: Ajouter
+  recorded_on: enregistré il y a
+  update_button: Mettre à jour
+  save_button: Sauvegarder
+  ok_button : Valider
+  currency: euros
+  About: A propos
+  Contact: Contact
+  help: Aide
+  filter_button: Filtrer
+  confirm: Wesh ? C'est sûr
+  added: ajouté il y a
+  paid: Payé
+  from: de
+  to: à
+  search_title: Rechercher
+  jj:
+    maxim: JuinJuillet Recrutement
+    rdv: Rendez-vous
+    people_and_companies: Contacts et sociétés
+    profile : Profil
+    parameters: Paramétrage
+    account_create: Créer un compte
+    disconnect: Déconnexion
+    log_in: Log in
+  years: années
+  months: mois
   Sunday: dimanche
   Monday: lundi
   Tuesday: mardi
@@ -256,7 +301,111 @@ fr:
       long: "%A %d %B %Y %Hh%M"
       short: "%d %b %Hh%M"
     pm: pm
-
   will_paginate:
     next_label: "Suiv. »"
     previous_label: "« Préc."
+  and: et
+  jours: days
+  update_date: Mise à jour
+  created_at: Créé il y a
+  user:
+    authentication:
+      user_authentication: Authentification
+      password_update: Mise à jour du mot de passe
+      forgotten_password: Mot de passe oublié
+    password: Mot de passe
+    password_conf: Confirmation de mot de passe
+    prolile_update: Modifier le profil
+    list: Liste des utilisateurs
+    account_create: Créer un compte
+    remember_me: Se souvenir de moi
+    login: Login
+  mission:
+    years: ans
+    Between: Entre
+    Age frame: Tranche d'âge
+    minimum_salary: Salaire minimum
+    maximum_salary: Salaire maximum
+    remuneration: Rémunération JuinJuillet
+    whished_start_date: Début souhaité
+    already_cashed: Déjà encaissé
+    Mission: Mission
+  comaction:
+    rdv: Rendez-vous
+    filters:
+      now_and_after: Maintenant et +
+      add_contact: Ajouter un nouveau contact
+      with_no_comaction: Sans Rendez-vous
+    label: Libellé du RDV
+    status: Statut
+    type: Type
+    mission: Mission
+    date_q: Date ?
+    start:
+      date_and_hour: Date et heure de début
+    end:
+      date_and_hour: Date et heure de
+    title_list: Liste des rendez-vous
+    title_list_short: Liste des RdV
+    update_title: Mettre à jour un rendez-vous
+    add_label: Ajouter un rendez-vous
+    create: Créer un rendez-vous
+    calendar: Calendrier des rendez-vous
+  company:
+    company_name: Nom de la société
+    worked_there: personnes y ont travaillé
+    edit: Editer cette société
+    list: Liste des sociétés
+    add: Ajouter une société
+  person:
+    name: Nom
+    job: Emploi
+    edit: Editer ce contact
+    add: Ajouter un contact
+    add_experience: Ajouter une expérience
+    experiences: Expériences
+    create : Créer un contact
+    list: Liste des contacts
+    citizenship: Civilité
+    firstname: PréNom
+    jj_employed: Embauché grâce à JJ
+    phone_number: Numéro de téléphone
+    approx_age: Age approximatif
+    comment: Commentaire
+    cv: Son CV
+    cv_docx: CV (au format docx)
+    no_cv: Pas de CV !
+    phone: Téléphone
+    no_one: Personne n'est encore inscrit
+    passed_jobs: Postes occupés (non exhaustifs)
+  job:
+    last: Poste occupé
+    date_in: Date de prise de fonction
+    date_end: Date de fin de contrat
+    salary: Salaire
+    jj: Poste fourni par JuinJuillet
+    still_in: en poste
+    add: Ajouter une nouvelle société
+    confirm_for: Wesh ? C'est sûr pour %{him} ?
+    edit: Editer ce poste
+    list : Liste des emplois
+    add: Ajouter une expérience
+    add_first: Créez la première société !
+  mission:
+    create: Créer une mission
+    add_new: Créer une nouvelle mission
+    add_contact: Ajouter un nouveau contact
+    list: Liste des missions
+    edit: Editer une mission
+    name: Nom de la mission
+    amount: Montant de la mission
+    person_searched: Personne recherchée
+    min_age: Age minimum
+    max_age: Age maximal
+    max_salary: Salaire annuel maximal
+    whished_start_date: Date de début de travail
+    due : Echéance
+    market : Marché
+  search:
+    your_search: Votre recherche
+    no_result: Aucun résultat pour votre recherche

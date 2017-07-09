@@ -4,7 +4,7 @@
         <h3> <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
             <span class="label label-warning"><%= @company.company_name%></span>
             <small>
-                - <span class="badge"><%= @nbr%></span> personnes y ont travaillé</small>
+                - <span class="badge"><%= @nbr%></span> <%= t("company.worked_there") %></small>
         </h3>
     </div>
 </div>
@@ -30,7 +30,7 @@
         <div class='col-xs-3'>
           De <strong><%= t job.start_date.strftime("%b") %> <%= job.start_date.strftime("%Y") %></strong> à
           <% if job.end_date.nil? %>
-            aujourd'hui
+            <%= t("today") %>
           <% else %>
            <%= t job.end_date.strftime("%b") %>  <%= job.end_date.strftime("%Y") %>
           <% end %>

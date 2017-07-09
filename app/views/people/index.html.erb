@@ -1,5 +1,7 @@
-<% provide(:title, 'Liste des contacts') %>
-<h1 class="center">Liste des contacts</h1>
+<% provide(:title, t("person.list")) %>
+<h1 class="center">
+  <%= t("person.list") %>
+</h1>
 
 <%= will_paginate %>
 <%= render 'table_header' %>

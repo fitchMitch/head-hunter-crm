@@ -1,6 +1,8 @@
-<% provide(:title, 'Liste des emplois') %>
+<% provide(:title, t("job.list")) %>
 
-<h1 class="center">Liste des emplois</h1>
+<h1 class="center">
+  <%= t("job.list") %>
+</h1>
 
 <%= will_paginate %>
 <%= render @jobs %>

@@ -11,7 +11,9 @@
         <div class="col-xs-10">
             <div class='row'>
                 <div class="col-xs-5 ">
-                    <strong>Téléphone</strong>
+                    <strong>
+                      <%= t("person.phone") %>
+                    </strong>
                 </div>
                 <div class='col-xs-6'>
                     <%= @person.phone_number %>
@@ -19,7 +21,9 @@
             </div>
             <div class='row'>
                 <div class="col-xs-5 ">
-                    <strong>CV (au format docx)</strong>
+                    <strong>
+                      <%= t("person.cv_docx") %>
+                    </strong>
                 </div>
                 <div class='col-xs-6'>
                     <% if @person.cv_docx.file? %>
@@ -27,7 +31,9 @@
                       <%= @person.cv_docx_file_name %>
                     <% end %>
                     <% elsif !@person.is_client? %>
-                      <span class="small_alert">Pas de CV !</span>
+                      <span class="small_alert">
+                        <%= t("person.no_cv") %>
+                      </span>
                     <% end %>
                 </div>
             </div>
@@ -41,10 +47,12 @@
             </div>
             <div class='row'>
                 <div class='col-xs-5'>
-                    <strong>Age approximatif</strong>
+                    <strong>
+                      <%= t("person.approx_age") %>
+                    </strong>
                 </div>
                 <div class='col-xs-6'>
-                    <%= @person.approx_age %> ans
+                    <%= @person.approx_age %> <%= t("mission.years") %>
                 </div>
             </div>
         </div>

@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-xs-12">
-     <h3>Son CV</h3>
+     <h3>
+       <%= t("person.cv") %>
+     </h3>
       <% @doc.paragraphs.each do |pa|   %>
         <p>
           <%= pa.to_html.html_safe  %>

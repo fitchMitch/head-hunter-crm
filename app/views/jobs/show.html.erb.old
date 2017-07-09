@@ -47,7 +47,7 @@
         <div class='row'>
             <div class="col-md-6">
                 <p>Sociétés (fake)</p>
-                <%= render(partial: "comp_name", collection: @comp_names) || "Créez la première société !" %>
+                <%= render(partial: "comp_name", collection: @comp_names) || t("job.add_first") %>
             </div>
             <div class="col-md-6">
                 <p>Ajouter une expérience</p>

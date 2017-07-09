@@ -10,7 +10,9 @@
           <span class="glyphicon glyphicon-pencil"></span>
           <%= a.job_title %>
           <% end %>
-          <small><span class="label label-default"><%= years_work(a)%> ans</span></small>
+          <small><span class="label label-default"><%= years_work(a)%>
+            <%= t("mission.years") %>
+          </span></small>
       </div>
       <div class='col-xs-4'>
       <% unless a.no_end  %>
@@ -28,11 +30,11 @@
       <div class='col-xs-3'>
           <small>
               <%= a.salary %>
-              euros
+              <%= t("currency") %>
           </small>
       </div>
       <div class='col-xs-1'>
-          <%= link_to  job_path(a.id), method: :delete, data: { confirm: "Wesh ? C'est sûr  ?" } do %>
+          <%= link_to  job_path(a.id), method: :delete, data: { confirm: t("confirm") } do %>
           <span class="glyphicon glyphicon-trash"></span>
           <% end %>
       </div>
@@ -40,11 +42,11 @@
   <div class='row'>
       <div class='col-xs-8'>
           <small>
-              de
+              <%= t("from") %>
               <%= t a.start_date.strftime("%B %Y") %>
-              à
+              <%= t("to") %>
               <% if a.no_end%>
-              aujourd'hui
+              <%= t("today") %>
               <% else %>
                   <%= a.end_date.strftime("%B %Y") %>
               <%end%>

@@ -1,7 +1,15 @@
 // Place all the styles related to the Missions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.mission-top.nav_ico{
+.mission.nav_ico{
   margin-top:12px;
   border:1px solid black;
+}
+.mission.light-danger-button{
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid red;
+}
+.mission.bottom-line{
+  margin-right: 2em;
 }

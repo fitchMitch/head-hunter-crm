@@ -2,58 +2,59 @@
 <% provide(:update_date, @mission.updated_at) %>
 <% provide(:creation_date, @mission.created_at) %>
 <div class='row'>
-  <div class="col-xs-1 mission-top nav-ico">
+  <div class="col-sm-1">
     <div class='row'>
-      <div class="col-xs-12 mission nav-ico">
+      <div class="col-sm-12 mission nav-ico">
         <%= link_to edit_mission_path do %>
-        <button class="btn btn-info">
-          <%= fa_icon('pencil ') %>
-        </button>
-        <% end %>
-      </div>
-    </div>
-    <div class='row'>
-      <div class="col-xs-12 mission nav-ico">
-        <%= link_to missions_path do %>
-        <button class="btn btn-info">
-          <%= fa_icon('list ') %>
-        </button>
-        <% end %>
-      </div>
-    </div>
-    <div class='row'>
-      <div class="col-xs-12  mission nav-ico">
-        <%= link_to  @mission, method: :delete, data: { confirm: "C'est sûr ?" } do %>
         <button class="btn btn-success">
-          <%= fa_icon('trash ') %>
+          <%= fa_icon('pencil 2x') %>
+        </button>
+        <% end %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class="col-sm-12 mission nav-ico">
+        <%= link_to missions_path do %>
+        <button class="btn btn-success">
+          <%= fa_icon('list 2x') %>
+        </button>
+        <% end %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class="col-sm-12  mission nav-ico">
+        <%= link_to  @mission, method: :delete, data: { confirm: "C'est sûr ?" } do %>
+        <button class="btn btn-success danger">
+          <%= fa_icon('trash 2x') %>
         </button>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="col-xs-11">
+  <div class="col-sm-11  ">
     <div class='row'>
-      <div class='col-xs-8'>
+      <div class='col-sm-8'>
         <h1>
           <%= @mission.name %>
         </h1>
         <h3>
           <%= special_label @mission %></h3>
       </div>
-      <div class='col-xs-4'>
+      <div class='col-sm-4'>
       </div>
     </div>
   <div class='row emptyline'></div>
-    <div class='row'>
-      <div class='col-xs-6 rightFrame'>
-        <div class='row '>
-          <div class='col-xs-3 train-right'>
+    <div class='row  '>
+      <div class='col-sm-2 hidden-xs'> </div>
+      <div class='col-sm-4'>
+        <div class='row rightFrame '>
+          <div class='col-sm-5 '>
             <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
             <br>
             <br>
             <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
           </div>
-          <div class='col-xs-9'>
+          <div class='col-sm-7'>
             <p>
               <strong><%= @mission.company.company_name %></strong>
             </p>
@@ -63,57 +64,67 @@
             </p>
           </div>
         </div>
-        <div class='row emptyline'></div>
-        <div class='row '>
-          <div class="col-xs-12"><hr class="sep"></div>
+        <div class='row emptyline rightFrame'></div>
+        <div class='row rightFrame'>
+          <div class="col-sm-12"><hr class="sep"></div>
         </div>
-        <div class='row '>
-          <div class='col-xs-6'>Salaire minimum</div>
-          <div class='col-xs-6'>
+        <div class='row rightFrame'>
+          <div class='col-sm-5'><small>
+          <%=  t "mission.minimum_salary" %>
+          </small></div>
+          <div class='col-sm-7'>
             <strong><%= number_to_currency @mission.min_salary %></strong>
           </div>
         </div>
-        <div class='row'>
-          <div class='col-xs-6'>Salaire maximum</div>
-          <div class='col-xs-6'>
+        <div class='row rightFrame'>
+          <div class='col-sm-5'><small>
+            <%= t "mission.maximum_salary" %>
+          </small></div>
+          <div class='col-sm-7'>
             <strong><%= number_to_currency @mission.max_salary %></strong>
           </div>
         </div>
-        <div class='row'>
-          <div class="col-xs-12"><hr class="sep"></div>
+        <div class='row rightFrame'>
+          <div class="col-sm-12"><hr class="sep"></div>
         </div>
-        <div class='row'>
-          <div class='col-xs-6'>Tranche d'âge</div>
-          <div class='col-xs-6'>
-            Entre
+        <div class='row emptyline rightFrame'></div>
+        <div class='row rightFrame'>
+          <div class='col-sm-5'>
+            <%= t "mission.Age frame" %>
+          </div>
+          <div class='col-sm-7'>
+            <%= t "mission.Between" %>
             <%= @mission.min_age %>
-            et
+            <%= t "and" %>
             <%= @mission.max_age %>
-            ans
+            <%= t "mission.years" %>
           </div>
         </div>
       </div>
       <div class="leftFrame">
 
-        <div class="col-xs-6  ">
+        <div class="col-sm-6  ">
           <div class='row'>
-            <div class='col-xs-5'>Rémunération JuinJuillet</div>
-            <div class='col-xs-7'>
+            <div class='col-sm-5'>
+              <%= t "mission.remuneration" %>
+            </div>
+            <div class='col-sm-7'>
               <strong ><%= number_to_currency @mission.reward %></strong>
             </div>
           </div>
           <!-- <div class= 'row emptyline'></div> -->
           <div class='row'>
-            <div class='col-xs-5'>Déjà encaissé
+            <div class='col-sm-5'>
+              <%= t "mission.already_cashed" %>
             </div>
-            <div class='col-xs-7'>
+            <div class='col-sm-7'>
               <strong ><%= number_to_currency @mission.paid_amount %></strong>
             </div>
           </div>
-          
+
           <div class="frameMe">
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            Début souhaitée :
+            <%= t "mission.whished_start_date" %> :
             <strong>
               <%= (@mission.whished_start_date).strftime("%d ") %>
               <%= t (@mission.whished_start_date.strftime("%B")) %>
@@ -121,13 +132,17 @@
             </strong>
             <hr>
             <i>
-              <strong>Mission</strong>
+              <strong>
+                <%= t "mission.Mission" %>
+              </strong>
               :
               <%= @mission.criteria %></i>
           </div>
         </div>
       </div>
     </div>
+    <div class="mission bottom-line">
+      <%= render 'shared/date_block' %>
+    </div>
   </div>
 </div>
-<%= render 'shared/date_block' %>

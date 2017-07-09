@@ -9,72 +9,72 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Rendez-vous
+                        <%= t("jj.rdv") %>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><%= link_to new_comaction_path  do %>
                             <span class="glyphicon glyphicon-plus"></span>
-                            Créer un rendez-vous
+                            <%= t("comaction.create") %>
                             <% end %>
                         </li>
                         <li><%= link_to  comactions_path(v: 'calendar_view') do %>
                             <%= fa_icon("calendar-o") %>
-                            Calendrier des rendez-vous
+                            <%= t("comaction.calendar") %>
                             <% end %>
                         </li>
                         <li><%= link_to  comactions_path(v: 'table_view')  do %>
                             <span class="glyphicon glyphicon-list-alt"></span>
-                            Liste des rendez-vous
+                            <%= t("comaction.title_list") %>
                             <% end %>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Missions
+                        <%= t("Mission") %>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><%= link_to new_mission_path  do %>
                             <span class="glyphicon glyphicon-plus"></span>
-                            Créer une mission
+                            <%= t("mission.create") %>
                             <% end %>
                         </li>
                         <li><%= link_to  missions_path do %>
                             <span class="glyphicon glyphicon-list-alt"></span>
-                            Liste des missions
+                            <%= t("mission.list") %>
                             <% end %>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Contacts et sociétés
+                        <%= t("jj.people_and_companies") %>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                       <li>
                           <%= link_to  new_person_path do %>
                           <span class="glyphicon glyphicon-plus"></span>
-                          Créer un contact
+                          <%= t("person.create") %>
                           <% end %>
                       </li>
                         <li>
                             <%= link_to  people_path do %>
                             <%= fa_icon('address-book') %>
-                            Lister les contacts
+                            <%= t("person.list") %>
                             <% end %>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li><%= link_to new_company_path  do %>
                             <span class="glyphicon glyphicon-plus"></span>
-                            Créer une société
+                            <%= t("company.add") %>
                             <% end %>
                         </li>
                         <li><%= link_to  companies_path do %>
                             <%= fa_icon('building-o') %>
-                            Liste des sociétés
+                            <%= t("company.list") %>
                             <% end %>
                         </li>
                     </ul>
@@ -89,21 +89,21 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><%= link_to "Profil", current_user %></li>
-                        <li><%= link_to "Paramétrage", edit_user_path(current_user) %></li>
+                        <li><%= link_to t("jj.profile"), current_user %></li>
+                        <li><%= link_to t("jj.parameters"), edit_user_path(current_user) %></li>
                         <% if current_user.admin? %>
                         <li>
-                            <%= link_to "Créer un compte", signup_path %>
+                            <%= link_to t("jj.account_create"), signup_path %>
                         </li>
                         <% end %>
                         <li class="divider"></li>
                         <li>
-                            <%= link_to "Déconnexion", logout_path, method: "delete" %>
+                            <%= link_to t("jj.disconnect"), logout_path, method: "delete" %>
                         </li>
                     </ul>
                 </li>
             <% else %>
-              <li><%= link_to "Aide", help_path %></li>
+              <li><%= link_to t("help"), help_path %></li>
               <% end %>
             </ul>
         </nav>

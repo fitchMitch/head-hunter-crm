@@ -1,6 +1,8 @@
 <% provide(:title, 'Liste des RdV') %>
 <% provide(:calender_view, '0') %>
-<h1 class='center'>Liste des rendez-vous</h1>
+<h1 class='center'>
+  <%= t("title_list") %>
+</h1>
 <div class= 'row spaceDown'>
     <%= render 'block_filters' %>
     <div role='tabpanel' class="tab-pane" id='tab_list'>

@@ -7,10 +7,10 @@
             </div>
             <div class="btn-group btn-group-sm" role="group" aria-label="...">
                 <%= link_to  comactions_path(:filter => 'unscheduled'), class: "btn btn-default " do %>
-                Sans Rendez-vous
+                <%= t("comaction.filters.with_no_comaction") %>
                 <% end %>
                 <%= link_to  comactions_path(:filter => 'future'), class: "btn btn-default" do %>
-                    Maintenant et +
+                    <%= t("comaction.filters.now_and_after") %>
                 <% end %>
                 <%= link_to  comactions_path, class: "btn btn-default" do %>
                     <%= fa_icon('undo') %>

@@ -1,7 +1,8 @@
-<% provide(:title, 'Ajouter un rendez-vous') %>
-<% provide(:button_text, 'Ajouter') %>
+<% provide(:title, t("comaction.add_label")) %>
+<% provide(:button_text, t("add_button")) %>
 <% if logged_in? %>
-  <h1 class='center'>Ajouter un rendez-vous </h1>
+  <h1 class='center'>
+  <%= t("comaction.add_label") %> </h1>
   <div class='row'>
     <div class="col-md-6 col-md-offset-3">
       <%= render 'form' %>

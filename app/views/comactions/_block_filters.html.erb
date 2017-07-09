@@ -10,7 +10,7 @@
                      <%= fa_icon('list', text: 'Sans date') %>
                 <% end %>
                 <%= link_to  comactions_path(:filter => 'future'), class: "btn btn-default" do %>
-                    Maintenant et +
+                    <%= t 'comaction.filters.now_and_after' %>
                 <% end %>
                 <%= link_to  comactions_path, class: "btn btn-default" do %>
                     <%= fa_icon('undo') %>

@@ -32,17 +32,9 @@ $color8 : #951418;
 }
 
 body {
-    background-color: $color4;/* #d9cdd9;*/
+    background-color: $color4;
 }
 
-// .select2 .select2-container .select2-container--bootstrap {
-//     width: NULL;
-// }
-// .select2-container--default .select2-search--inline .select2-search__field {
-//     width: NULL;
-// }
-// .safe-select2{
-// }
 .train-right{
   text-align: right;
 }
@@ -77,7 +69,9 @@ body {
     margin-top: 45px;
     @include box_sizing;
 }
-/* universal */
+/* ---------------------*/
+// Universal
+/* ---------------------*/
 body {
     padding-top: 60px;
 }
@@ -99,46 +93,32 @@ textarea {
 }
 .bottomline{display: block;vertical-align: bottom;}
 
-/* typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* ---------------------*/
+// typography
+/* ---------------------*/
+h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
-
 h1 {
     font-size: 2.7em;
     #letter-spacing: -2px;
     margin-bottom: 30px;
     text-align: center;
 }
-h1.center.cfirst{
-  margin-bottom: -40px;
-  text-indent: -55px;
-}
-h1.center.clast {
-  text-indent: -3px;
-  margin-bottom: -00px;
-}
-
 h2 {
-    font-size: 2em;
-    letter-spacing: -1px;
-    margin-bottom: 20px;
-    font-weight: normal;
-    color: $color1;
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  font-weight: normal;
+  color: $color1;
 }
 h3{
-      font-size: 1.6em;
-      letter-spacing: -1px;
-      margin-bottom: 10px;
-      font-weight: normal;
-      color: $color3;
+  font-size: 1.6em;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  font-weight: normal;
+  color: $color3;
 }
-
 p {
     font-size: 1.1em;
     line-height: 1.7em;
@@ -148,16 +128,19 @@ p {
   display: block;
   width: 2em;
 }
-.bord{
-  border:solid black 1px;
-}
 .barr{
   background-color: $color5;
   height:2px;
   margin-top: 0.7em;
   margin-bottom: 0.5em;
 }
-/* header */
+//------------------
+.btn.btn-success.danger{
+  color:$color5;
+}
+/* ---------------------*/
+// header
+/* ---------------------*/
 .circle{
   background-color: #f79bd4;
   -webkit-border-radius: 75px 75px 75px 75px;
@@ -181,67 +164,44 @@ p {
     color: #fff;
     text-decoration: none;
 }
-/* footer */
-footer {
-    margin-top: 45px;
-    padding-top: 5px;
-    border-top: 1px solid $gray-medium-light;
-    color: $light-gray;
-
-    a {
-        color: #555;
-
-        &:hover {
-            color: #222;
-        }
-    }
-
-    small {
-        float: left;
-    }
-
-    ul {
-        float: right;
-        list-style: none;
-
-        li {
-            float: left;
-            margin-left: 15px;
-        }
-    }
+h1.center.cfirst{
+  margin-bottom: -40px;
+  text-indent: -55px;
 }
-/* sidebar */
-// aside {
-//     section.user_info {
-//         margin-top: 20px;
-//     }
-//
-//     section {
-//         padding: 10px 0;
-//         margin-top: 20px;
-//
-//         &:first-child {
-//             border: 0;
-//             padding-top: 0;
-//         }
-//
-//         span {
-//             display: block;
-//             margin-bottom: 3px;
-//             line-height: 1;
-//         }
-//
-//         h1 {
-//             font-size: 1.4em;
-//             text-align: left;
-//             letter-spacing: -1px;
-//             margin-bottom: 3px;
-//             margin-top: 0;
-//         }
-//     }
-// }
+h1.center.clast {
+  text-indent: -3px;
+  margin-bottom: -00px;
+}
+/* ---------------------*/
+// footer
+/* ---------------------*/
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: $light-gray;
+  a {
+      color: #555;
+      &:hover {
+          color: #222;
+      }
+  }
+  small {
+      float: left;
+  }
+  ul {
+      float: right;
+      list-style: none;
+      li {
+          float: left;
+          margin-left: 15px;
+      }
+  }
+}
 
-/*  pagination  */
+/* ---------------------*/
+// pagination
+/* ---------------------*/
 .pagination{
   text-align: right;
   margin-top:5px;
@@ -279,7 +239,9 @@ footer {
   }
 }
 
-/*  end of pagination  */
+/* ---------------------*/
+// gravatar
+/* ---------------------*/
 
 .gravatar {
     float: left;
@@ -289,7 +251,9 @@ footer {
 .gravatar_edit {
     margin-top: 15px;
 }
-/* forms */
+/* ---------------------*/
+// forms
+/* ---------------------*/
 
 .btnSubmitCtr {
     width: 40%;
@@ -304,10 +268,6 @@ footer {
     /*width: 100%;*/
     margin-bottom: 15px;
     @include box_sizing;
-}
-
-input {
-    /*height: auto !important; */
 }
 
 #error_explanation {
@@ -326,28 +286,18 @@ input {
         color: $state-danger-text;
     }
 }
-/* forms */
+
 abbr {
     color: red;
 }
-
-
 #session_remember_me {
     width: auto;
     margin-left: -20px;
 }
-/* Users index */
-.users {
-    list-style: none;
-    margin: 0;
-    li {
-        overflow: auto;
-        padding: 10px 0;
-        border-bottom: 1px solid $gray-lighter;
-    }
-}
-/* frames */
 
+/* ---------------------*/
+// frames
+/* ---------------------*/
 .rightFrame{
   border-right: 2px solid $color1;
   padding-right: 10px;
@@ -359,17 +309,11 @@ abbr {
   margin-left: 10px;
   text-align: left;
 }
-.redFrame {
-    border: 2px $color2 solid;
-    padding: 3px 5px 2px 5px;
-    font-size: 0.8em;
-    font-weight: bold;
-    color: $color2;
-    background-color: $color7;
-    /*-webkit-box-shadow: 1px 1px 1px 1px #633961;
-    box-shadow: 1px 1px 1px 1px #633961;*/
-    -webkit-border-radius:4px 4px 4px 4px;
-    border-radius:4px 4px 4px 4px;
+.leftFrame_with_border {
+  padding-left: 20px;
+  margin-left: 10px;
+  text-align: left;
+  border-left: 2px solid $color1;
 }
 .frame{
   border: 1px #888888 solid;
@@ -397,6 +341,9 @@ abbr {
     color:black;
     margin-top:15px;
 }
+.testFrame {
+  border: 1px solid red;
+}
 hr.sep{
   color:$color3;
   background-color: $color3;
@@ -404,11 +351,15 @@ hr.sep{
   margin-top:0.5em;
   margin-bottom:1em;
 }
-
+/*---------------------+
+/* Position
+/*---------------------*/
+.align-left{
+  text-align: left;
+}
 .checkBelow {
     margin-top: 20px;
 }
-
 .tenPxDown{
   margin: 10px;
   padding : 10px;
@@ -423,6 +374,7 @@ hr.sep{
 .cartel{
   color:#555;
   align-content: flex-end;
+  text-align: right;
   margin-top: 2em;
   font-size: 0.85em;
   -webkit-border-radius:4px 4px 4px 4px;
@@ -430,7 +382,7 @@ hr.sep{
   border: 1px solid #999;
 }
 .fadingColor{
-  color : #777;
+  color: #777;
 }
 .array_header{
   background-color: $color5; /* #ead3ea;*/
@@ -444,11 +396,27 @@ hr.sep{
 a > span.label-warning:hover{
   text-decoration: none;
 }
-/* People  */
+/* ---------------------*/
+// Users index
+/* ---------------------*/
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+      overflow: auto;
+      padding: 10px 0;
+      border-bottom: 1px solid $gray-lighter;
+  }
+}
+/* ---------------------*/
+// People
+/* ---------------------*/
 .fa-user.client {
   color:$color5;
 }
-/* Missions */
+/* ---------------------*/
+// Missions
+/* ---------------------*/
 #mission_search{
   display:inline;
 }
@@ -478,7 +446,6 @@ a > span.label-warning:hover{
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
-
 .midway{
   vertical-align: middle;
   line-height:5em;
@@ -488,20 +455,13 @@ a > span.label-warning:hover{
   height:2em;
   line-height:1.6em;
 }
-.elbowSpace{
-  padding-right: 2em;
-  padding-left: 2em;
-}
-.lightlooks{
-  color:#888;
-  font-size:0.9em;
-}
 /* ---------------------*/
 // Comactions
 /* ---------------------*/
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
   background-color: $color5;
   color :  $color1;
+
 }
 .track-border{
   border: 1px black solid;
@@ -511,7 +471,6 @@ a > span.label-warning:hover{
   background-color: white;
   border : 2px red solid;
 }
-
 .cal_date{
   font-size: 0.7em;
   font-family: "Verdana";
@@ -526,11 +485,6 @@ a > span.label-warning:hover{
   margin-bottom: 4px;
   display: inline-block;
 }
-// .day.start-date{
-//     background-color: $color5;
-//     background: $color5;
-//     border : 2px $color5 solid;
-// }
 .day.future{
   border: 2px solid $color1;
 }
@@ -540,4 +494,17 @@ a > span.label-warning:hover{
 }
 @media screen and (max-width: 767px) {
 
+}
+/* ---------------------*/
+// Jobs
+/* ---------------------*/
+.redFrame {
+  border: 2px $color2 solid;
+  padding: 3px 5px 2px 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: $color2;
+  background-color: $color7;
+  -webkit-border-radius:4px 4px 4px 4px;
+  border-radius:4px 4px 4px 4px;
 }
