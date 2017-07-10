@@ -23,7 +23,7 @@
     </div>
     <div class='row'>
       <div class="col-sm-12  mission nav-ico">
-        <%= link_to  @mission, method: :delete, data: { confirm: "C'est sûr ?" } do %>
+        <%= link_to  @mission, method: :delete, data: { confirm: t("confirm") } do %>
         <button class="btn btn-success danger">
           <%= fa_icon('trash 2x') %>
         </button>
@@ -70,7 +70,7 @@
         </div>
         <div class='row rightFrame'>
           <div class='col-sm-5'><small>
-          <%=  t "mission.minimum_salary" %>
+          <%=  t("mission.minimum_salary") %>
           </small></div>
           <div class='col-sm-7'>
             <strong><%= number_to_currency @mission.min_salary %></strong>
@@ -78,7 +78,7 @@
         </div>
         <div class='row rightFrame'>
           <div class='col-sm-5'><small>
-            <%= t "mission.maximum_salary" %>
+            <%= t("mission.maximum_salary")  %>
           </small></div>
           <div class='col-sm-7'>
             <strong><%= number_to_currency @mission.max_salary %></strong>
@@ -90,14 +90,14 @@
         <div class='row emptyline rightFrame'></div>
         <div class='row rightFrame'>
           <div class='col-sm-5'>
-            <%= t "mission.Age frame" %>
+            <%= t("mission.Age frame") %>
           </div>
           <div class='col-sm-7'>
-            <%= t "mission.Between" %>
+            <%= t("mission.Between") %>
             <%= @mission.min_age %>
-            <%= t "and" %>
+            <%= t("and") %>
             <%= @mission.max_age %>
-            <%= t "mission.years" %>
+            <%= t("mission.years") %>
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@
         <div class="col-sm-6  ">
           <div class='row'>
             <div class='col-sm-5'>
-              <%= t "mission.remuneration" %>
+              <%= t("mission.remuneration") %>
             </div>
             <div class='col-sm-7'>
               <strong ><%= number_to_currency @mission.reward %></strong>
@@ -115,7 +115,7 @@
           <!-- <div class= 'row emptyline'></div> -->
           <div class='row'>
             <div class='col-sm-5'>
-              <%= t "mission.already_cashed" %>
+              <%= t("mission.already_cashed") %>
             </div>
             <div class='col-sm-7'>
               <strong ><%= number_to_currency @mission.paid_amount %></strong>
@@ -124,7 +124,7 @@
 
           <div class="frameMe">
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            <%= t "mission.whished_start_date" %> :
+            <%= t("mission.whished_start_date") %> :
             <strong>
               <%= (@mission.whished_start_date).strftime("%d ") %>
               <%= t (@mission.whished_start_date.strftime("%B")) %>
@@ -133,7 +133,7 @@
             <hr>
             <i>
               <strong>
-                <%= t "mission.Mission" %>
+                <%= t("Mission") %>
               </strong>
               :
               <%= @mission.criteria %></i>

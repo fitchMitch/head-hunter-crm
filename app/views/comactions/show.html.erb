@@ -47,7 +47,7 @@
         <% end %>
       </div>
       <div class="col-sm-12  nav-ico">
-        <%= link_to  @comaction, method: :delete, data: { confirm: "C'est sûr ?" } do %>
+        <%= link_to  @comaction, method: :delete, data: { confirm: t("confirm")} do %>
         <button class="btn btn-success danger">
           <%= fa_icon('trash 2x') %>
         </button>

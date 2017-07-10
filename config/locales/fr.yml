@@ -320,22 +320,13 @@ fr:
     account_create: Créer un compte
     remember_me: Se souvenir de moi
     login: Login
-  mission:
-    years: ans
-    Between: Entre
-    Age frame: Tranche d'âge
-    minimum_salary: Salaire minimum
-    maximum_salary: Salaire maximum
-    remuneration: Rémunération JuinJuillet
-    whished_start_date: Début souhaité
-    already_cashed: Déjà encaissé
-    Mission: Mission
   comaction:
     rdv: Rendez-vous
     filters:
       now_and_after: Maintenant et +
       add_contact: Ajouter un nouveau contact
       with_no_comaction: Sans Rendez-vous
+      no_date: Sans date
     label: Libellé du RDV
     status: Statut
     type: Type
@@ -367,7 +358,7 @@ fr:
     create : Créer un contact
     list: Liste des contacts
     citizenship: Civilité
-    firstname: PréNom
+    firstname: Prénom
     jj_employed: Embauché grâce à JJ
     phone_number: Numéro de téléphone
     approx_age: Age approximatif
@@ -406,6 +397,14 @@ fr:
     whished_start_date: Date de début de travail
     due : Echéance
     market : Marché
+    years: ans
+    Between: Entre
+    Age frame: Tranche d'âge
+    minimum_salary: Salaire minimum
+    maximum_salary: Salaire maximum
+    remuneration: Rémunération JuinJuillet
+    whished_start_date: Début souhaité
+    already_cashed: Déjà encaissé
   search:
     your_search: Votre recherche
     no_result: Aucun résultat pour votre recherche

@@ -5,7 +5,7 @@
         <%= f.association :person, collection: Person.order(updated_at: :desc), label:'Pour', label_method: :full_name, value_method: :id, include_blank: false %>
         <%= link_to  'add_ext?model=person'  do%>
         <button type='button' class="btn btn-xs">
-          <%= t("comaction.add_contact") %>
+          <%= t("comaction.filters.add_contact") %>
         </button>
         <% end %>
     </div>
