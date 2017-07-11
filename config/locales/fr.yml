@@ -339,7 +339,7 @@ fr:
       date_and_hour: Date et heure de
     title_list: Liste des rendez-vous
     title_list_short: Liste des RdV
-    update_title: Mettre à jour un rendez-vous
+    update_title: Editer un rendez-vous
     add_label: Ajouter un rendez-vous
     create: Créer un rendez-vous
     calendar: Calendrier des rendez-vous

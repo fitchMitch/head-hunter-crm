@@ -49,6 +49,7 @@ class ComactionsController < ApplicationController
   #-----------------
   def edit
     @user = current_user
+    @forwhom = @comaction.person.id
   end
   #-----------------
   def show
