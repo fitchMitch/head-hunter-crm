@@ -33,6 +33,7 @@ fr:
   paid: Payé
   from: de
   to: à
+  For: Pour
   search_title: Rechercher
   jj:
     maxim: JuinJuillet Recrutement
@@ -369,6 +370,7 @@ fr:
     phone: Téléphone
     no_one: Personne n'est encore inscrit
     passed_jobs: Postes occupés (non exhaustifs)
+    have_meeting: Prendre rendez-vous
   job:
     last: Poste occupé
     date_in: Date de prise de fonction

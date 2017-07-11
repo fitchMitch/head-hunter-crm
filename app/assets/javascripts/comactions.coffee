@@ -5,7 +5,12 @@
 $(document).on "turbolinks:load", ->
   $("#comaction_mission_id, #comaction_person_id").select2
     theme: "bootstrap"
-  $("#comaction_mission_id, #comaction_person_id").attr('selectedIndex', 0)
+  #---------------------------------------------------
+  qs = (key) ->
+    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&") # escape RegEx meta chars
+    match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"))
+    match && decodeURIComponent(match[1].replace(/\+/g, " "))
+  #---------------------------------------------------
   $("#comaction_is_dated ").on 'click', ->
     if($("#comaction_is_dated:checked").val()=="1")
       d = new Date()

@@ -16,7 +16,7 @@
 #
 
 class Job < ApplicationRecord
-  belongs_to  :person
+  belongs_to  :person, touch: true
   belongs_to  :company
 
   include PgSearch

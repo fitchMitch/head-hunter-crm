@@ -20,6 +20,7 @@ class ComactionsController < ApplicationController
     @comaction.is_dated = 1
     @comaction.name = "Rdv"
     @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
+    @forwhom = params[:person_id] || 0
   end
   #-----------------
   def index
