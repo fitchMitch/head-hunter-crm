@@ -1,9 +1,9 @@
 <% unless @people.nil? %>
 <div class="row">
-    <div class="col-xs-1 hidden-xs hidden-sm"></div>
-    <div class="col-xs-10 ">
+  <div class="col-lg-1 col-md-1 hidden-sm hidden-xs  "></div>
+  <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
         <div class='row'>
-            <div class="col-xs-3">
+            <div class="col-md-3 col-sm-5 col-xs-8">
                 <%= link_to person do %>
                   <i class="fa fa-user"></i>
                   <%= person.full_name %>
@@ -17,7 +17,7 @@
                 <% end %>
             </div>
 
-            <div class="col-xs-2">
+            <div class="col-md-2 col-sm-3 col-xs-4">
                 <p>
                     <% if logged_in? %>
                       <%= link_to person, method: :delete, data: { confirm: t("confirm") } do %>
@@ -35,7 +35,7 @@
                 </p>
             </div>
 
-            <div class="col-xs-5">
+            <div class="col-md-5 hidden-xs hidden-sm">
                 <p>
                     <% if person.jobs.any? %>
                       <% person.jobs.each do |job| %>
@@ -45,7 +45,7 @@
                 </p>
             </div>
 
-            <div class="col-xs-2">
+            <div class="col-md-2 col-sm-3 hidden-xs ">
                 <small>
                     <%= t("added") %>
                     <%= time_ago_in_words(person.updated_at)  %>
@@ -59,6 +59,7 @@
             </div>
         </div>
     </div>
+
 
 </div>
 <% else %>

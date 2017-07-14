@@ -1,35 +1,35 @@
 <div class="row array_header">
-  <div class="col-xs-1">
+  <div class='col-lg-1 col-md-2 col-sm-3 col-xs-3'>
     <%= sort_link(@q, :whished_start_date, default_sorting: :asc) do %>
     <strong>
       <%= t("mission.due") %>
     </strong>
     <% end %>
   </div>
-  <div class="col-xs-2">
+  <div class='col-lg-2 col-md-3 col-sm-3 col-xs-4'>
     <%= sort_link(@q, :name, default_order: :asc) do %>
       <strong>
       <%= t("Mission") %>
     </strong>
     <% end %>
   </div>
-  <div class="col-xs-2">
+  <div class='col-lg-2 hidden-md hidden-sm hidden-xs'>
     <%= sort_link(@q, :status, default_order: :asc) do %>
       <strong>
         <%= t("Status") %>
       </strong>
     <% end %>
   </div>
-  <div class="col-xs-2">
+  <div class='col-lg-2 col-md-3 col-sm-3 col-xs-5'>
     <%= sort_link(@q, :company_company_name, default_order: :asc) do %>
       <strong>
       <%= t("Company") %></strong>
     <% end %>
   </div>
-  <div class="col-xs-4">
+  <div class='col-lg-4 col-md-3 col-sm-3 hidden-xs'>
       <strong>Contenu de la mission</strong>
   </div>
-  <div class="col-xs-1">
+  <div class='col-lg-1 col-md-1 hidden-sm hidden-xs'>
     <%= sort_link(@q, :updated_at, default_order: :desc) do %>
       <small>
       <%= t("updated") %>

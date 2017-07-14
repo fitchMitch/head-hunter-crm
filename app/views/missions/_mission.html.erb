@@ -1,10 +1,10 @@
 <div class="row">
-    <div class='col-xs-1'>
+    <div class='col-lg-1 col-md-2 col-sm-3 col-xs-3'>
         <small>
             <strong><%= future_time_in_words mission.whished_start_date %></strong>
         </small>
     </div>
-    <div class='col-xs-2 '>
+    <div class='col-lg-2 col-md-3 col-sm-3 col-xs-4'>
         <%= link_to mission.name, mission_path(mission) %>
         |
         <%= link_to  edit_mission_path(mission)  do %>
@@ -21,14 +21,14 @@
             <%= t("mission.market") %> :
             <%= number_to_currency mission.reward %>
             <br>
-            <%= t("paid") %> : :
+            <%= t("paid") %> :
             <%= number_to_currency mission.paid_amount %>
         </small>
     </div>
-    <div class='col-xs-2'>
+    <div class='col-lg-2 hidden-md hidden-sm hidden-xs'>
         <%= mission.status %>
     </div>
-    <div class='col-xs-2'>
+    <div class='col-lg-2 col-md-3 col-sm-3 col-xs-5'>
         <%= link_to list_people_company_path(mission.company_id), class: "" do %>
         <span class="label label-warning">
             <%= mission.company.company_name %>
@@ -41,12 +41,12 @@
             <% end %>
         </small>
     </div>
-    <div class='col-xs-4'>
+    <div class='col-lg-4 col-md-3 col-sm-3 hidden-xs'>
         <small>
             <p><%= mission.criteria %></p>
         </small>
     </div>
-    <div class='col-xs-1'>
+    <div class='col-lg-1 col-md-1 hidden-sm hidden-xs'>
         <small><%= time_ago_in_words mission.updated_at %></small>
     </div>
 

@@ -4,25 +4,23 @@
 <div class='row'>
   <div class="col-sm-1">
     <div class='row'>
-      <div class="col-sm-12 mission nav-ico">
+      <div class="col-lg-12 col-md-12 col-sm-4 col-xs-4 mission nav-ico">
         <%= link_to edit_mission_path do %>
         <button class="btn btn-success">
           <%= fa_icon('pencil 2x') %>
         </button>
         <% end %>
       </div>
-    </div>
-    <div class='row'>
-      <div class="col-sm-12 mission nav-ico">
+
+      <div class="col-lg-12 col-md-12 col-sm-4 col-xs-4 mission nav-ico">
         <%= link_to missions_path do %>
         <button class="btn btn-success">
           <%= fa_icon('list 2x') %>
         </button>
         <% end %>
       </div>
-    </div>
-    <div class='row'>
-      <div class="col-sm-12  mission nav-ico">
+
+      <div class="col-lg-12 col-md-12 col-sm-4 col-xs-4 mission nav-ico">
         <%= link_to  @mission, method: :delete, data: { confirm: t("confirm") } do %>
         <button class="btn btn-success danger">
           <%= fa_icon('trash 2x') %>
@@ -31,7 +29,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-11  ">
+  <div class="col-sm-11">
     <div class='row'>
       <div class='col-sm-8'>
         <h1>
@@ -40,15 +38,14 @@
         <h3>
           <%= special_label @mission %></h3>
       </div>
-      <div class='col-sm-4'>
-      </div>
+
     </div>
-  <div class='row emptyline'></div>
-    <div class='row  '>
-      <div class='col-sm-2 hidden-xs'> </div>
-      <div class='col-sm-4'>
-        <div class='row rightFrame '>
-          <div class='col-sm-5 '>
+    <div class='row emptyline'></div>
+    <div class='row'>
+      <div class='col-md-3 col-sm-2 hidden-xs'></div>
+      <div class='col-sm-4 col-xs-5'>
+        <div class='row rightFrame'>
+          <div class='col-sm-5'>
             <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
             <br>
             <br>
@@ -69,17 +66,21 @@
           <div class="col-sm-12"><hr class="sep"></div>
         </div>
         <div class='row rightFrame'>
-          <div class='col-sm-5'><small>
-          <%=  t("mission.minimum_salary") %>
-          </small></div>
+          <div class='col-sm-5'>
+            <small>
+              <%=  t("mission.minimum_salary") %>
+            </small>
+          </div>
           <div class='col-sm-7'>
             <strong><%= number_to_currency @mission.min_salary %></strong>
           </div>
         </div>
         <div class='row rightFrame'>
-          <div class='col-sm-5'><small>
-            <%= t("mission.maximum_salary")  %>
-          </small></div>
+          <div class='col-sm-5'>
+            <small>
+              <%= t("mission.maximum_salary")  %>
+            </small>
+          </div>
           <div class='col-sm-7'>
             <strong><%= number_to_currency @mission.max_salary %></strong>
           </div>
@@ -102,8 +103,7 @@
         </div>
       </div>
       <div class="leftFrame">
-
-        <div class="col-sm-6  ">
+        <div class="col-md-5 col-sm-6 col-xs-7">
           <div class='row'>
             <div class='col-sm-5'>
               <%= t("mission.remuneration") %>
@@ -124,7 +124,8 @@
 
           <div class="frameMe">
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            <%= t("mission.whished_start_date") %> :
+            <%= t("mission.whished_start_date") %>
+            :
             <strong>
               <%= (@mission.whished_start_date).strftime("%d ") %>
               <%= t (@mission.whished_start_date.strftime("%B")) %>

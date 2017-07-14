@@ -1,31 +1,30 @@
-<div class="row">
-    <div class="col-xs-1 hidden-xs hidden-sm"></div>
-    <div class="col-xs-10">
-      <div class="row array_header">
-          <div class="col-md-3">
-              <%= sort_link(@q, :lastname, default_sorting: :asc) do %>
-              <strong>
-              <%= t("Name") %></strong>
-              <% end %>
-          </div>
-          <div class="col-md-2">
-              <strong>
-                <%= t("Action") %>
-              </strong>
-          </div>
-          <div class="col-md-5">
-              <strong>
-                <%= t("person.passed_jobs") %>
-              </strong>
-          </div>
-          <div class="col-md-2">
-              <%= sort_link(@q, :updated_at, default_order: :desc) do %>
-              <strong>
-                <%= t("updated") %>
-              </strong>
-              <% end %>
-          </div>
+<div class="row ">
+  <div class="col-lg-1 col-md-1 hidden-sm hidden-xs  "></div>
+  <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
+    <div class="row array_header">
+      <div class="col-md-3 col-sm-5 col-xs-8">
+        <%= sort_link(@q, :lastname, default_sorting: :asc) do %>
+        <strong>
+          <%= t("Name") %></strong>
+        <% end %>
+      </div>
+      <div class="col-md-2 col-sm-3 col-xs-4">
+        <strong>
+          <%= t("Action") %>
+        </strong>
+      </div>
+      <div class="col-md-5 hidden-xs hidden-sm">
+        <strong>
+          <%= t("person.passed_jobs") %>
+        </strong>
+      </div>
+      <div class="col-md-2 col-sm-3 hidden-xs ">
+        <%= sort_link(@q, :updated_at, default_order: :desc) do %>
+        <strong>
+          <%= t("updated") %>
+        </strong>
+        <% end %>
       </div>
     </div>
-    <div class="col-xs-2 hidden-xs"></div>
+  </div>
 </div>

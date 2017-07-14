@@ -198,7 +198,6 @@ footer {
       }
   }
 }
-
 /* ---------------------*/
 // pagination
 /* ---------------------*/
@@ -376,9 +375,11 @@ hr.sep{
 }
 .cartel{
   color:#555;
-  align-content: flex-end;
+  display: inline-block;
+  width :200px;
+  padding: 3px 10px 3px 0px;
   text-align: right;
-  margin-top: 2em;
+  margin: 3em -1.2em 2em 2em;
   font-size: 0.85em;
   -webkit-border-radius:4px 4px 4px 4px;
   border-radius:4px 4px 4px 4px;
