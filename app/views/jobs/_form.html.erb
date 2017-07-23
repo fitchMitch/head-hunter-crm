@@ -10,7 +10,7 @@
   </div>
   <div class="row ">
       <div class="col-sm-5">
-          <%= f.input :salary, label: t("job.salay"), input_html:{class:" input-sm" } %>
+          <%= f.input :salary, label: t("job.salary"), input_html:{class:" input-sm" } %>
       </div>
       <div class="col-sm-7 ">
           <%= f.input :end_date, label: t("job.date_end"), as: :date, end_year: Date.today.year, order: [:day, :month, :year], input_html:{class:" input-sm" } %>

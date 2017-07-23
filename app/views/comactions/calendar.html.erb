@@ -6,7 +6,7 @@
 <!-- <div class= 'row spaceDown'> -->
 <%= render 'block_filters' %>
 
-<%= month_calendar events: @comactions do |date, comactions| %>
+<%= SimpleCalendar::BusinessMonthCalendar.new(self, {events: @comactions }).render do |date, comactions| %>
   <%= link_to new_comaction_path({:date => date})  do %>
     <span class="cal_date">
       <%= date.strftime("%d")%>

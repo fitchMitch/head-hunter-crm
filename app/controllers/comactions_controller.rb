@@ -84,7 +84,6 @@ class ComactionsController < ApplicationController
       end
       redirect_to comactions_path
     else
-
       flash[:danger] = 'Ce rendez-vous n\'a pas pu être ajouté'
       render :new
     end
@@ -108,18 +107,18 @@ class ComactionsController < ApplicationController
     end
   end
 
+  def destroy
+    @comaction.destroy
+    flash[:success] = 'Rendez-vous supprimé'
+    redirect_to comactions_path
+  end
+
   def trigger_nil_dates (comaction)
     if comaction_params[:is_dated].to_i != 1
       comaction.start_time = nil
       comaction.end_time = nil
     end
     comaction
-  end
-
-  def destroy
-    @comaction.destroy
-    flash[:success] = 'Rendez-vous supprimé'
-    redirect_to comactions_path
   end
 
   #---------------

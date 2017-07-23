@@ -12,7 +12,7 @@ fr:
   Contacts: Contacts
   Client: Client
   Action: Action
-  updated: mise à jour
+  updated: mis à jour
   today: aujourd'hui
   user_resp: Resp
   Edit: Editer
@@ -81,17 +81,18 @@ fr:
   Oct: Oct
   Nov: Nov
   Dec: Dec
-  January: janvier
-  February: février
-  March: mars
-  April: avril
-  May: mai
+  January: Janvier
+  February: Février
+  March: Mars
+  April: Avril
+  May: Mai
   June: Juin
-  July: juillet
-  August: août
-  September : septembre
-  October: octobre
-  December: décembre
+  July: Juillet
+  August: Août
+  September : Septembre
+  October: Octobre
+  November: Novembre
+  December: Décembre
   activerecord:
     errors:
       messages:
@@ -136,18 +137,18 @@ fr:
       long: "%e %B %Y"
     month_names:
     -
-    - janvier
-    - février
-    - mars
-    - avril
-    - mai
-    - juin
-    - juillet
-    - août
-    - septembre
-    - octobre
-    - novembre
-    - décembre
+    - Janvier
+    - Février
+    - Mars
+    - Avril
+    - Mai
+    - Juin
+    - Juillet
+    - Août
+    - Septembre
+    - Octobre
+    - Novembre
+    - Décembre
     order:
     - :day
     - :month
@@ -321,6 +322,9 @@ fr:
     account_create: Créer un compte
     remember_me: Se souvenir de moi
     login: Login
+  simple_calendar:
+    previous: Préc.
+    next: Suiv.
   comaction:
     rdv: Rendez-vous
     filters:

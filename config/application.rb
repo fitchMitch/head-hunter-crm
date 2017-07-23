@@ -2,6 +2,11 @@ require_relative 'boot'
 
 # require File.expand_path('../boot', __FILE__)
 # ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder'
+# EWE : remove the next two lines when ruby version is 2.3 or higher
+# Purpose of these is to speed up init time on my local machine
+# require 'securerandom'
+# SecureRandom.hex(16)
+
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -13,6 +18,7 @@ module JjFloApp
     #locale
     I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
     I18n.default_locale = :fr
+    config.beginning_of_week = :monday
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
