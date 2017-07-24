@@ -55,18 +55,6 @@
                     <%= @person.approx_age %> <%= t("mission.years") %>
                 </div>
             </div>
-            <div class='row'>
-                <div class='col-xs-5 '>
-                    <strong >
-
-                    </strong>
-                </div>
-                <div class='col-xs-7 align-right'>
-                  <%= link_to new_comaction_path({:person_id => @person.id}) do %>
-                    <%= t("person.have_meeting") %> <%= fa_icon('calendar-o 2x') %>
-                  <% end %>
-                </div>
-            </div>
         </div>
     </div>
 </div>

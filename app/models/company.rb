@@ -15,6 +15,8 @@ class Company < ApplicationRecord
 
   before_save   :upcase_company_name
 
+  default_scope { order(updated_at: :desc) }
+
   include PgSearch
   # multisearchable :against => :company_name
   pg_search_scope :search_name,

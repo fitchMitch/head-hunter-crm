@@ -5,17 +5,24 @@
         </small>
     </div>
     <div class='col-lg-2 col-md-3 col-sm-3 col-xs-4'>
-        <%= link_to mission.name, mission_path(mission) %>
+        <strong>
+          <%= link_to mission.name, mission_path(mission) %>
+        </strong>
+        <br>
+        <%= link_to  new_comaction_path({:mission_id => mission.id}) , class: "btn btn-success btn-xs" do %>
+        <%= fa_icon("calendar-o")  %>
+        <% end %>
         |
-        <%= link_to  edit_mission_path(mission)  do %>
+        <%= link_to  edit_mission_path(mission), class: "btn btn-success btn-xs"  do %>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
         <% if logged_in? && current_user.admin? %>
-          |
-          <%= link_to  mission_path(mission), method: :delete, data: { confirm: t("confirm") } do %>
+         |
+          <%= link_to  mission_path(mission), class: "btn btn-default btn-xs", method: :delete, data: { confirm: t("confirm") } do %>
             <span class="glyphicon glyphicon-trash"></span>
           <% end %>
         <% end %>
+
         <br>
         <small>
             <%= t("mission.market") %> :

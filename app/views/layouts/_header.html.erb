@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-      <div class="navbar-header">
+  <div class="container">
+    <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse_me" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -9,111 +9,122 @@
       </button>
       <%= link_to "JuinJuillet", root_path, id: "logo" %>
     </div>
-        <nav id="collapse_me">
-            <ul class="nav navbar-nav navbar-right">
-                <% if logged_in? %>
-                <li>
-                    <%= render 'layouts/search_form' %>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <%= t("jj.rdv") %>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><%= link_to new_comaction_path  do %>
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <%= t("comaction.create") %>
-                            <% end %>
-                        </li>
-                        <li><%= link_to  comactions_path(v: 'calendar_view') do %>
-                            <%= fa_icon("calendar-o") %>
-                            <%= t("comaction.calendar") %>
-                            <% end %>
-                        </li>
-                        <li><%= link_to  comactions_path(v: 'table_view')  do %>
-                            <span class="glyphicon glyphicon-list-alt"></span>
-                            <%= t("comaction.title_list") %>
-                            <% end %>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <%= t("Mission") %>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><%= link_to new_mission_path  do %>
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <%= t("mission.create") %>
-                            <% end %>
-                        </li>
-                        <li><%= link_to  missions_path do %>
-                            <span class="glyphicon glyphicon-list-alt"></span>
-                            <%= t("mission.list") %>
-                            <% end %>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <%= t("jj.people_and_companies") %>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                          <%= link_to  new_person_path do %>
-                          <span class="glyphicon glyphicon-plus"></span>
-                          <%= t("person.create") %>
-                          <% end %>
-                      </li>
-                        <li>
-                            <%= link_to  people_path do %>
-                            <%= fa_icon('address-book') %>
-                            <%= t("person.list") %>
-                            <% end %>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li><%= link_to new_company_path  do %>
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <%= t("company.add") %>
-                            <% end %>
-                        </li>
-                        <li><%= link_to  companies_path do %>
-                            <%= fa_icon('building-o') %>
-                            <%= t("company.list") %>
-                            <% end %>
-                        </li>
-                    </ul>
-                </li>
-                <li><%= link_to  users_path do  %>JJ's
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <% end %>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><%= link_to t("jj.profile"), current_user %></li>
-                        <li><%= link_to t("jj.parameters"), edit_user_path(current_user) %></li>
-                        <% if current_user.admin? %>
-                        <li>
-                            <%= link_to t("jj.account_create"), signup_path %>
-                        </li>
-                        <% end %>
-                        <li class="divider"></li>
-                        <li>
-                            <%= link_to t("jj.disconnect"), logout_path, method: "delete" %>
-                        </li>
-                    </ul>
-                </li>
-            <% else %>
-              <li><%= link_to t("help"), help_path %></li>
+    <nav id="collapse_me">
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+        <li>
+          <%= render 'layouts/search_form' %>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <%= t("jj.rdv") %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to new_comaction_path  do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              <%= t("comaction.create") %>
               <% end %>
-            </ul>
-        </nav>
-    </div>
+            </li>
+            <li><%= link_to  comactions_path(v: 'calendar_view') do %>
+              <%= fa_icon("calendar-o") %>
+              <%= t("comaction.calendar") %>
+              <% end %>
+            </li>
+            <li><%= link_to  comactions_path(v: 'table_view')  do %>
+              <span class="glyphicon glyphicon-list-alt"></span>
+              <%= t("comaction.title_list") %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <%= t("Mission") %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to new_mission_path  do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              <%= t("mission.create") %>
+              <% end %>
+            </li>
+            <li><%= link_to  missions_path do %>
+              <span class="glyphicon glyphicon-list-alt"></span>
+              <%= t("mission.list") %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <%= t("jj.people_and_companies") %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to  new_person_path do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              <%= t("person.create") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to  people_path do %>
+              <%= fa_icon('address-book') %>
+              <%= t("person.list") %>
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to new_company_path  do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              <%= t("company.add") %>
+              <% end %>
+            </li>
+            <li><%= link_to  companies_path do %>
+              <%= fa_icon('building-o') %>
+              <%= t("company.list") %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <% if current_user.admin? %>
+              <li>
+                <%= link_to  signup_path do %>
+                <%= fa_icon("plus-circle", text: t("jj.account_create")) %>
+                <% end %>
+              </li>
+              <li class="divider"></li>
+            <% end %>
+            <li>
+              <%= link_to  edit_user_path(current_user) do %>
+              <%= fa_icon("user", text: t("jj.parameters")) %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to  users_path do  %>
+              <i class="fa fa-users" aria-hidden="true"></i>
+              JJ's
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to  logout_path, method: "delete" do %>
+              <%= fa_icon("sign-out", text: t("jj.disconnect")) %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+      <% else %>
+        <li><%= link_to t("help"), help_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 </header>

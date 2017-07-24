@@ -35,9 +35,7 @@ body {
     background-color: $color4;
 }
 
-.train-right{
-  text-align: right;
-}
+
 .colorMe{
   color:$color1;
 }
@@ -373,6 +371,9 @@ hr.sep{
 .col-left{
   border-left: 1px solid grey;
 }
+.red_star{
+  color:red;
+}
 .cartel{
   color:#555;
   display: inline-block;
@@ -498,6 +499,22 @@ a > span.label-warning:hover{
 .day.past{
   border: 1px solid grey;
   color:grey;
+}
+hr.calendar{
+  width:100%;
+  color:grey;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding-left: 3px;
+  padding-right: 3px ;
+}
+.hour{
+  color: black;
+}
+a.appointment{
+  font-size: 0.85em;
+  color: #537053;
+  text-decoration: none;
 }
 @media screen and (max-width: 767px) {
 

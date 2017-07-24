@@ -20,6 +20,7 @@ class MissionsController < ApplicationController
 
   def new
     @mission = Mission.new
+    @forwhom = params[:person_id] || 0
   end
   #-----------------
   def index

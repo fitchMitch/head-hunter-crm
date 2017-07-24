@@ -3,7 +3,6 @@
 # Table name: people
 #
 #  id                   :integer          not null, primary key
-#  title                :string
 #  firstname            :string
 #  lastname             :string
 #  email                :string
@@ -19,6 +18,7 @@
 #  cv_docx_file_size    :integer
 #  cv_docx_updated_at   :datetime
 #  approx_age           :integer
+#  cv_content           :text
 #
 
 require 'test_helper'

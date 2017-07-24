@@ -29,8 +29,7 @@
       </div>
       <div class='col-xs-3'>
           <small>
-              <%= a.salary %>
-              <%= t("currency") %>
+              <%= number_to_currency a.salary , :precision => 0 %>
           </small>
       </div>
       <div class='col-xs-1'>

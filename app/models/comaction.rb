@@ -22,7 +22,7 @@ class Comaction < ApplicationRecord
 
     include PgSearch
     pg_search_scope :search_name,
-                    :against => [ [:name, 'A'], [:status , 'B'], ],
+                    :against => [ [:name, 'A'], [:status , 'B']],
                     :associated_against => {
                         :person => :firstname,
                         :person => :lastname,
@@ -48,8 +48,10 @@ class Comaction < ApplicationRecord
                 STATUS_HIRED = 'Engagé'.freeze,
                 STATUS_WORKING = 'En poste'.freeze].freeze
 
-    ACTION_TYPES = [CLIENT_TYPE = 'Rendez-vous Client'.freeze,
-                    PROSPECTION_TYPE = 'Rendez-vous Candidat'.freeze,
+    ACTION_TYPES = [CLIENT_TYPE = 'RdV Client'.freeze,
+                    APPLY_TYPE = 'RdV Candidat'.freeze,
+                    APPLY_CUSTOMER_TYPE = 'RdV Candidat Client'.freeze,
+                    EXPLORATION_TYPE = 'RdV exploratoire'.freeze,
                     OTHER_TYPE = 'Autre rendez-vous'.freeze].freeze
 
     STATUS_RELATED = {
@@ -63,11 +65,6 @@ class Comaction < ApplicationRecord
     }.freeze
 
 
-
-    # scope :older_than, ->(d, being_id) {
-    #     d ||= 7
-    #     where('start_time < ? OR start_time is null AND comactions.user_id = ?', d.days.ago, being_id)
-    # }
     scope :newer_than, ->(d) {
         d ||= 7
         where('(start_time >= ? OR start_time is null) ', d.days.ago)
@@ -83,7 +80,7 @@ class Comaction < ApplicationRecord
     scope :hired,         -> { where('comactions.status = ? ', STATUS_HIRED) }
     scope :working,       -> { where('comactions.status = ? ', STATUS_WORKING) }
 
-    validates :name, presence: true, length: { maximum: 50 }
+    validates :name, presence: true, length: { maximum: 100}
     # validates :status, presence: true
     # validates :action_type, presence: true
 

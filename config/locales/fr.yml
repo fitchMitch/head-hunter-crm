@@ -40,7 +40,7 @@ fr:
     rdv: Rendez-vous
     people_and_companies: Contacts et sociétés
     profile : Profil
-    parameters: Paramétrage
+    parameters: Mon compte
     account_create: Créer un compte
     disconnect: Déconnexion
     log_in: Log in
@@ -330,23 +330,24 @@ fr:
     filters:
       now_and_after: Maintenant et +
       add_contact: Ajouter un nouveau contact
+      add_mission: Ajouter une mission
       with_no_comaction: Sans Rendez-vous
       no_date: Sans date
-    label: Libellé du RDV
-    status: Statut
-    type: Type
-    mission: Mission
+    label: Libellé du RDV/action
+    status: Etat d'avancement
+    type: Type de rendez-vous
+    mission: Nom de la Mission
     date_q: Date ?
     start:
       date_and_hour: Date et heure de début
     end:
-      date_and_hour: Date et heure de
-    title_list: Liste des rendez-vous
-    title_list_short: Liste des RdV
-    update_title: Editer un rendez-vous
-    add_label: Ajouter un rendez-vous
-    create: Créer un rendez-vous
-    calendar: Calendrier des rendez-vous
+      date_and_hour: Date et heure de fin
+    title_list: Liste des RdV/actions
+    title_list_short: Calendrier
+    update_title: Editer un RdV/action
+    add_label: Ajouter une action
+    create: Créer un rendez-vous/action
+    calendar: Calendrier
   company:
     company_name: Nom de la société
     worked_there: personnes y ont travaillé
@@ -375,6 +376,8 @@ fr:
     no_one: Personne n'est encore inscrit
     passed_jobs: Postes occupés (non exhaustifs)
     have_meeting: Prendre rendez-vous
+    add_and_see_button: Ajouter et voir
+    save_and_see_button: Sauvegarder et voir
   job:
     last: Poste occupé
     date_in: Date de prise de fonction

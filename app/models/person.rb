@@ -3,7 +3,6 @@
 # Table name: people
 #
 #  id                   :integer          not null, primary key
-#  title                :string
 #  firstname            :string
 #  lastname             :string
 #  email                :string
@@ -19,6 +18,7 @@
 #  cv_docx_file_size    :integer
 #  cv_docx_updated_at   :datetime
 #  approx_age           :integer
+#  cv_content           :text
 #
 
 class Person < ApplicationRecord
@@ -50,7 +50,8 @@ class Person < ApplicationRecord
   def self.rebuild_pg_search_documents
     find_each { |record| record.update_pg_search_document }
   end
-  # ----- Search part
+  # ----- End of Search part
+  default_scope { order(updated_at: :desc) }
 
   #has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
   has_attached_file :cv_docx
@@ -82,11 +83,7 @@ class Person < ApplicationRecord
   end
 
   def full_name
-    firstname.nil? ? title + ' ' + lastname.upcase : title + ' ' + firstname + ' ' + lastname.upcase
-  end
-
-  def short_name
-    self.firstname.present? ? firstname : title + '  ' + lastname.upcase
+    firstname.nil? ?  lastname.upcase : firstname + ' ' + lastname.upcase
   end
 
   def get_cv

@@ -26,6 +26,8 @@ class Mission < ApplicationRecord
   belongs_to :company
   has_many :comactions, dependent: :destroy
 
+  default_scope { order(updated_at: :desc) }
+
   STATUSES = [STATUS_HOPE = 'Opportunité',
     STATUS_SENT= 'Contrat envoyé',
     STATUS_SIGNED = 'Contrat signé',

@@ -77,7 +77,11 @@ class PeopleController < ApplicationController
       @person.set_cv_content
       flash[:success] = 'Contact sauvegardé (' + @person.full_name + ').'
       #redirect_to @person
-      goto_next_url new_person_path
+      if params[:subaction] == I18n.t("person.add_and_see_button")
+        redirect_to person_path(@person)
+      else
+        goto_next_url new_person_path
+      end
     else
       render 'new'
     end

@@ -1,29 +1,58 @@
-<% provide(:title, t("comaction.title_list_short") ) %>
+<% provide(:title, t("comaction.calendar") ) %>
 <% provide(:calender_view, '1') %>
 <h1 class='center'>
   <%= t("comaction.title_list") %>
 </h1>
 <!-- <div class= 'row spaceDown'> -->
-<%= render 'block_filters' %>
 
-<%= SimpleCalendar::BusinessMonthCalendar.new(self, {events: @comactions }).render do |date, comactions| %>
-  <%= link_to new_comaction_path({:date => date})  do %>
-    <span class="cal_date">
-      <%= date.strftime("%d")%>
-      <%= t date.strftime("%b") %>
-    </span>
-  <% end %>
-  <% comactions.each do |comaction| %>
-    <small>
-        <div class='row'>
-            <div class='col-xs-2'><%= idtype(comaction) %></div>
-            <div class='col-xs-3'><%= comaction.start_time.strftime("%H:%M") %></div>
-            <div class='col-xs-6'>
-              <%= link_to comaction_path(comaction) do %>
-                  <%= comaction.person.short_name %>
-              <% end %>
-            </div>
-        </div>
-    </small>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-10">
+      </div>
+      <div class="col-xs-1">
+        <%= link_to new_person_path, class: "btn btn-success btn-sm " do %>
+          <%= fa_icon("phone ") %> Contact <span class="red_star">*</span>
+        <% end %>
+      </div>
+      <div class="col-xs-1">
+        <%= link_to new_mission_path, class: "btn btn-success btn-sm" do %>
+          <%= fa_icon("bookmark-o") %> Mission <span class="red_star">*</span>
+        <% end %>
+      </div>
+    </div>
+    <div class="emptyline"></div>
+  </div>
+  <div class="col-xs-12">
+    <%= render 'block_filters' %>
+    <%= month_calendar events: @comactions do |date, comactions| %>
+      <%= link_to new_comaction_path({:date => date})  do %>
+        <span class="cal_date">
+          <%= date.strftime("%d")%>
+          <%= t date.strftime("%b") %>
+        </span>
+      <% end %>
+      <% comactions.each do |comaction| %>
+        <small>
+          <div class='row'>
+              <div class='col-xs-2'><%= idtype(comaction) %></div>
+              <div class='col-xs-5 hour'><%= comaction.start_time.strftime("%H:%M") %></div>
+          </div>
+          </div>
+          <div class='row'>
+
+              <div class='col-xs-12'>
+
+                  <%= link_to comaction_path(comaction),class: "appointment" do %>
+                    <%= comaction.name %>
+                  <% end %>
+
+              </div>
+          </div>
+          <hr class="calendar">
+        </small>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

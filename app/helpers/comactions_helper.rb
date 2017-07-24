@@ -1,11 +1,17 @@
 module ComactionsHelper
   def idtype(ev)
     if ev.action_type == Comaction::CLIENT_TYPE
-      label_type = 'label-danger small_label '
+      label_type = 'label-primary small_label '
       letter = 'C'
-    elsif ev.action_type == Comaction::PROSPECTION_TYPE
+    elsif ev.action_type == Comaction::APPLY_TYPE
       label_type = 'label-info small_label '
-      letter = 'J'
+      letter = 'F'
+    elsif ev.action_type == Comaction::APPLY_CUSTOMER_TYPE
+      label_type = 'label-danger small_label '
+      letter = 'R'
+    elsif ev.action_type == Comaction::EXPLORATION_TYPE
+      label_type = 'label-default small_label '
+      letter = 'E'
     else
       label_type = ''
       letter = ''

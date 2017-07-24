@@ -2,7 +2,6 @@
 <div class='row'>
     <div class="col-sm-6 col-xs-12">
         <%= f.input :is_client, label: t("Client"), input_html: {class:" input-sm"}%>
-        <%= f.input :title, label: t("person.citizenship"), collection: titleList, default:titleList.first, input_html: {class:" input-sm"}%>
         <%= f.input :firstname, label: t("person.firstname"), input_html:{class:" input-sm" } %>
         <%= f.input :lastname, label: t("Name"), input_html:{class:" input-sm" } %>
         <%= f.input :email, label: "Email", input_html: {class:" input-sm"}%>
@@ -19,10 +18,13 @@
     </div>
 </div>
 <div class='row'>
-    <div class="col-sm-8 ">
+    <div class="col-sm-4 hidden-xs ">
     </div>
-    <div class="col-sm-4 ">
-        <%= f.button :submit, yield(:button_text), class: "btn btn-success pull-right" %>
+    <div class="col-sm-4 col-xs-6">
+        <%= f.button :submit, yield(:button_text),  name: "subaction", value: yield(:button_text), class: "btn btn-success pull-right" %>
+    </div>
+    <div class="col-sm-4 col-xs-6">
+        <%= f.button :submit, name: "subaction", value: yield(:button_see_text), class: "btn btn-success pull-right" %>
     </div>
 </div>
 <% end %>

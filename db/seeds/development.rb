@@ -54,7 +54,7 @@ companies=Company.all
 #-----------------
 user = users.sample
 
-Person.create!(title:              "Mme",
+Person.create!(
     firstname:          "Yolande",
     lastname:           "Moreau",
     email:              "yolande.moreau@gmail.com",
@@ -68,7 +68,6 @@ Person.create!(title:              "Mme",
 18.times do |n|
   company=companies.sample
   user = users.sample
-  title=             %w[M. Mme Mlle].sample
   firstname=         Faker::Name.first_name
   lastname=          Faker::Name.last_name
   email=             Faker::Internet.email
@@ -79,7 +78,7 @@ Person.create!(title:              "Mme",
   note=              Faker::Lorem.sentence(3)
   is_client =        Faker::Boolean.boolean(0.1)
   user_id=           user.id
-  Person.create!(title:              title,
+  Person.create!(
     firstname:          firstname,
     lastname:           lastname,
     email:              email,
@@ -130,7 +129,8 @@ people = Person.all
 end
 jobs= Job.all
 #-----------------
-# Missons
+# Missions
+#-----------------
 statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
 35.times do |n|
   person = people.sample
@@ -177,7 +177,7 @@ missions = Mission.all
 
   name   =           "Rendez-vous " + n.to_s
   status =           [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT, Comaction::STATUS_PRES, Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED, Comaction::STATUS_WORKING ].sample
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::PROSPECTION_TYPE, Comaction::OTHER_TYPE ].sample
+  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
   person =           people.sample
   user   =           users.sample
   mission=           missions.sample
