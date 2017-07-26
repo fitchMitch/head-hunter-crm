@@ -9,7 +9,7 @@
         <% end %>
     </div>
     <div class="col-sm-7 ">
-        <%= f.association :person, collection: Person.order(updated_at: :desc), label:"Contact", label_method: :full_name, value_method: :id, selected: @forwhom, include_blank: false %>
+        <%= f.association :person, collection: Person.order(updated_at: :desc), label:t("mission.contact"), label_method: :full_name, value_method: :id, selected: @forwhom, include_blank: false %>
         <%= link_to  'add_ext?model=person'  do%>
         <button type="button" class="btn btn-xs">
           <%= t("mission.add_contact") %>

@@ -117,6 +117,13 @@ h3{
   font-weight: normal;
   color: $color3;
 }
+h6.calendar{
+    font-size: 1em;
+    letter-spacing: -0.5px;
+    margin-bottom: 3px;
+    font-weight: normal;
+    margin-top:3px;
+}
 p {
     font-size: 1.1em;
     line-height: 1.7em;
@@ -460,6 +467,11 @@ a > span.label-warning:hover{
   height:2em;
   line-height:1.6em;
 }
+.empty-halfline{
+  display:block;
+  height:1em;
+  line-height:0.8em;
+}
 /* ---------------------*/
 // Comactions
 /* ---------------------*/
@@ -502,19 +514,82 @@ a > span.label-warning:hover{
 }
 hr.calendar{
   width:100%;
-  color:grey;
-  margin-bottom: 2px;
+  color:$color1;
+  height:2px;
+  margin-bottom: 4px;
   margin-top: 2px;
   padding-left: 3px;
   padding-right: 3px ;
 }
 .hour{
   color: black;
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 700;
+  color: black;
+}
+.calendar-title{
+  font-style: normal;
+  font-weight: 600;
+  text-decoration-color: green;
+  -webkit-border-radius:3px;
+  border-radius: 3px;
+  padding:4px 10px 5px 10px;
+  border : 2px $color2 solid;
+  color: $color2;
+  background-color: white;
+}
+.green-and-white-button{
+  font-weight: 400;
+  -webkit-border-radius:3px;
+  border-radius: 3px;
+  padding:4px 10px 5px 10px;
+  border : 2px $color5 solid;
+  color: $color2;
+  background-color: white;
+  margin-right: 3px;
+}
+.status-frame{
+  font-weight: 400;
+  font-size: 0.8em;
+  -webkit-border-radius:3px;
+  border-radius: 3px;
+  padding:2px 5px 2px 5px;
+  border : 1px $color5 solid;
+  color: $color2;
+  background-color: white;
+  margin-bottom: 2px;
+}
+.calendar-heading{
+  text-align: right;
+  line-height: 3em;
+  vertical-align: middle;
+}
+.calendar-heading-left{
+  text-align: left;
+  line-height: 3em;
+  vertical-align: middle;
+}
+.client-appointment{ //CLIENT_TYPE
+  background-color: #f7a0e4;
+}
+.applyer-appointment{ //APPLY_TYPE
+  background-color: #71f4a9;
+}
+.applyer-client-appointment{ //APPLY_CUSTOMER_TYPE
+  background-color: #71bdf4;
+}
+.exploration-appointment{ //EXPLORATION_TYPE
+  background-color: #b7d0bf;
 }
 a.appointment{
   font-size: 0.85em;
-  color: #537053;
   text-decoration: none;
+  color:black;
+}
+.popover-title{
+  background-color: $color1;
+  color: $color5;
 }
 @media screen and (max-width: 767px) {
 

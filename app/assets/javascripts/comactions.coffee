@@ -46,9 +46,9 @@ $(document).on "turbolinks:load", ->
       $(el[0]).parent().parent().parent().fadeOut("slow")
 
   $("#comaction_person_id, #comaction_status , #comaction_action_type , #comaction_mission_id").on 'change', ->
-    t = $("#comaction_person_id option:selected").text() + " -"
-    t += $("#comaction_status").val() + "-"
+    t = $("#comaction_person_id option:selected").text() + " - "
     t += $("#comaction_mission_id option:selected").text()
     $("#comaction_name").val(t)
 
   $("#comaction_end_time_3i,#comaction_end_time_2i,#comaction_end_time_1i").hide()
+  $(".status-frame").popover()

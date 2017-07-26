@@ -19,13 +19,15 @@ class ComactionMailer < ApplicationMailer
     end
 
     def one_event_saving(comaction, user)
-        make_ical_appointment(comaction, user.email)
-        subj = 'RdV JuinJuillet ' + comaction.person.full_name
-        mail to: user.email, subject: subj
+      @comaction = comaction
+      make_ical_appointment(comaction, user.email)
+      subj = 'RdV JuinJuillet ' + comaction.person.full_name
+      mail to: user.email, subject: subj
     end
     def event_saving_upd(comaction, user)
-        make_ical_appointment(comaction, user.email)
-        subj = 'Mise à jour du RdV JuinJuillet ' + comaction.person.full_name
-        mail to: user.email, subject: subj
+      @comaction = comaction
+      make_ical_appointment(comaction, user.email)
+      subj = 'Mise à jour du RdV JuinJuillet ' + comaction.person.full_name
+      mail to: user.email, subject: subj
     end
 end

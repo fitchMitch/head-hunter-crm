@@ -400,6 +400,7 @@ fr:
     name: Nom de la mission
     amount: Montant de la mission
     person_searched: Personne recherchée
+    contact: Contact client
     min_age: Age minimum
     max_age: Age maximal
     max_salary: Salaire annuel maximal

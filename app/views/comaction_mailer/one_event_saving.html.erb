@@ -1,3 +1,15 @@
 <h1>Nouveau rendez-vous</h1>
 <p>Le rendez-vous est en pièce jointe</p>
+
+<ul>
+  <li>
+    Pour : <%= @comaction.person.full_name %>
+  </li>
+  <li>
+    Nom de la mission : <%= @comaction.mission.name %>
+  </li>
+  <li>
+    Date et heure : <%= @comaction.start_time.strftime("%d %B à %H:%M") %> - Durée :  <%= distance_of_time_in_words(@comaction.start_time , @comaction.end_time) %>
+  </li>
+</ul>
 <p>JuinJuillet</p>

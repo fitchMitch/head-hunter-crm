@@ -23,6 +23,24 @@ module ComactionsHelper
     res.html_safe
   end
 
+  def background_style (ev)
+    style = "status-frame "
+    style +=  case ev.action_type.to_s
+      when Comaction::CLIENT_TYPE then "client-appointment"
+      when Comaction::APPLY_TYPE then "applyer-appointment"
+      when Comaction::APPLY_CUSTOMER_TYPE then "applyer-client-appointment"
+      when Comaction::EXPLORATION_TYPE then "exploration-appointment"
+      else ""
+    end
+  end
+
+  def getComactionTitle(c)
+    "#{c.action_type} [#{c.status}] | <strong>#{c.person.full_name}</strong>"
+  end
+  def getComactionDetails(c)
+    "Mission [#{c.mission.status}] :<br>#{c.mission.name} <br><strong>#{c.mission.company.company_name}</strong>"
+  end
+
   def button_filters(cal )
     r=''
     Comaction::STATUSES.each { |status|

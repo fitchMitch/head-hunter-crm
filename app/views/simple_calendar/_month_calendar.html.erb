@@ -1,20 +1,33 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
-    <%= link_to  calendar.url_for_previous_view do %>
-    <%= fa_icon("chevron-left", text: t('simple_calendar.previous', default: 'Previous')) %>
+<div class="row">
+  <div class="col-xs-3 calendar-heading-left ">
+    <%= link_to new_person_path, class: "green-and-white-button" do %>
+      <%= fa_icon("user-circle") %> Contact <span class="red_star">*</span>
     <% end %>
-    <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-    <%= link_to  calendar.url_for_next_view do %>
-    <%= t('simple_calendar.next', default: 'Next') %>
-    <%= fa_icon("chevron-right") %>
+
+    <%= link_to new_mission_path, class: "green-and-white-button" do %>
+      <%= fa_icon("bookmark-o") %> Mission <span class="red_star">*</span>
     <% end %>
   </div>
+  <div class="col-xs-9">
+    <div class="calendar-heading">
+      <%= link_to  calendar.url_for_previous_view, class: "green-and-white-button" do %>
+        <%= fa_icon("chevron-left", text: t('simple_calendar.previous', default: 'Previous')) %>
+      <% end %>
+      <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
+      <%= link_to  calendar.url_for_next_view , class: "green-and-white-button" do %>
+        <%= t('simple_calendar.next', default: 'Next') %>
+        <%= fa_icon("chevron-right") %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
   <table class="table table-striped">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+          <th><%= t('date.day_names')[day.wday] %></th>
         <% end %>
       </tr>
     </thead>
