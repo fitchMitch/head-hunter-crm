@@ -6,8 +6,6 @@ class MissionsController < ApplicationController
   #  min_salary         :float
   #  max_salary         :float
   #  criteria           :string
-  #  min_age            :integer
-  #  max_age            :integer
   #  signed             :boolean
   #  is_done            :boolean
   #  created_at         :datetime         not null
@@ -20,6 +18,8 @@ class MissionsController < ApplicationController
 
   def new
     @mission = Mission.new
+    @mission.status = Mission::STATUS_HOPE
+    @mission.paid_amount = 0
     @forwhom = params[:person_id] || 0
   end
   #-----------------
@@ -91,7 +91,7 @@ class MissionsController < ApplicationController
   private
   #---------------
     def mission_params
-      params.require(:mission).permit(:name, :reward, :paid_amount, :min_salary, :max_salary, :criteria, :min_age, :max_age, :status, :person_id, :company_id, :whished_start_date)
+      params.require(:mission).permit(:name, :reward, :paid_amount, :min_salary, :max_salary, :criteria, :status, :person_id, :company_id, :whished_start_date)
     end
 
     def get_mission

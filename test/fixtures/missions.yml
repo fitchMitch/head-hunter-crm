@@ -9,8 +9,6 @@
 #  min_salary         :float
 #  max_salary         :float
 #  criteria           :string
-#  min_age            :integer
-#  max_age            :integer
 #  signed             :boolean
 #  is_done            :boolean
 #  created_at         :datetime         not null
@@ -28,7 +26,6 @@ one:
   min_salary: 900
   max_salary: 1100
   criteria: MyStringCriterium
-  min_age: 20
   name : for Vuitton
   paid_amount: 50
 
@@ -37,6 +34,5 @@ two:
   min_salary: 900
   max_salary: 11050
   criteria: MyStringCriterium
-  min_age: 20
   paid_amount: 53
   name : for Chanel

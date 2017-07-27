@@ -9,8 +9,6 @@
 #  min_salary         :float
 #  max_salary         :float
 #  criteria           :string
-#  min_age            :integer
-#  max_age            :integer
 #  signed             :boolean
 #  is_done            :boolean
 #  created_at         :datetime         not null
@@ -59,11 +57,11 @@ class Mission < ApplicationRecord
   #validates :status, inclusion: {in: STATUSES }
   #validate :max_age_is_max
 
-  def max_age_is_max
-    if min_age.present? && max_age.present? && min_age > max_age
-      errors.add(:max_age, 'Plutôt un âge plus avancé')
-    end
-  end
+  # def max_age_is_max
+  #   if min_age.present? && max_age.present? && min_age > max_age
+  #     errors.add(:max_age, 'Plutôt un âge plus avancé')
+  #   end
+  # end
   # ------------------------
   # --    PRIVATE        ---
   # ------------------------

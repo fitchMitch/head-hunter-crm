@@ -9,8 +9,6 @@
 #  min_salary         :float
 #  max_salary         :float
 #  criteria           :string
-#  min_age            :integer
-#  max_age            :integer
 #  signed             :boolean
 #  is_done            :boolean
 #  created_at         :datetime         not null
@@ -48,10 +46,6 @@ class MissionTest < ActiveSupport::TestCase
     refute @mission.valid?
   end
 
-  test "min_age should be lower than max_age" do
-    @mission.max_age, @mission.min_age = @mission.min_age, @mission.max_age
-    refute @mission.valid?
-  end
 
   test "saving missions should be ok" do
     @mission2 = build(:mission)

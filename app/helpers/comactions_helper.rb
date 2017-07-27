@@ -38,7 +38,7 @@ module ComactionsHelper
     "#{c.action_type} [#{c.status}] | <strong>#{c.person.full_name}</strong>"
   end
   def getComactionDetails(c)
-    "Mission [#{c.mission.status}] :<br>#{c.mission.name} <br><strong>#{c.mission.company.company_name}</strong>"
+    "<i class='fa fa-bookmark-o '></i> : [#{c.mission.status}] #{c.mission.name} <br><i class='fa fa-building-o '></i> : <strong>#{c.mission.company.company_name}</strong>"
   end
 
   def button_filters(cal )

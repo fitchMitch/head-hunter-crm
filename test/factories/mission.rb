@@ -7,8 +7,6 @@ FactoryGirl.define do
     min_salary         (200..400).to_a.sample* 100
     max_salary         {min_salary.to_i + (1..10).to_a.sample.to_i* 1000 }
     criteria           {Faker::Lorem.paragraph(3, true, 4)}
-    min_age            (18..60).to_a.sample
-    max_age            {min_age + (10..20).to_a.sample }
     signed             false
     is_done            false
     whished_start_date { Date.today + (0..200).to_a.sample }

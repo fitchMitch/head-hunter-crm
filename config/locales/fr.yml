@@ -392,17 +392,18 @@ fr:
     add: Ajouter une expérience
     add_first: Créez la première société !
   mission:
+    status: Etat d'avancement du contrat
     create: Créer une mission
     add_new: Créer une nouvelle mission
+    add_new_company: Créer une nouvelle société
     add_contact: Ajouter un nouveau contact
+    paid_amount: Montant touché
     list: Liste des missions
     edit: Editer une mission
     name: Nom de la mission
     amount: Montant de la mission
-    person_searched: Personne recherchée
+    person_searched: Contenu de la mission
     contact: Contact client
-    min_age: Age minimum
-    max_age: Age maximal
     max_salary: Salaire annuel maximal
     whished_start_date: Date de début de travail
     due : Echéance
@@ -413,7 +414,7 @@ fr:
     minimum_salary: Salaire minimum
     maximum_salary: Salaire maximum
     remuneration: Rémunération JuinJuillet
-    whished_start_date: Début souhaité
+    whished_start_date: Date de lancement de la mission
     already_cashed: Déjà encaissé
   search:
     your_search: Votre recherche

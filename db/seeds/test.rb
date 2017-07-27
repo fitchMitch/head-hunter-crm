@@ -144,8 +144,6 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
   min_salary =       (200..400).to_a.sample* 100
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
   criteria  =        Faker::Lorem.paragraph(3, true, 4)
-  min_age   =        (18..60).to_a.sample
-  max_age   =        min_age + (10..20).to_a.sample
   whished_start_date = Date.today + (0..200).to_a.sample
   company_id =       company.id
   person_id  =       person.id
@@ -160,8 +158,6 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
     min_salary:         min_salary,
     max_salary:         max_salary,
     criteria:           criteria,
-    min_age:            min_age,
-    max_age:            max_age,
     signed:             signed,
     is_done:            is_done,
     whished_start_date: whished_start_date,

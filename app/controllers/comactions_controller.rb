@@ -51,6 +51,7 @@ class ComactionsController < ApplicationController
   def edit
     @user = current_user
     @forwhom = @comaction.person.id
+    @date_start, @date_end = @comaction.start_time , @comaction.end_time
   end
   #-----------------
   def show

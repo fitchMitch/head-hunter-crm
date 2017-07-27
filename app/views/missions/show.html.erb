@@ -72,7 +72,7 @@
             </small>
           </div>
           <div class='col-sm-7'>
-            <strong><%= number_to_currency @mission.min_salary %></strong>
+            <strong><%= number_to_currency @mission.min_salary , :precision => 0  %></strong>
           </div>
         </div>
         <div class='row rightFrame'>
@@ -82,25 +82,14 @@
             </small>
           </div>
           <div class='col-sm-7'>
-            <strong><%= number_to_currency @mission.max_salary %></strong>
+            <strong><%= number_to_currency @mission.max_salary  , :precision => 0 %></strong>
           </div>
         </div>
         <div class='row rightFrame'>
           <div class="col-sm-12"><hr class="sep"></div>
         </div>
         <div class='row emptyline rightFrame'></div>
-        <div class='row rightFrame'>
-          <div class='col-sm-5'>
-            <%= t("mission.Age frame") %>
-          </div>
-          <div class='col-sm-7'>
-            <%= t("mission.Between") %>
-            <%= @mission.min_age %>
-            <%= t("and") %>
-            <%= @mission.max_age %>
-            <%= t("mission.years") %>
-          </div>
-        </div>
+
       </div>
       <div class="leftFrame">
         <div class="col-md-5 col-sm-6 col-xs-7">
@@ -109,7 +98,7 @@
               <%= t("mission.remuneration") %>
             </div>
             <div class='col-sm-7'>
-              <strong ><%= number_to_currency @mission.reward %></strong>
+              <strong ><%= number_to_currency @mission.reward  , :precision => 0 %></strong>
             </div>
           </div>
           <!-- <div class= 'row emptyline'></div> -->
@@ -118,7 +107,7 @@
               <%= t("mission.already_cashed") %>
             </div>
             <div class='col-sm-7'>
-              <strong ><%= number_to_currency @mission.paid_amount %></strong>
+              <strong ><%= number_to_currency @mission.paid_amount , :precision => 0  %></strong>
             </div>
           </div>
 
