@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
+
   make_name =  ->
     t = "["
     t += $("#mission_company_id option:selected").text()
@@ -12,6 +13,7 @@ $(document).on "turbolinks:load", ->
 
   $("#mission_company_id, #mission_person_id").select2
     theme: "bootstrap"
+    
   $("#mission_company_id, #mission_person_id").attr('selectedIndex', 0);
 
   $("#mission_company_id, #mission_person_id").on 'change', ->
