@@ -1,5 +1,5 @@
 <div class="row array_header">
-  <div class="col-xs-3">
+  <div class="col-xs-4">
     <%= sort_link(@q, :name, default_sorting: :asc) do %>
     <strong><%= t("Name")  %></strong>
     <% end %>
@@ -31,8 +31,5 @@
         <%= t("Mission") %>
       </strong>
     <% end %>
-  </div>
-  <div class="col-xs-1">
-    <%= sort_link(@q, :user_name, t("user_resp"), default_order: :asc)  %>
   </div>
 </div>

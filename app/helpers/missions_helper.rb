@@ -2,15 +2,13 @@ module MissionsHelper
 
   def special_label(mission)
     # <div class="<%= latelyness mission %>">
-    t = ''
+    supp=''
     if (mission.is_done)
-      t = "<h3><strong> <i class='fa fa-gavel colorMe' aria-hidden='true'></i> </strong> "
-      t +=  mission.status + '</h3>'
+      supp = "<i class='fa fa-gavel colorMe' aria-hidden='true'></i>"
     elsif (mission.signed)
-      t = "<h3><strong> <i class='fa fa-handshake-o colorMe' aria-hidden='true'></i> </strong> "
-      t += mission.status  + '</h3>'
+      supp = "<i class='fa fa-handshake-o colorMe' aria-hidden='true'></i>"
     end
-    t.html_safe
+    "<h3> #{mission.status} <strong> #{supp}</strong></h3>".html_safe
   end
 
   def latelyness (mission)

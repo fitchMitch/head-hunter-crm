@@ -69,6 +69,10 @@ class Comaction < ApplicationRecord
         d ||= 7
         where('(start_time >= ? OR start_time is null) ', d.days.ago)
     }
+    scope :older_than, ->(d) {
+        d ||= 0
+        where('(start_time <= ?) ', d.days.ago)
+    }
     scope :mine,          -> (uid) { where('comactions.user_id = ?', uid) }
     scope :unscheduled,   -> { where('start_time is null ') }
     scope :scheduled,     -> { where('start_time is not null ') }
@@ -79,6 +83,9 @@ class Comaction < ApplicationRecord
     scope :opres,         -> { where('comactions.status = ? ', STATUS_O_PRES) }
     scope :hired,         -> { where('comactions.status = ? ', STATUS_HIRED) }
     scope :working,       -> { where('comactions.status = ? ', STATUS_WORKING) }
+
+    scope :mission_list,         -> (mission) { where('comactions.mission_id = ?', mission.id) }
+    scope :from_person,          -> (person) { where('comactions.person_id = ?', person.id) }
 
     validates :name, presence: true, length: { maximum: 100}
     # validates :status, presence: true

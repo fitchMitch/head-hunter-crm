@@ -37,6 +37,9 @@ class MissionsController < ApplicationController
   end
   #-----------------
   def show
+    @passed_comactions = Comaction.unscoped.older_than(0).mission_list(@mission)
+    @future_comactions = Comaction.unscoped.newer_than(0).mission_list(@mission)
+    # @passed_comactions = Comaction.older_than(0).find_by_mission_id(@mission.id).order(start_time: :asc)
   end
   #-----------------
   def create
@@ -50,7 +53,7 @@ class MissionsController < ApplicationController
 
     if !@person.nil? && !@company.nil? && @mission.save
       flash[:info] = 'Mission sauvegardée :-)'
-      redirect_to missions_path
+      redirect_to person_path(@person)
     else
       flash[:danger] = 'Cette mission n\'a pas pu être ajoutée'
       render :new

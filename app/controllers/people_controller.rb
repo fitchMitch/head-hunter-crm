@@ -21,8 +21,10 @@ class PeopleController < ApplicationController
 
   def show
     require 'docx'
-
     @person = Person.find(params[:id])
+    @passed_comactions = Comaction.unscoped.older_than(0).from_person(@person)
+    @future_comactions = Comaction.unscoped.newer_than(0).from_person(@person)
+
     @doc = @person.get_cv
 
     @job = @person.jobs.build

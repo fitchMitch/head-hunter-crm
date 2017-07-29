@@ -51,6 +51,7 @@ class Mission < ApplicationRecord
   scope :active, -> { where('status != ? AND status != ?', STATUS_BILLED, STATUS_PAYED) }
   scope :not_paid, -> { where('status != ?', STATUS_PAYED) }
 
+
   validates :name, presence: true, length: { maximum: 50 }
   #validates :reward, presence: true
   #validates :whished_start_date, presence: true

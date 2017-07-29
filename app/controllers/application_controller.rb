@@ -12,4 +12,5 @@ class ApplicationController < ActionController::Base
     flash[:danger] = 'Logguez-vous d\'abord'
     redirect_to login_url
   end
+
 end

@@ -136,8 +136,8 @@
                 </p>
               </div>
               <div class='col-sm-1'>
-                <%= link_to mission_path(@comaction.mission), class: 'btn' do %>
-                <%= fa_icon('pencil') %>
+                <%= link_to mission_path(@comaction.mission), class: 'btn btn-success btn-xs' do %>
+                <%= fa_icon('bookmark-o') %> <%= t("comaction.see_mission") %>
                 <% end %>
               </div>
             </div>
@@ -158,4 +158,6 @@
     </div>
   </div>
 </div>
-<%= render 'shared/date_block' %>
+<div class="mission bottom-line">
+  <%= render 'shared/date_block' %>
+</div>

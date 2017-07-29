@@ -22,7 +22,7 @@ $color3: rgba(107, 129, 140, 1);
 //$color4: #f1f9fb;
 $color4: white;
 $color5: #8df5ba;
-$color6: #CCC;
+$color6: #EEE;
 $color7 : white;
 $color8 : #951418;
 
@@ -89,7 +89,10 @@ textarea {
 .center h1 {
     margin-bottom: 10px;
 }
-.bottomline{display: block;vertical-align: bottom;}
+.bottomline{
+  display: block;
+  vertical-align: bottom;
+}
 
 /* ---------------------*/
 // typography
@@ -132,6 +135,8 @@ p {
 .small_label {
   display: block;
   width: 2em;
+  vertical-align: middle;
+  line-height: 1.5em;
 }
 .barr{
   background-color: $color5;
@@ -308,6 +313,11 @@ abbr {
   text-align: right;
   margin-right: 10px;
 }
+.right-align{
+  padding-right: 10px;
+  text-align: right;
+  margin-right: 10px;
+}
 .leftFrame{
   padding-left: 20px;
   margin-left: 10px;
@@ -388,7 +398,7 @@ hr.sep{
   padding: 3px 10px 3px 0px;
   text-align: right;
   margin: 3em -1.2em 2em 2em;
-  font-size: 0.85em;
+  font-size: 0.7em;
   -webkit-border-radius:4px 4px 4px 4px;
   border-radius:4px 4px 4px 4px;
   border: 1px solid #999;
@@ -460,7 +470,7 @@ a > span.label-warning:hover{
 }
 .midway{
   vertical-align: middle;
-  line-height:5em;
+  line-height:4em;
 }
 .emptyline{
   display:block;
@@ -471,6 +481,14 @@ a > span.label-warning:hover{
   display:block;
   height:1em;
   line-height:0.8em;
+}
+.mission.bottom-line{
+  text-align: right;
+}
+.mission.name{
+  color: $color2;
+  font-size: 1.5em;
+  font-weight: 600;
 }
 /* ---------------------*/
 // Comactions

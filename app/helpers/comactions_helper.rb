@@ -1,5 +1,6 @@
 module ComactionsHelper
   def idtype(ev)
+    letter = label_type = ''
     if ev.action_type == Comaction::CLIENT_TYPE
       label_type = 'label-primary small_label '
       letter = 'C'
@@ -12,15 +13,8 @@ module ComactionsHelper
     elsif ev.action_type == Comaction::EXPLORATION_TYPE
       label_type = 'label-default small_label '
       letter = 'E'
-    else
-      label_type = ''
-      letter = ''
     end
-    res = '<span class="label label-mini '
-    res += label_type
-    res +='">'
-    res += letter + '</span>'
-    res.html_safe
+    "<p class='label label-mini #{label_type}'> #{letter} </p>".html_safe
   end
 
   def background_style (ev)
@@ -35,7 +29,7 @@ module ComactionsHelper
   end
 
   def getComactionTitle(c)
-    "#{c.action_type} [#{c.status}] | <strong>#{c.person.full_name}</strong>"
+    "<strong>#{c.person.full_name}</strong><br>#{c.action_type} [#{c.status}] "
   end
   def getComactionDetails(c)
     "<i class='fa fa-bookmark-o '></i> : [#{c.mission.status}] #{c.mission.name} <br><i class='fa fa-building-o '></i> : <strong>#{c.mission.company.company_name}</strong>"

@@ -1,0 +1,31 @@
+<div class=" row <%= comaction.start_time.nil?  || comaction.start_time > Time.now ? '' : 'mission_done' %>">
+    <div class='col-xs-4'>
+        <div class='row'>
+            <div class='col-xs-2'>
+              <span class="empty-halfline"></span>
+              <%= idtype(comaction) %>
+            </div>
+            <div class='col-xs-10'><%= link_to comaction.name, comaction_path(comaction)  %></div>
+        </div>
+    </div>
+    <div class='col-xs-2'>
+        <% unless comaction.start_time.nil? %>
+          <small><%= future_time_in_words comaction.start_time%></small><br>
+        <% end %>
+    </div>
+    <div class='col-xs-3'>
+        <%= link_to  person_path(comaction.person)  do%>
+          <%= comaction.person.full_name %>
+        <% end %>
+    </div>
+    <div class='col-xs-3'>
+        <small><%= comaction.status %></small>
+    </div>
+    <!-- <div class='col-xs-1'>
+        <%= link_to comaction_path(comaction) do %>
+            <= user_badge comaction.user  ></span>
+        <% end %>
+    </div> -->
+
+</div>
+<%= render 'shared/sep' %>

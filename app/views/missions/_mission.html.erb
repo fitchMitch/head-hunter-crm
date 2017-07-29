@@ -8,35 +8,31 @@
         <strong>
           <%= link_to mission.name, mission_path(mission) %>
         </strong>
-        <br>
-        <%= link_to  new_comaction_path({:mission_id => mission.id}) , class: "btn btn-success btn-xs" do %>
-        <%= fa_icon("calendar-o")  %>
+        <div class="empty-halfline"></div>
+        <%= link_to  new_comaction_path({:mission_id => mission.id}) , class: "green-and-white-button" do %>
+        <%= fa_icon("calendar-o")%><span class="red_star"> *</span>
         <% end %>
-        |
         <%= link_to  edit_mission_path(mission), class: "btn btn-success btn-xs"  do %>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-        <% if logged_in? && current_user.admin? %>
-         |
-          <%= link_to  mission_path(mission), class: "btn btn-default btn-xs", method: :delete, data: { confirm: t("confirm") } do %>
-            <span class="glyphicon glyphicon-trash"></span>
-          <% end %>
-        <% end %>
-
-        <br>
-        <small>
-            <%= t("mission.market") %> :
-            <%= number_to_currency mission.reward %>
-            <br>
-            <%= t("paid") %> :
-            <%= number_to_currency mission.paid_amount %>
-        </small>
     </div>
     <div class='col-lg-2 hidden-md hidden-sm hidden-xs'>
         <%= mission.status %>
+        <br>
+        <small>
+          <% unless mission.reward.nil? || mission.reward == 0  %>
+            <%= t("mission.market") %> :
+            <%= number_to_currency mission.reward , :precision => 0 %>
+          <% end %>
+          <br>
+          <% unless mission.paid_amount.nil? || mission.paid_amount == 0  %>
+            <%= t("paid") %> :
+            <%= number_to_currency mission.paid_amount, :precision => 0 %>
+          <% end %>
+        </small>
     </div>
     <div class='col-lg-2 col-md-3 col-sm-3 col-xs-5'>
-        <%= link_to list_people_company_path(mission.company_id), class: "" do %>
+        <%= link_to list_people_company_path(mission.company_id)  do %>
         <span class="label label-warning">
             <%= mission.company.company_name %>
         </span>
@@ -55,6 +51,12 @@
     </div>
     <div class='col-lg-1 col-md-1 hidden-sm hidden-xs'>
         <small><%= time_ago_in_words mission.updated_at %></small>
+        <br>
+        <% if logged_in? && current_user.admin? %>
+          <%= link_to  mission_path(mission), class: "btn btn-success btn-xs danger", method: :delete, data: { confirm: t("confirm") } do %>
+            <span class="glyphicon glyphicon-trash"></span> <%= t("Mission") %>
+          <% end %>
+        <% end %>
     </div>
 
 </div>

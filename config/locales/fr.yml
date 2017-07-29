@@ -34,6 +34,7 @@ fr:
   from: de
   to: à
   For: Pour
+  empty_list : ... Rien pour l'instant.
   search_title: Rechercher
   jj:
     maxim: JuinJuillet Recrutement
@@ -44,6 +45,8 @@ fr:
     account_create: Créer un compte
     disconnect: Déconnexion
     log_in: Log in
+    dashboard_title: Tableau de bord
+    add_time_title: Mon temps
   years: années
   months: mois
   Sunday: dimanche
@@ -348,6 +351,7 @@ fr:
     add_label: Ajouter une action
     create: Créer un rendez-vous/action
     calendar: Calendrier
+    see_mission: Voir la mission
   company:
     company_name: Nom de la société
     worked_there: personnes y ont travaillé
@@ -378,6 +382,11 @@ fr:
     have_meeting: Prendre rendez-vous
     add_and_see_button: Ajouter et voir
     save_and_see_button: Sauvegarder et voir
+    history_title: Historique JJ
+    future_tab_title: A venir
+    person_activity_void: Certainement des choses à faire ensemble ?
+    cv: CV
+
   job:
     last: Poste occupé
     date_in: Date de prise de fonction
@@ -416,6 +425,11 @@ fr:
     remuneration: Rémunération JuinJuillet
     whished_start_date: Date de lancement de la mission
     already_cashed: Déjà encaissé
+    action_list_title: Activité
+    history_title: Historique
+    passed_tab_title: Passé
+    future_tab_title: A venir
+    mission_activity_void: Aucune activité répertoriée à ce jour
   search:
     your_search: Votre recherche
     no_result: Aucun résultat pour votre recherche
