@@ -20,7 +20,7 @@
             <%= t a.start_date.strftime("%B %Y") %>
             <%= t("to") %>
             <% if a.no_end%>
-            <%= t("today") %>
+              <%= t("today") %>
             <% else %>
                 <%= a.end_date.strftime("%B %Y") %>
             <%end%>

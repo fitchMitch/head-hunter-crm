@@ -21,4 +21,16 @@ module PeopleHelper
     job.end_date.nil? ? "?" : ((job.end_date.jd - job.start_date.jd) / 365).floor.to_s
   end
 
+  def current_job_part(person)
+    job = Job.current_job(person.id) || Job.last_job(person.id)
+    t = job == nil ? '' : "<span class='btn btn-default btn-xs'>#{job.job_title}</span>"
+    t.html_safe
+  end
+
+  def current_company(person)
+    job = Job.current_job(person.id) || Job.last_job(person.id)
+    t = job == nil ? '' : "<span class='redFrame'>#{job.company.company_name}</span>"
+    t.html_safe
+  end
+
 end

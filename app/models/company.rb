@@ -35,6 +35,10 @@ class Company < ApplicationRecord
 
   validates :company_name,  presence: true, length: { maximum: 40 }, uniqueness: { case_sensitive: false }
 
+  def mission_list 
+    Mission.where('company_id = ?', self.id).order(created_at: :desc)
+  end
+
   # ------------------------
   # --    PRIVATE        ---
   # ------------------------

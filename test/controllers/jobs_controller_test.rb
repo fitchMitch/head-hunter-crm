@@ -36,7 +36,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
   test "should show double jobs" do
     job1 = create(:job, no_end:  true, person: @person)
     job2 = create(:job, no_end:  true, person: @person)
-    assert job2.double_jobs(@person.id)
+    assert Job.double_jobs(@person.id)
   end
 
 end

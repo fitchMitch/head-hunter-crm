@@ -1,31 +1,45 @@
 <div class="row">
-    <div class='col-xs-2 hidden-xs col-right'></div>
-    <div class="col-xs-8">
-        <div class='row'>
-            <div class='col-xs-4'>
-                <%= link_to list_people_company_path(company) do %>
-                <span class="label label-warning"><%= company.company_name %></span>
-                <% end %>
-            </div>
-            <div class='col-xs-4'>
-                <% if logged_in? %>
-                <%= link_to  edit_company_path(company) do %>
-                <%= t("Edit") %>
-                <span class="glyphicon glyphicon-pencil"></span>
-                <% end %>
-                <% end %></div>
-            <div class='col-xs-4'>
-                <small>
-                    <%= t("recorded_on") %>
-                    <%= time_ago_in_words company.created_at %>
-                </small>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <%= render 'shared/sep' %>
-            </div>
-        </div>
+  <div class='col-xs-1 hidden-xs col-right'></div>
+  <div class="col-xs-10">
+    <div class='row'>
+      <div class='col-xs-4'>
+        <%= link_to list_people_company_path(company) do %>
+          <span class="label label-warning"><%= company.company_name %></span>
+        <% end %>
+      </div>
+      <div class='col-xs-2'>
+        <% if logged_in? %>
+          <%= link_to  edit_company_path(company) do %>
+            <%= t("Edit") %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+        <% end %>
+      </div>
+      <div class='col-xs-4'>
+      <ul>
+        <% company.mission_list.each do |mission| %>
+        <li>
+          <strong>
+            <%= link_to mission.name, mission_path(mission) %>
+          </strong>
+          <br>
+           <small>[<%= time_ago_in_words mission.created_at %>]</small>
+        </li>
+        <% end %>
+      </ul>
     </div>
-    <div class='col-xs-2 hidden-xs col-left'></div>
+      <div class='col-xs-2'>
+        <small>
+          <%= t("recorded_on") %>
+          <%= time_ago_in_words company.created_at %>
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render 'shared/sep' %>
+      </div>
+    </div>
+  </div>
+  <div class='col-xs-2 hidden-xs col-left'></div>
 </div>

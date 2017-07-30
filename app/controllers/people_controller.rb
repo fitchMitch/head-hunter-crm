@@ -24,6 +24,7 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @passed_comactions = Comaction.unscoped.older_than(0).from_person(@person)
     @future_comactions = Comaction.unscoped.newer_than(0).from_person(@person)
+    @current_job = Job.current_job(@person.id)
 
     @doc = @person.get_cv
 

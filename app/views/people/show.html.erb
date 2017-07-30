@@ -1,4 +1,4 @@
-<% provide(:title, @person.firstname) %>
+<% provide(:title, @person.lastname) %>
 <% provide(:button_text, 'Ajouter') %>
 <% provide(:action, @action) %>
 
@@ -17,6 +17,7 @@
           <i class="fa fa-star" aria-hidden="true"></i>
           <% end %>
         </h3>
+        
       </div>
       <div class="col-sm-6  align-right">
         <%= link_to new_comaction_path({:person_id => @person.id}) , class: "green-and-white-button" do %>

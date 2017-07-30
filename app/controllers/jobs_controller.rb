@@ -26,14 +26,14 @@ class JobsController < ApplicationController
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
-      message = 'Nouvel emploi de ' + @job.person.firstname + ' sauvegardé '
-      if @job.double_jobs(@person.id)
-        flash[:warning] = message + ' (ce profil a plusieurs emplois en parallèle)'
-      else
+      message = "Nouvel emploi de #{@job.person.firstname} sauvegardé"
+      # if Job.double_jobs(@person.id)
+      #   flash[:warning] = message + ' (ce profil a plusieurs emplois en parallèle)'
+      # else
         flash[:info] = message
-      end
+      # end
     else
-      flash[:danger] = 'Cette expérience n\'a pas pu être ajoutée'
+      flash[:danger] = I18n.t("job.danger_message")
     end
 
     redirect_to person_path(@person.id)

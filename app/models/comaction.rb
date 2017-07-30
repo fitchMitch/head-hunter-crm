@@ -105,7 +105,7 @@ class Comaction < ApplicationRecord
       if cond_current_time_data && end_time < start_time
         errors.add(:end_time, 'La fin vient après le début :-)')
       end
-      Comaction.all.each do |other|
+      Comaction.mine(self.user_id).each do |other|
         test_condition_ok = other.user_id == user_id && other.start_time.present? && other.end_time.present? && cond_current_time_data # overlap is possible only if c0 is true
         next unless test_condition_ok
 

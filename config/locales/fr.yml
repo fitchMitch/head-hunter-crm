@@ -33,6 +33,7 @@ fr:
   paid: Payé
   from: de
   to: à
+  at: chez
   For: Pour
   empty_list : ... Rien pour l'instant.
   search_title: Rechercher
@@ -348,7 +349,7 @@ fr:
     title_list: Liste des RdV/actions
     title_list_short: Calendrier
     update_title: Editer un RdV/action
-    add_label: Ajouter une action
+    add_label: Ajouter une action, un RdV
     create: Créer un rendez-vous/action
     calendar: Calendrier
     see_mission: Voir la mission
@@ -384,9 +385,8 @@ fr:
     save_and_see_button: Sauvegarder et voir
     history_title: Historique JJ
     future_tab_title: A venir
-    person_activity_void: Certainement des choses à faire ensemble ?
-    cv: CV
-
+    person_activity_void: Certainement des choses à faire ensemble ...
+    lastly: Dernièrement
   job:
     last: Poste occupé
     date_in: Date de prise de fonction
@@ -400,6 +400,7 @@ fr:
     list : Liste des emplois
     add: Ajouter une expérience
     add_first: Créez la première société !
+    danger_message: Cette expérience n'a pas pu être ajoutée
   mission:
     status: Etat d'avancement du contrat
     create: Créer une mission
