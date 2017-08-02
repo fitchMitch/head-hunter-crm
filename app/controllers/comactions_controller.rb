@@ -12,31 +12,43 @@
 #  mission_id :integer
 #  person_id  :integer
 class ComactionsController < ApplicationController
+  # include EventPeriod
   before_action :logged_in_user
   before_action :get_comaction,   only: [:edit, :show, :update, :destroy]
+  before_action :get_uid,   only: [:new, :index]
+
+
 
   def new
     @comaction = Comaction.new
-    @comaction.is_dated = 1
-    @comaction.name = "Rdv"
+
     @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
+
     @forwhom = params[:person_id] || 0
     @what_mission = params[:mission_id] || 0
+    #just lokking into next week
+    @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(7).order(start_time: :asc)
+    busy_slots = []
+    @next_comactions.each do |app|
+      #busy_slots << app.
+    end
+    # d = Date.current
+    # aglae = EventPeriod.new(d , d.since(3.days))
   end
   #-----------------
   def index
-    uid = current_user.id
+
     params[:page] ||= 1
-    @q = Comaction.mine(uid).ransack(params[:q])
+    @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
     if params[:filter] != nil
       Comaction::STATUS_RELATED.values.each do |key|
         @comactions = @comactions.public_send(key)  if params[:filter].to_sym == key
       end
       if params[:filter] === 'future'
-        @comactions = @comactions.mine(uid).newer_than 0
+        @comactions = @comactions.mine(@uid).newer_than 0
       else
-        @comactions = @comactions.mine(uid).newer_than 7
+        @comactions = @comactions.mine(@uid).newer_than 7
       end
     end
     @comactions = @comactions.page(params[:page])
@@ -79,14 +91,14 @@ class ComactionsController < ApplicationController
 
     if @comaction.save
       if @comaction.start_time == nil  || @comaction.end_time == nil
-        flash[:info] = 'Rendez-vous sauvegardé'
+        flash[:info] = I18n.t("comaction.message.saved")
       else
         @comaction.send_meeting_email(current_user, 1)
-        flash[:info] = 'Rendez-vous sauvegardé (un email a été envoyé)'
+        flash[:info] =  I18n.t("comaction.message.saved_with_mail")
       end
       redirect_to comactions_path
     else
-      flash[:danger] = 'Ce rendez-vous n\'a pas pu être ajouté'
+      flash[:danger] =  I18n.t("comaction.message.unsaved")
       render :new
     end
   end
@@ -96,22 +108,22 @@ class ComactionsController < ApplicationController
 
     if @comaction.update_attributes(comaction_params)
       if @comaction.start_time == nil || @comaction.end_time == nil
-        flash[:success] = 'Rendez-vous sauvegardé'
+        flash[:success] = I18n.t("comaction.message.saved")
       else
         @comaction.send_meeting_email(current_user, 0)
-        flash[:success] = 'Rendez-vous mis à jour (un email a été envoyé)'
+        flash[:success] = I18n.t("comaction.message.updated_with_mail")
       end
       redirect_to @comaction
     else
       logger.warn("update won\'t work #{@comaction.inspect }")
-      flash[:danger] = 'Ce rendez-vous n\'a pas pu être mis à jour'
+      flash[:danger] = I18n.t("comaction.message.unupdated")
       render 'edit'
     end
   end
 
   def destroy
     @comaction.destroy
-    flash[:success] = 'Rendez-vous supprimé'
+    flash[:success] = I18n.t("comaction.message.deleted")
     redirect_to comactions_path
   end
 
@@ -139,6 +151,23 @@ class ComactionsController < ApplicationController
       @comaction = Comaction.find(params[:id])
       @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? false : true
       @date = @comaction.start_time
+    end
+
+    def get_uid
+      @uid = current_user.id
+    end
+
+    def total_slot_list(nb_days)
+      r = []
+      d = Date.current
+      dt = Datetime.current
+      (0 .. nb_days).to_a.each do |day| #7 days a week
+        @@hours_work.each { |h|
+          condition = day == 0 && d.advance(days: day.to_i, hours: h.to_i) <  dt
+          r <<  d.advance(days: day.to_i, hours: h.to_i) unless condition
+        }
+      end
+      r
     end
 
 

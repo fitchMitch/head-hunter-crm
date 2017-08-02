@@ -20,6 +20,8 @@ class Comaction < ApplicationRecord
     belongs_to :person
     belongs_to :user
 
+    @@hours_work = (7..21).to_a
+
     include PgSearch
     pg_search_scope :search_name,
                     :against => [ [:name, 'A'], [:status , 'B']],
@@ -63,8 +65,18 @@ class Comaction < ApplicationRecord
         STATUS_HIRED => :hired,
         STATUS_WORKING => :working
     }.freeze
+    # ===========
+    # Initialization
+    # ===========
+    after_initialize :set_new_comaction , if: :new_record?
 
-
+    def set_new_comaction
+      self.is_dated = 1
+      self.name = "RdV"
+    end
+    # ===========
+    # Scopes
+    # ===========
     scope :newer_than, ->(d) {
         d ||= 7
         where('(start_time >= ? OR start_time is null) ', d.days.ago)
@@ -86,6 +98,9 @@ class Comaction < ApplicationRecord
 
     scope :mission_list,         -> (mission) { where('comactions.mission_id = ?', mission.id) }
     scope :from_person,          -> (person) { where('comactions.person_id = ?', person.id) }
+    # ===========
+    # Validations
+    # ===========
 
     validates :name, presence: true, length: { maximum: 100}
     # validates :status, presence: true
