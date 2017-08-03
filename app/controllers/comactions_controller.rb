@@ -12,14 +12,14 @@
 #  mission_id :integer
 #  person_id  :integer
 class ComactionsController < ApplicationController
-  # include EventPeriod
+
   before_action :logged_in_user
   before_action :get_comaction,   only: [:edit, :show, :update, :destroy]
   before_action :get_uid,   only: [:new, :index]
 
 
-
   def new
+    require 'periods/event_period'
     @comaction = Comaction.new
 
     @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
@@ -32,8 +32,10 @@ class ComactionsController < ApplicationController
     @next_comactions.each do |app|
       #busy_slots << app.
     end
-    # d = Date.current
-    # aglae = EventPeriod.new(d , d.since(3.days))
+    # d = DateTime.current
+    # aglae = EventPeriod.new(d , d + 3.days)
+    # byebug
+
   end
   #-----------------
   def index

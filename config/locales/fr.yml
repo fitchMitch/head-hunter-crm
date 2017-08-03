@@ -295,6 +295,9 @@ fr:
     precision:
       format:
         delimiter: ''
+  session:
+    message:
+      log_first: Logguez-vous d'abord
   support:
     array:
       last_word_connector: " et "
@@ -346,13 +349,20 @@ fr:
       date_and_hour: Date et heure de début
     end:
       date_and_hour: Date et heure de fin
-    title_list: Liste des RdV/actions
+    title_list: Calendrier
     title_list_short: Calendrier
     update_title: Editer un RdV/action
     add_label: Ajouter une action, un RdV
     create: Créer un rendez-vous/action
     calendar: Calendrier
     see_mission: Voir la mission
+    message:
+      saved: Rendez-vous sauvegardé
+      saved_with_mail: Rendez-vous sauvegardé (un email a été envoyé)
+      unsaved : Ce rendez-vous n'a pas pu être ajouté
+      updated_with_mail: Rendez-vous mis à jour (un email a été envoyé)
+      unupdated: Ce rendez-vous n'a pas pu être mis à jour
+      deleted: Rendez-vous supprimé
   company:
     company_name: Nom de la société
     worked_there: personnes y ont travaillé

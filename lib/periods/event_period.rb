@@ -1,16 +1,20 @@
 class EventPeriod
-  attr_accessor :start_datetime, :end_datetime
+  require 'date'
+  attr_accessor :start_datetime, :end_datetime, :range, :min_duration
 
   def initialize(starttime, endtime)
-    return nil unless starttime.is_a(Datetime) && endtime.is_a(Datetime)
+    raise unless starttime.is_a?(DateTime) && endtime.is_a?(DateTime) && endtime < starttime
     @start_datetime = starttime
     @end_datetime = endtime
-    @range  = (start_datetime .. end_datetime)
-    @min_duration = ((endtime - startime) / 3600).round
+    @range  = (starttime .. endtime)
+    @min_duration =0
+    @min_duration = update_duration()
   end
 
   def update_duration
-    self.min_duration = ((self.end_datetime - self.start_datetime) / 3600).round
+    t =  24 * 60 * days_overlap()
+    t += (self.end_datetime.seconds_since_midnight - self.start_datetime.seconds_since_midnight) /60
+    t.round
   end
 
   def get_hours_duration
@@ -19,7 +23,7 @@ class EventPeriod
   end
 
   def overlaps?(o_period)
-    #  return nil unless o_period.is_a(Period)
+    #  return nil unless o_period.is_a?(Period)
     #  c1 =  self.start_datetime <= o.start_datetime
     #  c2 = self.end_datetime >= o.end_datetime
     #  c3 = self.end_datetime >= o.start_datetime && self.end_datetime <= o.end_datetime
@@ -34,18 +38,18 @@ class EventPeriod
   end
 
   def days_overlap
-    ((self.start_datetime.beginning_of_day - self.end_datetime.beginning_of_day) / (60 * 60 * 24)).round
+    (self.end_datetime - self.start_datetime).round
   end
 
   def update_begin (bego)
-    return  unless bego.is_a(Datetime)
+    return  unless bego.is_a?(DateTime) || bego > self.end_datetime
     self.start_datetime = bego
     self.range = (bego .. self.end_datetime)
     update_duration()
   end
 
   def update_end (endo)
-    return  unless endo.is_a(Datetime)
+    return  unless endo.is_a?(DateTime) || endo < self.start_datetime
     self.end_datetime = endo
     self.range = (self.start_datetime .. endo)
     update_duration()
@@ -70,8 +74,8 @@ class EventPeriod
     return nil if hour_begin > hour_end
     r = []
     self.days_split.each do |da|
-      da.update_begin(da.beginning_of_day.since(hour_begin.hours)) if ( da.start_datetime < da.beginning_of_day.since(hour_begin.hours)
-      da.update_end(da.beginning_of_day.since(hour_end.hours)) if ( da.end_datetime > da.beginning_of_day.since(hour_end.hours)
+      da.update_begin(da.beginning_of_day.since(hour_begin.hours)) if  da.start_datetime < da.beginning_of_day.since(hour_begin.hours)
+      da.update_end(da.beginning_of_day.since(hour_end.hours)) if  da.end_datetime > da.beginning_of_day.since(hour_end.hours)
       r << da
     end
     r
@@ -88,7 +92,7 @@ class EventPeriod
       start_min = 0
       start_hour += 1
     end
-    self.get_hours_duration).to_a.each do |h|
+    (self.get_hours_duration).to_a.each do |h|
       r << EventPeriod.new(self.beginning_of_day.since((start_hour+h).hours).since(start_min.minutes), self.beginning_of_day.since((start_hour+h+1).hours).since(start_min.minutes))
     end
   end

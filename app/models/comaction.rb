@@ -16,6 +16,7 @@
 #
 
 class Comaction < ApplicationRecord
+
     belongs_to :mission
     belongs_to :person
     belongs_to :user

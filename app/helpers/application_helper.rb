@@ -21,8 +21,7 @@ module ApplicationHelper
   end
   #-----------------
   def user_badge(u)
-    str = '<span class="badge badge-default">' + u.trigram + '</span>'
-    str.html_safe
+    "<span class=\"badge badge-default\">#{u.trigram}</span>".html_safe
   end
   #-----------------
   def future_time_in_words(t1)

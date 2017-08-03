@@ -130,6 +130,19 @@
             <h3>
               <%= t("mission.action_list_title") %>
             </h3>
+            <div class="empty-halfline"></div>
+            <p>
+              <%= link_to new_person_path({:person_id => @mission.person.id}), class: "green-and-white-button" do %>
+                <%= fa_icon("user-circle", text: t("person.add"))%>  <span class="red_star">*</span>
+              <% end %>
+
+              <%= link_to new_comaction_path({:mission_id => @mission.id}), class: "green-and-white-button" do %>
+                <%= fa_icon("calendar-o", text: t("comaction.create")) %> <span class="red_star">*</span>
+              <% end %>
+            </div>
+            </p>
+            <hr>
+            <div class="empty-halfline"></div>
             <div>
               <!-- Nav tabs -->
               <ul class="nav nav-pills" role="tablist">

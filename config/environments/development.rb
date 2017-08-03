@@ -43,7 +43,7 @@ Rails.application.configure do
    :password       => 'margoulin:85247'
  }
 
-  config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 20 * 1024 * 1024)
+  config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 3 * 1024 * 1024)
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

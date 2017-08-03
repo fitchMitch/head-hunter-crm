@@ -15,6 +15,7 @@ Bundler.require(*Rails.groups)
 
 module JjFloApp
   class Application < Rails::Application
+    config.autoload_paths << "#{Rails.root}/lib"
     #locale
     I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
     I18n.default_locale = :fr
