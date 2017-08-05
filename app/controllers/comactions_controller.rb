@@ -17,9 +17,7 @@ class ComactionsController < ApplicationController
   before_action :get_comaction,   only: [:edit, :show, :update, :destroy]
   before_action :get_uid,   only: [:new, :index]
 
-
   def new
-    require 'periods/event_period'
     @comaction = Comaction.new
 
     @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
@@ -28,13 +26,22 @@ class ComactionsController < ApplicationController
     @what_mission = params[:mission_id] || 0
     #just lokking into next week
     @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(7).order(start_time: :asc)
-    busy_slots = []
+    d = DateTime.current
+    f = d.advance(days: 7)
+    attributes = {:start_period => d , :end_period => f}
+    freeZone = EventSlot.new(attributes)
+    #---
+    freeZone_days = freeZone.working_days_split
+    r = []
     @next_comactions.each do |app|
-      #busy_slots << app.
+      unless  app.start_time.nil? && app.endtime.nil?
+        freeZone_days.each do |w_day|
+          r << w_day.out_from_intersect(a)
+        end
+        freeZone_days = r
+      end
     end
-    # d = DateTime.current
-    # aglae = EventPeriod.new(d , d + 3.days)
-    # byebug
+
 
   end
   #-----------------
@@ -158,19 +165,4 @@ class ComactionsController < ApplicationController
     def get_uid
       @uid = current_user.id
     end
-
-    def total_slot_list(nb_days)
-      r = []
-      d = Date.current
-      dt = Datetime.current
-      (0 .. nb_days).to_a.each do |day| #7 days a week
-        @@hours_work.each { |h|
-          condition = day == 0 && d.advance(days: day.to_i, hours: h.to_i) <  dt
-          r <<  d.advance(days: day.to_i, hours: h.to_i) unless condition
-        }
-      end
-      r
-    end
-
-
 end
