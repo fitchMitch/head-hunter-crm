@@ -48,10 +48,10 @@ class EventSlot
     range.overlaps?(o_period.range)
   end
 
-  def hours_work(hour_begin, hour_end)
+  def work_hours(hour_begin, hour_end)
     return nil if hour_begin > hour_end
     r = []
-    working_days_split.each do |da|
+    self.working_days_split.each do |da|
       beg_offset = da.start_period.beginning_of_day.advance(hours: hour_begin)
       end_offset = da.end_period.beginning_of_day.advance(hours: hour_end)
       da.update_begin(beg_offset) if da.start_period < beg_offset
@@ -73,7 +73,7 @@ class EventSlot
         r << EventSlot.new(
           :start_period => offset_s,
           :end_period => offset_e
-          ) unless day_offset.sunday == day_offset
+          ) unless day_offset.wday == 0 #sunday
       end
     else
       r << self
@@ -94,10 +94,25 @@ class EventSlot
     if self.overlaps? rdv_period
       r << EventSlot.new( starts) unless self.start_period == rdv_period.start_period
       r << EventSlot.new( ends ) unless self.end_period == rdv_period.end_period
-      self.destroy
+      #self.destroy
     else
       r << self
     end
+  end
+
+  def split_in_hours
+    return "extremes_hit" if overlaps_two_days?
+    return [self] if self.min_duration < 91
+    r = []
+    starter = self.round_hours
+    start_hour, start_min = starter[:hours] , starter[:min]
+    (0..self.get_hours_duration).to_a.each do |h|
+      r << EventSlot.new(
+        :start_period => self.start_period.beginning_of_day.advance(hours: (start_hour + h), minutes: start_min),
+        :end_period => self.end_period.beginning_of_day.advance(hours: (start_hour + h + 1), minutes: start_min)
+        )
+    end
+    r
   end
 
   def update_begin(bego)
@@ -113,6 +128,22 @@ class EventSlot
     self.range = (self.start_period..endo)
     update_duration
   end
+
+  def round_hours
+    start_hour = self.start_period.hour
+    start_min = self.start_period.min
+
+    if start_min = start_min > 0 && start_min <= 30
+      start_min = 30
+    else
+      start_min = 0
+      start_hour += 1
+    end
+    {min: start_min, hours: start_hour}
+  end
+  def overlaps_two_days?
+    (self.end_period.beginning_of_day - self.start_period.beginning_of_day).to_i.round > 0
+  end
   # =================
   private
   # =================
@@ -120,41 +151,9 @@ class EventSlot
       self.min_duration = ((self.end_period - self.start_period) * 24 * 60).to_i.round
     end
 
-    def overlaps_two_days?
-      (self.end_period.beginning_of_day - self.start_period.beginning_of_day).to_i.round > 0
-    end
 
     def days_overlap
       (self.end_period - self.start_period).round
-    end
-
-
-
-    def split_in_hours
-      return "extremes_hit" if overlaps_two_days? || min_duration < 91
-      r = []
-      starter = self.round_hours
-      start_hour, start_min = starter[:hours] , starter[:min]
-      (0..self.get_hours_duration).to_a.each do |h|
-        r << EventSlot.new(
-          :start_period => self.start_period.beginning_of_day.advance(hours: (start_hour + h), minutes: start_min),
-          :end_period => self.end_period.beginning_of_day.advance(hours: (start_hour + h + 1), minutes: start_min)
-          )
-      end
-      r
-    end
-
-    def round_hours
-      start_hour = self.start_period.hour
-      start_min = self.start_period.min
-
-      if start_min = start_min > 0 && start_min <= 30
-        start_min = 30
-      else
-        start_min = 0
-        start_hour += 1
-      end
-      {min: start_min, hours: start_hour}
     end
 
     def is_greater?(other)

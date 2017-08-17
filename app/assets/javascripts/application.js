@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+  // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
@@ -12,9 +12,21 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require sweetalert2
+//= require sweet-alert2-rails
 //= require select2
 //= require jquery.turbolinks
 //= require bootstrap
 //= require jquery-ui
 //= require turbolinks
 //= require_tree .
+
+window.sweetAlertConfirmConfig  = {
+  title: "C'est sûr ?",
+  type: 'question',
+  showCancelButton: true,
+  confirmButtonText: 'Oui ',
+  text: "Ce sera définitif",
+  cancelButtonColor: '#f58976',
+  confirmButtonColor: '#4ef0bf'
+};

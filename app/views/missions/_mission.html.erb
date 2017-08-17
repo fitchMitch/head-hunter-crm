@@ -53,7 +53,15 @@
         <small><%= time_ago_in_words mission.updated_at %></small>
         <br>
         <% if logged_in? && current_user.admin? %>
-          <%= link_to  mission_path(mission), class: "btn btn-success btn-xs danger", method: :delete, data: { confirm: t("confirm") } do %>
+        <%= link_to mission_path(mission),
+        class: "btn btn-success btn-xs danger",
+        method: :delete,
+        data: {
+          :confirm => t("confirm"),
+          :'sweet-alert-confirm' => t("confirm") ,
+          :'confirm-button-text' => t("confirm-button-text"),
+          :'cancel-button-text' => t("cancel-button-text")
+          } do %>
             <span class="glyphicon glyphicon-trash"></span> <%= t("Mission") %>
           <% end %>
         <% end %>

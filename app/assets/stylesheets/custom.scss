@@ -1,30 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 /* mixins, variables, etc. */
-$light-gray: #777;
-$gray-medium-light: #eaeaea;
-/* Coolors Exported Palette - coolors.co/00120b-35605a-6b818c-d8e4ff-31e981 */
-
-/* RGB */
-$color1: rgba(0, 18, 11, 1);
-$color2: rgba(53, 96, 90, 1);
-$color3: rgba(107, 129, 140, 1);
-$color4: rgba(216, 228, 255, 1);
-$color5: rgba(49, 233, 129, 1);
-$color6: #CCC;
-$color7 : white;
-$color8 : #951418;
-
-/* RGB 2*/
-$color1: #103828;
-$color2: rgba(53, 96, 90, 1);
-$color3: rgba(107, 129, 140, 1);
-//$color4: #f1f9fb;
-$color4: white;
-$color5: #8df5ba;
-$color6: #EEE;
-$color7 : white;
-$color8 : #951418;
+@import "variables";
 
 .color2, input.header{
   color:white;
@@ -48,7 +25,7 @@ body {
 .grav1, .grav2,.grav5, .grav4,.grav5, .grav6,.grav7, .grav8,.grav9, .grav10,.grav11, .grav12 {
   background-color: $color3;
   height:3px;
-  margin:10px
+  margin:10px;
 }
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -97,6 +74,13 @@ textarea {
 /* ---------------------*/
 // typography
 /* ---------------------*/
+a {
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+  background: $color5;
+}
 h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
@@ -138,120 +122,30 @@ p {
   vertical-align: middle;
   line-height: 1.5em;
 }
+/* ---------------------*/
+// bars
+/* ---------------------*/
 .barr{
   background-color: $color5;
   height:2px;
   margin-top: 0.7em;
   margin-bottom: 0.5em;
 }
+hr.sep{
+  color:$color3;
+  background-color: $color3;
+  height: 1px;
+  margin-top:0.5em;
+  margin-bottom:1em;
+}
 //------------------
 .btn.btn-success.danger{
   color:$color5;
-}
-/* ---------------------*/
-// header
-/* ---------------------*/
-.circle{
-  background-color: #f79bd4;
-  -webkit-border-radius: 75px 75px 75px 75px;
-  border-radius: 100px;
-  min-height:66px;
-  max-width: 66px;
-  vertical-align: middle;
-}
-#logo {
-    float: left;
-    margin-right: 10px;
-    font-size: 1.7em;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    padding-top: 9px;
-    font-weight: bold;
-}
-
-#logo:hover {
-    color: #fff;
-    text-decoration: none;
-}
-h1.center.cfirst{
-  margin-bottom: -40px;
-  text-indent: -55px;
-}
-h1.center.clast {
-  text-indent: -3px;
-  margin-bottom: -00px;
-}
-/* ---------------------*/
-// footer
-/* ---------------------*/
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $light-gray;
-  a {
-      color: #555;
-      &:hover {
-          color: #222;
-      }
-  }
-  small {
-      float: left;
-  }
-  ul {
-      float: right;
-      list-style: none;
-      li {
-          float: left;
-          margin-left: 15px;
-      }
-  }
-}
-/* ---------------------*/
-// pagination
-/* ---------------------*/
-.pagination{
-  text-align: right;
-  margin-top:5px;
-  margin-bottom:5px;
-  display: block;
-
-  em.current{
-    border: 1px solid grey;
-    padding : 5px;
-    font-weight: 400;
-  }
-  a{
-    border: 1px solid grey;
-    font-weight: 600;
-    padding : 5px;
-    background-color: $color5;
-    text-decoration: none;
-  }
-  span.next_page , span.previous_page, a.next_page , a.previous_page {
-    border: 1px solid grey;
-    padding : 5px;
-    background-color: $color5;
-  }
-  span.previous_page, a.previous_page{
-    -webkit-border-radius:  5px 0px 0px 5px;
-    border-radius: 5px 0px 0px 5px;
-  }
-  span.next_page, a.next_page{
-    -webkit-border-radius:  0px 5px 5px 0px;
-    border-radius: 0px 5px 5px 0px ;
-  }
-  span.next_page.disabled, span.previous_page.disabled{
-    background-color: $color6;
-    color:black;
-  }
 }
 
 /* ---------------------*/
 // gravatar
 /* ---------------------*/
-
 .gravatar {
     float: left;
     margin-right: 10px;
@@ -263,7 +157,6 @@ footer {
 /* ---------------------*/
 // forms
 /* ---------------------*/
-
 .btnSubmitCtr {
     width: 40%;
     margin: auto;
@@ -278,7 +171,6 @@ footer {
     margin-bottom: 15px;
     @include box_sizing;
 }
-
 #error_explanation {
     color: red;
 
@@ -287,7 +179,6 @@ footer {
         margin: 0 0 30px;
     }
 }
-
 .field_with_errors {
     @extend .has-error;
 
@@ -295,7 +186,6 @@ footer {
         color: $state-danger-text;
     }
 }
-
 abbr {
     color: red;
 }
@@ -303,7 +193,6 @@ abbr {
     width: auto;
     margin-left: -20px;
 }
-
 /* ---------------------*/
 // frames
 /* ---------------------*/
@@ -358,13 +247,7 @@ abbr {
 .testFrame {
   border: 1px solid red;
 }
-hr.sep{
-  color:$color3;
-  background-color: $color3;
-  height: 1px;
-  margin-top:0.5em;
-  margin-bottom:1em;
-}
+
 /*---------------------+
 /* Position
 /*---------------------*/
@@ -381,7 +264,6 @@ hr.sep{
   margin: 10px;
   padding : 10px;
 }
-
 .col-right{
   border-right: 1px solid grey;
 }
@@ -417,222 +299,4 @@ hr.sep{
 }
 a > span.label-warning:hover{
   text-decoration: none;
-}
-/* ---------------------*/
-// Users index
-/* ---------------------*/
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-      overflow: auto;
-      padding: 10px 0;
-      border-bottom: 1px solid $gray-lighter;
-  }
-}
-/* ---------------------*/
-// People
-/* ---------------------*/
-.fa-user.client {
-  color:$color5;
-}
-/* ---------------------*/
-// Missions
-/* ---------------------*/
-#mission_search{
-  display:inline;
-}
-.late{
-  background-color: $color8;
-  color:white;
-}
-.mission_done{
-  background-color: $color6;
-}
-.small_alert{
-  font-size: 0.7em;
-  line-height: normal;
-  vertical-align: middle;
-  color: $color4;
-  background-color: $color3;
-  padding:3px;
-  border:1px solid red;
-  -webkit-border-radius:8px 8px 8px 8px;
-  border-radius:8px 8px 8px 8px;
-}
-.filter_box{
-  border: 1px solid $color3;
-  padding: 4px;
-  margin-right: 4px;
-  background-color: $color7;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-}
-.midway{
-  vertical-align: middle;
-  line-height:4em;
-}
-.emptyline{
-  display:block;
-  height:2em;
-  line-height:1.6em;
-}
-.empty-halfline{
-  display:block;
-  height:1em;
-  line-height:0.8em;
-}
-.mission.bottom-line{
-  text-align: right;
-}
-.mission.name{
-  color: $color2;
-  font-size: 1.5em;
-  font-weight: 600;
-}
-/* ---------------------*/
-// Comactions
-/* ---------------------*/
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
-  background-color: $color5;
-  color :  $color1;
-
-}
-// .wday-0,.wday-6 {
-//   display: none;
-// }
-.track-border{
-  border: 1px black solid;
-}
-/* Calendars*/
-.today{
-  background-color: white;
-  border : 2px red solid;
-}
-.cal_date{
-  font-size: 0.7em;
-  font-family: "Verdana";
-  font-stretch: semi-condensed;
-  font-weight: bold;
-  border : 1px grey solid;
-  padding : 2px 10px 2px 10px;
-  color:#4b425f;
-  -webkit-border-radius:2px;
-  border-radius: 2px;
-  background-color: $color5;
-  margin-bottom: 4px;
-  display: inline-block;
-}
-.day.future{
-  border: 2px solid $color1;
-}
-.day.past{
-  border: 1px solid grey;
-  color:grey;
-}
-hr.calendar{
-  width:100%;
-  color:$color1;
-  height:2px;
-  margin-bottom: 4px;
-  margin-top: 2px;
-  padding-left: 3px;
-  padding-right: 3px ;
-}
-.hour{
-  color: black;
-  font-size: 1.2em;
-  text-align: center;
-  font-weight: 700;
-  color: black;
-}
-.calendar-title{
-  font-style: normal;
-  font-weight: 600;
-  text-decoration-color: green;
-  -webkit-border-radius:3px;
-  border-radius: 3px;
-  padding:4px 10px 5px 10px;
-  border : 2px $color2 solid;
-  color: $color2;
-  background-color: white;
-}
-.green-and-white-button{
-  font-weight: 400;
-  -webkit-border-radius:3px;
-  border-radius: 3px;
-  padding:4px 10px 5px 10px;
-  border : 2px $color5 solid;
-  color: $color2;
-  background-color: white;
-  margin-right: 3px;
-}
-.green-and-white-button-small{
-  font-weight: 400;
-  -webkit-border-radius:2px;
-  border-radius: 2px;
-  padding:2px 5px 2px 5px;
-  border : 2px $color5 solid;
-  color: $color2;
-  background-color: white;
-  margin-right: 2px;
-  font-size: 0.75em;
-}
-.status-frame{
-  font-weight: 400;
-  font-size: 0.8em;
-  -webkit-border-radius:3px;
-  border-radius: 3px;
-  padding:2px 5px 2px 5px;
-  border : 1px $color5 solid;
-  color: $color2;
-  background-color: white;
-  margin-bottom: 2px;
-}
-.calendar-heading{
-  text-align: right;
-  line-height: 3em;
-  vertical-align: middle;
-}
-.calendar-heading-left{
-  text-align: left;
-  line-height: 3em;
-  vertical-align: middle;
-}
-.client-appointment{ //CLIENT_TYPE
-  background-color: #f7a0e4;
-}
-.applyer-appointment{ //APPLY_TYPE
-  background-color: #71f4a9;
-}
-.applyer-client-appointment{ //APPLY_CUSTOMER_TYPE
-  background-color: #71bdf4;
-}
-.exploration-appointment{ //EXPLORATION_TYPE
-  background-color: #b7d0bf;
-}
-a.appointment{
-  font-size: 0.85em;
-  text-decoration: none;
-  color:black;
-}
-.popover-title{
-  background-color: $color1;
-  color: $color5;
-}
-@media screen and (max-width: 767px) {
-
-}
-/* ---------------------*/
-// Jobs
-/* ---------------------*/
-.redFrame {
-  border: 2px $color2 solid;
-  padding: 3px 5px 2px 5px;
-  font-size: 0.8em;
-  font-weight: bold;
-  color: $color2;
-  background-color: $color7;
-  -webkit-border-radius:4px 4px 4px 4px;
-  border-radius:4px 4px 4px 4px;
 }

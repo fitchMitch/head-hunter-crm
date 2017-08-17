@@ -19,30 +19,46 @@ class ComactionsController < ApplicationController
 
   def new
     @comaction = Comaction.new
-
+    @comaction.name = 'RdV'
     @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
-
     @forwhom = params[:person_id] || 0
     @what_mission = params[:mission_id] || 0
-    #just lokking into next week
-    @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(7).order(start_time: :asc)
-    d = DateTime.current
-    f = d.advance(days: 7)
-    attributes = {:start_period => d , :end_period => f}
-    freeZone = EventSlot.new(attributes)
+
+
+    # =================
+    # AVailibility preview
+    # =================
+    #just looking into next week
+    @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(2).order(start_time: :asc)
     #---
-    freeZone_days = freeZone.working_days_split
-    r = []
-    @next_comactions.each do |app|
-      unless  app.start_time.nil? && app.endtime.nil?
-        freeZone_days.each do |w_day|
-          r << w_day.out_from_intersect(a)
-        end
-        freeZone_days = r
-      end
-    end
+    d = DateTime.current
+    attributes = {:start_period => d , :end_period => d.advance(days: 2)}
+    @freeZone_days = EventSlot.new(attributes).work_hours(7,21)
+    #---
+    # TODO
+    @freeZone_days = nil
+    @next_comactions = nil
+    # @next_comactions.each do |app|
+    #   unless  app.start_time.nil? || app.end_time.nil? then
+    #     es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app)})
+    #     @freeZone_days.each do |w_day|
+    #       ghost_w_day = @freeZone_days.delete(w_day)
+    #       intersect =  ghost_w_day.out_from_intersect(es_app)
+    #       @freeZone_days += intersect unless intersect.nil?
+    #     end
+    #   end
+    # end
+    # @freeZone_days = @freeZone_days.map!{|p| p.split_in_hours}
+    # =================
 
+  end
 
+  def error_margin(app)
+    tdt (app.end_time.advance(minutes: 0))
+  end
+
+  def tdt (t)
+    DateTime.parse(t.to_s)
   end
   #-----------------
   def index
@@ -50,17 +66,23 @@ class ComactionsController < ApplicationController
     params[:page] ||= 1
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
-    if params[:filter] != nil
+    unless params[:filter].nil?
       Comaction::STATUS_RELATED.values.each do |key|
         @comactions = @comactions.public_send(key)  if params[:filter].to_sym == key
       end
       if params[:filter] === 'future'
-        @comactions = @comactions.mine(@uid).newer_than 0
+        @comactions = @comactions.newer_than 0
       else
-        @comactions = @comactions.mine(@uid).newer_than 7
+        @comactions = @comactions.newer_than 21
       end
+      @comactions = @comactions.unscheduled if params[:filter] === 'unscheduled'
     end
     @comactions = @comactions.page(params[:page])
+    # --- modal material
+    @comaction = Comaction.new
+    # @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
+    # @forwhom = params[:person_id] || 0
+    # @what_mission = params[:mission_id] || 0
     # ---------- view choice ---------------
     if params[:v].nil? || params[:v] != 'table_view'
       render 'calendar'
@@ -94,7 +116,7 @@ class ComactionsController < ApplicationController
     @mission = Mission.find(comaction_params[:mission_id])
 
     @comaction = @person.comactions.build(comaction_params)
-    @comaction.mission_id = @mission.id
+    #@comaction.mission_id = @mission.id
     @comaction.user_id = current_user.id
     @comaction = trigger_nil_dates @comaction
 
@@ -122,7 +144,8 @@ class ComactionsController < ApplicationController
         @comaction.send_meeting_email(current_user, 0)
         flash[:success] = I18n.t("comaction.message.updated_with_mail")
       end
-      redirect_to @comaction
+      logger.warn("update won\'t work #{@comaction.inspect }")
+      redirect_to comactions_path
     else
       logger.warn("update won\'t work #{@comaction.inspect }")
       flash[:danger] = I18n.t("comaction.message.unupdated")
@@ -136,17 +159,17 @@ class ComactionsController < ApplicationController
     redirect_to comactions_path
   end
 
-  def trigger_nil_dates (comaction)
-    if comaction_params[:is_dated].to_i != 1
-      comaction.start_time = nil
-      comaction.end_time = nil
-    end
-    comaction
-  end
 
   #---------------
   private
   #---------------
+    def trigger_nil_dates (comaction)
+      unless comaction_params[:is_dated].to_i == 1
+        comaction.start_time = nil
+        comaction.end_time = nil
+      end
+      comaction
+    end
   # A list of the param names that can be used for filtering the Product list
     def filtering_params(params)
       params.slice(Comaction::STATUS_RELATED.values)
@@ -158,8 +181,9 @@ class ComactionsController < ApplicationController
 
     def get_comaction
       @comaction = Comaction.find(params[:id])
-      @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? false : true
-      @date = @comaction.start_time
+      @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? 0 : 1
+      @date_begin = @comaction.start_time
+      @date_end = @comaction.end_time
     end
 
     def get_uid

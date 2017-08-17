@@ -20,7 +20,14 @@
             <div class="col-md-2 col-sm-3 col-xs-4">
                 <p>
                     <% if logged_in? %>
-                      <%= link_to person, method: :delete, data: { confirm: t("confirm") } do %>
+                    <%= link_to person,
+                      method: :delete,
+                      data: {
+                        :confirm => t("confirm"),
+                        :'sweet-alert-confirm' => t("confirm") ,
+                        :'confirm-button-text' => t("confirm-button-text"),
+                        :'cancel-button-text' => t("cancel-button-text")
+                      } do %>
                         <span class="glyphicon glyphicon-trash"></span>
                       <% end %>
                       |

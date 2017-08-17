@@ -1,0 +1,104 @@
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog comaction" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+          <%= t("comaction.add_label") %>
+        </h4>
+      </div>
+      <%= simple_form_for @comaction  do |f| %>
+      <div class="modal-body">
+        <div class='row'>
+          <div class="col-md-12 ">
+            <%= f.association :mission,
+                  collection: Mission.order(updated_at: :desc),
+                  label:t("comaction.mission"),
+                  value_method: :id,
+                  include_blank: false,
+                  input_html: {class:"comaction"} %>
+            <%= link_to  'add_ext?model=mission'  do%>
+              <button type='button' class="btn btn-xs">
+                <%= t("comaction.filters.add_mission") %>
+              </button>
+            <% end %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class="col-md-12">
+            <%= f.association :person,
+                collection: Person.order(updated_at: :desc),
+                label: t("For"),
+                label_method: :full_name,
+                value_method: :id,
+                input_html: {class:"comaction"},
+                include_blank: false %>
+            <%= link_to  'add_ext?model=person'  do%>
+              <button type='button' class="btn btn-xs">
+                <%= t("comaction.filters.add_contact") %>
+              </button>
+            <% end %>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-lg-12">
+            <%= f.input :action_type,
+            label: t("comaction.type"),
+            collection: Comaction::ACTION_TYPES,
+            input_html: {class:"input-md"} %>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-lg-12">
+              <%= f.input :status,
+              label: t("comaction.status"),
+              collection: Comaction::STATUSES,
+              input_html: {class:"input-md"} %>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-lg-12">
+            <%= f.input :name, label: t("comaction.label"), input_html: {class:" input-sm"}%>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-lg-2'>
+             <%= f.input :is_dated,
+             as: :boolean,
+             label: t("comaction.date_q"),
+             required: false,
+             input_html: {class:"input-xs"} %>
+          </div>
+          <div class='col-lg-10'>
+             <%= f.input :start_time,
+             :as => :datetime,
+             :minute_step => 15,
+             :start_hour => 7,
+             :end_hour => 22,
+             label: t("comaction.start.date_and_hour"),
+             required: false,
+             :selected => @date_start,
+             input_html: {class: "form-control input-sm"} %>
+             <br>
+             <%= f.input :end_time,
+             label: t("comaction.end.date_and_hour"),
+             :minute_step => 15,
+             required: false,
+             :selected => @date_end,
+             input_html: {class: "form-control input-sm"} %>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="row ">
+          <button type="button" class="btn btn-default checkBelow" data-dismiss="modal">
+            <%= t("close") %>
+          </button>
+          <%= f.button :submit, t("add_button"), class: "btn btn-success checkBelow" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

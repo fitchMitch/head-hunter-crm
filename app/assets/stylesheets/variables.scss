@@ -1,0 +1,42 @@
+$light-gray: #777;
+$gray-medium-light: #eaeaea;
+/* Coolors Exported Palette - coolors.co/00120b-35605a-6b818c-d8e4ff-31e981 */
+
+/* RGB */
+// $color1: rgba(0, 18, 11, 1);
+// $color2: rgba(53, 96, 90, 1);
+// $color3: rgba(107, 129, 140, 1);
+// $color4: rgba(216, 228, 255, 1);
+// $color5: rgba(49, 233, 129, 1);
+// $color6: #CCC;
+// $color7 : white;
+// $color8 : #951418;
+
+/* RGB 2*/
+$color1: #103828;
+$color2: rgba(53, 96, 90, 1);
+$color3: rgba(107, 129, 140, 1);
+//$color4: #f1f9fb;
+$color4: white;
+$color5: #8df5ba;
+$color6: #EEE;
+$color7 : white;
+$color8 : #951418;
+
+$gray-lighter : #EEE;
+
+@mixin green_buttons ($size){
+  font-weight: 400;
+  -webkit-border-radius:$size;
+  border-radius: $size;
+  padding:4/3*$size 10/3*$size 5/3*$size 10/3*$size;
+  border : 2px $color5 solid;
+  color: $color2;
+  background-color: white;
+  margin-right: $size;
+}
+@mixin calendar-head($dir) {
+  line-height: 3em;
+  vertical-align: middle;
+  text-align: $dir;
+}

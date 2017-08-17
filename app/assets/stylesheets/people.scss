@@ -4,9 +4,14 @@
 /*#person_is_jj_hired, #person_is_client {
   margin-left:-55%;
 }*/
-h1{
-  text-align: left;
+@import 'variables';
+/* ---------------------*/
+// People
+/* ---------------------*/
+.fa-user.client {
+  color:$color5;
 }
+
 h1>a.client{
   color: #9c2709;
 }

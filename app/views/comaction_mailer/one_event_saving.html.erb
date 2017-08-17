@@ -3,13 +3,17 @@
 
 <ul>
   <li>
-    Pour : <%= @comaction.person.full_name %>
+    <%= t("for") %> : <%= @comaction.person.full_name %>
   </li>
   <li>
-    Nom de la mission : <%= @comaction.mission.name %>
+    <%= t("comaction.mission") %> : <%= @comaction.mission.name %>
   </li>
   <li>
-    Date et heure : <%= @comaction.start_time.strftime("%d %B à %H:%M") %> - Durée :  <%= distance_of_time_in_words(@comaction.start_time , @comaction.end_time) %>
+    <%= t("comaction.start.date_and_hour") %> : <%= @comaction.start_time.strftime("%d %B à %H:%M")%> - Durée :   <%= distance_of_time_in_words(@comaction.start_time , @comaction.end_time) %>
   </li>
-</ul>
-<p>JuinJuillet</p>
+  <li>
+    <%= t("comaction.short-rdv") %>: <%= @comaction.name %>
+  </li>
+  </ul>
+  <p></p>
+  <p><%= t("brand") %></p>

@@ -2,6 +2,7 @@ require_relative 'boot'
 
 # require File.expand_path('../boot', __FILE__)
 # ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder'
+
 # EWE : remove the next two lines when ruby version is 2.3 or higher
 # Purpose of these is to speed up init time on my local machine
 # require 'securerandom'

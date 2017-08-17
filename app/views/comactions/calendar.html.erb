@@ -1,53 +1,54 @@
 <% provide(:title, t("comaction.calendar") ) %>
 <% provide(:calender_view, '1') %>
+<!-- <div class= 'row spaceDown'> -->
+<%= render 'new_modal' %>
 <h1 class='center'>
   <%= t("comaction.title_list") %>
 </h1>
-<!-- <div class= 'row spaceDown'> -->
 
+<!-- extra div for emulating position:fixed of the menu -->
 <div class="row">
   <div class="col-xs-12">
     <%= render 'block_filters' %>
-    <%= month_calendar events: @comactions do |date, comactions| %>
-    <%= link_to new_comaction_path({:date => date})  do %>
-    <span class="cal_date">
-      <%= date.strftime("%d")%>
-      <%= t date.strftime("%b") %>
-    </span>
+      <%= month_calendar events: @comactions do |date, comactions| %>
+        <!-- link_to new_comaction_path({:date => date}), method: 'get', class: 'cal_date' do  -->
+        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" data-whenever= '<%= date %>'>
+          <%= date.strftime("%d")%>
+          <%= t date.strftime("%b") %>
+         <!-- end  -->
+         </button>
+        <% comactions.each do |comaction| %>
+        <div class="<%= background_style(comaction) %>"
+          data-toggle="popover"
+          data-placement="top"
+          data-container="body"
+          data-trigger="hover"
+          data-html="true"
+          title="<%= getComactionTitle(comaction) %>"
+          data-content="<%= getComactionDetails(comaction) %>">
+          <div class="row">
+            <div class="col-xs-3">
+              <span class="hour">
+                <%= comaction.start_time.strftime("%H:%M") %>
+              </span>
+            </div>
+            <div class="col-xs-9">
+              <h6 class="calendar">
+                <span class="status-frame ">
+                  <%= comaction.status %>
+                </span>
+              </h6>
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-xs-12'>
+              <%= link_to comaction_path(comaction), class: "appointment" do %>
+              <%= comaction.name %>
+              <% end %>
+            </div>
+          </div>
+      </div>
+      <% end %>
     <% end %>
-    <% comactions.each do |comaction| %>
-    <div class="<%= background_style(comaction) %>"
-      data-toggle="popover"
-      data-placement="top"
-      data-container="body"
-      data-trigger="hover"
-      data-html="true"
-      title="<%= getComactionTitle(comaction) %>"
-      data-content= "<%= getComactionDetails(comaction) %>">
-      <div class="row">
-        <div class="col-xs-3">
-          <span class="hour" >
-            <%= comaction.start_time.strftime("%H:%M") %>
-          </span>
-        </div>
-        <div class="col-xs-9">
-          <h6 class="calendar">
-            <span class="status-frame ">
-              <%= comaction.status %>
-            </span>
-          </h6>
-        </div>
-      </div>
-      <div class='row'>
-        <div class='col-xs-12'>
-          <%= link_to comaction_path(comaction),class: "appointment" do %>
-          <%= comaction.name %>
-          <% end %>
-        </div>
-      </div>
-    </div>
   </div>
-  <% end %>
-  <% end %>
-</div>
 </div>

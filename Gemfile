@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+gem 'bundler', '>= 1.8.4'
 gem 'rails',        '5.0.1'
 # gem 'sqlite3', '1.3.12'
 gem 'pg', '~> 0.20.0'
@@ -27,12 +27,14 @@ gem 'select2-rails'
 gem "font-awesome-rails"
 gem 'date_validator',   '~> 0.9.0'
 gem 'paperclip',        "~> 5.0.0"
-gem 'paperclip-i18n'
+gem 'paperclip-i18n', '4.3.0'
 gem 'simple_calendar', '~> 2.2', '>= 2.2.5'
 gem 'icalendar', '~> 2.4', '>= 2.4.1'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'docx', '~> 0.2.07', :require => ["docx"]
 gem 'pg_search'
+gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-assets.org'
+gem 'sweet-alert2-rails'
 # temp
 
 group :development, :test do
@@ -40,6 +42,8 @@ group :development, :test do
   gem "factory_girl_rails",     "~> 4.0"
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'as-duration'
+  # gem "capistrano", "~> 3.8"
+  # gem 'capistrano-rails', '~> 1.3'
 end
 
 group :development do

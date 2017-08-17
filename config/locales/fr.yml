@@ -1,5 +1,6 @@
 ---
 fr:
+  brand: JuinJuillet
   Name: Nom
   Date: Date
   Dates: Dates
@@ -18,6 +19,7 @@ fr:
   Edit: Editer
   Create: Créer
   update: Changer
+  delete: Supprimer
   add_button: Ajouter
   recorded_on: enregistré il y a
   update_button: Mettre à jour
@@ -27,8 +29,11 @@ fr:
   About: A propos
   Contact: Contact
   help: Aide
+  close: Fermer
   filter_button: Filtrer
-  confirm: Wesh ? C'est sûr
+  confirm: Wesh ? C'est sûr ?
+  confirm-button-text: Wesh gro'
+  cancel-button-text: No way
   added: ajouté il y a
   paid: Payé
   from: de
@@ -334,6 +339,9 @@ fr:
     next: Suiv.
   comaction:
     rdv: Rendez-vous
+    short-rdv: RdV
+    menu:
+      title_list: calendrier en tables
     filters:
       now_and_after: Maintenant et +
       add_contact: Ajouter un nouveau contact

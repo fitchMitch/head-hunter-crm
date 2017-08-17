@@ -47,10 +47,17 @@
         <% end %>
       </div>
       <div class="col-sm-12  nav-ico">
-        <%= link_to  @comaction, method: :delete, data: { confirm: t("confirm")} do %>
-        <button class="btn btn-success danger">
-          <%= fa_icon('trash 2x') %>
-        </button>
+        <%= link_to @comaction,
+        method: :delete,
+        data: {
+          :confirm => t("confirm"),
+          :'sweet-alert-confirm' => t("confirm") ,
+          :'confirm-button-text' => t("confirm-button-text"),
+          :'cancel-button-text' => t("cancel-button-text")
+        } do %>
+          <button class="btn btn-success danger">
+            <%= fa_icon('trash 2x') %>
+          </button>
         <% end %>
       </div>
     </div>
@@ -130,15 +137,10 @@
               <div class='col-sm-3'>
                 <p>Fin souhaitée</p>
               </div>
-              <div class='col-sm-7'>
+              <div class='col-sm-8'>
                 <p>
                   <%= future_time_in_words @comaction.mission.whished_start_date %>
                 </p>
-              </div>
-              <div class='col-sm-1'>
-                <%= link_to mission_path(@comaction.mission), class: 'btn btn-success btn-xs' do %>
-                <%= fa_icon('bookmark-o') %> <%= t("comaction.see_mission") %>
-                <% end %>
               </div>
             </div>
           </div>
@@ -146,12 +148,19 @@
         <div class='row emptyline leftFrame'></div>
         <div class='row leftFrame'>
           <div class="col-sm-1 colorMe">
-            <%= fa_icon("bookmark-o 2x") %>
+            <%= fa_icon("bookmark-o 2x") unless @comaction.mission.criteria.empty?%>
           </div>
           <div class="col-sm-11">
             <p class='mission comaction'>
               <%= @comaction.mission.criteria %>
             </p>
+          </div>
+        </div>
+        <div class="row leftFrame">
+          <div class="col-xs-11 col-xs-offset-1">
+            <%= link_to mission_path(@comaction.mission), class: 'btn btn-success btn-xs' do %>
+            <%= fa_icon('bookmark-o') %> <%= t("comaction.see_mission") %>
+            <% end %>
           </div>
         </div>
       </div>

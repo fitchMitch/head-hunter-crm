@@ -1,6 +1,146 @@
 // Place all the styles related to the Comactions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+/* ---------------------*/
+// Comactions
+/* ---------------------*/
+
+// modal
+
+.modal-dialog.comaction{
+  width: 380px;
+  margin-top : 10px;
+  margin-right: 10px;
+}
+
+.select2.select2-container.select2-container--bootstrap{
+  width: 240px !important;
+}
+//-----------------
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+  background-color: $color5;
+  color :  $color1;
+}
+// .wday-0,.wday-6 {
+//   display: none;
+// }
+.track-border{
+  border: 1px black solid;
+}
+.frameze{
+  border: 2px $color5 solid;
+  padding-right: 1px;
+  background: $gray-lighter;
+}
+/* Calendars*/
+.today{
+  background-color: white;
+  border : 2px red solid;
+}
+.cal_date{
+  font-size: 0.7em;
+  font-family: "Verdana";
+  font-stretch: semi-condensed;
+  font-weight: bold;
+  border : 1px grey solid;
+  padding : 2px 10px 2px 10px;
+  color:#4b425f;
+  -webkit-border-radius:2px;
+  border-radius: 2px;
+  background-color: $color5;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+.day.future{
+  border: 2px solid $color1;
+}
+.day.past{
+  border: 1px solid grey;
+  color:grey;
+}
+hr.calendar{
+  width:100%;
+  color:$color1;
+  height:2px;
+  margin-bottom: 4px;
+  margin-top: 2px;
+  padding-left: 3px;
+  padding-right: 3px ;
+}
+.hour{
+  color: black;
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 700;
+  color: black;
+}
+.calendar-title{
+  font-style: normal;
+  font-weight: 600;
+  text-decoration-color: green;
+  -webkit-border-radius:3px;
+  border-radius: 3px;
+  padding:4px 10px 5px 10px;
+  border : 2px $color2 solid;
+  color: $color2;
+  background-color: white;
+}
+
+.green-and-white-button{
+  @include green_buttons(3px);
+}
+.green-and-white-button-small{
+  @include green_buttons(2px);
+  font-size: 0.75em;
+}
+.status-frame{
+  font-weight: 400;
+  font-size: 0.8em;
+  -webkit-border-radius:3px;
+  border-radius: 3px;
+  padding:2px 5px 2px 5px;
+  border : 1px $color5 solid;
+  color: $color2;
+  background-color: white;
+  margin-bottom: 2px;
+}
+.calendar-heading{
+  @include calendar-head(right);
+}
+.calendar-heading-left{
+  @include calendar-head(left);
+}
+.client-appointment{ //CLIENT_TYPE
+  background-color: #f7a0e4;
+}
+.applier-appointment{ //APPLY_TYPE
+  background-color: #71f4a9;
+}
+.applier-client-appointment{ //APPLY_CUSTOMER_TYPE
+  background-color: #71bdf4;
+}
+.exploration-appointment{ //EXPLORATION_TYPE
+  background-color: #b7d0bf;
+}
+.popover-title{
+  background: $color2;
+  background-color: $color2;
+  color: $color5;
+}
+.popover-content{
+  background: $color4;
+  background-color: $color4;
+}
+a.appointment{
+  font-size: 0.85em;
+  text-decoration: none;
+  color:black;
+}
+
+@media screen and (max-width: 767px) {
+
+}
 .mission.frame{
   background-color: #E7DCF4;
 }
@@ -12,8 +152,6 @@ table.rdv>td{
   margin: 30px;
 }
 /* calendar*/
-
-
 .current-month>hr.sep{
   margin-top: 2px;
   margin-bottom: 4px;
@@ -25,6 +163,7 @@ table.rdv>td{
   margin-bottom: 1.5em;
   margin-top:1.3em;
 }
+
 /*
 Enable tabbable tabs via JavaScript (each tab needs to be activated individually):
 Copy

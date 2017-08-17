@@ -1,0 +1,71 @@
+<% provide(:title, t("comaction.calendar") ) %>
+<% provide(:calender_view, '1') %>
+<!-- <div class= 'row spaceDown'> -->
+<div id="st-trigger-effects">
+  <button data-effect="st-effect-4">open</button>
+</div>
+<nav class="st-menu st-effect-4" id="menu-4">
+  sidebar content
+</nav>
+<div class="st-pusher">
+  <div class="st-content"> <!-- this is the wrapper for the content -->
+    <div class="st-content-inner">
+      <h1 class='center'>
+        <%= t("comaction.title_list") %>
+      </h1>
+
+      <!-- extra div for emulating position:fixed of the menu -->
+      <div class="row">
+        <div class="col-xs-12">
+          <%= render 'block_filters' %>
+          <div id="st-container " class="st-container">
+            <%= month_calendar events: @comactions do |date, comactions| %>
+              <%= link_to new_comaction_path({:date => date}), method: 'get', class: 'cal_date' do %>
+                <%= date.strftime("%d")%>
+                <%= t date.strftime("%b") %>
+              <% end %>
+              <% comactions.each do |comaction| %>
+              <div class="<%= background_style(comaction) %>"
+                data-toggle="popover"
+                data-placement="top"
+                data-container="body"
+                data-trigger="hover"
+                data-html="true"
+                title="<%= getComactionTitle(comaction) %>"
+                data-content="<%= getComactionDetails(comaction) %>">
+                <div class="row">
+                  <div class="col-xs-3">
+                    <span class="hour">
+                      <%= comaction.start_time.strftime("%H:%M") %>
+                    </span>
+                  </div>
+                  <div class="col-xs-9">
+                    <h6 class="calendar">
+                      <span class="status-frame ">
+                        <%= comaction.status %>
+                      </span>
+                    </h6>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <%= link_to comaction_path(comaction),class: "appointment" do %>
+                    <%= comaction.name %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <!-- /st-content-inner -->
+    </div>
+    <!-- /st-content -->
+
+  </div>
+  <!-- /st-pusher -->
+
+</div>
+<!-- /st-container -->

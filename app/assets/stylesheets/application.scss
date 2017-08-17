@@ -10,12 +10,25 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  *= require select2
  *= require select2-bootstrap
  *= select2-bootstrap-theme
  *= require font-awesome
  *= require jquery-ui
  *= require simple_calendar
+ *= require sweetalert2
+ *$$$ require_self
+ *$$$ require_tree .
  */
+ @import "custom";
+ @import "layout";
+
+ @import "comactions";
+ @import "companies";
+ @import "jobs";
+ @import "missions";
+ @import "password_resets";
+ @import "people";
+ @import "sessions";
+ @import "static_pages";
+ @import "users";

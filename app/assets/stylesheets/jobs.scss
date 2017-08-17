@@ -1,3 +1,17 @@
 // Place all the styles related to the Jobs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+/* ---------------------*/
+// Jobs
+/* ---------------------*/
+.redFrame {
+  border: 2px $color2 solid;
+  padding: 3px 5px 2px 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: $color2;
+  background-color: $color7;
+  -webkit-border-radius:4px 4px 4px 4px;
+  border-radius:4px 4px 4px 4px;
+}

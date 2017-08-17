@@ -1,6 +1,62 @@
 // Place all the styles related to the Missions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+/* ---------------------*/
+// Missions
+/* ---------------------*/
+#mission_search{
+  display:inline;
+}
+.late{
+  background-color: $color8;
+  color:white;
+}
+.mission_done{
+  background-color: $color6;
+}
+.small_alert{
+  font-size: 0.7em;
+  line-height: normal;
+  vertical-align: middle;
+  color: $color4;
+  background-color: $color3;
+  padding:3px;
+  border:1px solid red;
+  -webkit-border-radius:8px 8px 8px 8px;
+  border-radius:8px 8px 8px 8px;
+}
+.filter_box{
+  border: 1px solid $color3;
+  padding: 4px;
+  margin-right: 4px;
+  background-color: $color7;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+.midway{
+  vertical-align: middle;
+  line-height:4em;
+}
+.emptyline{
+  display:block;
+  height:2em;
+  line-height:1.6em;
+}
+.empty-halfline{
+  display:block;
+  height:1em;
+  line-height:0.8em;
+}
+.mission.bottom-line{
+  text-align: right;
+}
+.mission.name{
+  color: $color2;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
 .mission.nav_ico{
   margin-top:12px;
   border:1px solid black;

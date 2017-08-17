@@ -32,7 +32,14 @@
         </small>
     </div>
     <div class='col-xs-1'>
-        <%= link_to  job_path(job), method: :delete, data: { confirm: "Wesh ? C'est sûr pour #{job.person.full_name }?" } do %>
+      <%= link_to job_path(job),
+      method: :delete,
+      data: {
+        :confirm => "Wesh ? C'est sûr pour #{job.person.full_name }?",
+        :'sweet-alert-confirm' => t("confirm") ,
+        :'confirm-button-text' => t("confirm-button-text"),
+        :'cancel-button-text' => t("cancel-button-text")
+        } do %>
         <span class="glyphicon glyphicon-trash"></span>
         <% end %>
     </div>
@@ -65,7 +72,14 @@
         </small>
     </div>
     <div class='col-xs-1'>
-        <%= link_to  job_path(job), method: :delete, data: { confirm: t("job.confirm_for",:him => job.person.full_name ) } do %>
+      <%= link_to job_path(job),
+      method: :delete,
+      data: {
+        :confirm => t("job.confirm_for",:him => job.person.full_name ),
+        :'sweet-alert-confirm' => t("confirm") ,
+        :'confirm-button-text' => t("confirm-button-text"),
+        :'cancel-button-text' => t("cancel-button-text")
+        } do %>
         <span class="glyphicon glyphicon-trash"></span>
         <% end %>
     </div>
