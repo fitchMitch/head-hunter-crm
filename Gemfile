@@ -44,6 +44,8 @@ group :development, :test do
   gem 'as-duration'
   # gem "capistrano", "~> 3.8"
   # gem 'capistrano-rails', '~> 1.3'
+  # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 end
 
 group :development do
@@ -65,6 +67,3 @@ group :production do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
