@@ -40,8 +40,8 @@ gem 'sweet-alert2-rails'
 group :development, :test do
   gem 'puma',         '3.4.0'
   gem "factory_girl_rails",     "~> 4.0"
-  gem 'byebug',  '9.0.0', platform: :mri
   gem 'as-duration'
+  gem 'byebug',  '9.0.0', platform: :mri
   # gem "capistrano", "~> 3.8"
   # gem 'capistrano-rails', '~> 1.3'
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
