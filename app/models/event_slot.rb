@@ -1,17 +1,16 @@
 class EventSlot
   include ActiveModel::Model
 
-  attr_accessor :start_period, :end_period, :range, :min_duration
+  attr_accessor :start_period, :end_period, :min_duration
 
   def initialize(attributes)
     raise "start and endtime do not suit" unless attributes[:start_period].is_a?(DateTime) && attributes[:end_period].is_a?(DateTime) && attributes[:end_period] >= attributes[:start_period]
     super
-    @range = (attributes[:start_period]..attributes[:end_period])
     update_duration
   end
 
   def descro
-    "Free from  #{self.start_period.strftime('%A %d à %H:%M')} to #{self.end_period.strftime('%H:%M')}<br> #{self.get_hours_duration} h [#{self.min_duration} min.]".html_safe
+    "De  #{self.start_period.strftime('%H:%M')} à #{self.end_period.strftime('%H:%M')}"
   end
 
   def get_hours_duration
@@ -27,7 +26,7 @@ class EventSlot
     #  c4 =  self.start_period >= o.start_period && self.start_period <= o.end_period
     #  # overlap
     #  (c1 && c2) || (c1 && c3) || (c4 && c2) || (c4 && c3)
-    self.range.overlaps?(o_period.range)
+    (self.start_period..self.end_period).overlaps?(o_period.start_period..o_period.end_period)
   end
 
   def working_days_split
@@ -117,17 +116,15 @@ class EventSlot
 
     def sharpen (arr)
       return nil unless arr.is_a?(Array)
-      arr = arr.map { |fz| fz.set_to_office_hours}.map { |fz| fz.from_now_on}.compact
-      arr = arr.select do |fz|
+      arr = arr.map { |fz| fz.set_to_office_hours}.map { |fz| fz.from_now_on}.compact.select do |fz|
         !fz.too_short
       end
-      arr = arr.compact.sort { |a,b| a.start_period <=> b.start_period }
+      arr = arr.sort { |a,b| a.start_period <=> b.start_period }
       arr
     end
 
     def sort_periods(arr)
-      # TODO FIXME
-      arr.group_by {|es| es.start_period.day}
+      arr.group_by {|es| I18n.t(es.start_period.strftime('%A')) + es.start_period.strftime(' %d')}
     end
   end
   # ---------------------
@@ -163,14 +160,12 @@ class EventSlot
   def update_begin(bego)
     return unless bego.is_a?(DateTime) || bego > self.end_period
     self.start_period = bego
-    self.range = (bego..self.end_period)
     update_duration
   end
 
   def update_end(endo)
     return  unless endo.is_a?(DateTime) || endo < self.start_period
     self.end_period = endo
-    self.range = (self.start_period..endo)
     update_duration
   end
 

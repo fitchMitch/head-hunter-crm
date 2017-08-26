@@ -104,12 +104,12 @@ class Comaction < ApplicationRecord
   # Validations
   # ===========
 
-  validates :name, presence: true, length: { maximum: 100 }
+  #validates :name, presence: true, length: { maximum: 100 }
   # validates :status, presence: true
-  # validates :action_type, presence: true
+  validates :action_type, presence: true
 
   # validates :status, inclusion: { in: STATUSES }
-  # validates :action_type, inclusion: { in: ACTION_TYPES }
+  validates :action_type, inclusion: { in: ACTION_TYPES }
   validate  :end_time_is_after_and_overlap
 
   # Sends meeting email.

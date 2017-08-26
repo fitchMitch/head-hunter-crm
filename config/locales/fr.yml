@@ -364,6 +364,7 @@ fr:
     create: Créer un rendez-vous/action
     calendar: Calendrier
     see_mission: Voir la mission
+    availibility: Disponibilités
     message:
       saved: Rendez-vous sauvegardé
       saved_with_mail: Rendez-vous sauvegardé (un email a été envoyé)

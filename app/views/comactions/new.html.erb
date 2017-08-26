@@ -8,24 +8,23 @@
     <div class="col-md-6 col-md-offset-1">
       <%= render 'form' %>
     </div>
-    <div class="col-md-4 " data-direction="left" >
+    <div class="col-md-4">
+      <h3 class="center"><%= t("comaction.availibility") %></h3>
       <% unless @freeZone_days.nil? %>
-        <% @freeZone_days.each do |dday| %>
         <ul>
-
+          <% @freeZone_days.each do |dday| %>
             <li>
+              <%= dday.first %>
               <ul>
-              <% dday.each do |d| %>
-                <%= d.descro %>
-                <li>
-
-                </li>
-              <% end %>
+                <% dday.second.each do |peri| %>
+                  <li>
+                    <%= peri.descro %>
+                  </li>
+                <% end %>
               </ul>
             </li>
-
-          </ul>
-        <% end %>
+          <% end %>
+        </ul>
       <% end %>
     </div>
   </div>
