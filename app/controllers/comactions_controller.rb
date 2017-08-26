@@ -23,43 +23,26 @@ class ComactionsController < ApplicationController
     @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
     @forwhom = params[:person_id] || 0
     @what_mission = params[:mission_id] || 0
-
-
     # =================
     # AVailibility preview
     # =================
     #just looking into next week
-    @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(2).order(start_time: :asc)
+    @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
     #---
     d = DateTime.current
-    attributes = {:start_period => d , :end_period => d.advance(days: 2)}
-    @freeZone_days = EventSlot.new(attributes).work_hours(7,21)
+    attributes = {:start_period => d , :end_period => d.advance(days: 5)}
+    @freeZone_days = EventSlot.new(attributes).working_days_split
     #---
-    # TODO
-    @freeZone_days = nil
-    @next_comactions = nil
-    # @next_comactions.each do |app|
-    #   unless  app.start_time.nil? || app.end_time.nil? then
-    #     es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app)})
-    #     @freeZone_days.each do |w_day|
-    #       ghost_w_day = @freeZone_days.delete(w_day)
-    #       intersect =  ghost_w_day.out_from_intersect(es_app)
-    #       @freeZone_days += intersect unless intersect.nil?
-    #     end
-    #   end
-    # end
-    # @freeZone_days = @freeZone_days.map!{|p| p.split_in_hours}
-    # =================
+    dash_it = EventSlot.dash_it(@freeZone_days, @next_comactions)
+    flash[:danger] = dash_it[:messages] unless dash_it[:messages].empty?
+    @freeZone_days = dash_it[:freeZone_days]
 
+    @freeZone_days = EventSlot.sharpen(@freeZone_days)
+    @freeZone_days = EventSlot.sort_periods(@freeZone_days) unless @freeZone_days == nil
+    #---
   end
 
-  def error_margin(app)
-    tdt (app.end_time.advance(minutes: 0))
-  end
 
-  def tdt (t)
-    DateTime.parse(t.to_s)
-  end
   #-----------------
   def index
 

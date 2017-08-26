@@ -12,15 +12,18 @@
       <% unless @freeZone_days.nil? %>
         <% @freeZone_days.each do |dday| %>
         <ul>
-          <%= t(dday.first.start_period.strftime("%A")) %>
-          <%= dday.first.start_period.strftime(" %d") %>
-          <%= t(dday.first.start_period.strftime(" %b")) %>
-          <% dday.each do |member| %>
+
             <li>
-              <%= member.start_period.hour  %>
-              <%= member.start_period.min  %>
+              <ul>
+              <% dday.each do |d| %>
+                <%= d.descro %>
+                <li>
+
+                </li>
+              <% end %>
+              </ul>
             </li>
-          <% end  %>
+
           </ul>
         <% end %>
       <% end %>

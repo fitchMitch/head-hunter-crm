@@ -22,7 +22,8 @@ class Comaction < ApplicationRecord
   belongs_to :person
   belongs_to :user
 
-  @@hours_work = (7..22).to_a
+  WORK_HOURS = (7..22).to_a
+  SHORTEST_MEETING_TIME = 45
 
   include PgSearch
   pg_search_scope :search_name,
@@ -123,7 +124,7 @@ class Comaction < ApplicationRecord
     end
     Comaction.mine(user_id).each do |other|
       test_condition_ok = other.user_id == user_id && other.start_time.present? && other.end_time.present? && cond_current_time_data # overlap is possible only if c0 is true
-      next unless test_condition_ok
+      next if !test_condition_ok || self == other
 
       # there's overlapping in any case Ci below
       c1 = (other.start_time < start_time && start_time < other.end_time)
