@@ -20,12 +20,6 @@ class EventSlot
 
   def overlaps?(o_period)
     return nil unless o_period.is_a?(EventSlot)
-    #  c1 =  self.start_period <= o.start_period
-    #  c2 = self.end_period >= o.end_period
-    #  c3 = self.end_period >= o.start_period && self.end_period <= o.end_period
-    #  c4 =  self.start_period >= o.start_period && self.start_period <= o.end_period
-    #  # overlap
-    #  (c1 && c2) || (c1 && c3) || (c4 && c2) || (c4 && c3)
     (self.start_period..self.end_period).overlaps?(o_period.start_period..o_period.end_period)
   end
 
@@ -45,7 +39,7 @@ class EventSlot
           ) unless day_offset.wday == 0 #sunday
       end
     else
-      r << self unless day_offset.wday == 0 #sunday
+      r << self unless  day_offset.wday == 0 #sunday
     end
     return nil if r.empty?
     r
@@ -79,6 +73,14 @@ class EventSlot
       r << self
     end
     r
+  end
+
+  def to_half_hours_range
+    h_start= self.start_period.hour * 2
+    h_start += 1 if self.start_period.minute >= 30
+    h_finish= self.end_period.hour * 2 - 1
+    h_finish += 1 if self.end_period.minute >= 30
+    (h_start.. h_finish)
   end
 
   class << self
@@ -116,9 +118,12 @@ class EventSlot
 
     def sharpen (arr)
       return nil unless arr.is_a?(Array)
-      arr = arr.map { |fz| fz.set_to_office_hours}.map { |fz| fz.from_now_on}.compact.select do |fz|
-        !fz.too_short
-      end
+      arr = arr
+        .map { |fz| fz.set_to_office_hours}
+        .map { |fz| fz.from_now_on}.compact
+        .select do |fz|
+          !fz.too_short
+        end
       arr = arr.sort { |a,b| a.start_period <=> b.start_period }
       arr
     end
@@ -169,20 +174,20 @@ class EventSlot
     update_duration
   end
 
-  def round_hours
-    start_hour = self.start_period.hour
-    start_min = self.start_period.min
-
-    if start_min == 0
-    elsif start_min = start_min > 0 && start_min <= 30
-      start_min = 30
-    else
-      start_min = 0
-      start_hour += 1
-    end
-    start_hour -= 1  if start_hour == Comaction::WORK_HOURS.last
-    {min: start_min, hours: start_hour}
-  end
+  # def round_hours
+  #   start_hour = self.start_period.hour
+  #   start_min = self.start_period.min
+  #
+  #   if start_min == 0
+  #   elsif start_min = start_min > 0 && start_min <= 30
+  #     start_min = 30
+  #   else
+  #     start_min = 0
+  #     start_hour += 1
+  #   end
+  #   start_hour -= 1  if start_hour == Comaction::WORK_HOURS.last
+  #   {min: start_min, hours: start_hour}
+  # end
 
   def overlaps_two_days?
     (self.end_period.beginning_of_day - self.start_period.beginning_of_day).to_i.round > 0
@@ -197,12 +202,5 @@ class EventSlot
     def days_overlap
       (self.end_period - self.start_period).round
     end
-
-    # def is_greater?(other)
-    #   return "not_a_EventSlot" unless other.is_a?(EventSlot)
-    #   c1 = self.start_period <  other.start_period && other.end_period <= self.end_period
-    #   c2 = self.start_period <=  other.start_period && other.end_period < self.end_period
-    #   c1 || c2
-    # end
 
 end

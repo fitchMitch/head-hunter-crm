@@ -6,6 +6,19 @@ $(document).on "turbolinks:load", ->
   $("#comaction_mission_id, #comaction_person_id").select2
     theme: "bootstrap"
   #---------------------------------------------------
+  $('[data-toggle="tooltip"]').tooltip()
+  $(".not-busy").on 'click', ->
+    date_elem = $(this).attr("data-block").split("-")
+    $("#comaction_start_time_1i, #comaction_end_time_1i").val(date_elem[3])
+    $("#comaction_start_time_2i, #comaction_end_time_2i").val(parseInt(date_elem[2]))
+    $("#comaction_start_time_3i, #comaction_end_time_3i").val(date_elem[1])
+    $("#comaction_start_time_4i").val(hour_helper(parseInt(date_elem[0]/2)))
+    $("#comaction_end_time_4i").val(hour_helper(parseInt((date_elem[0])/2 + 1)))
+    $("#comaction_start_time_5i, #comaction_end_time_5i").val("00")
+    #$("").val("00")
+
+  hour_helper = (x) -> if (x < 10) then "0" + x else x
+  #---------------------------------------------------
   # qs = (key) ->
   #   key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&") # escape RegEx meta chars
   #   match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"))

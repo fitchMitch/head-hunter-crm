@@ -163,6 +163,22 @@ table.rdv>td{
   margin-bottom: 1.5em;
   margin-top:1.3em;
 }
+.availibility-bar{
+  display: flex;
+  vertical-align: bottom;
+}
+.busy{
+  width: 8px;
+  height: 9px;
+  background: $color3 ;
+  float: left;
+}
+.not-busy{
+  width:8px;
+  height: 18px;
+  background: $color5;
+  float:left;
+}
 
 /*
 Enable tabbable tabs via JavaScript (each tab needs to be activated individually):

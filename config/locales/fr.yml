@@ -364,7 +364,9 @@ fr:
     create: Créer un rendez-vous/action
     calendar: Calendrier
     see_mission: Voir la mission
-    availibility: Disponibilités
+    availibility:
+      title: Disponibilités
+      command_message: Cliquez sur les parties vertes (votre disponibilité) pour renseigner les champs jour et heures en vis à vis.
     message:
       saved: Rendez-vous sauvegardé
       saved_with_mail: Rendez-vous sauvegardé (un email a été envoyé)

@@ -22,7 +22,7 @@ class Comaction < ApplicationRecord
   belongs_to :person
   belongs_to :user
 
-  WORK_HOURS = (7..22).to_a
+  WORK_HOURS = (8..22).to_a
   SHORTEST_MEETING_TIME = 45
 
   include PgSearch

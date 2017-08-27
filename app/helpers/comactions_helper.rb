@@ -28,6 +28,23 @@ module ComactionsHelper
     end
   end
 
+  def illustrate(periods)
+    logger.debug("fatal illustration") unless periods.instance_of?(Array)
+    t = true
+    periods.map{|z| t &&= z.instance_of?(EventSlot) }
+    return "fatal illustration2" unless t
+
+    block = []
+    block = block.fill("<span class='busy'></span>", 0..47) #half_hours
+    #
+    periods.each do |per|
+      per.to_half_hours_range.each do |n|
+        block[n] = "<span class='not-busy' data-block='#{n}-#{per.start_period.day}-#{per.start_period.month}-#{per.start_period.year}' data-toggle='tooltip' data-placement='left' title='#{n/2}h'></span>"
+      end
+    end
+    block.slice(Comaction::WORK_HOURS.first*2..Comaction::WORK_HOURS.last*2-1).join("").html_safe
+  end
+
   def getComactionTitle(c)
     "<strong>#{c.person.full_name}</strong><br>#{c.action_type} [#{c.status}] "
   end
