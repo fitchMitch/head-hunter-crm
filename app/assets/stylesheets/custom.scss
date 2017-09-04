@@ -247,6 +247,14 @@ abbr {
 .testFrame {
   border: 1px solid red;
 }
+/*---------------------+
+/* background_style
+/*---------------------*/
+.mint-background{
+  background: $color5;
+  line-height: 2em;
+  vertical-align: middle;
+}
 
 /*---------------------+
 /* Position

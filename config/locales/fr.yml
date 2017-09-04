@@ -13,6 +13,10 @@ fr:
   Contacts: Contacts
   Client: Client
   Action: Action
+  delete: Supprimer
+  filter: Filtre
+  filters: Filtres
+  reinit: Réinitialiser
   updated: mis à jour
   today: aujourd'hui
   user_resp: Resp
@@ -42,6 +46,7 @@ fr:
   For: Pour
   empty_list : ... Rien pour l'instant.
   search_title: Rechercher
+  status: Statuts
   jj:
     maxim: JuinJuillet Recrutement
     rdv: Rendez-vous

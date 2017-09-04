@@ -35,9 +35,8 @@ class ComactionsController < ApplicationController
     #---
     dash_it = EventSlot.dash_it(@freeZone_days, @next_comactions)
     flash[:danger] = dash_it[:messages] unless dash_it[:messages].empty?
-    @freeZone_days = dash_it[:freeZone_days]
 
-    @freeZone_days = EventSlot.sharpen(@freeZone_days)
+    @freeZone_days = EventSlot.sharpen(dash_it[:freeZone_days])
     @freeZone_days = EventSlot.sort_periods(@freeZone_days) unless @freeZone_days == nil
     #---
   end
@@ -47,6 +46,15 @@ class ComactionsController < ApplicationController
   def index
 
     params[:page] ||= 1
+    # Mission filter setup ----
+    @missions = [["",0]]
+    Comaction.all.mine(@uid).limit(30).each do |comac|
+      @missions << [comac.mission.name , comac.mission.id]
+    end
+    @missions = @missions.uniq
+    @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
+    # end Mission filter setup ----
+
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
     unless params[:filter].nil?
@@ -55,6 +63,8 @@ class ComactionsController < ApplicationController
       end
       if params[:filter] === 'future'
         @comactions = @comactions.newer_than 0
+      elsif params[:filter] === 'mission_id'
+        @comactions = @comactions.mission_id(@q[:mission_id])
       else
         @comactions = @comactions.newer_than 21
       end
@@ -63,6 +73,8 @@ class ComactionsController < ApplicationController
     @comactions = @comactions.page(params[:page])
     # --- modal material
     @comaction = Comaction.new
+    # --- end modal material
+    @filter = nil || params[:filter]
     # @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
     # @forwhom = params[:person_id] || 0
     # @what_mission = params[:mission_id] || 0

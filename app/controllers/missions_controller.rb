@@ -24,7 +24,8 @@ class MissionsController < ApplicationController
   end
   #-----------------
   def index
-    @status_selected = params[:q].nil? || params[:q]['status_eq'].nil? ? nil : params[:q]['status_eq']
+    @missions_status = [["",""]] + Mission::STATUSES.collect { |t| [ t, t] }
+    @status_selected = params[:q].nil? || params[:q]['status_eq'].nil? ? "" : params[:q]['status_eq']
     @q = Mission.ransack(params[:q])
     @missions = @q.result.includes(:company, :person).page(params[:page] ? params[:page].to_i: 1)
 

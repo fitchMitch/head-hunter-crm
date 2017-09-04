@@ -1,6 +1,6 @@
 <div class="simple-calendar">
 <div class="row">
-  <div class="col-xs-6 calendar-heading-left ">
+  <div class="col-md-4 calendar-heading-left ">
     <%= link_to new_person_path, class: "green-and-white-button" do %>
       <%= fa_icon("user-circle") %> Contact <span class="red_star">*</span>
     <% end %>
@@ -9,7 +9,10 @@
       <%= fa_icon("bookmark-o", text: t("mission.create")) %><span class="red_star">*</span>
     <% end %>
   </div>
-  <div class="col-xs-6">
+  <div class="col-md-4 center ">
+    
+  </div>
+  <div class="col-md-4 col-xs-12 ">
     <div class="calendar-heading">
       <%= link_to  calendar.url_for_previous_view, class: "green-and-white-button" do %>
         <%= fa_icon("chevron-left", text: t('simple_calendar.previous', default: 'Previous')) %>

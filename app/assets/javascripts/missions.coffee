@@ -9,12 +9,16 @@ $(document).on "turbolinks:load", ->
     t += "] "
     $("#mission_name").val(t)
 
+  # -----------------------
   make_name()
 
   $("#mission_company_id, #mission_person_id").select2
     theme: "bootstrap"
-    
+
   $("#mission_company_id, #mission_person_id").attr('selectedIndex', 0);
 
   $("#mission_company_id, #mission_person_id").on 'change', ->
     make_name()
+
+  $("#q_status_eq").on 'change', ->
+    $("#mission_search").submit()

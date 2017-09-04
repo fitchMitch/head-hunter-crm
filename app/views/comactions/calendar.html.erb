@@ -33,11 +33,9 @@
               </span>
             </div>
             <div class="col-xs-9">
-              <h6 class="calendar">
-                <span class="status-frame ">
-                  <%= comaction.status %>
-                </span>
-              </h6>
+              <%= link_to comaction_path(comaction), class: "appointment" do %>
+                <%= comaction.person.full_name %>
+              <% end %>
             </div>
           </div>
           <div class="row">
@@ -45,9 +43,11 @@
               <%= comaction.end_time.strftime("%H:%M") %>
             </div>
             <div class="col-xs-9">
-              <%= link_to comaction_path(comaction), class: "appointment" do %>
-                <%= comaction.person.full_name %>
-              <% end %>
+              <h6 class="calendar">
+                <span class="status-frame ">
+                  <%= comaction.status %>
+                </span>
+              </h6>
             </div>
           </div>
         </div>

@@ -53,15 +53,19 @@ module ComactionsHelper
     "<i class='fa fa-bookmark-o '></i> : [#{c.mission.status}] #{c.mission.name} <br><i class='fa fa-building-o '></i> : <strong>#{c.mission.company.company_name}</strong>"
   end
 
-  def button_filters(cal)
-    r=''
-    Comaction::STATUSES.each { |status|
-      if cal.to_i == 1
-        r += link_to status, comactions_path( :filter => Comaction::STATUS_RELATED[status], :v => 'calendar_view'), class: "btn btn-success"
-      else
-        r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :v => 'table_view'), class: "btn btn-success"
-      end
-    }
-    r.html_safe
+  def button_filters(cal,last_val)
+    statuses = [["",""]] + Comaction::STATUSES.each {|st| [st,st] }
+    opt = options_for_select(statuses,last_val)
+    s = "<select class='form-control input-sm' id='mission_status'> #{opt}</select>".html_safe
+
+    # r=''
+    # Comaction::STATUSES.each { |status|
+    #   if cal.to_i == 1
+    #     r += link_to status, comactions_path( :filter => Comaction::STATUS_RELATED[status], :v => 'calendar_view'), class: "btn btn-success"
+    #   else
+    #     r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :v => 'table_view'), class: "btn btn-success"
+    #   end
+    # }
+    # r.html_safe
   end
 end
