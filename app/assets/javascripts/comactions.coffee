@@ -5,19 +5,22 @@
 $(document).on "turbolinks:load", ->
   $("#comaction_mission_id, #comaction_person_id").select2
     theme: "bootstrap"
+  status_related =
+    'Sourcé'  : 'sourced',
+    'Préselectionné'  : 'preselected',
+    'RDV JJ ' : 'appoint',
+    'Présentation client'  : 'pres',
+    'Autre RDV client'  : 'opres',
+    'Engagé'  : 'hired',
+    'En poste'  : 'working'
+
   #---------------------------------------------------
   $('[data-toggle="tooltip"]').tooltip()
+  #---------------------------------------------------
   $(".not-busy").on 'click', ->
     date_elem = $(this).attr("data-block").split("-")
-    $("#comaction_start_time_1i, #comaction_end_time_1i").val(date_elem[3])
-    $("#comaction_start_time_2i, #comaction_end_time_2i").val(parseInt(date_elem[2]))
-    $("#comaction_start_time_3i, #comaction_end_time_3i").val(date_elem[1])
-    $("#comaction_start_time_4i").val(hour_helper(parseInt(date_elem[0]/2)))
-    $("#comaction_end_time_4i").val(hour_helper(parseInt((date_elem[0])/2 + 1)))
-    $("#comaction_start_time_5i, #comaction_end_time_5i").val("00")
-    #$("").val("00")
-
-  hour_helper = (x) -> if (x < 10) then "0" + x else x
+    arr = [date_elem[3], parseInt(date_elem[2]), date_elem[1], hour_helper(parseInt(date_elem[0]/2)), hour_helper(parseInt((date_elem[0])/2 + 1)),"00"]
+    setDateTime(arr)
   #---------------------------------------------------
   # qs = (key) ->
   #   key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&") # escape RegEx meta chars
@@ -30,8 +33,10 @@ $(document).on "turbolinks:load", ->
   frameze = "frameze"
 
   #---------------------------------------------------
-  $("#comaction_end_time_3i,#comaction_end_time_2i,#comaction_end_time_1i").hide()
   $(".status-frame").popover({delay: { "show": 300, "hide": 150 }})
+  #---------------------------------------------------
+  $("#comaction_end_time_3i,#comaction_end_time_2i,#comaction_end_time_1i").hide()
+  #---------------------------------------------------
   unless $('input').is(':checked')
     $(el[0]).parent().parent().parent().fadeOut()
     $("#comaction_is_dated").parent().addClass(frameze)
@@ -58,20 +63,8 @@ $(document).on "turbolinks:load", ->
       $(this).parent().addClass(frameze)
     if($("#comaction_is_dated:checked").val()=="1")
       d = new Date()
-      $("#comaction_start_time_1i").val(d.getFullYear())
-      $("#comaction_start_time_2i").val(d.getMonth()+1)
-      $("#comaction_start_time_3i").val(d.getDate())
-      $("#comaction_start_time_4i").val(d.getHours())
-      $("#comaction_start_time_5i").val(d.getMinutes())
-
-      $("#comaction_end_time_1i").val(d.getFullYear())
-      $("#comaction_end_time_2i").val(d.getMonth()+1)
-      $("#comaction_end_time_3i").val(d.getDate())
-      $("#comaction_end_time_4i").val(d.getHours()+1)
-      $("#comaction_end_time_5i").val(d.getMinutes())
-
-
-
+      arr = [d.getFullYear(),d.getMonth()+1, d.getDate(), d.getHours() , d.getMinutes()]
+      setDateTime(arr)
   # -------------------------
   # Label for comaction name
   # -------------------------
@@ -79,6 +72,11 @@ $(document).on "turbolinks:load", ->
     t = $("#comaction_person_id option:selected").text() + " - "
     t += $("#comaction_mission_id option:selected").text()
     $("#comaction_name").val(t)
+  $("#q_mission_id_eq").on 'change', ->
+    $("#comaction_search").submit()
+  $("#mission_status").on 'change', ->
+    location.href="/comactions/?filter=" + status_related[$("#mission_status").val()]
+
   # -------------------------
   # Modal
   # -------------------------
@@ -93,15 +91,20 @@ $(document).on "turbolinks:load", ->
     modal = $(this)
     modal.find('.modal-body input').val(recipient)
     pushed_date = recipient.split("-").map (x) -> parseInt(x,10).toString()
-    $("#comaction_start_time_1i").val(pushed_date[0])
-    $("#comaction_start_time_2i").val(pushed_date[1])
-    $("#comaction_start_time_3i").val(pushed_date[2])
-    $("#comaction_end_time_1i").val(pushed_date[0])
-    $("#comaction_end_time_2i").val(pushed_date[1])
-    $("#comaction_end_time_3i").val(pushed_date[2])
+    setDate(pushed_date)
     undefined
 
-
-
+  #---------------------------------------------------
+  hour_helper = (x) -> if (x < 10) then "0" + x else x
+  setDate = (arr) ->
+    $("#comaction_start_time_1i, #comaction_end_time_1i").val(arr[0]) # year
+    $("#comaction_start_time_2i, #comaction_end_time_2i").val(arr[1]) # month
+    $("#comaction_start_time_3i, #comaction_end_time_3i").val(arr[2]) # day
+  #---------------------------------------------------
+  setDateTime = (arr) ->
+    setDate(arr)
+    $("#comaction_start_time_4i").val(arr[3]) # hour
+    $("#comaction_end_time_4i").val(arr[3] + 1) # hour
+    $("#comaction_start_time_5i, #comaction_end_time_5i").val(arr[4]) # minutes
   #---------------------------------------------------
   undefined
