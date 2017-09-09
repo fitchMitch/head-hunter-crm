@@ -138,9 +138,7 @@ a.appointment{
   color:black;
 }
 
-@media screen and (max-width: 767px) {
 
-}
 .mission.frame{
   background-color: #E7DCF4;
 }
@@ -179,7 +177,21 @@ table.rdv>td{
   background: $color5;
   float:left;
 }
+/* ---------
+/* Block filters
+/* --------- */
+.filter#mission_status, #q_mission_id_eq, .input-group.filter{
+  margin-right: 10px;
+}
+.filter-end{
+  margin-left: 25px;
+}
 
+
+
+@media screen and (max-width: 767px) {
+
+}
 /*
 Enable tabbable tabs via JavaScript (each tab needs to be activated individually):
 Copy

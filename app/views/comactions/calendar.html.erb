@@ -26,6 +26,7 @@
           data-html="true"
           title="<%= getComactionTitle(comaction) %>"
           data-content="<%= getComactionDetails(comaction) %>">
+          <%= link_to comaction_path(comaction), class: "appointment" do %>
           <div class="row">
             <div class="col-xs-3">
               <span class="hour">
@@ -33,9 +34,7 @@
               </span>
             </div>
             <div class="col-xs-9">
-              <%= link_to comaction_path(comaction), class: "appointment" do %>
                 <%= comaction.person.full_name %>
-              <% end %>
             </div>
           </div>
           <div class="row">
@@ -51,6 +50,7 @@
             </div>
           </div>
         </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

@@ -3,37 +3,33 @@
     <div class="btn-toolbar" role='toolbar' aria-label="...">
       <%= search_form_for @q, html: {class: "form-inline center"} do |f| %>
       <div class="row">
-        <div class="panel panel-success">
-          <div class="panel-heading">
-            <h3 class="panel-title "><%= t("filters") %></h3>
-          </div>
-          <div class="panel-body">
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1"><%= t("status") %></span>
-              <%= button_filters(yield(:calender_view),@filter) %>
+        <div class="">
+          <div class="row filterContainer">
+            <div class="col-xs-1 mint-background">
+              <span class="header-line"><%= t("filters") %></span>
             </div>
-
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1"><%= t("missions") %></span>
-              <%= f.select :mission_id_eq , options_for_select(@missions.each { |t| t},@mission_selected), {},  {class: "form-control input-sm "} %>
-            </div>
-
-            <div class="btn-group btn-group-sm" role='group' aria-label="...">
-              <%= link_to  comactions_path(:filter => 'unscheduled', :v => 'table_view'), class: "btn btn-default " do %>
+            <div class="col-xs-11">
+              <div class="input-group filter">
+                <span class="input-group-addon" id="basic-addon1"><%= t("status") %></span>
+                <%= button_filters(yield(:calender_view),@status_selected) %>
+              </div>
+              <div class="input-group filter">
+                <span class="input-group-addon" id="basic-addon1"><%= t("missions") %></span>
+                <%= f.select :mission_id_eq , options_for_select(@missions.each { |t| t},@mission_selected), {},  {class: "form-control input-sm "} %>
+              </div>
+              <%= link_to  comactions_path(:filter => 'unscheduled', :v => 'table_view'), class: "btn btn-success btn-sm" do %>
               <%= fa_icon('list', text: t("comaction.filters.no_date")) %>
               <% end %>
-              <%= link_to  comactions_path(:filter => 'future'), class: "btn btn-default" do %>
+              <%= link_to  comactions_path(:filter => 'future'), class: "btn btn-success btn-sm" do %>
               <%= t 'comaction.filters.now_and_after' %>
               <% end %>
-              <%= link_to  comactions_path, class: "btn btn-default" do %>
+              <%= link_to  comactions_path, class: "btn btn-default btn-sm filter-end" do %>
               <%= fa_icon("undo", text: t("reinit")) %>
               <% end %>
             </div>
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
-</div>

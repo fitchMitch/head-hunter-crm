@@ -1,0 +1,34 @@
+<h3 class="center"><%= t("comaction.availibility.title") %></h3>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <%= t("comaction.availibility.command_message") %>
+    </p>
+  </div>
+  <div class="panel-footer">
+    <% unless @freeZone_days.nil? %>
+    <ul>
+      <% @freeZone_days.each do |dday| %>
+      <div class="row checkBelow">
+        <li>
+          <div class="col-xs-4"><strong><%= dday.first %> </strong></div>
+          <div class="col-xs-8">
+            <span class="availibility-bar">
+              <%= illustrate(dday.second) %>
+            </span>
+          </div>
+        </div>
+        <!-- <ul>
+          < dday.second.each do |peri| >
+          <li>
+            <= peri.descro >
+          </li>
+          <end >
+        </ul> -->
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+</div>

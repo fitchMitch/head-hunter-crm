@@ -252,8 +252,21 @@ abbr {
 /*---------------------*/
 .mint-background{
   background: $color5;
-  line-height: 2em;
   vertical-align: middle;
+}
+.header-line{
+    line-height: 2em;
+    font-weight: 600;
+}
+.filterContainer{
+  margin-left: 5px;
+  margin-right:5px;
+  background-color: $color5;
+  border-top: 1px solid $color2;
+  border-bottom: 1px solid $color2;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  margin-bottom: 1em;
 }
 
 /*---------------------+

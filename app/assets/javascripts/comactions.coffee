@@ -8,7 +8,7 @@ $(document).on "turbolinks:load", ->
   status_related =
     'Sourcé'  : 'sourced',
     'Préselectionné'  : 'preselected',
-    'RDV JJ ' : 'appoint',
+    'RDV JJ' : 'appoint',
     'Présentation client'  : 'pres',
     'Autre RDV client'  : 'opres',
     'Engagé'  : 'hired',
@@ -19,7 +19,7 @@ $(document).on "turbolinks:load", ->
   #---------------------------------------------------
   $(".not-busy").on 'click', ->
     date_elem = $(this).attr("data-block").split("-")
-    arr = [date_elem[3], parseInt(date_elem[2]), date_elem[1], hour_helper(parseInt(date_elem[0]/2)), hour_helper(parseInt((date_elem[0])/2 + 1)),"00"]
+    arr = [date_elem[3], parseInt(date_elem[2]), date_elem[1], hour_helper(parseInt(date_elem[0]/2)), "00"]
     setDateTime(arr)
   #---------------------------------------------------
   # qs = (key) ->
@@ -75,7 +75,8 @@ $(document).on "turbolinks:load", ->
   $("#q_mission_id_eq").on 'change', ->
     $("#comaction_search").submit()
   $("#mission_status").on 'change', ->
-    location.href="/comactions/?filter=" + status_related[$("#mission_status").val()]
+    view = unless document.location.href.indexOf("table_view") ==-1 then 'table_view' else 'calendar_view'
+    location.href="/comactions/?filter=#{status_related[$("#mission_status").val()]}&v=#{view}"
 
   # -------------------------
   # Modal
@@ -95,7 +96,7 @@ $(document).on "turbolinks:load", ->
     undefined
 
   #---------------------------------------------------
-  hour_helper = (x) -> if (x < 10) then "0" + x else x
+  hour_helper = (x) -> if (parseInt(x,10) < 10) then "0" + x else x
   setDate = (arr) ->
     $("#comaction_start_time_1i, #comaction_end_time_1i").val(arr[0]) # year
     $("#comaction_start_time_2i, #comaction_end_time_2i").val(arr[1]) # month
@@ -104,7 +105,7 @@ $(document).on "turbolinks:load", ->
   setDateTime = (arr) ->
     setDate(arr)
     $("#comaction_start_time_4i").val(arr[3]) # hour
-    $("#comaction_end_time_4i").val(arr[3] + 1) # hour
+    $("#comaction_end_time_4i").val(hour_helper(parseInt(arr[3],10) + 1)) # hour
     $("#comaction_start_time_5i, #comaction_end_time_5i").val(arr[4]) # minutes
   #---------------------------------------------------
   undefined

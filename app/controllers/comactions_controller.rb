@@ -53,6 +53,7 @@ class ComactionsController < ApplicationController
     end
     @missions = @missions.uniq
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
+    @status_selected = params[:filter].nil? ? "none" :  params[:filter]
     # end Mission filter setup ----
 
     @q = Comaction.mine(@uid).ransack(params[:q])
@@ -90,6 +91,22 @@ class ComactionsController < ApplicationController
     @user = current_user
     @forwhom = @comaction.person.id
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
+
+    # =================
+    # AVailibility preview
+    # =================
+    #just looking into next week
+    @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
+    #---
+    d = DateTime.current
+    attributes = {:start_period => d , :end_period => d.advance(days: 5)}
+    @freeZone_days = EventSlot.new(attributes).working_days_split
+    #---
+    dash_it = EventSlot.dash_it(@freeZone_days, @next_comactions)
+    flash[:danger] = dash_it[:messages] unless dash_it[:messages].empty?
+
+    @freeZone_days = EventSlot.sharpen(dash_it[:freeZone_days])
+    @freeZone_days = EventSlot.sort_periods(@freeZone_days) unless @freeZone_days == nil
   end
   #-----------------
   def show

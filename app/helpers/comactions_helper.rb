@@ -54,18 +54,8 @@ module ComactionsHelper
   end
 
   def button_filters(cal,last_val)
-    statuses = [["",""]] + Comaction::STATUSES.each {|st| [st,st] }
+    statuses = [["",""]] + Comaction::STATUSES.each {|st| [st,Comaction::STATUS_RELATED[st].to_s] }
     opt = options_for_select(statuses,last_val)
-    s = "<select class='form-control input-sm' id='mission_status'> #{opt}</select>".html_safe
-
-    # r=''
-    # Comaction::STATUSES.each { |status|
-    #   if cal.to_i == 1
-    #     r += link_to status, comactions_path( :filter => Comaction::STATUS_RELATED[status], :v => 'calendar_view'), class: "btn btn-success"
-    #   else
-    #     r += link_to status, comactions_path(:filter => Comaction::STATUS_RELATED[status], :v => 'table_view'), class: "btn btn-success"
-    #   end
-    # }
-    # r.html_safe
+    s = "<select class='form-control input-sm filter' id='mission_status'> #{opt}</select>".html_safe
   end
 end
