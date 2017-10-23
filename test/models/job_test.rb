@@ -19,7 +19,7 @@ require 'test_helper'
 
 class JobTest < ActiveSupport::TestCase
   def setup
-    @job = build(:job)
+    @job = create(:job)
   end
 
   test "job_title should exist" do

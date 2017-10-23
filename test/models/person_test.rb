@@ -59,15 +59,4 @@ class PersonTest < ActiveSupport::TestCase
     @person.phone_number='a'* 19
     refute @person.valid?
   end
-
-  test 'cell_phone_number should be long enough' do
-    @person.cell_phone_number='a'* 9
-    refute @person.valid?
-  end
-
-  test 'cell_phone_number should not be too long ' do
-    @person.cell_phone_number='a'* 19
-    refute @person.valid?
-  end
-
 end

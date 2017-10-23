@@ -1,6 +1,6 @@
 ---
 fr:
-  brand: JuinJuillet
+  brand: HH_CRM
   Name: Nom
   Date: Date
   Dates: Dates
@@ -30,8 +30,8 @@ fr:
   save_button: Sauvegarder
   ok_button : Valider
   currency: euros
-  About: A propos
-  Contact: Contact
+  about: A propos
+  contact: Contact
   help: Aide
   close: Fermer
   filter_button: Filtrer
@@ -48,7 +48,7 @@ fr:
   search_title: Rechercher
   status: Statuts
   jj:
-    maxim: JuinJuillet Recrutement
+    maxim: '%{brand} Recrutement'
     rdv: Rendez-vous
     people_and_companies: Contacts et sociétés
     profile : Profil
@@ -343,6 +343,7 @@ fr:
     previous: Préc.
     next: Suiv.
   comaction:
+    tutti: Toutes
     rdv: Rendez-vous
     short-rdv: RdV
     menu:

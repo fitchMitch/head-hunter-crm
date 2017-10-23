@@ -23,7 +23,7 @@ require 'test_helper'
 
 class MissionTest < ActiveSupport::TestCase
   def setup
-    @mission = build(:mission)
+    @mission = create(:mission)
   end
 
   test "mission name should not be empty" do

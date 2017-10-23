@@ -8,22 +8,8 @@
     <div class="col-md-6 col-md-offset-1">
       <%= render 'form' %>
     </div>
-    <div class="col-md-4 " data-direction="left" >
-      <% unless @freeZone_days.nil? %>
-        <% @freeZone_days.each do |dday| %>
-        <ul>
-          <%= t(dday.first.start_period.strftime("%A")) %>
-          <%= dday.first.start_period.strftime(" %d") %>
-          <%= t(dday.first.start_period.strftime(" %b")) %>
-          <% dday.each do |member| %>
-            <li>
-              <%= member.start_period.hour  %>
-              <%= member.start_period.min  %>
-            </li>
-          <% end  %>
-          </ul>
-        <% end %>
-      <% end %>
+    <div class="col-md-5">
+      <%= render 'availibilities' %>
     </div>
   </div>
 <% end %>

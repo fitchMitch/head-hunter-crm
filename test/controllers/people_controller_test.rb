@@ -3,7 +3,7 @@ require 'test_helper'
 class PeopleControllerTest < ActionDispatch::IntegrationTest
   def setup
     @person = create(:person)
-    @user= @person.user
+    @user = Person.find(@person.user_id)
   end
 
   test "should get edit" do
@@ -32,13 +32,13 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   test "should redirect update" do
     log_in_as(@user)
     patch person_path(@person), params: { person: { firstname: @person.firstname, email: @person.email } }
-    refute flash[:success].empty?
+    refute flash[:success] == ''
     assert_redirected_to person_url
   end
 
   test "should edit when wrong update" do
     log_in_as(@user)
-    patch person_path(@person), params: { person: { firstname:"", email: @person.email } }
+    patch person_path(@person), params: { person: { lastname:"", email: @person.email } }
     refute flash[:danger].empty?
     assert_template 'people/edit'
   end

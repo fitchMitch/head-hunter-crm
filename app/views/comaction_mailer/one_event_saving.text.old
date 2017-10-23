@@ -2,4 +2,4 @@ Nouveau rendez-vous
 ------------------
 Le rendez-vous est en pièce jointe
 
-    Signé : JuinJuillet
+    Signé : <%= I18n.t("brand") %>

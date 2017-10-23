@@ -15,7 +15,7 @@ class ComactionsController < ApplicationController
 
   before_action :logged_in_user
   before_action :get_comaction,   only: [:edit, :show, :update, :destroy]
-  before_action :get_uid,   only: [:new, :index]
+  before_action :get_uid,   only: [:new, :index, :edit]
 
   def new
     @comaction = Comaction.new
@@ -23,22 +23,9 @@ class ComactionsController < ApplicationController
     @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
     @forwhom = params[:person_id] || 0
     @what_mission = params[:mission_id] || 0
-    # =================
-    # AVailibility preview
-    # =================
-    #just looking into next week
-    @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
-    #---
-    d = DateTime.current
-    attributes = {:start_period => d , :end_period => d.advance(days: 5)}
-    @freeZone_days = EventSlot.new(attributes).working_days_split
-    #---
-    dash_it = EventSlot.dash_it(@freeZone_days, @next_comactions)
-    flash[:danger] = dash_it[:messages] unless dash_it[:messages].empty?
-
-    @freeZone_days = EventSlot.sharpen(dash_it[:freeZone_days])
-    @freeZone_days = EventSlot.sort_periods(@freeZone_days) unless @freeZone_days == nil
-    #---
+    res = availibilities()
+    @next_commactions = res[:next_commactions]
+    @freeZone_days =  res[:freeZone_days]
   end
 
 
@@ -47,7 +34,7 @@ class ComactionsController < ApplicationController
 
     params[:page] ||= 1
     # Mission filter setup ----
-    @missions = [["",0]]
+    @missions = [[I18n.t("comaction.tutti"),""]]
     Comaction.all.mine(@uid).limit(30).each do |comac|
       @missions << [comac.mission.name , comac.mission.id]
     end
@@ -91,22 +78,9 @@ class ComactionsController < ApplicationController
     @user = current_user
     @forwhom = @comaction.person.id
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
-
-    # =================
-    # AVailibility preview
-    # =================
-    #just looking into next week
-    @next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
-    #---
-    d = DateTime.current
-    attributes = {:start_period => d , :end_period => d.advance(days: 5)}
-    @freeZone_days = EventSlot.new(attributes).working_days_split
-    #---
-    dash_it = EventSlot.dash_it(@freeZone_days, @next_comactions)
-    flash[:danger] = dash_it[:messages] unless dash_it[:messages].empty?
-
-    @freeZone_days = EventSlot.sharpen(dash_it[:freeZone_days])
-    @freeZone_days = EventSlot.sort_periods(@freeZone_days) unless @freeZone_days == nil
+    res = availibilities()
+    @next_commactions = res[:next_commactions]
+    @freeZone_days =  res[:freeZone_days]
   end
   #-----------------
   def show
@@ -136,7 +110,7 @@ class ComactionsController < ApplicationController
       if @comaction.start_time == nil  || @comaction.end_time == nil
         flash[:info] = I18n.t("comaction.message.saved")
       else
-        @comaction.send_meeting_email(current_user, 1)
+        @comaction.send_meeting_email(current_user, 1) if Rails.configuration.mail_wanted
         flash[:info] =  I18n.t("comaction.message.saved_with_mail")
       end
       redirect_to comactions_path
@@ -154,7 +128,7 @@ class ComactionsController < ApplicationController
         flash[:success] = I18n.t("comaction.message.saved")
       else
         @comaction.send_meeting_email(current_user, 0)
-        flash[:success] = I18n.t("comaction.message.updated_with_mail")
+        flash[:success] = I18n.t("comaction.message.updated_with_mail") if Rails.configuration.mail_wanted
       end
       logger.warn("update won\'t work #{@comaction.inspect }")
       redirect_to comactions_path
@@ -175,6 +149,27 @@ class ComactionsController < ApplicationController
   #---------------
   private
   #---------------
+
+    def availibilities
+      # =================
+      # AVailibility preview
+      # =================
+      #just looking into next week
+      next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
+      #---
+      d = DateTime.current
+      attributes = {:start_period => d , :end_period => d.advance(days: 5)}
+      freeZone_days = EventSlot.new(attributes).working_days_split
+      #---
+      dash_it = EventSlot.dash_it(freeZone_days, next_comactions)
+      flash[:danger] = dash_it[:messages] unless dash_it[:messages].empty?
+
+      freeZone_days = EventSlot.sharpen(dash_it[:freeZone_days])
+      freeZone_days = EventSlot.sort_periods(freeZone_days) unless freeZone_days == nil
+      #---
+      {next_commactions: next_comactions, freeZone_days: freeZone_days}
+    end
+
     def trigger_nil_dates (comaction)
       unless comaction_params[:is_dated].to_i == 1
         comaction.start_time = nil

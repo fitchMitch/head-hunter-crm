@@ -10,8 +10,8 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  company_name: Alcatel
-
-two:
-  company_name: Siemens
+# one:
+#   company_name: Alcatel
+#
+# two:
+#   company_name: Siemens

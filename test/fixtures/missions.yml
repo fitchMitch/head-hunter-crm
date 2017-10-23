@@ -21,18 +21,18 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  reward: 1000
-  min_salary: 900
-  max_salary: 1100
-  criteria: MyStringCriterium
-  name : for Vuitton
-  paid_amount: 50
-
-two:
-  reward: 1000
-  min_salary: 900
-  max_salary: 11050
-  criteria: MyStringCriterium
-  paid_amount: 53
-  name : for Chanel
+# one:
+#   reward: 1000
+#   min_salary: 900
+#   max_salary: 1100
+#   criteria: MyStringCriterium
+#   name : for Vuitton
+#   paid_amount: 50
+#
+# two:
+#   reward: 1000
+#   min_salary: 900
+#   max_salary: 11050
+#   criteria: MyStringCriterium
+#   paid_amount: 53
+#   name : for Chanel

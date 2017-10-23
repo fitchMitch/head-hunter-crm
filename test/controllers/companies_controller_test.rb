@@ -52,7 +52,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
 
   test "Should get properly sorted list" do
     company = Company.order('company_name DESC').first
-    get companies_path, params: { sort: '-company_name' }
+    get companies_path, params: { sort: '-updated_at' }
     assert_response :success
   end
 end

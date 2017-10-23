@@ -1,7 +1,7 @@
 module ApplicationHelper
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
-    base_title = 'JuinJuillet'
+    base_title = I18n.t("brand")
     if page_title.empty?
       base_title
     else
@@ -22,6 +22,10 @@ module ApplicationHelper
   #-----------------
   def user_badge(u)
     "<span class=\"badge badge-default\">#{u.trigram}</span>".html_safe
+  end
+  #-----------------
+  def search_key(thisHash,value)
+    thisHash.select { |k, v| v == value.to_sym }.keys
   end
   #-----------------
   def future_time_in_words(t1)

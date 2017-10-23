@@ -29,7 +29,6 @@ class Comaction < ApplicationRecord
   pg_search_scope :search_name,
                   against: [[:name, 'A'], [:status, 'B']],
                   associated_against: {
-                    person: :firstname,
                     person: :lastname,
                     mission: :name
                   },
@@ -114,7 +113,9 @@ class Comaction < ApplicationRecord
 
   # Sends meeting email.
   def send_meeting_email(u, is_new)
-    is_new == 1 ? ComactionMailer.one_event_saving(self, u).deliver_now : ComactionMailer.event_saving_upd(self, u).deliver_now
+    if Rails.configuration.mail_wanted
+      is_new == 1  ? ComactionMailer.one_event_saving(self, u).deliver_now : ComactionMailer.event_saving_upd(self, u).deliver_now
+    end
   end
 
   def end_time_is_after_and_overlap

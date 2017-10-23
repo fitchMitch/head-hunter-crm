@@ -34,8 +34,7 @@ module ComactionsHelper
     periods.map{|z| t &&= z.instance_of?(EventSlot) }
     return "fatal illustration2" unless t
 
-    block = []
-    block = block.fill("<span class='busy'></span>", 0..47) #half_hours
+    block = [].fill("<span class='busy'></span>", 0..47) #half_hours
     #
     periods.each do |per|
       per.to_half_hours_range.each do |n|
@@ -53,9 +52,11 @@ module ComactionsHelper
     "<i class='fa fa-bookmark-o '></i> : [#{c.mission.status}] #{c.mission.name} <br><i class='fa fa-building-o '></i> : <strong>#{c.mission.company.company_name}</strong>"
   end
 
-  def button_filters(cal,last_val)
-    statuses = [["",""]] + Comaction::STATUSES.each {|st| [st,Comaction::STATUS_RELATED[st].to_s] }
-    opt = options_for_select(statuses,last_val)
-    s = "<select class='form-control input-sm filter' id='mission_status'> #{opt}</select>".html_safe
+  def button_filters(last_val)
+    statuses = [["",""]] + Comaction::STATUSES.each {|st| [st, Comaction::STATUS_RELATED[st].to_s] }
+    selected  = search_key(Comaction::STATUS_RELATED,last_val).first
+    opt = options_for_select(statuses, selected)
+    s = "<select class='form-control input-sm filter' id='mission_status' > #{opt}</select>".html_safe
   end
+
 end

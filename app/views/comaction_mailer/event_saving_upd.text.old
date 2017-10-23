@@ -3,4 +3,4 @@ Mise à jour d'un rendez-vous
 Pensez à supprimer le précédent avec la même personne.
 Le rendez-vous est en pièce jointe
 
-    Signé : JuinJuillet
+    Signé : <%= I18n.t("brand") %>

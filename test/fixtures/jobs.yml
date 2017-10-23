@@ -17,34 +17,34 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  job_title: MyString
-  salary: 1.5
-  start_date: 2017-01-25
-  end_date: 2017-01-25
-  jj_job: false
-  person: one
-  company: one
-  no_end: false
-
-two:
-  job_title: MyString
-  salary: 1.5
-  start_date: 2017-01-26
-  end_date: 2017-01-27
-  jj_job: false
-  person: two
-  company: one
-  no_end: false
-
-<% 30.times do |n| %>
-job_<%= n %>:
-  job_title: <%=  Faker::Company.name %>
-  salary: n*1000 -1 -n
-  start_date: 2017-01-25
-  end_date: 2017-01-25
-  jj_job: false
-  company: one
-  person: two
-  no_end: false
-<% end %>
+# one:
+#   job_title: MyString
+#   salary: 1.5
+#   start_date: 2017-01-25
+#   end_date: 2017-01-25
+#   jj_job: false
+#   person: one
+#   company: one
+#   no_end: false
+#
+# two:
+#   job_title: MyString
+#   salary: 1.5
+#   start_date: 2017-01-26
+#   end_date: 2017-01-27
+#   jj_job: false
+#   person: two
+#   company: one
+#   no_end: false
+#
+# <% 30.times do |n| %>
+# job_<%= n %>:
+#   job_title: <%=  Faker::Company.name %>
+#   salary: n*1000 -1 -n
+#   start_date: 2017-01-25
+#   end_date: 2017-01-25
+#   jj_job: false
+#   company: one
+#   person: two
+#   no_end: false
+# <% end %>

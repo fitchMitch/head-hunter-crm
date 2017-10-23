@@ -23,45 +23,45 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  firstname: MyString
-  lastname: MyString
-  email: MyString
-  phone_number: MyString
-  cell_phone_number: MyString
-  birthdate: 2017-01-21
-  user: michael
-
-two:
-  title: MyString
-  firstname: MyString
-  lastname: MyString
-  email: MyString
-  phone_number: MyString
-  cell_phone_number: MyString
-  birthdate: 2017-01-21
-  user: michael
-
-three:
-  title: MyString
-  firstname: MyString
-  lastname: MyString
-  email: MyString
-  phone_number: MyString
-  cell_phone_number: MyString
-  birthdate: 2017-01-21
-  user: michael
-
-four:
-  title: MyString
-  firstname: MyString
-  lastname: MyString
-  email: MyString
-  phone_number: MyString
-  cell_phone_number: MyString
-  birthdate: 2017-01-21
-  user: michael
+# one:
+#   title: MyString
+#   firstname: MyString
+#   lastname: MyString
+#   email: MyString
+#   phone_number: MyString
+#   cell_phone_number: MyString
+#   birthdate: 2017-01-21
+#   user: michael
+#
+# two:
+#   title: MyString
+#   firstname: MyString
+#   lastname: MyString
+#   email: MyString
+#   phone_number: MyString
+#   cell_phone_number: MyString
+#   birthdate: 2017-01-21
+#   user: michael
+#
+# three:
+#   title: MyString
+#   firstname: MyString
+#   lastname: MyString
+#   email: MyString
+#   phone_number: MyString
+#   cell_phone_number: MyString
+#   birthdate: 2017-01-21
+#   user: michael
+#
+# four:
+#   title: MyString
+#   firstname: MyString
+#   lastname: MyString
+#   email: MyString
+#   phone_number: MyString
+#   cell_phone_number: MyString
+#   birthdate: 2017-01-21
+#   user: michael
 
 # <% 30.times do |n| %>
 # person_<%= n %>:

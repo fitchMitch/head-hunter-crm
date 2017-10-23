@@ -67,14 +67,13 @@ class Person < ApplicationRecord
   #   format: { with: VALID_EMAIL_REGEX },
   #   uniqueness: { case_sensitive: false } ,
   #   if: :email.present?
-  # validates :phone_number,
-  #   length: { minimum:10, maximum: 18 }
+  validates :phone_number,
+     length: { minimum:10, maximum: 18 },
+     if: Proc.new {|p| p.phone_number.present? }
 
   validate :is_email_an_email
 
-  scope :found_by, -> (user_id) {
-      where('user_id = ?', user_id)
-  }
+  scope :found_by, -> (user_id) { where('user_id = ?', user_id) }
 
   def is_email_an_email
     if email.present? && VALID_EMAIL_REGEX.match(email) == nil
