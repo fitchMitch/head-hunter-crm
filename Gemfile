@@ -39,7 +39,7 @@ gem 'sweet-alert2-rails'
 
 group :development, :test do
   gem 'puma',         '3.4.0'
-  gem "factory_girl_rails",     "~> 4.0"
+  gem "factory_bot_rails",     "~> 4.0"
   gem 'as-duration'
   gem 'byebug',  '9.0.0', platform: :mri
   # gem "capistrano", "~> 3.8"
@@ -65,5 +65,4 @@ end
 
 group :production do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
-
 end

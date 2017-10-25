@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :mission do
 
     name               "Mission" + (1..4500).to_a.sample.to_s

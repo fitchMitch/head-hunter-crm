@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :job do
     job_title             {Faker::Company.profession }
     salary                (17..45).to_a.sample* 1000-17
