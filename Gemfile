@@ -42,6 +42,8 @@ group :development, :test do
   gem "factory_bot_rails",     "~> 4.0"
   gem 'as-duration'
   gem 'byebug',  '9.0.0', platform: :mri
+  gem "better_errors"
+  gem "binding_of_caller" 
   # gem "capistrano", "~> 3.8"
   # gem 'capistrano-rails', '~> 1.3'
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
