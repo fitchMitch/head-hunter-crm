@@ -35,15 +35,15 @@ gem 'docx', '~> 0.2.07', :require => ["docx"]
 gem 'pg_search'
 gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-assets.org'
 gem 'sweet-alert2-rails'
+# gem 'inherited_resources'
+# gem 'has_scope'
 # temp
 
 group :development, :test do
   gem 'puma',         '3.4.0'
-  gem "factory_bot_rails",     "~> 4.0"
+  gem "factory_girl_rails",     "~> 4.0"
   gem 'as-duration'
   gem 'byebug',  '9.0.0', platform: :mri
-  gem "better_errors"
-  gem "binding_of_caller" 
   # gem "capistrano", "~> 3.8"
   # gem 'capistrano-rails', '~> 1.3'
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -67,4 +67,5 @@ end
 
 group :production do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+
 end
