@@ -32,6 +32,7 @@ class Mission < ApplicationRecord
     STATUS_BILLED = 'Mission facturée',
     STATUS_PAYED = 'Mission payée'
   ]
+  #enum statuses: [:hope, :sent, :signed, :billed, :payed]
 
   include PgSearch
   pg_search_scope :search_name,

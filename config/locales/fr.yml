@@ -48,7 +48,7 @@ fr:
   search_title: Rechercher
   status: Statuts
   jj:
-    maxim: '%{brand} Recrutement'
+    maxim: "#{brand} Recrutement"
     rdv: Rendez-vous
     people_and_companies: Contacts et sociétés
     profile : Profil
@@ -419,7 +419,7 @@ fr:
     date_in: Date de prise de fonction
     date_end: Date de fin de contrat
     salary: Salaire
-    jj: Poste fourni par JuinJuillet
+    jj: Poste fourni par %{brand}
     still_in: en poste
     add: Ajouter une nouvelle société
     confirm_for: Wesh ? C'est sûr pour %{him} ?
