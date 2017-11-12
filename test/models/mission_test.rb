@@ -36,17 +36,6 @@ class MissionTest < ActiveSupport::TestCase
     refute @mission.valid?
   end
 
-  test "reward should not be empty" do
-    @mission.reward = ''
-    refute @mission.valid?
-  end
-
-  test "whished_start_date should exist" do
-    @mission.whished_start_date = ''
-    refute @mission.valid?
-  end
-
-
   test "saving missions should be ok" do
     @mission2 = build(:mission)
     assert @mission2.valid?

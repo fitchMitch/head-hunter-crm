@@ -51,6 +51,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "Should get properly sorted list" do
+    log_in_as(@user)
     company = Company.order('company_name DESC').first
     get companies_path, params: { sort: '-updated_at' }
     assert_response :success

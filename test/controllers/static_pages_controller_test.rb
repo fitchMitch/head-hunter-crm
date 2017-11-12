@@ -4,11 +4,13 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @base_title = I18n.t("brand")
+    @user       = create(:user)
+    log_in_as(@user)
   end
 
   test "should get root" do
     get root_path
-    assert_response  :success
+    assert_response :success
   end
 
   test "should get about" do
@@ -16,6 +18,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "title", "#{I18n.t("about")} | #{@base_title }"
   end
+
   test "should get contact" do
     get contact_path
     assert_response :success

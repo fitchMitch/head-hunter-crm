@@ -10,7 +10,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
   test "should get new on saving error" do
     get new_person_path
     assert_template 'people/new'
-    person2 = attributes_for(:person, firstname: '')
+    person2 = attributes_for(:person, lastname: '')
     post people_path, params: {person: person2 }
     assert_template 'people/new'
   end

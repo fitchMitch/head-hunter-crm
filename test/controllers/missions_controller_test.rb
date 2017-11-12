@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MissionsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user     = users(:michael)
+    @user     = create(:user)
     @mission   = create(:mission)
     @company   = @mission.company
     @person    = @mission.person

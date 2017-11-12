@@ -3,7 +3,7 @@ require 'test_helper'
 class PeopleControllerTest < ActionDispatch::IntegrationTest
   def setup
     @person = create(:person)
-    @user = Person.find(@person.user_id)
+    @user = @person.user
   end
 
   test "should get edit" do

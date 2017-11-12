@@ -21,13 +21,6 @@ User.create!(name:                   'Etienne WEIL',
     admin:                  true,
     activated: true,
     activated_at: Time.zone.now)
-User.create!(name:                   'Flora CLERC',
-    email:                 "flora.clerc@juinjuillet.fr",
-    password:              "123456",
-    password_confirmation: "123456",
-    admin:                  true,
-    activated: true,
-    activated_at: Time.zone.now)
 
 3.times do |n|
   name  = Faker::Name.name
@@ -54,13 +47,12 @@ companies=Company.all
 #-----------------
 user = users.sample
 
-Person.create!(title:              "Mme",
+Person.create!(
     firstname:          "Yolande",
     lastname:           "Moreau",
     email:              "yolande.moreau@gmail.com",
     phone_number:       "9876543210",
-    cell_phone_number:  "+33 12345679",
-    birthdate:          "04/07/1980",
+    approx_age:         65,
     is_jj_hired:        true,
     is_client:          false,
     note:               Faker::Lorem.sentence(1),
@@ -69,25 +61,22 @@ Person.create!(title:              "Mme",
 18.times do |n|
   company=companies.sample
   user = users.sample
-  title=             %w[M. Mme Mlle].sample
   firstname=         Faker::Name.first_name
   lastname=          Faker::Name.last_name
   email=             Faker::Internet.email
   phone_number=      Faker::PhoneNumber.phone_number
-  cell_phone_number= Faker::PhoneNumber.cell_phone
 
-  birthdate=         (Date.today - (18..70).to_a.sample* 365 + (1..364).to_a.sample).strftime("%F")
+  approx_age=         (18..70).to_a.sample
   #Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
   note=              Faker::Lorem.sentence(3)
   is_client =        Faker::Boolean.boolean(0.1)
   user_id=           user.id
-  Person.create!(title:              title,
+  Person.create!(
     firstname:          firstname,
     lastname:           lastname,
     email:              email,
     phone_number:       phone_number,
-    cell_phone_number:  cell_phone_number,
-    birthdate:          birthdate,
+    approx_age:         approx_age,
     is_jj_hired:        is_client,
     is_client:          is_client,
     note:               note,
@@ -133,7 +122,8 @@ people = Person.all
 end
 jobs= Job.all
 #-----------------
-# Missons
+# Missions
+#-----------------
 statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
 35.times do |n|
   person = people.sample
@@ -176,7 +166,7 @@ missions = Mission.all
 
   name   =           "Rendez-vous " + n.to_s
   status =           [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT, Comaction::STATUS_PRES, Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED, Comaction::STATUS_WORKING ].sample
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::PROSPECTION_TYPE, Comaction::OTHER_TYPE ].sample
+  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
   person =           people.sample
   user   =           users.sample
   mission=           missions.sample

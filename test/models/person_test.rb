@@ -32,11 +32,6 @@ class PersonTest < ActiveSupport::TestCase
     assert @person.valid?
   end
 
-  test 'should firstname exist' do
-    @person.firstname=''
-    refute @person.valid?
-  end
-
   test 'should lastname exist' do
     @person.lastname=''
     refute @person.valid?

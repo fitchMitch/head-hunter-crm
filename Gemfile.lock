@@ -100,8 +100,6 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.18)
     ffi (1.9.18-x86-mingw32)
-    figaro (1.1.1)
-      thor (~> 0.14)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
     formatador (0.2.5)
@@ -296,7 +294,6 @@ DEPENDENCIES
   docx (~> 0.2.07)
   factory_bot_rails (~> 4.0)
   faker (= 1.6.6)
-  figaro
   font-awesome-rails
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
@@ -332,4 +329,4 @@ DEPENDENCIES
   will_paginate (= 3.1.0)
 
 BUNDLED WITH
-   1.15.3
+   1.16.0
