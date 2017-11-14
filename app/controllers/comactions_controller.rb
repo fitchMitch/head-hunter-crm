@@ -35,10 +35,9 @@ class ComactionsController < ApplicationController
     params[:page] ||= 1
     # Mission filter setup ----
     @missions = [[I18n.t("comaction.tutti"),""]]
-    Comaction.all.mine(@uid).limit(30).each do |comac|
-      @missions << [comac.mission.name , comac.mission.id]
-    end
-    @missions = @missions.uniq
+    last_missions.each {|co|
+      @missions << [co.mission.name, co.mission.id]
+    }
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
     @status_selected = params[:filter].nil? ? "none" :  params[:filter]
     # end Mission filter setup ----
@@ -146,9 +145,18 @@ class ComactionsController < ApplicationController
   end
 
 
+
   #---------------
   private
   #---------------
+    def last_missions
+      temp_missions =[]
+      Comaction.all.mine(@uid).limit(30).each do |comac|
+        temp_missions << comac.mission
+      end
+      temp_missions = temp_missions.uniq.sort {|a,b| a.updated_at <=> b.updated_at}
+      temp_missions
+    end
 
     def availibilities
       # =================
