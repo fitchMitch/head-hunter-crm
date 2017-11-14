@@ -35,6 +35,7 @@ gem 'docx', '~> 0.2.07', :require => ["docx"]
 gem 'pg_search'
 gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-assets.org'
 gem 'sweet-alert2-rails'
+# gem "seedbank"
 # gem 'inherited_resources'
 # gem 'has_scope'
 # temp
