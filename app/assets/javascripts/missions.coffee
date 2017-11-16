@@ -4,13 +4,13 @@
 $(document).on "turbolinks:load", ->
 
   make_name =  ->
-    t = "["
+    t = "Mission "
     t += $("#mission_company_id option:selected").text()
-    t += "] "
+    t += " "
     $("#mission_name").val(t)
 
   # -----------------------
-  make_name()
+  # make_name()
 
   $("#mission_company_id, #mission_person_id").select2
     theme: "bootstrap"
