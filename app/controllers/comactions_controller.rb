@@ -36,7 +36,7 @@ class ComactionsController < ApplicationController
     # Mission filter setup ----
     @missions = [[I18n.t("comaction.tutti"),""]]
     last_missions.each {|co|
-      @missions << [co.mission.name, co.mission.id]
+      @missions << [co.name, co.id]
     }
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
     @status_selected = params[:filter].nil? ? "none" :  params[:filter]
@@ -150,12 +150,11 @@ class ComactionsController < ApplicationController
   private
   #---------------
     def last_missions
-      temp_missions =[]
-      Comaction.all.mine(@uid).limit(30).each do |comac|
-        temp_missions << comac.mission
+      missions =[]
+      Comaction.all.mine(@uid).limit(20).each do |comac|
+        missions << comac.mission
       end
-      temp_missions = temp_missions.uniq.sort {|a,b| a.updated_at <=> b.updated_at}
-      temp_missions
+      missions = missions.sort {|a,b| b.updated_at <=> a.updated_at}.uniq &:id
     end
 
     def availibilities
