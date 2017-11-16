@@ -32,6 +32,9 @@ class Person < ApplicationRecord
   before_save   :upcase_name
   before_save   :phone_number_format
 
+  # TODO
+  before_destroy :remove_docx
+
 
   # ----- Search part
   include PgSearch
@@ -90,6 +93,11 @@ class Person < ApplicationRecord
       pth = "public/" + cv_docx.url.to_s.split("?")[0]
       Docx::Document.open(pth)
     end
+  end
+
+  def remove_docx
+    self.remove_index_content
+    self.cv_docx = nil
   end
 
   def index_cv_content

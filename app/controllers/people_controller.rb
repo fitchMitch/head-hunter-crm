@@ -107,7 +107,7 @@ class PeopleController < ApplicationController
   def destroy
      mes = 'Contact supprimé'
     if @person.cv_docx.file?
-      @person.cv_docx = nil
+      @person.destroy
       mes += @person.save ? ' avec son CV' : ', mais son CV est resté sur le serveur'
     end
     @person.destroy

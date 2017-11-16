@@ -53,9 +53,9 @@ class EventSlot
   end
 
   def out_from_intersect(rdv_period)
-    #use : self is a free zone, rdv_period is an appointment
+    #purpose : self is a free zone, rdv_period is an appointment
     return "not_a_EventSlot" unless rdv_period.is_a?(EventSlot)
-    return "two_days_error #{self.descro} max:1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
+    return "two_days_error #{self.descro} max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
     r = []
     self_start_before = self.start_period <= rdv_period.start_period
     self_end_after = rdv_period.end_period <= self.end_period
