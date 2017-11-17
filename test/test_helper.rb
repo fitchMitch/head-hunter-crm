@@ -1,11 +1,13 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'simplecov'
 #require "minitest/reporters"
 require 'color_pound_spec_reporter'
 #Minitest::Reporters.use! [ColorPoundSpecReporter.new]
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
 #Minitest::Reporters.use! [Minitest::Reporters::HtmlReporter , Minitest::Reporters::ProgressReporter, Minitest::Reporters::SpecReporter ]
+SimpleCov.start 'rails'
 
 
 class ActiveSupport::TestCase
