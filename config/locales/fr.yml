@@ -429,6 +429,7 @@ fr:
     add_first: Créez la première société !
     danger_message: Cette expérience n'a pas pu être ajoutée
     double_jobs: Cet utilisateur a déjà un poste à plein temps
+    unemployed: sans emploi
   mission:
     status: Etat d'avancement du contrat
     create: Créer une mission

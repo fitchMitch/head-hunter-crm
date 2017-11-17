@@ -37,7 +37,6 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     job1 = create(:job, no_end:  true, person: @person)
     job2 = build(:job, no_end:  true, person: @person)
     refute job2.valid?
-
   end
 
 end

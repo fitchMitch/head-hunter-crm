@@ -1,12 +1,12 @@
 <%  @alljobs.each do |a| %>
-  <% if a.company_name == "Pôle emploi" %>
+  <% if a.company_name == I18n.t("job.unemployed") %>
     <div class='row'>
       <%= delay_bar(a) %>
     </div>
   <% else %>
   <div class='row '>
       <div class='col-xs-4'>
-          <%= link_to  edit_job_path(a.id)  do%>
+          <%= link_to edit_job_path(a.id)  do%>
             <span class="glyphicon glyphicon-pencil"></span>
             <%= a.job_title %>
           <% end %>
