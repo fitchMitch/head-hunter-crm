@@ -138,7 +138,7 @@ class Person < ApplicationRecord
   def downcase_email
     return if email.nil? || email === ""
     self.email = email.downcase
-    self.email = SPACES.match(email)[1]
+    self.email = SPACES.match(email)[1] || self.email
   end
 
   def upcase_name
