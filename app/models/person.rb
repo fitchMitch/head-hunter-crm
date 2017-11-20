@@ -22,17 +22,16 @@
 #
 
 class Person < ApplicationRecord
-  has_many :jobs, dependent: :destroy
+  has_many :jobs, dependent: :delete_all
   #accepts_nested_attributes_for :jobs, allow_destroy: true
   has_many :missions, dependent: :destroy
-  has_many :comactions, dependent: :destroy
+  has_many :comactions, dependent: :delete_all
   belongs_to :user
 
   before_save   :downcase_email
   before_save   :upcase_name
   before_save   :phone_number_format
 
-  # TODO
   before_destroy :remove_docx
 
 
@@ -71,8 +70,8 @@ class Person < ApplicationRecord
             uniqueness: { case_sensitive: false } ,
             if: Proc.new {|p| p.email.present? }
   validates :phone_number,
-     length: { minimum:10, maximum: 18 },
-     if: Proc.new {|p| p.phone_number.present? }
+            length: { minimum:10, maximum: 18 },
+            if: Proc.new {|p| p.phone_number.present? }
 
   validate :is_email_an_email
 
@@ -116,6 +115,7 @@ class Person < ApplicationRecord
   def remove_docx
     self.remove_index_content
     self.cv_docx = nil
+    self.save
   end
 
   def remove_index_content
@@ -130,32 +130,31 @@ class Person < ApplicationRecord
     ctt = []
     doc.paragraphs.each  { |pa| ctt << pa.text.tr('\'' , ' ')}
     self.update(:cv_content => ctt.join(' '))
-
   end
   # ------------------------
   private
   # ------------------------
-  def downcase_email
-    return if email.nil? || email === ""
-    self.email = email.downcase
-    self.email = SPACES.match(email)[1] || self.email
-  end
+    def downcase_email
+      return if email.nil? || email === ""
+      self.email = email.downcase
+      self.email = SPACES.match(email)[1] || self.email
+    end
 
-  def upcase_name
-    self.lastname = lastname.upcase
-  end
+    def upcase_name
+      self.lastname = lastname.upcase
+    end
 
-  def phone_number_format
-    self.phone_number = format_by_two(phone_number) unless (phone_number.nil?)
-  end
+    def phone_number_format
+      self.phone_number = format_by_two(phone_number) unless (phone_number.nil?)
+    end
 
-  def format_by_two (nr)
-    nr = nr.sub( '+33' , '0').tr '^0-9', ''
+    def format_by_two (nr)
+      nr = nr.sub( '+33' , '0').tr '^0-9', ''
 
-    reg2 = /(\d{2})(\d{2})(\d{2})(\d{2})(\d+)/
-    my_match = reg2.match(nr)
-    return nr if my_match == nil
-    my_match.captures.compact.join(" ")
-  end
+      reg2 = /(\d{2})(\d{2})(\d{2})(\d{2})(\d+)/
+      my_match = reg2.match(nr)
+      return nr if my_match == nil
+      my_match.captures.compact.join(" ")
+    end
 
 end
