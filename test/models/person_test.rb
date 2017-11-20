@@ -45,6 +45,19 @@ class PersonTest < ActiveSupport::TestCase
     end
   end
 
+  test "email validation should reject invalid addresses" do
+    invalid_addresses = %w[useré@example.com USERfoo.COM A_US-ER@foo  dsqfdqsfq fim@]
+    invalid_addresses.each do |invalid_address|
+      @person.email = invalid_address
+      refute @person.valid?, "#{invalid_address.inspect } should be invalid"
+    end
+  end
+
+  test "email shouldn't be too long" do
+    @person.email = 'a'*205 +  '@' + 'b'*47  + '.fr'
+    refute @person.valid?
+  end
+
   test 'phone_number should be long enough' do
     @person.phone_number='a'* 9
     refute @person.valid?

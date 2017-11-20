@@ -65,11 +65,11 @@ class Person < ApplicationRecord
     length: { maximum: 40 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   SPACES = /\A\s*(.*)\s*\z/
-  # validates :email,
-  #   length: { maximum: 255 },
-  #   format: { with: VALID_EMAIL_REGEX },
-  #   uniqueness: { case_sensitive: false } ,
-  #   if: :email.present?
+  validates :email,
+            length: { maximum: 255 },
+            format: { with: VALID_EMAIL_REGEX },
+            uniqueness: { case_sensitive: false } ,
+            if: Proc.new {|p| p.email.present? }
   validates :phone_number,
      length: { minimum:10, maximum: 18 },
      if: Proc.new {|p| p.phone_number.present? }
@@ -95,11 +95,6 @@ class Person < ApplicationRecord
     end
   end
 
-  def remove_docx
-    self.remove_index_content
-    self.cv_docx = nil
-  end
-
   def index_cv_content
     doc = get_cv
     return if doc == nil
@@ -116,6 +111,11 @@ class Person < ApplicationRecord
             now(),
             now())
     SQL
+  end
+
+  def remove_docx
+    self.remove_index_content
+    self.cv_docx = nil
   end
 
   def remove_index_content

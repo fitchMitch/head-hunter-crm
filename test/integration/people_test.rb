@@ -49,7 +49,8 @@ class PeopleTest < ActionDispatch::IntegrationTest
 
   test "dependent resources shoud be destroyed when people are" do
     @job = create(:job)
-    @person = @job.person
+    @job.person = @person
+
     assert_difference 'Job.count', -1 do
       delete person_path(@person)
     end
