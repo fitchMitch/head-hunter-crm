@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727200837) do
+ActiveRecord::Schema.define(version: 20171121165623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,12 +120,12 @@ ActiveRecord::Schema.define(version: 20170727200837) do
     t.datetime "reset_sent_at"
   end
 
-  add_foreign_key "comactions", "missions"
-  add_foreign_key "comactions", "people"
+  add_foreign_key "comactions", "missions", on_delete: :cascade
+  add_foreign_key "comactions", "people", on_delete: :cascade
   add_foreign_key "comactions", "users"
   add_foreign_key "jobs", "companies"
-  add_foreign_key "jobs", "people"
+  add_foreign_key "jobs", "people", on_delete: :cascade
   add_foreign_key "missions", "companies"
-  add_foreign_key "missions", "people"
+  add_foreign_key "missions", "people", on_delete: :cascade
   add_foreign_key "people", "users"
 end

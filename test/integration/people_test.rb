@@ -30,7 +30,6 @@ class PeopleTest < ActionDispatch::IntegrationTest
     assert_template 'people/index'
     first_page_of_people = Person.paginate(page: 1)
     @person=first_page_of_people.first
-    puts "just some indications"
     first_page_of_people.each do |per|
       assert_select 'a[href=?]', person_path(per)
     end
