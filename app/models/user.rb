@@ -23,9 +23,8 @@ class User < ApplicationRecord
   attr_accessor :remember_token,
     :activation_token,
     :reset_token
-  before_save   :downcase_email
-  before_create :create_activation_digest
-  before_destroy :admin_user
+  before_save    :downcase_email
+  before_create  :create_activation_digest
   #:primary_key, :string, :text, :integer, :float, :decimal, :datetime, :timestamp,
   #:time, :date, :binary, :boolean, :references
 
@@ -111,10 +110,5 @@ class User < ApplicationRecord
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
-
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
-
 
 end
