@@ -74,8 +74,8 @@ class PeopleController < ApplicationController
   # --------------------
   def destroy
     mes = 'Contact supprimé'
-    mes += @person.cv_docx.file? ? ' avec son CV' : ', mais son CV est resté sur le serveur'
-    @person.delete
+    mes += ' avec son CV' if @person.cv_docx.file?
+    @person.destroy
     flash[:success] = mes
     redirect_to people_url
   end

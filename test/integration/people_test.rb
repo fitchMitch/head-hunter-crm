@@ -3,7 +3,7 @@ require 'test_helper'
 class PeopleTest < ActionDispatch::IntegrationTest
   def setup
     @person = create(:person)
-    @user= @person.user
+    @user = @person.user
     log_in_as(@user)
   end
 
@@ -48,10 +48,10 @@ class PeopleTest < ActionDispatch::IntegrationTest
 
   test "dependent resources shoud be destroyed when people are" do
     @job = create(:job)
-    @job.person = @person
+    person = @job.person
 
     assert_difference 'Job.count', -1 do
-      delete person_path(@person)
+      delete person_path(person)
     end
   end
 end
