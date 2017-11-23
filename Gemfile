@@ -36,8 +36,9 @@ gem 'pg_search'
 gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-assets.org'
 gem 'sweet-alert2-rails'
 # gem "seedbank"
+# gem "paper_trail"
 # gem 'inherited_resources'
-# gem 'has_scope'
+# gem 'has_scope' # TODO ransck impact
 # temp
 
 group :development, :test do

@@ -137,7 +137,7 @@ class Comaction < ApplicationRecord
       c4 = (other.start_time < start_time && end_time < other.end_time)
       logger.debug('c4 #{c4 }') if c4
       if c1 || c2 || c3 || c4
-        logger.debug("----------------occuring overlap : other\'s name : #{other.name} | self\'s name : #{name}-------------------")
+        logger.debug("---------------- occuring overlap : other\'s name : #{other.name} | self\'s name : #{name}-------------------")
         errors.add(:end_time, "Superposition de rendez-vous   #{other.name} avec : (#{other.person.full_name}) ")
       end
     end

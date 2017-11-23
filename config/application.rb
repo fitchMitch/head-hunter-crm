@@ -31,9 +31,7 @@ module JjFloApp
     config.logger = Logger.new(STDOUT)
 
     config.generators do |g|
-      g.factory_girl false
-    end
-    config.generators do |g|
+      g.factory_bot false
       g.test_framework :minitest, spec: true
     end
   end
