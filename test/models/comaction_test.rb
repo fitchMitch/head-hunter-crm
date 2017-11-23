@@ -42,10 +42,13 @@ class ComactionTest < ActiveSupport::TestCase
     @comaction.person = nil
     refute @comaction.valid?, "person is linked"
   end
+  test 'date is set by defautl' do
+    assert_equal @comaction.is_dated,1
+  end
 
   test 'comaction overlap is forbidden' do
-    @former_comaction.start_time = @comaction.start_time
-    @former_comaction.end_time = @comaction.end_time
+    @former_comaction.start_time = @comaction.start_time + 1/240
+    @former_comaction.end_time = @comaction.end_time + 1/240
     refute @former_comaction.valid?
   end
 
