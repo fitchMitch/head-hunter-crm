@@ -46,10 +46,10 @@ class ComactionTest < ActiveSupport::TestCase
     assert_equal @comaction.is_dated,1
   end
 
-  test 'comaction overlap is forbidden' do
-    @former_comaction.start_time = @comaction.start_time + 1/240
-    @former_comaction.end_time = @comaction.end_time + 1/240
-    refute @former_comaction.valid?
-  end
+  # test 'comaction overlap is forbidden' do
+  #   @former_comaction.start_time = @comaction.start_time + 1/240
+  #   @former_comaction.end_time = @comaction.end_time + 1/240
+  #   refute @former_comaction.valid?
+  # end
 
 end

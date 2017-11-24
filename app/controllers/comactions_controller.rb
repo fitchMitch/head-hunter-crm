@@ -53,7 +53,7 @@ class ComactionsController < ApplicationController
       elsif params[:filter] === 'mission_id'
         @comactions = @comactions.mission_id(@q[:mission_id])
       else
-        @comactions = @comactions.newer_than 21
+        @comactions = @comactions.newer_than 21 # Three weeks
       end
       @comactions = @comactions.unscheduled if params[:filter] === 'unscheduled'
     end
