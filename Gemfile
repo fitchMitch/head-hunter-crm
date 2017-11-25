@@ -42,7 +42,7 @@ gem 'sweet-alert2-rails'
 # temp
 
 group :development, :test do
-  gem 'puma',         '3.4.0'
+  gem 'puma',         '3.11.0'
   gem "factory_bot_rails",     "~> 4.0"
   gem 'as-duration'
   gem 'byebug',  '9.0.0', platform: :mri
