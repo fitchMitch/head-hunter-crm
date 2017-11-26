@@ -18,6 +18,7 @@
 !/tmp/.keep
 /coverage
 /public/system/people/*
-
+/rails_cmds.txt
+/test_results.txt
 # Ignore Byebug command history file.
 .byebug_history

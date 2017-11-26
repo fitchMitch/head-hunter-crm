@@ -80,7 +80,21 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     patch comaction_path(@comaction), params: {
       comaction: {
         start_time: @comaction.end_time,
-        end_time: @comaction.start_time - 1 
+        end_time: @comaction.start_time - 1
+      }
+    }
+    refute flash.empty?, 'Flash never empty'
+    assert_template 'comactions/edit'
+  end
+
+  test 'should invalidate overlapping comactions ' do
+    log_in_as(@user)
+    @former_comaction = create(:former_comaction)
+    delta = @former_comaction.end_time - @former_comaction.start_time
+    patch comaction_path(@comaction), params: {
+      comaction: {
+        start_time: @former_comaction.start_time + 1/48,
+        end_time: @former_comaction.end_time + 1/48
       }
     }
     refute flash.empty?, 'Flash never empty'
