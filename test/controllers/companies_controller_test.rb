@@ -56,4 +56,12 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
     get companies_path, params: { sort: '-updated_at' }
     assert_response :success
   end
+
+  test "should redirect destroy" do
+    log_in_as(@user)
+    assert_difference 'Company.count',-1 do
+      delete company_path(@company)
+    end
+    assert_redirected_to companies_path
+  end
 end
