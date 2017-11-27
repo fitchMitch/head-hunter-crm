@@ -23,6 +23,12 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+  test "should get show" do
+    log_in_as(@user)
+    get comaction_path(@comaction)
+    assert_response :success
+  end
+
   test 'get new but as logged' do
     log_in_as(@user)
     get new_comaction_path
@@ -87,7 +93,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     assert_template 'comactions/edit'
   end
 
-  test 'should invalidate overlapping comactions ' do
+  test 'should invalidate overlapping comactions' do
     log_in_as(@user)
     @former_comaction = create(:former_comaction)
     delta = @former_comaction.end_time - @former_comaction.start_time
@@ -100,4 +106,6 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     refute flash.empty?, 'Flash never empty'
     assert_template 'comactions/edit'
   end
+
+
 end
