@@ -16,4 +16,9 @@ class SessionsHelperTest < ActionView::TestCase
     @user.update_attribute(:remember_digest, User.digest(User.new_token))
     assert_nil current_user
   end
+
+  test "current_user is ok " do
+    log_in_as(@user)
+    assert_equal current_user, @user, "logged guy is current_user"
+  end
 end
