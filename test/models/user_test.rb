@@ -84,6 +84,9 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?(:remember, '')
   end
 
-
+  test "trigram ok" do
+    @user.name = "Patrick Person"
+    assert_equal @user.trigram,"PPE"
+  end
 
 end

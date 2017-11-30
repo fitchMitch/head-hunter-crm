@@ -14,6 +14,7 @@ require 'test_helper'
 #  end_time    :datetime
 
 class ComactionTest < ActiveSupport::TestCase
+
   def setup
     @comaction = create(:comaction)
     @former_comaction = build(:former_comaction)
@@ -42,6 +43,7 @@ class ComactionTest < ActiveSupport::TestCase
     @comaction.person = nil
     refute @comaction.valid?, "person is linked"
   end
+
   test 'date is set by defautl' do
     assert_equal @comaction.is_dated,1
   end
