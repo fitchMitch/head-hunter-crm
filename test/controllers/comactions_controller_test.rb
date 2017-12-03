@@ -15,6 +15,8 @@ require 'test_helper'
 class ComactionControllerTest < ActionDispatch::IntegrationTest
   def setup
     @comaction = create(:comaction)
+    @mission = create(:mission)
+    @person = create(:person)
     @user = create(:user)
   end
 
@@ -68,6 +70,27 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to comactions_path
   end
   #---------------
+  # create
+  #---------------
+  test 'should create a comaction' do
+    log_in_as(@user)
+    post comactions_url ,
+      params: {
+        comaction: {
+          name: 'Yet another',
+          status: Comaction::STATUS_RELATED[-1],
+          person_id: @person.id,
+          mission_id: @mission.id,
+          user_id: @user.id
+        }
+    }
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+    refute flash.empty?
+    assert_redirected_to comactions_path
+  end
+  #---------------
   # edit
   #---------------
   test 'should invalidate strange action_types and redirect comaction edit page ' do
@@ -79,6 +102,21 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     }
     refute flash.empty?
     assert_template 'comactions/edit'
+  end
+
+  test 'should validate comaction edit page ' do
+    log_in_as(@user)
+    get edit_comaction_path(@comaction)
+    patch comaction_path(@comaction), params: {
+      comaction: {
+        action_type: Comaction::ACTION_TYPES[-1]
+      }
+    }
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+    refute flash.empty?
+    assert_template 'comactions/calendar'
   end
 
   test 'should invalidate upside down dates and redirect comaction edit page ' do

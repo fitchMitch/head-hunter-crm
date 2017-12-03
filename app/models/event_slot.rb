@@ -9,9 +9,9 @@ class EventSlot
     update_duration
   end
 
-  def descro
-    "De  #{self.start_period.strftime('%H:%M')} à #{self.end_period.strftime('%H:%M')}"
-  end
+  # def descro
+  #   "De  #{self.start_period.strftime('%H:%M')} à #{self.end_period.strftime('%H:%M')}"
+  # end
 
   def get_hours_duration
     min_left = self.min_duration % 60
@@ -31,10 +31,9 @@ class EventSlot
     if overlaps_two_days?
       (0..days_overlap).to_a.each do |diff|
         day_offset = s.beginning_of_day.advance(days: diff)
-        offset_s = day_offset
         offset_e = s.end_of_day.advance(days: diff)
         r << EventSlot.new(
-          :start_period => offset_s,
+          :start_period => day_offset,
           :end_period => offset_e
           ) unless day_offset.wday == 0 #sunday
       end
