@@ -3,4 +3,4 @@ delete from people;
 delete from companies;
 delete from jobs;
 delete from missions;
-delete from comactions;
+delete from comactions; 
