@@ -122,7 +122,7 @@ class ComactionsController < ApplicationController
   def update
     @comaction = trigger_nil_dates @comaction
 
-    if @comaction.update_attributes(comaction_params)
+    if @comaction.update(comaction_params)
       if @comaction.start_time == nil || @comaction.end_time == nil
         flash[:success] = I18n.t("comaction.message.saved")
       else

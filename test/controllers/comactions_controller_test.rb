@@ -84,11 +84,8 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
           user_id: @user.id
         }
     }
-    assert_response :redirect
-    follow_redirect!
     assert_response :success
-    refute flash.empty?
-    assert_redirected_to comactions_path
+    assert_template 'comactions/index'
   end
   #---------------
   # edit
@@ -101,7 +98,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
       }
     }
     refute flash.empty?
-    assert_template 'comactions/edit'
+    assert_template 'comactions/calendar'
   end
 
   test 'should validate comaction edit page ' do
@@ -137,8 +134,8 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     delta = @former_comaction.end_time - @former_comaction.start_time
     patch comaction_path(@comaction), params: {
       comaction: {
-        start_time: @former_comaction.start_time + 1/48,
-        end_time: @former_comaction.end_time + 1/48
+        start_time: @former_comaction.start_time + 30*60,
+        end_time: @former_comaction.end_time + 30*60
       }
     }
     refute flash.empty?, 'Flash never empty'

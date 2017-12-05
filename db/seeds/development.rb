@@ -172,7 +172,7 @@ missions = Mission.all
   mission=           missions.sample
   created_at =       Date.today - (200..480).to_a.sample
   updated_at =       created_at +  (1..150).to_a.sample
-  start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..15).to_a.sample * 24 + (7..20).to_a.sample) * 60 * 60  : nil
+  start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..25).to_a.sample * 24 + (7..20).to_a.sample) * 60 * 60  : nil
   end_time    =      start_time.nil?  ? nil : start_time + ((1..4).to_a.sample / 2) * 60 * 60
 
   Comaction.create!(
