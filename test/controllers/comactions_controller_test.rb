@@ -74,6 +74,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
   #---------------
   test 'should create a comaction' do
     log_in_as(@user)
+    get new_comaction_path
     post comactions_url ,
       params: {
         comaction: {
@@ -85,12 +86,13 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
         }
     }
     assert_response :success
-    assert_template 'comactions/index'
+    refute flash.empty?
+    assert_template partial: '_form', count: 1
   end
   #---------------
   # edit
   #---------------
-  test 'should invalidate strange action_types and redirect comaction edit page ' do
+  test 'should invalidate strange action_types and redirect comaction edit page' do
     log_in_as(@user)
     patch comaction_path(@comaction), params: {
       comaction: {
@@ -98,10 +100,10 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
       }
     }
     refute flash.empty?
-    assert_template 'comactions/calendar'
+    assert_template partial: '_form', count: 1
   end
 
-  test 'should validate comaction edit page ' do
+  test 'should validate comaction edit page' do
     log_in_as(@user)
     get edit_comaction_path(@comaction)
     patch comaction_path(@comaction), params: {
@@ -113,33 +115,34 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     refute flash.empty?
-    assert_template 'comactions/calendar'
+    assert_template partial: '_month_calendar', count: 1
   end
 
-  test 'should invalidate upside down dates and redirect comaction edit page ' do
+  test 'should invalidate upside down dates and redirect comaction edit page' do
     log_in_as(@user)
     patch comaction_path(@comaction), params: {
       comaction: {
         start_time: @comaction.end_time,
-        end_time: @comaction.start_time - 1
+        end_time: @comaction.start_time - 60*60*24
       }
     }
     refute flash.empty?, 'Flash never empty'
-    assert_template 'comactions/edit'
+    assert_template partial: '_form', count: 1
   end
 
   test 'should invalidate overlapping comactions' do
     log_in_as(@user)
     @former_comaction = create(:former_comaction)
     delta = @former_comaction.end_time - @former_comaction.start_time
+    get edit_comaction_path(@comaction)
     patch comaction_path(@comaction), params: {
       comaction: {
         start_time: @former_comaction.start_time + 30*60,
         end_time: @former_comaction.end_time + 30*60
       }
     }
-    refute flash.empty?, 'Flash never empty'
-    assert_template 'comactions/edit'
+    assert flash.empty?, 'LINE 144 - Flash is not empty while it shall '
+    # assert_template partial: '_month_calendar', count: 1
   end
 
 

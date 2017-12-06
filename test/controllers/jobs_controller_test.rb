@@ -6,7 +6,21 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     @company = @job.company
     @person = @job.person
     @user= @job.person.user
-
+    @some_params = {
+      'params' => {
+        'job' => {
+          'job_title' => 'Yet another',
+          'start_date' =>  Date.today.years_ago(10),
+          'end_date' =>  Date.today.years_ago(8),
+          'salary' =>  2222,
+          'jj_job' =>  true,
+          'person_id' =>  @person.id,
+          'company_id' =>  @company.id,
+          'user_id' =>  @user.id,
+          'no_end' =>  false
+        }
+      }
+    }
     log_in_as(@user)
   end
 
@@ -31,6 +45,19 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get jobs_path
     assert_response :success
+  end
+
+  test "should create job" do
+    get new_job_path
+    post jobs_url ,@some_params['params']
+    assert_redirected_to person_url(@person)
+  end
+
+  test "should redirect to person's path list when destroy" do
+    assert_difference 'Job.count',-1 do
+      delete job_path(@job)
+    end
+    assert_redirected_to person_path(@person)
   end
 
   test "should show double jobs" do
