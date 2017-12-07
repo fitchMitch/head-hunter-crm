@@ -6,12 +6,38 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     @mission   = create(:mission)
     @company   = @mission.company
     @person    = @mission.person
+    @some_params = {
+        'mission' => {
+          'name' => 'Yet another',
+          'start_date' =>  Date.today.years_ago(10),
+          'end_date' =>  Date.today.years_ago(8),
+          'reward' =>  2222,
+          'paid_amount' =>  111,
+          'criteria' =>  "test",
+          'person_id' =>  @person.id,
+          'company_id' =>  @company.id,
+          'user_id' =>  @user.id,
+          'is_done' =>  false
+      }
+    }
     log_in_as(@user)
   end
 
   test "should get edit" do
     get edit_mission_path(@mission)
     assert_response :success
+  end
+
+  test  'should update' do
+
+    patch mission_path(@mission), @some_params
+    assert_redirected_to mission_path(@mission)
+  end
+
+  test "should create mission" do
+    get new_mission_path
+    post missions_url , @some_params
+    assert_redirected_to person_url(@person)
   end
 
   test "should get new" do
@@ -29,5 +55,13 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     get missions_path
     assert_response :success
   end
+
+  test "should destroy mission" do
+    assert_difference 'Mission.count',-1 do
+      delete mission_path(@mission)
+    end
+    assert_redirected_to missions_path
+  end
+
 
 end

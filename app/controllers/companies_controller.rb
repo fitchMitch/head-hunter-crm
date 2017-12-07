@@ -42,11 +42,11 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def destroy
-    Company.find(params[:id]).destroy
-    flash[:success] = 'Société supprimée'
-    redirect_to companies_path
-  end
+  # def destroy
+  #   Company.find(params[:id]).destroy
+  #   flash[:success] = 'Société supprimée'
+  #   redirect_to companies_path
+  # end
 
   def list_people
     @company = Company.find(params[:id])

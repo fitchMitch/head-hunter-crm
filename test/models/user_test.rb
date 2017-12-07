@@ -16,7 +16,6 @@
 #  reset_digest      :string
 #  reset_sent_at     :datetime
 #
-
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase

@@ -57,11 +57,37 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should redirect destroy" do
-    log_in_as(@user)
-    assert_difference 'Company.count',-1 do
-      delete company_path(@company)
-    end
-    assert_redirected_to companies_path
+  test "should NOT create company" do
+    get new_company_path
+    @some_params = {
+        'company' => {
+          'name' => 'ACME'
+        }
+    }
+    post companies_url, @some_params
+    assert_response :success
+    assert_template "companies/new"
   end
+
+  test "should create company" do
+    n = Company.all.count
+    get new_company_path
+    @some_params = {
+        'company' => {
+          'company_name' => 'ACME'
+        }
+    }
+    post companies_url, @some_params
+    assert_redirected_to companies_url
+    follow_redirect!
+    assert_equal n+1, Company.all.count
+  end
+
+  # test "should redirect destroy" do
+  #   log_in_as(@user)
+  #   assert_difference 'Company.count', -1 do
+  #     delete company_path(@company)
+  #   end
+  #   assert_redirected_to companies_path
+  # end
 end

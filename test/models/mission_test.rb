@@ -18,7 +18,6 @@
 #  whished_start_date :date
 #  status             :string
 #
-
 require 'test_helper'
 
 class MissionTest < ActiveSupport::TestCase
@@ -26,17 +25,17 @@ class MissionTest < ActiveSupport::TestCase
     @mission = create(:mission)
   end
 
-  test "mission name should not be empty" do
+  test 'mission name should not be empty' do
     @mission.name = ''
     refute @mission.valid?
   end
 
-  test "mission name should not be long" do
-    @mission.name = 'a'* 51
+  test 'mission name should not be long' do
+    @mission.name = 'a' * 51
     refute @mission.valid?
   end
 
-  test "saving missions should be ok" do
+  test 'saving missions should be ok' do
     @mission2 = build(:mission)
     assert @mission2.valid?
     assert_difference 'Mission.count' do
