@@ -50,14 +50,19 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   test "should not allow empty search" do
     get search_path, params: {quest: " "}
     assert_response :success
-    assert_select "span.badge", 0
+    # assert_select "span.badge" , { :count => 1, :text => '0' }
+    assert_select "span.badge" do |c|
+      assert_equal c.text,0
+    end
   end
 
-  test "should not allow full empty search" do
-    get search_path, params: {quest: ""}
-    assert_response :success
-    assert_select "span.badge", 0
-  end
+  # test "should not allow full empty search" do
+  #   get search_path, params: {quest: ""}
+  #   assert_response :success
+  #   assert_select "span.badge" do |c|
+  #     assert_equal c,0
+  #   end
+  # end
 
 
 end
