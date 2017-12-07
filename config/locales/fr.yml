@@ -431,6 +431,9 @@ fr:
     danger_message: Cette expérience n'a pas pu être ajoutée
     double_jobs: Cet utilisateur a déjà un poste à plein temps
     unemployed: sans emploi
+    canceled: Emploi supprimé
+    unupdated: Le contact n'a pas pu être mis à jour
+    new_saved: Nouvel emploi de sauvegardé
   mission:
     status: Etat d'avancement du contrat
     create: Créer une mission

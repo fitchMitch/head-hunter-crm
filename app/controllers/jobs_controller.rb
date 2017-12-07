@@ -26,7 +26,7 @@ class JobsController < ApplicationController
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
-      message = "Nouvel emploi de #{@job.person.firstname} sauvegardé"
+      message = "#{@job.person.firstname}" + I18n.t("job.new_saved")
       # if Job.double_jobs(@person.id)
       #   flash[:warning] = message + ' (ce profil a plusieurs emplois en parallèle)'
       # else
@@ -45,7 +45,7 @@ class JobsController < ApplicationController
       @person = Person.find(@job.person_id)
       redirect_to @person
     else
-      flash[:danger] = 'Le contact n\a pas pu être mis à jour'
+      flash[:danger] = I18n.t("job.unpupdated")
       render 'edit'
     end
   end
@@ -53,7 +53,7 @@ class JobsController < ApplicationController
   def destroy
     person_id = @job.person_id
     @job.destroy
-    flash[:success] = 'Emploi supprimé'
+    flash[:success] = I18n.t("job.canceled")
     redirect_to person_path(person_id)
   end
   #-----------------
