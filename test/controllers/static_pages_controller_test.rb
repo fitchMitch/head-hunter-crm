@@ -49,20 +49,10 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should not allow empty search" do
     get search_path, params: {quest: " "}
+    assert_response :redirect
+    follow_redirect!
     assert_response :success
-    # assert_select "span.badge" , { :count => 1, :text => '0' }
-    assert_select "span.badge" do |c|
-      assert_equal c.text,0
-    end
+    assert_template partial: '_month_calendar', count: 1
   end
-
-  # test "should not allow full empty search" do
-  #   get search_path, params: {quest: ""}
-  #   assert_response :success
-  #   assert_select "span.badge" do |c|
-  #     assert_equal c,0
-  #   end
-  # end
-
 
 end

@@ -7,13 +7,9 @@ module PeopleHelper
     # TODO parameter here is hard coded : 3 years
     #puts Date.parse(paul.end_date)
     num = (paul.end_date.jd - paul.start_date.jd)
-    step = 3 * 365 / 12
+    step = 3 * 365 / 12 # bar length is full with 12 steps from the grid (and not 12 months) corresponding to 3 years
     i = [(num.abs/step).ceil, 12].min
-    str = "<div class='row'> <div class='col-xs-"
-    str += i.to_s
-    str += ' grav'
-    str += i.to_s
-    str += '\'></div> </div>'
+    str = "<div class='row'> <div class='col-xs-#{i.to_s} grav#{i.to_s}\'></div> </div>"
     str.html_safe
   end
 

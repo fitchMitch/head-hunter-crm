@@ -24,7 +24,7 @@ module ApplicationHelper
     "<span class=\"badge badge-default\">#{u.trigram}</span>".html_safe
   end
   #-----------------
-  def search_key(thisHash,value)
+  def search_hash_key(thisHash,value)
     thisHash.select { |k, v| v == value.to_sym }.keys
   end
   #-----------------
@@ -72,7 +72,7 @@ module ApplicationHelper
       elsif s > twoWeeks
         ['dans', (s/aWeek), 'semaines']
       elsif s > aWeek
-        [I18n.t(t1.strftime('%A')), ' prochain à', hm]
+        [I18n.t(t1.strftime('%A')), ' en huit à', hm]
       elsif s > threeDays
         [I18n.t(t1.strftime('%A')), ' à', hm]
       elsif s > theDayAfter

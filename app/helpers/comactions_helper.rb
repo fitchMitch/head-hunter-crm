@@ -17,14 +17,21 @@ module ComactionsHelper
     "<p class='label label-mini #{label_type}'> #{letter} </p>".html_safe
   end
 
-  def background_style (ev)
-    style = "status-frame "
-    style +=  case ev.action_type.to_s
-      when Comaction::CLIENT_TYPE then "client-appointment"
-      when Comaction::APPLY_TYPE then "applier-appointment"
-      when Comaction::APPLY_CUSTOMER_TYPE then "applier-client-appointment"
-      when Comaction::EXPLORATION_TYPE then "exploration-appointment"
-      else ""
+  def background_style (ev) # ev as a symbol
+    type_style = {
+      :client_type => "client-appointment",
+      :apply_type => "applier-appointment",
+      :apply_customer_type => "applier-client-appointment",
+      :exploration_type => "exploration-appointment",
+      :other_type => "none"
+    }
+    style = "status-frame #{type_style(ev)}"
+    # style +=  case ev.action_type.to_s
+    #   when Comaction::CLIENT_TYPE then "client-appointment"
+    #   when Comaction::APPLY_TYPE then "applier-appointment"
+    #   when Comaction::APPLY_CUSTOMER_TYPE then "applier-client-appointment"
+    #   when Comaction::EXPLORATION_TYPE then "exploration-appointment"
+    #   else ""
     end
   end
 
@@ -53,8 +60,9 @@ module ComactionsHelper
   end
 
   def button_filters(last_val)
-    statuses = [["",""]] + Comaction::STATUSES.each {|st| [st, Comaction::STATUS_RELATED[st].to_s] }
-    selected  = search_key(Comaction::STATUS_RELATED,last_val).first
+    statuses = [["",""]] + Comaction::STATUSES.each {|st| [st,ACTION_TYPES_NAMES[st]] }
+    selected  = last_val
+    # selected  = search_hash_key(Comaction::STATUS_RELATED,last_val).first
     opt = options_for_select(statuses, selected)
     s = "<select class='form-control input-sm filter' id='mission_status' > #{opt}</select>".html_safe
   end

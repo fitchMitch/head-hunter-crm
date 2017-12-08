@@ -43,29 +43,46 @@ class Comaction < ApplicationRecord
     find_each(&:update_pg_search_document)
   end
 
-  STATUSES = [STATUS_SOURCED = 'Sourcé'.freeze,
-              STATUS_PRESELECTED = 'Préselectionné'.freeze,
-              STATUS_APPOINT = 'RDV JJ'.freeze,
-              STATUS_PRES = 'Présentation client'.freeze,
-              STATUS_O_PRES = 'Autre RDV client'.freeze,
-              STATUS_HIRED = 'Engagé'.freeze,
-              STATUS_WORKING = 'En poste'.freeze].freeze
-
-  ACTION_TYPES = [CLIENT_TYPE = 'RdV Client'.freeze,
-                  APPLY_TYPE = 'RdV Candidat'.freeze,
-                  APPLY_CUSTOMER_TYPE = 'RdV Candidat Client'.freeze,
-                  EXPLORATION_TYPE = 'RdV exploratoire'.freeze,
-                  OTHER_TYPE = 'Autre rendez-vous'.freeze].freeze
-
-  STATUS_RELATED = {
-    STATUS_SOURCED => :sourced,
-    STATUS_PRESELECTED => :preselected,
-    STATUS_APPOINT => :appoint,
-    STATUS_PRES => :pres,
-    STATUS_O_PRES => :opres,
-    STATUS_HIRED => :hired,
-    STATUS_WORKING => :working
-  }.freeze
+  # STATUSES = [STATUS_SOURCED = 'Sourcé'.freeze,
+  #             STATUS_PRESELECTED = 'Préselectionné'.freeze,
+  #             STATUS_APPOINT = 'RDV JJ'.freeze,
+  #             STATUS_PRES = 'Présentation client'.freeze,
+  #             STATUS_O_PRES = 'Autre RDV client'.freeze,
+  #             STATUS_HIRED = 'Engagé'.freeze,
+  #             STATUS_WORKING = 'En poste'.freeze].freeze
+  STATUSES = [:sourced,
+              :preselected,
+              :appoint,
+              :pres,
+              :opres,
+              :hired,
+              :working]
+  STATUSES.each { |s|
+    STATUS_NAMES[s] = I18n.t("comaction.status.#{s.to_s}")
+  }
+  ACTION_TYPES = [:client_type,
+                  :apply_type,
+                  :apply_customer_type,
+                  :exploration_type,
+                  :other_type]
+  ACTION_TYPES.each { |s|
+    ACTION_TYPES_NAMES[s] = I18n.t("comaction.action_types.#{s.to_s}")
+  }
+  # ACTION_TYPES = [CLIENT_TYPE = 'RdV Client'.freeze,
+  #                 APPLY_TYPE = 'RdV Candidat'.freeze,
+  #                 APPLY_CUSTOMER_TYPE = 'RdV Candidat Client'.freeze,
+  #                 EXPLORATION_TYPE = 'RdV exploratoire'.freeze,
+  #                 OTHER_TYPE = 'Autre rendez-vous'.freeze].freeze
+  #
+  # STATUS_RELATED = {
+  #   STATUS_SOURCED => :sourced,
+  #   STATUS_PRESELECTED => :preselected,
+  #   STATUS_APPOINT => :appoint,
+  #   STATUS_PRES => :pres,
+  #   STATUS_O_PRES => :opres,
+  #   STATUS_HIRED => :hired,
+  #   STATUS_WORKING => :working
+  # }.freeze
   # ===========
   # Initialization
   # ===========
@@ -89,13 +106,18 @@ class Comaction < ApplicationRecord
   scope :mine,          ->(uid) { where('comactions.user_id = ?', uid) }
   scope :unscheduled,   -> { where('start_time is null ') }
   scope :scheduled,     -> { where('start_time is not null ') }
-  scope :sourced,       -> { where('comactions.status = ? ', STATUS_SOURCED) }
-  scope :preselected,   -> { where('comactions.status = ? ', STATUS_PRESELECTED) }
-  scope :appoint,       -> { where('comactions.status = ?  ', STATUS_APPOINT) }
-  scope :pres,          -> { where('comactions.status = ?  ', STATUS_PRES) }
-  scope :opres,         -> { where('comactions.status = ? ', STATUS_O_PRES) }
-  scope :hired,         -> { where('comactions.status = ? ', STATUS_HIRED) }
-  scope :working,       -> { where('comactions.status = ? ', STATUS_WORKING) }
+
+  STATUSES.each { |s|
+    scope s, -> { where('comactions.status = ? ', s ) }
+  }
+
+  # scope :sourced,       -> { where('comactions.status = ? ', ComactionStatus.name(:sourced)) }
+  # scope :preselected,   -> { where('comactions.status = ? ', STATUS_PRESELECTED) }
+  # scope :appoint,       -> { where('comactions.status = ?  ', STATUS_APPOINT) }
+  # scope :pres,          -> { where('comactions.status = ?  ', STATUS_PRES) }
+  # scope :opres,         -> { where('comactions.status = ? ', STATUS_O_PRES) }
+  # scope :hired,         -> { where('comactions.status = ? ', STATUS_HIRED) }
+  # scope :working,       -> { where('comactions.status = ? ', STATUS_WORKING) }
 
   scope :mission_list,         ->(mission) { where('comactions.mission_id = ?', mission.id) }
   scope :from_person,          ->(person) { where('comactions.person_id = ?', person.id) }
@@ -108,7 +130,7 @@ class Comaction < ApplicationRecord
   validates :action_type, presence: true
 
   # validates :status, inclusion: { in: STATUSES }
-  validates :action_type, inclusion: { in: ACTION_TYPES }
+  validates :action_type, inclusion: { in: ACTION_TYPES_NAMES.values }
   validate  :end_time_is_after_and_overlap
 
   # Sends meeting email.

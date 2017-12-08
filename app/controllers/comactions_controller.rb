@@ -45,7 +45,7 @@ class ComactionsController < ApplicationController
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
     unless params[:filter].nil?
-      Comaction::STATUS_RELATED.values.each do |key|
+      ComactionStatus.values.each do |key|
         @comactions = @comactions.public_send(key)  if params[:filter].to_sym == key
       end
       if params[:filter] === 'future'
@@ -186,7 +186,7 @@ class ComactionsController < ApplicationController
     end
   # A list of the param names that can be used for filtering the Product list
     def filtering_params(params)
-      params.slice(Comaction::STATUS_RELATED.values)
+      params.slice(ComactionStatus.values)
     end
 
     def comaction_params

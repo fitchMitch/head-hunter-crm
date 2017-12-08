@@ -381,6 +381,20 @@ fr:
       updated_with_mail: Rendez-vous mis à jour (un email a été envoyé)
       unupdated: Ce rendez-vous n'a pas pu être mis à jour
       deleted: Rendez-vous supprimé
+    status:
+      sourced: Sourcé
+      preselected: Préselectionné
+      appointed: RDV HH
+      pres: Présentation client
+      o_pres: Autre RDV client
+      hired: Engagé
+      working: En poste
+    action_types:
+      client_type: RdV Client
+      apply_type: RdV Candidat
+      apply_customer_type: RdV Candidat Client
+      exploration_type: RdV exploratoire
+      other_type: Autre rendez-vous
   company:
     company_name: Nom de la société
     worked_there: personnes y ont travaillé
@@ -467,3 +481,4 @@ fr:
   search:
     your_search: Votre recherche
     no_result: Aucun résultat pour votre recherche
+  enum:

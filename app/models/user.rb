@@ -95,7 +95,7 @@ class User < ApplicationRecord
   end
 
   def trigram
-    trigram = name.split(' ').count>1 ?  name.split(' ')[0][0] +  name.split(' ')[1][0..1] : name[0..2]
+    trigram = name.split(' ').count > 1 ?  name.split(' ')[0][0] +  name.split(' ')[1][0..1] : name[0..2]
     trigram.upcase
   end
   # ------------------------
