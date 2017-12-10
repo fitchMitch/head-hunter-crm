@@ -18,21 +18,21 @@ class MissionsController < ApplicationController
 
   def new
     @mission = Mission.new
-    @mission.status = Mission::STATUS_HOPE
+    @mission.status = :opportunity
     @mission.paid_amount = 0
     @forwhom = params[:person_id] || 0
   end
   #-----------------
   def index
-    @missions_status = [["",""]] + Mission::STATUSES.collect { |t| [ t, t] }
-    @status_selected = params[:q].nil? || params[:q]['status_eq'].nil? ? "" : params[:q]['status_eq']
+
+    @status_selected = params[:q].nil? || params[:q]['status_eq'].nil? ? " " : params[:q]['status_eq']
     @q = Mission.ransack(params[:q])
     @missions = @q.result.includes(:company, :person).page(params[:page] ? params[:page].to_i: 1)
 
   end
   #-----------------
-
   def edit
+
     @person = Person.find(@mission.person_id)
     @company = Company.find(@mission.company_id)
   end
@@ -48,7 +48,7 @@ class MissionsController < ApplicationController
     @company = Company.find(mission_params[:company_id])
 
     @mission = @person.missions.build(mission_params)
-    @mission.status = Mission::STATUS_HOPE
+    @mission.status = :opportunity
     @mission.is_done = false
     @mission.signed = false
 
@@ -62,8 +62,8 @@ class MissionsController < ApplicationController
   end
 
   def update
-    @mission.is_done    = [Mission::STATUS_BILLED, Mission::STATUS_PAYED].include?(mission_params[:status])
-    @mission.signed     = [Mission::STATUS_SIGNED, Mission::STATUS_BILLED, Mission::STATUS_PAYED].include?(mission_params[:status])
+    @mission.is_done    = [:mission_billed, :mission_payed].include?(mission_params[:status])
+    @mission.signed     = [:contract_signed, :mission_billed, :mission_payed].include?(mission_params[:status])
 
     if @mission.update_attributes(mission_params)
       flash[:success] = 'Mission mise à jour'

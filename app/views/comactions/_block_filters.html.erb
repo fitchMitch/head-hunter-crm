@@ -11,10 +11,10 @@
             <div class="col-xs-11">
               <div class="input-group filter">
                 <span class="input-group-addon" id="basic-addon1"><%= t("status") %></span>
-                <%= button_filters(@status_selected) %>
+                <%= button_filters(@status_selected,'form-control input-sm filter') %>
               </div>
               <div class="input-group filter">
-                <span class="input-group-addon" id="basic-addon1"><%= t("missions") %></span>
+                <span class="input-group-addon" id="basic-addon2"><%= t("missions") %></span>
                 <%= f.select :mission_id_eq , options_for_select(@missions.each { |t| t},@mission_selected), {},  {class: "form-control input-sm "} %>
               </div>
               <%= link_to  comactions_path(:filter => 'unscheduled', :v => 'table_view'), class: "btn btn-success btn-sm" do %>

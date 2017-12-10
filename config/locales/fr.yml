@@ -1,53 +1,74 @@
 ---
 fr:
+  about: A propos
+  Action: Action
+  add_button: Ajouter
+  added: ajouté il y a
+  and: et
+  at: chez
+
   brand: HH_CRM
-  Name: Nom
-  Date: Date
-  Dates: Dates
-  With: Avec
-  Status: Statut
-  Mission: Mission
-  Missions: Missions
+
+  cancel-button-text: No way
+  Client: Client
+  close: Fermer
   Company: Société
   Companies: Sociétés
-  Contacts: Contacts
-  Client: Client
-  Action: Action
-  delete: Supprimer
-  filter: Filtre
-  filters: Filtres
-  reinit: Réinitialiser
-  updated: mis à jour
-  today: aujourd'hui
-  user_resp: Resp
-  Edit: Editer
-  Create: Créer
-  update: Changer
-  delete: Supprimer
-  add_button: Ajouter
-  recorded_on: enregistré il y a
-  update_button: Mettre à jour
-  save_button: Sauvegarder
-  ok_button : Valider
-  currency: euros
-  about: A propos
-  contact: Contact
-  help: Aide
-  close: Fermer
-  wait: En attente...
-  filter_button: Filtrer
   confirm: Wesh ? C'est sûr ?
   confirm-button-text: Wesh gro'
-  cancel-button-text: No way
-  added: ajouté il y a
-  paid: Payé
-  from: de
-  to: à
-  at: chez
-  For: Pour
+  Contacts: Contacts
+  Create: Créer
+  currency: euros
+  contact: Contact
+  created_at: Créé il y a
+
+  Date: Date
+  Dates: Dates
+  delete: Supprimer
+
+  Edit: Editer
+
   empty_list : ... Rien pour l'instant.
-  search_title: Rechercher
+
+  filter: Filtre
+  filters: Filtres
+  filter_button: Filtrer
+  from: de
+  For: Pour
+
+  help: Aide
+
+  jours: days????
+
+  Mission: Mission
+  Missions: Missions
+
+  Name: Nom
+
+  ok_button : Valider
+
+  paid: Payé
+
+  reinit: Réinitialiser
+  recorded_on: enregistré il y a
+
+  Status: Statut
   status: Statuts
+  search_title: Rechercher
+  save_button: Sauvegarder
+
+  to: à
+  today: aujourd'hui
+
+  update: Changer
+  updated: mis à jour
+  update_button: Mettre à jour
+  user_resp: Resp
+
+  wait: En attente...
+  With: Avec
+
+  update_date: Mise à jour
   jj:
     maxim: "#{brand} Recrutement"
     rdv: Rendez-vous
@@ -59,6 +80,176 @@ fr:
     log_in: Log in
     dashboard_title: Tableau de bord
     add_time_title: Mon temps
+
+  will_paginate:
+    next_label: "Suiv. »"
+    previous_label: "« Préc."
+
+  user:
+    authentication:
+      user_authentication: Authentification
+      password_update: Mise à jour du mot de passe
+      forgotten_password: Mot de passe oublié
+    password: Mot de passe
+    password_conf: Confirmation de mot de passe
+    prolile_update: Modifier le profil
+    list: Liste des utilisateurs
+    account_create: Créer un compte
+    remember_me: Se souvenir de moi
+    login: Login
+
+  simple_calendar:
+    previous: Préc.
+    next: Suiv.
+
+  comaction:
+    tutti: Toutes
+    rdv: Rendez-vous
+    short-rdv: RdV
+    menu:
+      title_list: calendrier en tables
+    filters:
+      now_and_after: Maintenant et +
+      add_contact: Ajouter un nouveau contact
+      add_mission: Ajouter une mission
+      with_no_comaction: Sans Rendez-vous
+      no_date: Sans date
+    label: Libellé du RDV/action
+    status: Etat d'avancement
+    type: Type de rendez-vous
+    mission: Nom de la Mission
+    date_q: Date ?
+    start:
+      date_and_hour: Date et heure de début
+    end:
+      date_and_hour: Date et heure de fin
+    title_list: Calendrier
+    title_list_short: Calendrier
+    update_title: Editer un RdV/action
+    add_label: Ajouter une action, un RdV
+    create: Créer un rendez-vous/action
+    calendar: Calendrier
+    see_mission: Voir la mission
+    availibility:
+      title: Disponibilités
+      command_message: Cliquez sur les parties vertes (votre disponibilité) pour renseigner les champs jour et heures en vis à vis.
+    message:
+      saved: Rendez-vous sauvegardé
+      saved_with_mail: Rendez-vous sauvegardé (un email a été envoyé)
+      unsaved : Ce rendez-vous n'a pas pu être ajouté
+      updated_with_mail: Rendez-vous mis à jour (un email a été envoyé)
+      unupdated: Ce rendez-vous n'a pas pu être mis à jour
+      deleted: Rendez-vous supprimé
+    status:
+      sourced: Sourcé
+      preselected: Préselectionné
+      appointed: RDV HH
+      pres: Présentation client
+      o_pres: Autre RDV client
+      hired: Engagé
+      working: En poste
+    action_type:
+      client_type: RdV Client
+      apply_type: RdV Candidat
+      apply_customer_type: RdV Candidat Client
+      exploration_type: RdV exploratoire
+      other_type: Autre rendez-vous
+
+  company:
+    company_name: Nom de la société
+    worked_there: personnes y ont travaillé
+    edit: Editer cette société
+    list: Liste des sociétés
+    add: Ajouter une société
+  person:
+    name: Nom
+    job: Emploi
+    edit: Editer ce contact
+    add: Ajouter un contact
+    add_experience: Ajouter une expérience
+    experiences: Expériences
+    create : Créer un contact
+    list: Liste des contacts
+    citizenship: Civilité
+    firstname: Prénom
+    jj_employed: Embauché grâce à JJ
+    phone_number: Numéro de téléphone
+    approx_age: Age approximatif
+    comment: Commentaire
+    cv: Son CV
+    cv_docx: CV (au format docx)
+    no_cv: Pas de CV !
+    phone: Téléphone
+    no_one: Personne n'est encore inscrit
+    passed_jobs: Postes occupés (non exhaustifs)
+    have_meeting: Prendre rendez-vous
+    add_and_see_button: Ajouter et voir
+    save_and_see_button: Sauvegarder et voir
+    history_title: Historique JJ
+    future_tab_title: A venir
+    person_activity_void: Certainement des choses à faire ensemble ...
+    lastly: Dernièrement
+
+  job:
+    last: Poste occupé
+    date_in: Date de prise de fonction
+    date_end: Date de fin de contrat
+    salary: Salaire
+    jj: Poste fourni par %{brand}
+    still_in: en poste
+    add: Ajouter une nouvelle société
+    confirm_for: Wesh ? C'est sûr pour %{him} ?
+    edit: Editer ce poste
+    list : Liste des emplois
+    add: Ajouter une expérience
+    add_first: Créez la première société !
+    danger_message: Cette expérience n'a pas pu être ajoutée
+    double_jobs: Cet utilisateur a déjà un poste à plein temps
+    unemployed: sans emploi
+    canceled: Emploi supprimé
+    unupdated: Le contact n'a pas pu être mis à jour
+    new_saved: Nouvel emploi de sauvegardé
+
+  mission:
+    status: Etat d'avancement du contrat
+    create: Créer une mission
+    add_new: Créer une nouvelle mission
+    add_new_company: Créer une nouvelle société
+    add_contact: Ajouter un nouveau contact
+    paid_amount: Montant touché
+    list: Liste des missions
+    edit: Editer une mission
+    name: Nom de la mission
+    amount: Montant de la mission
+    person_searched: Contenu de la mission
+    contact: Contact client
+    max_salary: Salaire annuel maximal
+    whished_start_date: Date de début de travail
+    due : Echéance
+    market : Marché
+    years: ans
+    Between: Entre
+    Age frame: Tranche d'âge
+    minimum_salary: Salaire minimum
+    maximum_salary: Salaire maximum
+    remuneration: Rémunération JuinJuillet
+    whished_start_date: Date de lancement de la mission
+    already_cashed: Déjà encaissé
+    action_list_title: Activité
+    history_title: Historique
+    passed_tab_title: Passé
+    future_tab_title: A venir
+    mission_activity_void: Aucune activité répertoriée à ce jour
+    status:
+      opportunity: Lead
+      contract_sent: Contrat envoyé
+      contract_signed: Contrat signé
+      mission_billed: Contrat facturé
+      mission_payed: Mission payée
+
+  search:
+    your_search: Votre recherche
+    no_result: Aucun résultat pour votre recherche
   years: années
   months: mois
   Sunday: dimanche
@@ -108,6 +299,7 @@ fr:
   October: Octobre
   November: Novembre
   December: Décembre
+
   activerecord:
     errors:
       messages:
@@ -321,164 +513,3 @@ fr:
       long: "%A %d %B %Y %Hh%M"
       short: "%d %b %Hh%M"
     pm: pm
-  will_paginate:
-    next_label: "Suiv. »"
-    previous_label: "« Préc."
-  and: et
-  jours: days
-  update_date: Mise à jour
-  created_at: Créé il y a
-  user:
-    authentication:
-      user_authentication: Authentification
-      password_update: Mise à jour du mot de passe
-      forgotten_password: Mot de passe oublié
-    password: Mot de passe
-    password_conf: Confirmation de mot de passe
-    prolile_update: Modifier le profil
-    list: Liste des utilisateurs
-    account_create: Créer un compte
-    remember_me: Se souvenir de moi
-    login: Login
-  simple_calendar:
-    previous: Préc.
-    next: Suiv.
-  comaction:
-    tutti: Toutes
-    rdv: Rendez-vous
-    short-rdv: RdV
-    menu:
-      title_list: calendrier en tables
-    filters:
-      now_and_after: Maintenant et +
-      add_contact: Ajouter un nouveau contact
-      add_mission: Ajouter une mission
-      with_no_comaction: Sans Rendez-vous
-      no_date: Sans date
-    label: Libellé du RDV/action
-    status: Etat d'avancement
-    type: Type de rendez-vous
-    mission: Nom de la Mission
-    date_q: Date ?
-    start:
-      date_and_hour: Date et heure de début
-    end:
-      date_and_hour: Date et heure de fin
-    title_list: Calendrier
-    title_list_short: Calendrier
-    update_title: Editer un RdV/action
-    add_label: Ajouter une action, un RdV
-    create: Créer un rendez-vous/action
-    calendar: Calendrier
-    see_mission: Voir la mission
-    availibility:
-      title: Disponibilités
-      command_message: Cliquez sur les parties vertes (votre disponibilité) pour renseigner les champs jour et heures en vis à vis.
-    message:
-      saved: Rendez-vous sauvegardé
-      saved_with_mail: Rendez-vous sauvegardé (un email a été envoyé)
-      unsaved : Ce rendez-vous n'a pas pu être ajouté
-      updated_with_mail: Rendez-vous mis à jour (un email a été envoyé)
-      unupdated: Ce rendez-vous n'a pas pu être mis à jour
-      deleted: Rendez-vous supprimé
-    status:
-      sourced: Sourcé
-      preselected: Préselectionné
-      appointed: RDV HH
-      pres: Présentation client
-      o_pres: Autre RDV client
-      hired: Engagé
-      working: En poste
-    action_types:
-      client_type: RdV Client
-      apply_type: RdV Candidat
-      apply_customer_type: RdV Candidat Client
-      exploration_type: RdV exploratoire
-      other_type: Autre rendez-vous
-  company:
-    company_name: Nom de la société
-    worked_there: personnes y ont travaillé
-    edit: Editer cette société
-    list: Liste des sociétés
-    add: Ajouter une société
-  person:
-    name: Nom
-    job: Emploi
-    edit: Editer ce contact
-    add: Ajouter un contact
-    add_experience: Ajouter une expérience
-    experiences: Expériences
-    create : Créer un contact
-    list: Liste des contacts
-    citizenship: Civilité
-    firstname: Prénom
-    jj_employed: Embauché grâce à JJ
-    phone_number: Numéro de téléphone
-    approx_age: Age approximatif
-    comment: Commentaire
-    cv: Son CV
-    cv_docx: CV (au format docx)
-    no_cv: Pas de CV !
-    phone: Téléphone
-    no_one: Personne n'est encore inscrit
-    passed_jobs: Postes occupés (non exhaustifs)
-    have_meeting: Prendre rendez-vous
-    add_and_see_button: Ajouter et voir
-    save_and_see_button: Sauvegarder et voir
-    history_title: Historique JJ
-    future_tab_title: A venir
-    person_activity_void: Certainement des choses à faire ensemble ...
-    lastly: Dernièrement
-  job:
-    last: Poste occupé
-    date_in: Date de prise de fonction
-    date_end: Date de fin de contrat
-    salary: Salaire
-    jj: Poste fourni par %{brand}
-    still_in: en poste
-    add: Ajouter une nouvelle société
-    confirm_for: Wesh ? C'est sûr pour %{him} ?
-    edit: Editer ce poste
-    list : Liste des emplois
-    add: Ajouter une expérience
-    add_first: Créez la première société !
-    danger_message: Cette expérience n'a pas pu être ajoutée
-    double_jobs: Cet utilisateur a déjà un poste à plein temps
-    unemployed: sans emploi
-    canceled: Emploi supprimé
-    unupdated: Le contact n'a pas pu être mis à jour
-    new_saved: Nouvel emploi de sauvegardé
-  mission:
-    status: Etat d'avancement du contrat
-    create: Créer une mission
-    add_new: Créer une nouvelle mission
-    add_new_company: Créer une nouvelle société
-    add_contact: Ajouter un nouveau contact
-    paid_amount: Montant touché
-    list: Liste des missions
-    edit: Editer une mission
-    name: Nom de la mission
-    amount: Montant de la mission
-    person_searched: Contenu de la mission
-    contact: Contact client
-    max_salary: Salaire annuel maximal
-    whished_start_date: Date de début de travail
-    due : Echéance
-    market : Marché
-    years: ans
-    Between: Entre
-    Age frame: Tranche d'âge
-    minimum_salary: Salaire minimum
-    maximum_salary: Salaire maximum
-    remuneration: Rémunération JuinJuillet
-    whished_start_date: Date de lancement de la mission
-    already_cashed: Déjà encaissé
-    action_list_title: Activité
-    history_title: Historique
-    passed_tab_title: Passé
-    future_tab_title: A venir
-    mission_activity_void: Aucune activité répertoriée à ce jour
-  search:
-    your_search: Votre recherche
-    no_result: Aucun résultat pour votre recherche
-  enum:

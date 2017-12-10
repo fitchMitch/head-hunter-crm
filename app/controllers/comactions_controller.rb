@@ -35,8 +35,8 @@ class ComactionsController < ApplicationController
     params[:page] ||= 1
     # Mission filter setup ----
     @missions = [[I18n.t("comaction.tutti"),""]]
-    last_missions.each {|co|
-      @missions << [co.name, co.id]
+    last_missions.each {|lm|
+      @missions += [lm.name, lm.id]
     }
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
     @status_selected = params[:filter].nil? ? "none" :  params[:filter]
@@ -45,7 +45,7 @@ class ComactionsController < ApplicationController
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
     unless params[:filter].nil?
-      ComactionStatus.values.each do |key|
+      Comaction::statuses.each do |key,value|
         @comactions = @comactions.public_send(key)  if params[:filter].to_sym == key
       end
       if params[:filter] === 'future'
@@ -99,11 +99,14 @@ class ComactionsController < ApplicationController
   def create
     @person = Person.find(comaction_params[:person_id])
     @mission = Mission.find(comaction_params[:mission_id])
-
+    # comaction_params[:status] = comaction_params[:status].to_i
+    # comaction_params[:action_type] = comaction_params[:action_type].to_i
     @comaction = @person.comactions.build(comaction_params)
     #@comaction.mission_id = @mission.id
     @comaction.user_id = current_user.id
     @comaction = trigger_nil_dates @comaction
+    # @comaction.status = @comaction.status.to_i
+    # @comaction.action_type = @comaction.action_type.to_i
 
     if @comaction.save
       if @comaction.start_time == nil  || @comaction.end_time == nil
@@ -121,7 +124,6 @@ class ComactionsController < ApplicationController
 
   def update
     @comaction = trigger_nil_dates @comaction
-
     if @comaction.update(comaction_params)
       if @comaction.start_time == nil || @comaction.end_time == nil
         flash[:success] = I18n.t("comaction.message.saved")
@@ -144,8 +146,6 @@ class ComactionsController < ApplicationController
     redirect_to comactions_path
   end
 
-
-
   #---------------
   private
   #---------------
@@ -157,10 +157,10 @@ class ComactionsController < ApplicationController
       missions = missions.sort {|a,b| b.updated_at <=> a.updated_at}.uniq &:id
     end
 
+    # =================
+    # AVailibility preview
+    # =================
     def availibilities
-      # =================
-      # AVailibility preview
-      # =================
       #just looking into next week
       next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
       #---
@@ -186,7 +186,7 @@ class ComactionsController < ApplicationController
     end
   # A list of the param names that can be used for filtering the Product list
     def filtering_params(params)
-      params.slice(ComactionStatus.values)
+      params.slice(Comaction::ACTION_TYPES_NAMES.values)
     end
 
     def comaction_params

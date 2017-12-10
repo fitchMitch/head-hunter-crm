@@ -4,8 +4,6 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string
-#  status      :string
-#  action_type :string
 #  start_time  :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -13,6 +11,8 @@
 #  mission_id  :integer
 #  person_id   :integer
 #  end_time    :datetime
+#  status      :integer
+#  action_type :integer
 #
 
 class Comaction < ApplicationRecord
@@ -43,46 +43,20 @@ class Comaction < ApplicationRecord
     find_each(&:update_pg_search_document)
   end
 
-  # STATUSES = [STATUS_SOURCED = 'Sourcé'.freeze,
-  #             STATUS_PRESELECTED = 'Préselectionné'.freeze,
-  #             STATUS_APPOINT = 'RDV JJ'.freeze,
-  #             STATUS_PRES = 'Présentation client'.freeze,
-  #             STATUS_O_PRES = 'Autre RDV client'.freeze,
-  #             STATUS_HIRED = 'Engagé'.freeze,
-  #             STATUS_WORKING = 'En poste'.freeze].freeze
-  STATUSES = [:sourced,
-              :preselected,
-              :appoint,
-              :pres,
-              :opres,
-              :hired,
-              :working]
-  STATUSES.each { |s|
-    STATUS_NAMES[s] = I18n.t("comaction.status.#{s.to_s}")
-  }
-  ACTION_TYPES = [:client_type,
-                  :apply_type,
-                  :apply_customer_type,
-                  :exploration_type,
-                  :other_type]
-  ACTION_TYPES.each { |s|
-    ACTION_TYPES_NAMES[s] = I18n.t("comaction.action_types.#{s.to_s}")
-  }
-  # ACTION_TYPES = [CLIENT_TYPE = 'RdV Client'.freeze,
-  #                 APPLY_TYPE = 'RdV Candidat'.freeze,
-  #                 APPLY_CUSTOMER_TYPE = 'RdV Candidat Client'.freeze,
-  #                 EXPLORATION_TYPE = 'RdV exploratoire'.freeze,
-  #                 OTHER_TYPE = 'Autre rendez-vous'.freeze].freeze
-  #
-  # STATUS_RELATED = {
-  #   STATUS_SOURCED => :sourced,
-  #   STATUS_PRESELECTED => :preselected,
-  #   STATUS_APPOINT => :appoint,
-  #   STATUS_PRES => :pres,
-  #   STATUS_O_PRES => :opres,
-  #   STATUS_HIRED => :hired,
-  #   STATUS_WORKING => :working
-  # }.freeze
+  enum status: [:sourced,
+                :preselected,
+                :appointed,
+                :pres,
+                :o_pres,
+                :hired,
+                :working ]
+  enum action_type: [:client_type,
+                    :apply_type,
+                    :apply_customer_type,
+                    :exploration_type,
+                    :other_type]
+
+
   # ===========
   # Initialization
   # ===========
@@ -107,10 +81,6 @@ class Comaction < ApplicationRecord
   scope :unscheduled,   -> { where('start_time is null ') }
   scope :scheduled,     -> { where('start_time is not null ') }
 
-  STATUSES.each { |s|
-    scope s, -> { where('comactions.status = ? ', s ) }
-  }
-
   # scope :sourced,       -> { where('comactions.status = ? ', ComactionStatus.name(:sourced)) }
   # scope :preselected,   -> { where('comactions.status = ? ', STATUS_PRESELECTED) }
   # scope :appoint,       -> { where('comactions.status = ?  ', STATUS_APPOINT) }
@@ -125,15 +95,18 @@ class Comaction < ApplicationRecord
   # Validations
   # ===========
 
-  #validates :name, presence: true, length: { maximum: 100 }
-  # validates :status, presence: true
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :status, presence: true
   validates :action_type, presence: true
 
-  # validates :status, inclusion: { in: STATUSES }
-  validates :action_type, inclusion: { in: ACTION_TYPES_NAMES.values }
+  validates :status, inclusion: { in: statuses }
+  validates :action_type, inclusion: { in: action_types }
   validate  :end_time_is_after_and_overlap
 
   # Sends meeting email.
+  def self.t_com_status (k)
+    I18n.t("comaction.status.#{k}")
+  end
   def send_meeting_email(u, is_new)
     if Rails.configuration.mail_wanted
       is_new == 1  ? ComactionMailer.one_event_saving(self, u).deliver_now : ComactionMailer.event_saving_upd(self, u).deliver_now

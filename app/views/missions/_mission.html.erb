@@ -17,7 +17,7 @@
         <% end %>
     </div>
     <div class='col-lg-2 hidden-md hidden-sm hidden-xs'>
-        <%= mission.status %>
+        <%= t_mis_status(mission.status) %>
         <br>
         <small>
           <% unless mission.reward.nil? || mission.reward == 0  %>

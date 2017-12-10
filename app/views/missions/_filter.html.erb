@@ -5,10 +5,10 @@
       <span class="input-group-addon" id="basic-addon1">
         <%= t("filter") %>
       </span>
-      <%= f.select :status_eq , options_for_select(@missions_status, @status_selected), {},  {class: "form-control"} %>
+      <%= button_filters_missions(@status_selected,'form-control input-sm filter') %>
     </div>
     <% end %>
-    <%= link_to  missions_path, class: "btn btn-success" do %>
+    <%= link_to missions_path, class: "btn btn-success" do %>
       <%= fa_icon("undo", text: t("reinit") ) %>
     <% end %>
   </div>

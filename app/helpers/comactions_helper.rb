@@ -1,23 +1,26 @@
 module ComactionsHelper
+
   def idtype(ev)
-    letter = label_type = ''
-    if ev.action_type == Comaction::CLIENT_TYPE
+    #ev is a a compaction, ev.action_type is a symbol
+    letter = label_type = ' '
+    if ev.client_type?
       label_type = 'label-primary small_label '
       letter = 'C'
-    elsif ev.action_type == Comaction::APPLY_TYPE
+    elsif ev.apply_type?
       label_type = 'label-info small_label '
       letter = 'F'
-    elsif ev.action_type == Comaction::APPLY_CUSTOMER_TYPE
+    elsif ev.apply_customer_type?
       label_type = 'label-danger small_label '
       letter = 'R'
-    elsif ev.action_type == Comaction::EXPLORATION_TYPE
+    elsif ev.exploration_type?
       label_type = 'label-default small_label '
       letter = 'E'
     end
     "<p class='label label-mini #{label_type}'> #{letter} </p>".html_safe
   end
 
-  def background_style (ev) # ev as a symbol
+  def background_style(ev)
+    # ev as a comaction
     type_style = {
       :client_type => "client-appointment",
       :apply_type => "applier-appointment",
@@ -25,14 +28,31 @@ module ComactionsHelper
       :exploration_type => "exploration-appointment",
       :other_type => "none"
     }
-    style = "status-frame #{type_style(ev)}"
-    # style +=  case ev.action_type.to_s
-    #   when Comaction::CLIENT_TYPE then "client-appointment"
-    #   when Comaction::APPLY_TYPE then "applier-appointment"
-    #   when Comaction::APPLY_CUSTOMER_TYPE then "applier-client-appointment"
-    #   when Comaction::EXPLORATION_TYPE then "exploration-appointment"
-    #   else ""
+    used_style = type_style[ev.action_type.to_sym]
+    style = "status-frame #{used_style}"
+  end
+  def t_com_status (k)
+    I18n.t("comaction.status.#{k}")
+  end
+
+  def t_com_ac_type (k)
+    I18n.t("comaction.action_type.#{k}")
+  end
+
+  def status_collection
+    colle=[]
+    Comaction::statuses.each do |k,v|
+      colle << [t_com_status(k),k]
     end
+    colle
+  end
+
+  def type_collection
+    colle=[]
+     Comaction::action_types.each do |k,v|
+      colle << [t_com_ac_type(k),k]
+    end
+    colle
   end
 
   def illustrate(periods)
@@ -48,23 +68,24 @@ module ComactionsHelper
         block[n] = "<span class='not-busy' data-block='#{n}-#{per.start_period.day}-#{per.start_period.month}-#{per.start_period.year}' data-toggle='tooltip' data-placement='left' title='#{n/2}h'></span>"
       end
     end
-    block.slice(Comaction::WORK_HOURS.first*2..Comaction::WORK_HOURS.last*2-1).join("").html_safe
+    block.slice(Comaction::WORK_HOURS.first * 2 .. Comaction::WORK_HOURS.last * 2 - 1).join("").html_safe
   end
 
   def getComactionTitle(c)
-    "<strong>#{c.person.full_name}</strong><br>#{c.action_type} [#{c.status}] "
+    "<strong>#{c.person.full_name}</strong><br>#{t_com_ac_type(c.action_type)} [#{t_com_status(c.status)}] "
   end
 
   def getComactionDetails(c)
     "<i class='fa fa-bookmark-o '></i> : [#{c.mission.status}] #{c.mission.name} <br><i class='fa fa-building-o '></i> : <strong>#{c.mission.company.company_name}</strong>"
   end
 
-  def button_filters(last_val)
-    statuses = [["",""]] + Comaction::STATUSES.each {|st| [st,ACTION_TYPES_NAMES[st]] }
-    selected  = last_val
-    # selected  = search_hash_key(Comaction::STATUS_RELATED,last_val).first
+  def button_filters(selected, css)
+    statuses = [["",""]]
+    Comaction::statuses.each do |k,v|
+      statuses << [t_com_status(k),v]
+    end
     opt = options_for_select(statuses, selected)
-    s = "<select class='form-control input-sm filter' id='mission_status' > #{opt}</select>".html_safe
+    s = "<select class='#{css}' id='comaction_status' > #{opt}</select>".html_safe
   end
 
 end

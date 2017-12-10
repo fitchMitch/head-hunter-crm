@@ -26,13 +26,11 @@ class Mission < ApplicationRecord
 
   default_scope { order(updated_at: :desc) }
 
-  STATUSES = [STATUS_HOPE = 'Opportunité',
-    STATUS_SENT= 'Contrat envoyé',
-    STATUS_SIGNED = 'Contrat signé',
-    STATUS_BILLED = 'Mission facturée',
-    STATUS_PAYED = 'Mission payée'
-  ]
-  #enum statuses: [:hope, :sent, :signed, :billed, :payed]
+  enum status: [:opportunity,
+                :contract_sent,
+                :contract_signed,
+                :mission_billed,
+                :mission_payed ]
 
   include PgSearch
   pg_search_scope :search_name,
@@ -49,21 +47,16 @@ class Mission < ApplicationRecord
     find_each { |record| record.update_pg_search_document }
   end
 
-  scope :active, -> { where('status != ? AND status != ?', STATUS_BILLED, STATUS_PAYED) }
-  scope :not_paid, -> { where('status != ?', STATUS_PAYED) }
+  scope :active, -> { where('status != ? AND status != ?', :mission_billed, :mission_payed) }
+  # scope :not_paid, -> { where('status != ?', :mission_payed) }
 
 
   validates :name, presence: true, length: { maximum: 50 }
   #validates :reward, presence: true
   #validates :whished_start_date, presence: true
-  #validates :status, inclusion: {in: STATUSES }
+  validates :status, inclusion: { in: statuses }
   #validate :max_age_is_max
 
-  # def max_age_is_max
-  #   if min_age.present? && max_age.present? && min_age > max_age
-  #     errors.add(:max_age, 'Plutôt un âge plus avancé')
-  #   end
-  # end
   # ------------------------
   # --    PRIVATE        ---
   # ------------------------

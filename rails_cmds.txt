@@ -34,6 +34,8 @@
   rails g migration DropTagsTable
   rails g migration RemoveTitleColumnToPeople title
   rails g migration RemoveAgesColumnToMissions min_age max_age
+  rails g migration ChangeStatusTypeColumnToComactions
+  rails g migration ChangeStatusTypeColumnToMissions
   
   rails routes -g new_comment
   rails routes -c Comments

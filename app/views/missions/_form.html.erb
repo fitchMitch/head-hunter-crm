@@ -37,7 +37,7 @@
 
 <div class="row ">
   <div class="col-sm-5">
-      <%= f.input :status, label: t("mission.status"), collection: Mission::STATUSES %>
+      <%= f.input :status, label: t("Status"), collection: mission_status_collection %>
   </div>
     <div class="col-sm-7 ">
         <%= f.input :whished_start_date, label: t("mission.whished_start_date"), as: :date, start_year: Date.today.year, end_year: Date.today.year + 2, order: [:day, :month, :year], input_html:{class:" input-sm" } %>

@@ -51,7 +51,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
           params: {
             comaction: {
               name: '',
-              status: Comaction::STATUS_RELATED[-1]
+              status: Comaction::statuses[-1]
             }
           }
     refute flash.empty?
@@ -79,7 +79,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
       params: {
         comaction: {
           name: 'Yet another',
-          status: Comaction::STATUS_RELATED[-1],
+          status: Comaction::statuses[-1],
           person_id: @person.id,
           mission_id: @mission.id,
           user_id: @user.id
@@ -108,7 +108,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     get edit_comaction_path(@comaction)
     patch comaction_path(@comaction), params: {
       comaction: {
-        action_type: Comaction::ACTION_TYPES[-1]
+        action_type: Comaction::action_types[-1]
       }
     }
     assert_response :redirect
