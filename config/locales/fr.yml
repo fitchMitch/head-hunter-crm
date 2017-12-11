@@ -161,6 +161,7 @@ fr:
     edit: Editer cette société
     list: Liste des sociétés
     add: Ajouter une société
+    
   person:
     name: Nom
     job: Emploi
