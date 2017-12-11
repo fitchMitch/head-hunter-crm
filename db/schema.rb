@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211124823) do
+ActiveRecord::Schema.define(version: 20171210183232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
+  enable_extension "pg_trgm"
   enable_extension "unaccent"
 
   create_table "comactions", force: :cascade do |t|
     t.string   "name"
     t.datetime "start_time"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "mission_id"
     t.integer  "person_id"
     t.datetime "end_time"
-    t.integer  "status",      default: 0
-    t.integer  "action_type", default: 0
+    t.integer  "status"
+    t.integer  "action_type"
     t.index ["mission_id"], name: "index_comactions_on_mission_id", using: :btree
     t.index ["person_id"], name: "index_comactions_on_person_id", using: :btree
     t.index ["user_id"], name: "index_comactions_on_user_id", using: :btree

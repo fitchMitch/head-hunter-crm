@@ -86,7 +86,7 @@ module ComactionsHelper
       statuses << [t_com_status(k),v]
     end
     opt = options_for_select(statuses, selected)
-    s = "<select class='#{css}' id='comaction_status' > #{opt}</select>".html_safe
+    s = "<select class='#{css}' id='comaction_filter_status' > #{opt}</select>".html_safe
   end
 
 end

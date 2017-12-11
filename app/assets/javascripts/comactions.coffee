@@ -5,14 +5,7 @@
 $(document).on "turbolinks:load", ->
   $("#comaction_mission_id, #comaction_person_id").select2
     theme: "bootstrap"
-  status_related =
-    'Sourcé'  : 'sourced',
-    'Préselectionné'  : 'preselected',
-    'RDV JJ' : 'appoint',
-    'Présentation client'  : 'pres',
-    'Autre RDV client'  : 'opres',
-    'Engagé'  : 'hired',
-    'En poste'  : 'working'
+  status_related =[ 'sourced', 'preselected', 'appoint', 'pres', 'o_pres', 'hired', 'working']
 
   #---------------------------------------------------
   $('[data-toggle="tooltip"]').tooltip()
@@ -74,9 +67,9 @@ $(document).on "turbolinks:load", ->
     $("#comaction_name").val(t)
   $("#q_mission_id_eq").on 'change', ->
     $("#comaction_search").submit()
-  $("#mission_status").on 'change', ->
+  $("#comaction_filter_status").on 'change', ->
     view = unless document.location.href.indexOf("table_view") ==-1 then 'table_view' else 'calendar_view'
-    location.href="/comactions/?filter=#{status_related[$("#mission_status").val()]}&v=#{view}"
+    location.href="/comactions/?filter=#{status_related[$("#comaction_filter_status").val()]}&v=#{view}"
 
   # -------------------------
   # Modal

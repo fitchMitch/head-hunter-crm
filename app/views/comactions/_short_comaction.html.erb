@@ -16,7 +16,7 @@
     <div class='col-xs-6'>
         <%= link_to  person_path(comaction.person)  do%>
           <%= comaction.person.full_name %>
-        <% end %> | <small><%= comaction.status %></small>
+        <% end %> | <small><%= t_com_status comaction.status %></small>
         <br>
         <p><%= link_to new_comaction_path({:person_id => comaction.person.id, :mission_id => comaction.mission.id}),  class: "green-and-white-button-small" do %>
         <%= fa_icon("calendar-o", text: t("comaction.add_label")) %>
