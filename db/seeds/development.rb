@@ -124,7 +124,7 @@ jobs= Job.all
 #-----------------
 # Missions
 #-----------------
-statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
+#statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
 35.times do |n|
   person = people.sample
   company = companies.sample
@@ -137,9 +137,9 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
   whished_start_date = Date.today + (0..200).to_a.sample
   company_id =       company.id
   person_id  =       person.id
-  status  =          statuses.sample
-  is_done   =        [statuses[3], statuses[4]].include?(status)
-  signed    =         [statuses[2], statuses[3], statuses[4]].include?(status)
+  status  =          Mission.statuses.keys.sample
+  is_done   =        [:mission_billed, :mission_payed].include?(status)
+  signed    =         [:contract_signed, :mission_billed, :mission_payed].include?(status)
   paid_amount =      signed ? reward / 3 : 0
   Mission.create!(
     name:               name,
@@ -165,8 +165,8 @@ missions = Mission.all
 250.times do |n|
 
   name   =           "Rendez-vous " + n.to_s
-  status =           [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT, Comaction::STATUS_PRES, Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED, Comaction::STATUS_WORKING ].sample
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
+  status =           Comaction.statuses.keys.sample
+  action_type   =    Comaction.action_types.keys.sample
   person =           people.sample
   user   =           users.sample
   mission=           missions.sample
