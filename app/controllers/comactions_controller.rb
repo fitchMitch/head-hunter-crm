@@ -31,12 +31,15 @@ class ComactionsController < ApplicationController
 
   #-----------------
   def index
-
-    params[:page] ||= 1
+    # --- modal material
+    @comaction = Comaction.new
+    # --- end modal material
+    #----------------------
     @missions = last_missions
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
-    @status_selected = params[:filter].nil? ? "none" :  params[:filter]
     # end Mission filter setup ----
+    #----------------------
+    @status_selected = params[:filter].nil? ? "none" :  params[:filter]
 
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
@@ -53,18 +56,15 @@ class ComactionsController < ApplicationController
       end
       @comactions = @comactions.unscheduled if params[:filter] === 'unscheduled'
     end
-    @comactions = @comactions.page(params[:page])
-    # --- modal material
-    @comaction = Comaction.new
-    # --- end modal material
+
     @filter = nil || params[:filter]
-    # @date = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
-    # @forwhom = params[:person_id] || 0
-    # @what_mission = params[:mission_id] || 0
+
     # ---------- view choice ---------------
     if params[:v].nil? || params[:v] != 'table_view'
       render 'calendar'
     else
+      params[:page] ||= 1
+      @comactions = @comactions.page(params[:page])
       render 'index'
      end
   end
