@@ -10,8 +10,8 @@
             </div>
             <div class="col-xs-11">
               <div class="input-group filter">
-                <span class="input-group-addon" id="basic-addon1"><%= t("status") %></span>
-                <%= button_filters(@status_selected,'form-control input-sm filter') %>
+                <span class="input-group-addon" id="basic-addon1"><%= t("Status") %></span>
+                <%= button_filters(:comaction,"status", @status_selected,'form-control input-sm filter') %>
               </div>
               <div class="input-group filter">
                 <span class="input-group-addon" id="basic-addon2"><%= t("missions") %></span>

@@ -32,7 +32,7 @@ module ComactionsHelper
     style = "status-frame #{used_style}"
   end
   def t_com_status(k)
-    k = :hired if k == "" || k == " "
+    k = :opportunity if k == "" || k == " "
     I18n.t("comaction.status.#{k}")
   end
 
@@ -80,13 +80,6 @@ module ComactionsHelper
     "<i class='fa fa-bookmark-o '></i> : [#{t_mis_status c.mission.status}] #{c.mission.name} <br><i class='fa fa-building-o '></i> : <strong>#{c.mission.company.company_name}</strong>"
   end
 
-  def button_filters(selected, css)
-    statuses = [["",""]]
-    Comaction::statuses.each do |k,v|
-      statuses << [t_com_status(k),v]
-    end
-    opt = options_for_select(statuses, selected)
-    s = "<select class='#{css}' id='comaction_filter_status' > #{opt}</select>".html_safe
-  end
+
 
 end

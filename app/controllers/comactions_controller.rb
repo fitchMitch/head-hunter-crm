@@ -46,7 +46,7 @@ class ComactionsController < ApplicationController
     @comactions = @q.result.includes(:user, :person, mission: [:company])
     unless params[:filter].nil?
       Comaction.statuses.each do |key,value|
-        @comactions = @comactions.public_send(key.to_s)  if params[:filter].to_sym == key
+        @comactions = @comactions.public_send(key) if params[:filter] == key
       end
       if params[:filter] === 'future'
         @comactions = @comactions.newer_than 0

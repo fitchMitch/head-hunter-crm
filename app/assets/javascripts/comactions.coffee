@@ -5,7 +5,7 @@
 $(document).on "turbolinks:load", ->
   $("#comaction_mission_id, #comaction_person_id").select2
     theme: "bootstrap"
-  status_related =[ 'sourced', 'preselected', 'appoint', 'pres', 'o_pres', 'hired', 'working']
+  status_related =[ 'sourced', 'preselected', 'appointed', 'pres', 'o_pres', 'hired', 'working']
 
   #---------------------------------------------------
   $('[data-toggle="tooltip"]').tooltip()
