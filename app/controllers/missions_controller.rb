@@ -24,15 +24,12 @@ class MissionsController < ApplicationController
   end
   #-----------------
   def index
-
     @status_selected = params[:q].nil? || params[:q]['status_eq'].nil? ? " " : params[:q]['status_eq']
     @q = Mission.ransack(params[:q])
     @missions = @q.result.includes(:company, :person).page(params[:page] ? params[:page].to_i: 1)
-
   end
   #-----------------
   def edit
-
     @person = Person.find(@mission.person_id)
     @company = Company.find(@mission.company_id)
   end

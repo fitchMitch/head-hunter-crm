@@ -73,11 +73,16 @@ module ComactionsHelper
   end
 
   def getComactionTitle(c)
-    "<strong>#{c.person.full_name}</strong><br>#{t_com_ac_type(c.action_type)} [#{t_com_status(c.status)}] "
+    "<strong>#{c.person.full_name}</strong><br>\
+    #{t_com_ac_type(c.action_type)} \
+    [#{t_com_status(c.status)}] "
   end
 
   def getComactionDetails(c)
-    "<i class='fa fa-bookmark-o '></i> : [#{t_mis_status c.mission.status}] #{c.mission.name} <br><i class='fa fa-building-o '></i> : <strong>#{c.mission.company.company_name}</strong>"
+    "<i class='fa fa-bookmark-o '></i> : \
+    [#{t_mis_status c.mission.status}] #{c.mission.name} <br>\
+    <i class='fa fa-building-o '></i> : \
+    <strong>#{c.mission.company.company_name}</strong>"
   end
 
 

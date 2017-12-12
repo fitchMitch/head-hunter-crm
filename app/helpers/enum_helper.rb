@@ -5,6 +5,11 @@ module EnumHelper
     s = "<select class='#{css}' id='#{sym_klass}_filter_#{enum}' > #{opt}</select>".html_safe
   end
 
+  def button_filters_with_ransack(sym_klass, enum, selec, css, id, name, empty_option=true)
+    opt = options_for_enum(sym_klass, enum , selec, empty_option)
+    s = "<select class='#{css}' id='#{id}' name='#{name}' > #{opt}</select>".html_safe
+  end
+
   def options_for_enum(symclass, enum, sel, empty_option)
     kla = symclass.to_s.camelize #class name from symbol
     options = enums_to_translated_options_array(kla, enum)
