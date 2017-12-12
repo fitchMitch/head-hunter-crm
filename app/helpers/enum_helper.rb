@@ -1,7 +1,7 @@
 module EnumHelper
 
   def button_filters(sym_klass, enum, selec, css)
-    opt = options_for_enum(sym_klass, enum ,selec)
+    opt = options_for_enum(sym_klass, enum , selec)
     s = "<select class='#{css}' id='#{sym_klass}_filter_#{enum}' > #{opt}</select>".html_safe
   end
 

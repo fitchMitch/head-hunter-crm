@@ -33,11 +33,7 @@ class ComactionsController < ApplicationController
   def index
 
     params[:page] ||= 1
-    # Mission filter setup ----
-    @missions = [[I18n.t("comaction.tutti"),""]]
-    last_missions.each {|lm|
-      @missions += [lm.name, lm.id]
-    }
+    @missions = last_missions
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
     @status_selected = params[:filter].nil? ? "none" :  params[:filter]
     # end Mission filter setup ----

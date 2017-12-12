@@ -15,12 +15,24 @@
               </div>
               <div class="input-group filter">
                 <span class="input-group-addon" id="basic-addon2"><%= t("missions") %></span>
-                <%= f.select :mission_id_eq , options_for_select(@missions.each { |t| t},@mission_selected), {},  {class: "form-control input-sm "} %>
+                <%= collection_select( :q,
+                                      :mission_id_eq,
+                                      @missions,
+                                      :id,
+                                      :name,
+                                      {:include_blank => true , selected: @mission_selected},
+                                      {
+                                          id: "q_mission_id_eq",
+                                          class: "form-control input-sm "
+                                      })%>
               </div>
-              <%= link_to  comactions_path(:filter => 'unscheduled', :v => 'table_view'), class: "btn btn-success btn-sm" do %>
+              <%= link_to  comactions_path(:filter => 'unscheduled',
+                                          :v => 'table_view'),
+                                          class: "btn btn-success btn-sm" do %>
               <%= fa_icon('list', text: t("comaction.filters.no_date")) %>
               <% end %>
-              <%= link_to  comactions_path(:filter => 'future'), class: "btn btn-success btn-sm" do %>
+              <%= link_to  comactions_path(:filter => 'future'),
+                                            class: "btn btn-success btn-sm" do %>
               <%= t 'comaction.filters.now_and_after' %>
               <% end %>
               <%= link_to  comactions_path, class: "btn btn-default btn-sm filter-end" do %>
