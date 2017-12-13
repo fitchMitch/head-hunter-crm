@@ -6,15 +6,21 @@ module EnumHelper
   end
 
   def button_filters_with_ransack(sym_klass, enum, selec, css, id, name, empty_option=true)
+    logger.info (" test value :#{selec}")
     opt = options_for_enum(sym_klass, enum , selec, empty_option)
     s = "<select class='#{css}' id='#{id}' name='#{name}' > #{opt}</select>".html_safe
   end
 
-  def options_for_enum(symclass, enum, sel, empty_option)
-    kla = symclass.to_s.camelize #class name from symbol
-    options = enums_to_translated_options_array(kla, enum)
+  def options_for_enum(symclass, enum, selec, empty_option)
+    klass = symclass.to_s.camelize #class name from symbol
+    options = enums_to_translated_options_array(klass, enum)
     options = [["" , ""]] + options if empty_option
-    sel_value = kla.classify.safe_constantize.send(enum.pluralize)[sel]
+
+    sel_value = selec.scan(/\D/).empty? ?
+                    selec.to_i
+                    :
+                    klass.classify.safe_constantize.send(enum.pluralize)[selec.to_sym]
+
     options_for_select(options, sel_value)
   end
 
