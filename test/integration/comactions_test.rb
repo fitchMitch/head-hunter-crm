@@ -2,13 +2,12 @@ require 'test_helper'
 
 class ComactionsTest < ActionDispatch::IntegrationTest
 	def setup
-    	@comaction = create(:comaction)
-    	@user = create(:user)
-    	@mission = create (:mission)
-			@person = create(:person)
-    	log_in_as(@user)
+		@comaction = create(:comaction)
+		@user = create(:user)
+		@mission = create (:mission)
+		@person = create(:person)
+		log_in_as(@user)
 	end
-	# -----------------
 
 	test "should comaction post be a success" do
 		comaction2Param  = attributes_for(:comaction)
@@ -19,6 +18,25 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 		follow_redirect!
 	  assert_response :success
 		assert_template partial: '_month_calendar', count: 1
+	end
+
+	test "should filter with statuses" do
+		@comaction_hired = create(:comaction_hired)
+		get comactions_url,
+				params: {
+					"filter" => "hired",
+					"v" => "table_view" }
+		assert_select ".status>small", {:text => "Engagé" , :minimum => 1}
+
+	end
+
+	test "should filter with statuses 2" do
+		@comaction_hired = create(:comaction_hired)
+		get comactions_url,
+				params: {
+					"filter" => "appointed",
+					"v" => "table_view" }
+		assert_select "div.mission_data", false
 	end
 
 end

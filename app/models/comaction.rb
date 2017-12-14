@@ -81,20 +81,12 @@ class Comaction < ApplicationRecord
   scope :unscheduled,   -> { where('start_time is null ') }
   scope :scheduled,     -> { where('start_time is not null ') }
 
-  # scope :sourced,       -> { where('comactions.status = ? ', ComactionStatus.name(:sourced)) }
-  # scope :preselected,   -> { where('comactions.status = ? ', STATUS_PRESELECTED) }
-  # scope :appoint,       -> { where('comactions.status = ?  ', STATUS_APPOINT) }
-  # scope :pres,          -> { where('comactions.status = ?  ', STATUS_PRES) }
-  # scope :opres,         -> { where('comactions.status = ? ', STATUS_O_PRES) }
-  # scope :hired,         -> { where('comactions.status = ? ', STATUS_HIRED) }
-  # scope :working,       -> { where('comactions.status = ? ', STATUS_WORKING) }
+  scope :mission_list,  ->(mission) { where('comactions.mission_id = ?', mission.id) }
+  scope :from_person,   ->(person) { where('comactions.person_id = ?', person.id) }
 
-  scope :mission_list,         ->(mission) { where('comactions.mission_id = ?', mission.id) }
-  scope :from_person,          ->(person) { where('comactions.person_id = ?', person.id) }
   # ===========
   # Validations
   # ===========
-
   validates :name, presence: true, length: { maximum: 100 }
   validates :status, presence: true
   validates :action_type, presence: true

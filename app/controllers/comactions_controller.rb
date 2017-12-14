@@ -95,14 +95,9 @@ class ComactionsController < ApplicationController
   def create
     @person = Person.find(comaction_params[:person_id])
     @mission = Mission.find(comaction_params[:mission_id])
-    # comaction_params[:status] = comaction_params[:status].to_i
-    # comaction_params[:action_type] = comaction_params[:action_type].to_i
     @comaction = @person.comactions.build(comaction_params)
-    #@comaction.mission_id = @mission.id
     @comaction.user_id = current_user.id
     @comaction = trigger_nil_dates @comaction
-    # @comaction.status = @comaction.status.to_i
-    # @comaction.action_type = @comaction.action_type.to_i
 
     if @comaction.save
       if @comaction.start_time == nil  || @comaction.end_time == nil

@@ -10,6 +10,7 @@ FactoryBot.define do
     signed             false
     is_done            false
     whished_start_date { Date.today + (0..200).to_a.sample }
+    status              {Mission.statuses.keys.sample}
     person
     company
   end

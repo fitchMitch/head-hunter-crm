@@ -1,4 +1,4 @@
-<div class=" row <%= comaction.start_time.nil?  || comaction.start_time > Time.now ? '' : 'mission_done' %>">
+<div class=" row mission_data <%= comaction.start_time.nil?  || comaction.start_time > Time.now ? '' : 'mission_done' %>">
     <div class='col-xs-4'>
         <div class='row'>
             <div class='col-xs-1'><%= idtype(comaction) %>
@@ -35,8 +35,8 @@
           <%= comaction.person.full_name %>
         <% end %>
     </div>
-    <div class='col-xs-1'>
-        <small><%= comaction.status %></small>
+    <div class='col-xs-1 status'>
+        <small><%= t_com_status comaction.status %></small>
     </div>
     <div class='col-xs-2'>
         <%= link_to comaction.mission.name, mission_path(comaction.mission)  %>

@@ -47,11 +47,12 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
 
   test 'should validate and redirect comaction updates to comactions index page' do
     log_in_as(@user)
+    get edit_comaction_path(@comaction)
     patch comaction_path(@comaction),
           params: {
             comaction: {
-              name: '',
-              status: Comaction::statuses[-1]
+              name: 'q',
+              status: Comaction.statuses.keys.last
             }
           }
     refute flash.empty?
@@ -79,7 +80,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
       params: {
         comaction: {
           name: 'Yet another',
-          status: Comaction::statuses[-1],
+          status: Comaction.statuses.keys.last,
           person_id: @person.id,
           mission_id: @mission.id,
           user_id: @user.id
@@ -108,7 +109,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     get edit_comaction_path(@comaction)
     patch comaction_path(@comaction), params: {
       comaction: {
-        action_type: Comaction::action_types[-1]
+        action_type: Comaction.action_types.keys.last
       }
     }
     assert_response :redirect
