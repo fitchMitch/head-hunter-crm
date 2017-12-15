@@ -33,7 +33,6 @@ class ComactionsController < ApplicationController
   def index
     # --- modal material
     @comaction = Comaction.new
-    # --- end modal material
     #----------------------
     @missions = last_missions
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
