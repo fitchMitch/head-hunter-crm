@@ -1,10 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   include SessionsHelper
-  # def sql_perc(s)
-  #   "%#{s.to_s}%"
-  # end
+
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def logged_in_user
     return false if logged_in?
@@ -12,5 +11,13 @@ class ApplicationController < ActionController::Base
     flash[:danger] = I18n.t("session.message.log_first")
     redirect_to login_url
   end
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
+  end
+
 
 end

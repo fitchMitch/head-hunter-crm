@@ -35,9 +35,10 @@ gem 'docx', '~> 0.2.07', :require => ["docx"]
 gem 'pg_search'
 gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-assets.org'
 gem 'sweet-alert2-rails'
+gem "pundit"
 # gem "seedbank"
 # gem "paper_trail"
-# gem 'inherited_resources'
+# gem 'inherited_resources' not OK with rails 5 AFAIK 15/12/2017
 # gem 'has_scope' # TODO ransck impact
 # temp
 

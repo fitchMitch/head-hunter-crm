@@ -5,12 +5,12 @@
   validates :title, presence: true,length: { maximum: 5 }
   validates :firstname, presence: true,length: { maximum: 255 }
   validates :lastname, presence: true,length: { maximum: 255 }
-  
+
  rails g model Person type:string title firstname lastname email:string:index phone_number cell_phone_number birthdate:date
  rails g model Candidate --parent=Person
  rails g migration addBasicColsToCandidates whished_job_title experience_years:integer whished_salary:float
  rails g controller Candidates
- 
+
  rails g model Job job_title salary:float start_date:date end_date:date jj_job:boolean
  rails g model Job_History
   rails g model Company company_name
@@ -28,14 +28,16 @@
   rails g migration ChangeNameToColComactions
   rails g controller Comactions create new index edit update show destroy
   rails g migration change_date_format_in_comactions
-  rails g migration RemoveColumnToPeople cell_phone_number 
-  rails g migration RemoveBirthDateToPeople  birthdate  
+  rails g migration RemoveColumnToPeople cell_phone_number
+  rails g migration RemoveBirthDateToPeople  birthdate
   rails g migration AddColumnToPeople cv_content:text
   rails g migration DropTagsTable
   rails g migration RemoveTitleColumnToPeople title
   rails g migration RemoveAgesColumnToMissions min_age max_age
   rails g migration ChangeStatusTypeColumnToComactions
   rails g migration ChangeStatusTypeColumnToMissions
-  
+  rails g pundit:install
+  rails g pundit:policy user
+
   rails routes -g new_comment
   rails routes -c Comments
