@@ -14,13 +14,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)    # Not the final implementation!
+    @user = User.new(user_params)
+    authorize @user
     if @user.save
-    #log_in @user
-    #  flash[:success] = "Welcome mon gaillard!"
-    #  redirect_to @user
       @user.send_activation_email
-      flash[:info] = 'Consultez votre boîte à lettres, nous vous avons envoyé un lien d\'activation de compte.'
+      flash[:info] = I18n.t("user.email_activation")
       redirect_to root_url
     else
       render 'new'
@@ -32,11 +30,12 @@ class UsersController < ApplicationController
   end
 
   def update
+    authorize @user
     if @user.update_attributes(user_params)
-      flash[:success] = 'Profil mis à jour'
+      flash[:success] = I18n.t("user.profile_update_success")
       redirect_to @user
     else
-      flash[:danger] = 'Le profil n\'a pas pu être mis à jour'
+      flash[:danger] = I18n.t("user.profile_update_failed")
       render 'edit'
     end
   end
@@ -45,11 +44,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     admin_list = User.other_admins(@user)
     if admin_list.count === 0
-      flash[:success] = 'Cet utilisateur ne peut pas être supprimé'
+      flash[:success] = I18n.t("user.cannot_destroy")
     else
       Person.where('user_id = ?', @user.id ).update_all(user_id: admin_list.first.id)
       @user.destroy
-      flash[:success] = 'Utilisateur supprimé'
+      flash[:success] = I18n.t("user.destroyed")
     end
     redirect_to users_url
   end

@@ -41,6 +41,9 @@ class User < ApplicationRecord
     presence: true,
     length: { minimum: 6 },
     allow_nil: true
+  validates :password_conf,
+    presence: true,
+    allow_nil: true
 
   scope :other_admins, ->(me) { where('admin = ? and id != ?', true , me.id ) }
 

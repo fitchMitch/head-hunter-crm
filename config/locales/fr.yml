@@ -70,7 +70,7 @@ fr:
 
   update_date: Mise à jour
   jj:
-    maxim: "#{brand} Recrutement"
+    maxim: "HH Recrutement"
     rdv: Rendez-vous
     people_and_companies: Contacts et sociétés
     profile : Profil
@@ -161,7 +161,7 @@ fr:
     edit: Editer cette société
     list: Liste des sociétés
     add: Ajouter une société
-    
+
   person:
     name: Nom
     job: Emploi
@@ -251,6 +251,17 @@ fr:
   search:
     your_search: Votre recherche
     no_result: Aucun résultat pour votre recherche
+
+  user:
+    email_activation: Consultez votre boîte à lettres, nous vous avons envoyé un lien d'activation de compte.
+    profile_update_success: Profil mis à jour
+    profile_update_failed: Le profil n'a pas pu être mis à jour
+    cannot_destroy: Cet utilisateur ne peut pas être supprimé
+    destroyed: Utilisateur supprimé
+    account_create: Créer un utilisateur
+    password: Mot de passe
+    password_conf: Confirmation de mot de passe
+    admin_label: Administrateur ?
   years: années
   months: mois
   Sunday: dimanche

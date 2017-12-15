@@ -1,24 +1,11 @@
 <%= simple_form_for(@user) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
-  <!--<%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
-
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-  <%= f.submit yield(:button_text), class: "btn btn-success" %>-->
-
   <%= f.input :name, label: t("Name") %>
   <%= f.input :email %>
   <%= f.input :password, label: t("user.password")%>
   <%= f.input :password_confirmation, label: t("user.password_conf")%>
+  <%= f.input :admin, label: t("user.admin_label")%>
   <%= f.button :submit, yield(:button_text), class: "btn btn-success" %>
 
 <% end %>
