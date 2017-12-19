@@ -16,7 +16,8 @@
 #  person_id          :integer
 #  company_id         :integer
 #  whished_start_date :date
-#  status             :string
+#  status             :integer          default("opportunity")
+#  user_id            :integer
 #
 
 class Mission < ApplicationRecord
@@ -48,6 +49,7 @@ class Mission < ApplicationRecord
   end
 
   scope :active, -> { where('status != ? AND status != ?', :mission_billed, :mission_payed) }
+  scope :mine, ->(uid) { where('user_id = ?', uid) }
   # scope :not_paid, -> { where('status != ?', :mission_payed) }
 
 

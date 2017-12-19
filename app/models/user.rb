@@ -41,7 +41,7 @@ class User < ApplicationRecord
     presence: true,
     length: { minimum: 6 },
     allow_nil: true
-  validates :password_conf,
+  validates :password_confirmation,
     presence: true,
     allow_nil: true
 

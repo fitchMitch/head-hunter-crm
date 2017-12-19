@@ -21,12 +21,14 @@ class MissionsController < ApplicationController
     @mission.status = :opportunity
     @mission.paid_amount = 0
     @forwhom = params[:person_id] || 0
+    @mission.user_id = current_user.id
   end
   #-----------------
   def index
     @status_selected = params[:q].nil? || params[:q]['status_eq'].nil? ? " " : params[:q]['status_eq']
     @q = Mission.ransack(params[:q])
     @missions = @q.result.includes(:company, :person).page(params[:page] ? params[:page].to_i: 1)
+    authorize @missions
   end
   #-----------------
   def edit
@@ -45,15 +47,16 @@ class MissionsController < ApplicationController
     @company = Company.find(mission_params[:company_id])
 
     @mission = @person.missions.build(mission_params)
+    authorize @mission
     @mission.status = :opportunity
     @mission.is_done = false
     @mission.signed = false
 
     if !@person.nil? && !@company.nil? && @mission.save
-      flash[:info] = 'Mission sauvegardée :-)'
+      flash[:info] = I18n.t("mission.saved")
       redirect_to person_path(@person)
     else
-      flash[:danger] = 'Cette mission n\'a pas pu être ajoutée'
+      flash[:danger] = I18n.t("mission.not_added")
       render :new
     end
   end
@@ -63,17 +66,17 @@ class MissionsController < ApplicationController
     @mission.signed     = [:contract_signed, :mission_billed, :mission_payed].include?(mission_params[:status])
 
     if @mission.update_attributes(mission_params)
-      flash[:success] = 'Mission mise à jour'
+      flash[:success] = I18n.t("mission.updated")
       redirect_to @mission
     else
-      flash[:danger] = 'Cette mission n\'a pas pu être mise à jour'
+      flash[:danger] = I18n.t("mission.unupdated")
       render 'edit'
     end
   end
 
   def destroy
     @mission.destroy
-    flash[:success] = 'Mission supprimée'
+    flash[:success] = I18n.t("mission.destroyed")
     redirect_to missions_path
   end
 
@@ -96,6 +99,7 @@ class MissionsController < ApplicationController
     end
 
     def get_mission
-      @mission = Mission.find(params[:id])
+      @mission =  Mission.find(params[:id])
+      authorize @mission
     end
 end
