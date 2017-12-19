@@ -10,6 +10,14 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
+
+  def show?
+    owner_or_admin?
+  end
+
   def update?
     user.id == record.id || (user.id != record.id && user.admin?)
   end

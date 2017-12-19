@@ -34,6 +34,10 @@ class ApplicationPolicy
     false
   end
 
+  def owner_or_admin?
+    @user.admin? || (record.user_id.exists && record.user_id == @user.id) || false
+  end
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end

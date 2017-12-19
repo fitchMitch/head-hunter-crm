@@ -99,7 +99,7 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <% if current_user.admin? %>
+            <% if policy(current_user).create? %>
               <li>
                 <%= link_to  signup_path do %>
                 <%= fa_icon("plus-circle", text: t("jj.account_create")) %>

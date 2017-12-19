@@ -38,6 +38,8 @@
   rails g migration ChangeStatusTypeColumnToMissions
   rails g pundit:install
   rails g pundit:policy user
+  rails g migration AddUserRefToMissions user:references
+  rails g integration_test missions
 
   rails routes -g new_comment
   rails routes -c Comments
