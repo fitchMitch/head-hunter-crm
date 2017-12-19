@@ -85,19 +85,6 @@ fr:
     next_label: "Suiv. »"
     previous_label: "« Préc."
 
-  user:
-    authentication:
-      user_authentication: Authentification
-      password_update: Mise à jour du mot de passe
-      forgotten_password: Mot de passe oublié
-    password: Mot de passe
-    password_conf: Confirmation de mot de passe
-    prolile_update: Modifier le profil
-    list: Liste des utilisateurs
-    account_create: Créer un compte
-    remember_me: Se souvenir de moi
-    login: Login
-
   simple_calendar:
     previous: Préc.
     next: Suiv.
@@ -241,27 +228,43 @@ fr:
     passed_tab_title: Passé
     future_tab_title: A venir
     mission_activity_void: Aucune activité répertoriée à ce jour
+    updated: Mission mise à jour
+    unupdated: Cette mission n'a pas pu être mise à jour
+    not_added: Cette mission n'a pas pu être ajoutée
+    saved: Mission sauvegardée :-)
+    destroyed: Mission supprimée
     status:
       opportunity: Lead
       contract_sent: Contrat envoyé
       contract_signed: Contrat signé
       mission_billed: Contrat facturé
       mission_payed: Mission payée
+  pundit:
+    not_authorized: Vous n'êtes pas autorisé à faire cette action
 
   search:
     your_search: Votre recherche
     no_result: Aucun résultat pour votre recherche
 
   user:
-    email_activation: Consultez votre boîte à lettres, nous vous avons envoyé un lien d'activation de compte.
-    profile_update_success: Profil mis à jour
-    profile_update_failed: Le profil n'a pas pu être mis à jour
+    admin_label: Administrateur ?
+    account_create: Créer un compte
     cannot_destroy: Cet utilisateur ne peut pas être supprimé
     destroyed: Utilisateur supprimé
-    account_create: Créer un utilisateur
+    email_activation: Un message comportant un lien d'activation de compte a été envoyé.
     password: Mot de passe
-    password_conf: Confirmation de mot de passe
-    admin_label: Administrateur ?
+    password_confirmation: Confirmation de mot de passe
+    list: Liste des utilisateurs
+    login: Login
+    profile_update_failed: Le profil n'a pas pu être mis à jour
+    profile_update_success: Profil mis à jour
+    prolile_update: Modifier le profil
+    remember_me: Se souvenir de moi
+    authentication:
+      user_authentication: Authentification
+      password_update: Mise à jour du mot de passe
+      forgotten_password: Mot de passe oublié
+
   years: années
   months: mois
   Sunday: dimanche
