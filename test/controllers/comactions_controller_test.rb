@@ -100,7 +100,6 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
         action_type: 'scrumble master'
       }
     }
-    refute flash.empty?
     assert_template partial: '_form', count: 1
   end
 

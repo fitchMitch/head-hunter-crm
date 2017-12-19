@@ -16,8 +16,10 @@
 #  person_id          :integer
 #  company_id         :integer
 #  whished_start_date :date
-#  status             :string
+#  status             :integer          default("opportunity")
+#  user_id            :integer
 #
+
 require 'test_helper'
 
 class MissionTest < ActiveSupport::TestCase
