@@ -246,6 +246,11 @@ fr:
     your_search: Votre recherche
     no_result: Aucun résultat pour votre recherche
 
+  session:
+    not_logged_message:  Votre compte n'est pas activé. Vérifiez votre boîte à lettes, elle contient un email d'activation.
+    fail_logging_message: L'un ou l'autre de l'email ou du mot de passe sont invalides
+    log_first: Logguez-vous d'abord
+
   user:
     admin_label: Administrateur ?
     account_create: Créer un compte
@@ -258,7 +263,7 @@ fr:
     login: Login
     profile_update_failed: Le profil n'a pas pu être mis à jour
     profile_update_success: Profil mis à jour
-    prolile_update: Modifier le profil
+    profile_update: Modifier le profil
     remember_me: Se souvenir de moi
     authentication:
       user_authentication: Authentification
@@ -513,9 +518,7 @@ fr:
     precision:
       format:
         delimiter: ''
-  session:
-    message:
-      log_first: Logguez-vous d'abord
+
   support:
     array:
       last_word_connector: " et "

@@ -18,6 +18,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     @mission = create(:mission)
     @person = create(:person)
     @user = create(:user)
+
   end
 
   test 'new unlogged fails' do
@@ -93,15 +94,6 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
   #---------------
   # edit
   #---------------
-  test 'should invalidate strange action_types and redirect comaction edit page' do
-    log_in_as(@user)
-    patch comaction_path(@comaction), params: {
-      comaction: {
-        action_type: 'scrumble master'
-      }
-    }
-    assert_template partial: '_form', count: 1
-  end
 
   test 'should validate comaction edit page' do
     log_in_as(@user)

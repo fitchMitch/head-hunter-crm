@@ -35,7 +35,7 @@ class ApplicationPolicy
   end
 
   def owner_or_admin?
-    @user.admin? || (record.user_id.exists && record.user_id == @user.id) || false
+    @user.admin? || (defined?(record.user_id).nil?  && record.user_id == @user.id) 
   end
 
   def scope

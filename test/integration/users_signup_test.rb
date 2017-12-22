@@ -6,20 +6,35 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   end
 
   test "invalid signup information" do
+    @admin  = create(:admin)
+    log_in_as(@admin)
+    get signup_path
     assert_no_difference 'User.count' do
-      post users_path, params: { user: { name:  "", email: "user@invalid", password:"foo", password_confirmation: "bar" } }
+      post users_path, params: { user: { name:  "",
+        email: "user@invalid",
+        password:"foo",
+        password_confirmation: "bar",
+        admin: false } }
     end
-    refute flash.empty?
-    assert_template 'users/new'
+    assert_response :success
+    assert_template partial: '_form', count: 1
   end
 
   test "valid signup information with account activation" do
+    @admin  = create(:admin)
+    log_in_as(@admin)
     get signup_path
     assert_difference 'User.count', 1 do
-      post users_path, params: { user: { name:   'Example User', email: "user@example.com", password: "password", password_confirmation: "password", admin: true } }
+      post users_path, params: { user: {
+        name:   'Example User',
+        email: "user@example.com",
+        password: "password",
+        password_confirmation: "password",
+        admin: true } }
     end
     user = assigns(:user)
-    refute user.activated?
+    assert_not user.activated?
+    delete logout_path
     # Try to log in before activation.
     log_in_as(user)
     assert_not is_logged_in?

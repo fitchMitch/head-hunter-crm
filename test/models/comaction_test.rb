@@ -16,19 +16,7 @@
 #
 
 require 'test_helper'
-# Table name: comactions
-#
-#  id          :integer          not null, primary key
-#  name        :string
-#  status      :string
-#  action_type :string
-#  start_time  :datetime
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  user_id     :integer
-#  mission_id  :integer
-#  person_id   :integer
-#  end_time    :datetime
+
 
 class ComactionTest < ActiveSupport::TestCase
 

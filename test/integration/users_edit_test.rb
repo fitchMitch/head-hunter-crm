@@ -16,50 +16,36 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
   end
 
-  test  'successful edit' do
-    @admin = create(:admin)
-    log_in_as(@admin)
-
-    get edit_user_path(@user)
-    assert_template 'users/edit'
-    name  = 'Foo Bar'
-    email = "foo@bar.com"
-    patch user_path(@user), params: { user: { name:  name, email: email, password: "", password_confirmation: "" } }
-    assert_not flash.empty?
-    assert_redirected_to @user
-    @user.reload
-    assert_equal name,  @user.name
-    assert_equal email, @user.email
-  end
-
   test  'failing edit' do
     @user2 = create(:user2)
     log_in_as(@user2)
-
-    get edit_user_path(@user)
-    assert_template 'users/edit'
+    get edit_user_path(@user2)
+    assert_select "h1" ,I18n.t("user.profile_update")
     name  = 'Foo Bar'
     email = "foo@bar.com"
-    patch user_path(@user), params: { user: { name:  name, email: email, password: "", password_confirmation: "" } }
+    patch user_path(@user2), params: { user: { name:  name, email: email, password: "", password_confirmation: "" } }
     assert_not flash.empty?
+    assert_select "h1" ,I18n.t("user.profile_update")
     assert_response :success
   end
 
-  test "successful edit with friendly forwarding" do
+  test "fail editing somebody else's profile (but with friendly forwarding)" do
     get edit_user_path(@user)
     log_in_as(@user)
     assert_redirected_to edit_user_url(@user)
+    follow_redirect!
     name  = 'Foo Bar'
     email = "foo@bar.com"
+    passw = ""
     patch user_path(@user), params: { user: { name:  name,
                                               email: email,
-                                              password:              "",
-                                              password_confirmation: "" } }
+                                              password: passw,
+                                              password_confirmation: passw } }
     assert_not flash.empty?
-    assert_redirected_to @user
+    assert_template "users/edit"
     @user.reload
-    assert_equal name,  @user.name
-    assert_equal email, @user.email
+    refute_equal name,  @user.name
+    refute_equal email, @user.email
   end
 
   test "normal user shouldn't see any user creation link" do

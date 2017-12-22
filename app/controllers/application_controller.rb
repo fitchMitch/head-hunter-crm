@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     return false if logged_in?
     store_location
-    flash[:danger] = I18n.t("session.message.log_first")
+    flash[:danger] = I18n.t("session.log_first")
     redirect_to login_url
   end
 

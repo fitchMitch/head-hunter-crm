@@ -64,7 +64,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
           'name' => 'ACME'
         }
     }
-    post companies_url, @some_params
+    post companies_url,params: @some_params
     assert_response :success
     assert_template "companies/new"
   end
@@ -77,7 +77,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
           'company_name' => 'ACME'
         }
     }
-    post companies_url, @some_params
+    post companies_url,params: @some_params
     assert_redirected_to companies_url
     follow_redirect!
     assert_equal n+1, Company.all.count

@@ -51,6 +51,7 @@ class MissionsController < ApplicationController
     @mission.status = :opportunity
     @mission.is_done = false
     @mission.signed = false
+    @mission.user_id = current_user.id
 
     if !@person.nil? && !@company.nil? && @mission.save
       flash[:info] = I18n.t("mission.saved")
@@ -95,7 +96,7 @@ class MissionsController < ApplicationController
   private
   #---------------
     def mission_params
-      params.require(:mission).permit(:name, :reward, :paid_amount, :min_salary, :max_salary, :criteria, :status, :person_id, :company_id, :whished_start_date)
+      params.require(:mission).permit(:name, :reward, :paid_amount, :min_salary, :max_salary, :criteria, :status, :person_id, :company_id, :whished_start_date,:user_id)
     end
 
     def get_mission

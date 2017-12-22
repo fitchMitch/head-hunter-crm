@@ -45,7 +45,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     admin_list = User.other_admins(@user)
-    if @user || admin_list.count === 0
+    # Missions are not destroyed but reassigned to the first admin found in the
+    # admin list.
+    reassign_missions(admin_list.first,@user)
+    if @user == current_user
       flash[:success] = I18n.t('user.cannot_destroy')
     else
       Person.where('user_id = ?', @user.id).update_all(user_id: admin_list.first.id)
@@ -56,6 +59,14 @@ class UsersController < ApplicationController
   end
 
   private
+    def reassign_missions(user_dest,user_to_destroy)
+      Mission.transaction do
+        Mission.lock.mine(user_to_destroy.id).each do |m|
+          m.user_id = user_dest.id
+          m.save!
+        end
+      end
+    end
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)

@@ -34,5 +34,13 @@ module JjFloApp
       g.factory_bot false
       g.test_framework :minitest, spec: true
     end
+
+    config.active_support.deprecation = -> (message, _backtrace) do
+    if message.include?("#original_exception is deprecated")
+        # ignored until https://github.com/charliesome/better_errors/issues/333
+      else
+        raise message
+      end
+    end
   end
 end

@@ -26,7 +26,7 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
   test "shouldn't get edit" do
     log_in_as(@user)
     get edit_mission_path(@mission)
-    refute_response :success
+    assert_redirected_to root_path
   end
 
   test "should get edit" do
@@ -37,14 +37,14 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
 
   test  'should update' do
     log_in_as(@admin)
-    patch mission_path(@mission), @some_params
+    patch mission_path(@mission), params: @some_params
     assert_redirected_to mission_path(@mission)
   end
 
   test "should create mission" do
     log_in_as(@user)
     get new_mission_path
-    post missions_url , @some_params
+    post missions_url , params: @some_params
     assert_redirected_to person_url(@person)
   end
 
@@ -72,7 +72,16 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "shouldn't destroy mission" do
+    log_in_as(@user)
+    assert_no_difference 'Mission.count' do
+      delete mission_path(@mission)
+    end
+    assert_redirected_to root_path
+  end
+
   test "should destroy mission" do
+    log_in_as(@admin)
     assert_difference 'Mission.count',-1 do
       delete mission_path(@mission)
     end

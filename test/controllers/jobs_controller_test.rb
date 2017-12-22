@@ -7,7 +7,6 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     @person = @job.person
     @user= @job.person.user
     @some_params = {
-      'params' => {
         'job' => {
           'job_title' => 'Yet another',
           'start_date' =>  Date.today.years_ago(10),
@@ -18,7 +17,6 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
           'company_id' =>  @company.id,
           'user_id' =>  @user.id,
           'no_end' =>  false
-        }
       }
     }
     log_in_as(@user)
@@ -49,7 +47,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create job" do
     get new_job_path
-    post jobs_url ,@some_params['params']
+    post jobs_url , params: @some_params
     assert_redirected_to person_url(@person)
   end
 
@@ -63,7 +61,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
   test "should show double jobs" do
     job1 = create(:job, no_end:  true, person: @person)
     job2 = build(:job, no_end:  true, person: @person)
-    refute job2.valid?
+    assert_not job2.valid?
   end
 
 end
