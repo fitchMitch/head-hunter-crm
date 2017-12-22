@@ -15,11 +15,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    owner_or_admin?
+    me_or_admin
   end
 
   def update?
-    user.id == record.id || (user.id != record.id && user.admin?)
+    me_or_admin
   end
 
   def create?
@@ -27,7 +27,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? && record.id !=user.id
+    @user.admin?
   end
+  private
+    def me_or_admin
+      user.id == record.id || (user.id != record.id && user.admin?)
+    end
 
 end

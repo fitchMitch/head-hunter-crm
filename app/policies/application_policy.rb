@@ -35,7 +35,7 @@ class ApplicationPolicy
   end
 
   def owner_or_admin?
-    @user.admin? || (defined?(record.user_id).nil?  && record.user_id == @user.id) 
+    @user.admin? || (record.respond_to?(:user_id) && record.user_id == @user.id)
   end
 
   def scope

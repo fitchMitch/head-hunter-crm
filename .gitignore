@@ -17,6 +17,7 @@
 !/log/.keep
 !/tmp/.keep
 /coverage
+/test_result.txt
 /public/system/people/*
 /rails_cmds.txt
 /test_results.txt
