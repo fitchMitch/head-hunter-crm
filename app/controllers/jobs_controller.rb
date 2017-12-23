@@ -8,10 +8,12 @@ class JobsController < ApplicationController
   #-----------------
   def index
     @jobs = Job.paginate(page: params[:page])
+    authorize @jobs unless @jobs.count == 0
   end
   #-----------------
   def edit
     @person = Person.find(@job.person_id)
+    authorize @job
   end
   #-----------------
   # def show
@@ -22,6 +24,7 @@ class JobsController < ApplicationController
 
     @job = @person.jobs.build(job_params)
     @job.end_date = nil if (@job.no_end?)
+    authorize @job
 
     if @job.save
       @company = Company.find(@job.company_id)
@@ -40,6 +43,7 @@ class JobsController < ApplicationController
   end
   #-----------------
   def update
+    authorize @job
     if @job.update_attributes(job_params)
       flash[:success] = 'Emploi mis à jour'
       @person = Person.find(@job.person_id)
@@ -51,6 +55,7 @@ class JobsController < ApplicationController
   end
   #-----------------
   def destroy
+    authorize @job
     person_id = @job.person_id
     @job.destroy
     flash[:success] = I18n.t("job.canceled")

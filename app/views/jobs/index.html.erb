@@ -3,7 +3,8 @@
 <h1 class="center">
   <%= t("job.list") %>
 </h1>
-
-<%= will_paginate %>
-<%= render @jobs %>
-<%= will_paginate %>
+<% if policy(@jobs).index? %>
+  <%= will_paginate %>
+  <%= render @jobs %>
+  <%= will_paginate %>
+<% end %>

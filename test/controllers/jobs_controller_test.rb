@@ -2,6 +2,7 @@ require 'test_helper'
 
 class JobsControllerTest < ActionDispatch::IntegrationTest
   def setup
+    @admin = create(:admin)
     @job= create(:job)
     @company = @job.company
     @person = @job.person

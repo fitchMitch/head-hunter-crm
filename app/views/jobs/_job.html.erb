@@ -9,10 +9,12 @@
         <!--  end ---->
     </div>
     <div class='col-xs-3'>
+      <% if policy(job).edit? %>
         <%= link_to  edit_job_path(job)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <%= job.job_title %>
         <% end %>
+      <% end %>
     </div>
     <div class='col-xs-3'>
       <% unless job.no_end  %>
@@ -32,15 +34,17 @@
         </small>
     </div>
     <div class='col-xs-1'>
-      <%= link_to job_path(job),
-      method: :delete,
-      data: {
-        :confirm => "Wesh ? C'est sûr pour #{job.person.full_name }?",
-        :'sweet-alert-confirm' => t("confirm") ,
-        :'confirm-button-text' => t("confirm-button-text"),
-        :'cancel-button-text' => t("cancel-button-text")
-        } do %>
-        <span class="glyphicon glyphicon-trash"></span>
+      <% if policy(job).destroy? %>
+        <%= link_to job_path(job),
+        method: :delete,
+        data: {
+          :confirm => "Wesh ? C'est sûr pour #{job.person.full_name }?",
+          :'sweet-alert-confirm' => t("confirm") ,
+          :'confirm-button-text' => t("confirm-button-text"),
+          :'cancel-button-text' => t("cancel-button-text")
+          } do %>
+          <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
         <% end %>
     </div>
 </div>
@@ -49,10 +53,12 @@
 
 <div class='row'>
     <div class='col-xs-4'>
-        <%= link_to  edit_job_path(job)  do%>
+      <% if policy(job).edit? %>
+        <%= link_to edit_job_path(job)  do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <%= job.job_title %>
         <% end %>
+      <% end %>
     </div>
     <div class='col-xs-4'>
       <% unless job.no_end  %>
@@ -72,16 +78,18 @@
         </small>
     </div>
     <div class='col-xs-1'>
-      <%= link_to job_path(job),
-      method: :delete,
-      data: {
-        :confirm => t("job.confirm_for",:him => job.person.full_name ),
-        :'sweet-alert-confirm' => t("confirm") ,
-        :'confirm-button-text' => t("confirm-button-text"),
-        :'cancel-button-text' => t("cancel-button-text")
-        } do %>
-        <span class="glyphicon glyphicon-trash"></span>
-        <% end %>
+      <% if policy(job).destroy? %>
+        <%= link_to job_path(job),
+          method: :delete,
+          data: {
+            :confirm => t("job.confirm_for",:him => job.person.full_name ),
+            :'sweet-alert-confirm' => t("confirm") ,
+            :'confirm-button-text' => t("confirm-button-text"),
+            :'cancel-button-text' => t("cancel-button-text")
+            } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+      <% end %>
     </div>
 </div>
 

@@ -1,7 +1,7 @@
 <% provide(:title, t("job.edit")) %>
 <% provide(:button_text, t("save_button")) %>
 <% provide(:action, edit_job_path) %>
-<% if logged_in? %>
+<% if policy(@job).edit? %>
   <h1 class="center">
     <%=  %>
   </h1>

@@ -1,6 +1,6 @@
 <% provide(:title, t("job.add")) %>
 <% provide(:button_text, t("add_button")) %>
-<% if logged_in? %>
+<% if policy(@job).new? %>
   <h1 class="center">
     <%= t("job.add") %>
   </h1>
