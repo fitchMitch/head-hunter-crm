@@ -1,7 +1,7 @@
 <% provide(:title, t("person.edit")) %>
 <% provide(:button_text, t("save_button")) %>
 <% provide(:button_see_text, t("person.save_and_see_button")) %>
-<% if logged_in? && current_user.admin? %>
+<% if policy(@person).update? %>
   <h1 class="center">
   <%= t("person.edit") %></h1>
   <div class='row'>

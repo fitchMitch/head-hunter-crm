@@ -18,40 +18,42 @@
          <!-- end  -->
          </button>
         <% comactions.each do |comaction| %>
-        <div class="<%= background_style(comaction) %>"
-          data-toggle="popover"
-          data-placement="top"
-          data-container="body"
-          data-trigger="hover"
-          data-html="true"
-          title="<%= getComactionTitle(comaction) %>"
-          data-content="<%= getComactionDetails(comaction) %>">
-          <%= link_to comaction_path(comaction), class: "appointment" do %>
-          <div class="row">
-            <div class="col-xs-3">
-              <span class="hour">
-                <%= comaction.start_time.strftime("%H:%M") %>
-              </span>
-            </div>
-            <div class="col-xs-9">
-                <%= comaction.person.full_name %>
-            </div>
+          <div class="<%= background_style(comaction) %>"
+            data-toggle="popover"
+            data-placement="top"
+            data-container="body"
+            data-trigger="hover"
+            data-html="true"
+            title="<%= getComactionTitle(comaction) %>"
+            data-content="<%= getComactionDetails(comaction) %>">
+            <% if policy(@comaction).show? %>
+              <%= link_to comaction_path(comaction), class: "appointment" do %>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <span class="hour">
+                      <%= comaction.start_time.strftime("%H:%M") %>
+                    </span>
+                  </div>
+                  <div class="col-xs-9">
+                      <%= comaction.person.full_name %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <%= comaction.end_time.strftime("%H:%M") %>
+                  </div>
+                  <div class="col-xs-9">
+                    <h6 class="calendar">
+                      <span class="status-frame ">
+                        <%= t_com_status(comaction.status) %>
+                      </span>
+                    </h6>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
-          <div class="row">
-            <div class="col-xs-3">
-              <%= comaction.end_time.strftime("%H:%M") %>
-            </div>
-            <div class="col-xs-9">
-              <h6 class="calendar">
-                <span class="status-frame ">
-                  <%= t_com_status(comaction.status) %>
-                </span>
-              </h6>
-            </div>
-          </div>
-        </div>
         <% end %>
-      <% end %>
     <% end %>
   </div>
 </div>

@@ -8,21 +8,23 @@ class PeopleController < ApplicationController
 
   def new
     @person = Person.new
+    authorize @person
   end
 
   def index
     @q = Person.ransack(params[:q])
     @people = @q.result.includes(:jobs).page(params[:page] ? params[:page].to_i : 1)
+    authorize @people
   end
 
   def edit
-    # @person = Person.find(params[:id])
+    authorize @person
   end
 
   def show
     require 'docx'
-
     @person = Person.find(params[:id])
+    authorize @person
     @class_client = @person.is_client ? 'client' : 'candidate'
     @passed_comactions = Comaction.unscoped.older_than(0).from_person(@person)
     @future_comactions = Comaction.unscoped.newer_than(0).from_person(@person)
@@ -41,6 +43,7 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params)
     render 'new' if @person.nil?
+    authorize @person
     @person.cv_docx = params[:person][:cv_docx]
     @person.user_id = current_user.id
     if @person.save
@@ -59,7 +62,7 @@ class PeopleController < ApplicationController
   end
   # --------------------
   def update
-    # @person = Person.find(params[:id])
+    authorize @person
     @person.user_id = current_user.id
     @person.cv_docx = params[:person][:cv_docx]
     if @person.update_attributes(person_params)
@@ -73,6 +76,7 @@ class PeopleController < ApplicationController
   end
   # --------------------
   def destroy
+    authorize @person
     mes = 'Contact supprimé'
     mes += ' avec son CV' if @person.cv_docx.file?
     @person.destroy

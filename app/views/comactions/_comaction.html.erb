@@ -5,8 +5,10 @@
             </div>
             <div class='col-xs-7'><%= link_to comaction.name, comaction_path(comaction)  %></div>
             <div class='col-xs-1'>
-              <%= link_to  edit_comaction_path(comaction)  do%>
-                <span class="glyphicon glyphicon-pencil"></span>
+              <% if policy(@comaction).update? %>
+                <%= link_to  edit_comaction_path(comaction)  do%>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                <% end %>
               <% end %>
             </div>
             <div class='col-xs-2'>

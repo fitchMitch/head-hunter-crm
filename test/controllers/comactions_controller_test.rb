@@ -18,6 +18,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     @mission = create(:mission)
     @person = create(:person)
     @user = create(:user)
+    @admin = create(:admin)
 
   end
 
@@ -40,14 +41,14 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
 
   test 'should redirect destroy when not logged in' do
     log_in_as(@user)
-    assert_difference 'Comaction.count', -1 do
+    assert_no_difference 'Comaction.count' do
       delete comaction_path(@comaction)
     end
-    assert_redirected_to comactions_path
+    assert_redirected_to root_path
   end
 
   test 'should validate and redirect comaction updates to comactions index page' do
-    log_in_as(@user)
+    log_in_as(@admin)
     get edit_comaction_path(@comaction)
     patch comaction_path(@comaction),
           params: {
@@ -60,8 +61,8 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to comactions_path
   end
 
-  test 'should validate and redirect comaction updates ' do
-    log_in_as(@user)
+  test 'should validate and redirect admin s comaction updates ' do
+    log_in_as(@admin)
     patch comaction_path(@comaction),
           params: {
             comaction: {
@@ -70,6 +71,18 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
           }
     refute flash.empty?
     assert_redirected_to comactions_path
+  end
+
+  test 'should validate and redirect users comaction updates ' do
+    log_in_as(@user)
+    patch comaction_path(@comaction),
+          params: {
+            comaction: {
+              start_time: nil
+            }
+          }
+    refute flash.empty?
+    assert_redirected_to root_path
   end
   #---------------
   # create
@@ -111,7 +124,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should invalidate upside down dates and redirect comaction edit page' do
-    log_in_as(@user)
+    log_in_as(@admin)
     patch comaction_path(@comaction), params: {
       comaction: {
         start_time: @comaction.end_time,
@@ -133,8 +146,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
         end_time: @former_comaction.end_time + 30*60
       }
     }
-    assert flash.empty?, 'LINE 144 - Flash is not empty while it shall '
-    # assert_template partial: '_month_calendar', count: 1
+    refute flash.empty?
   end
 
 

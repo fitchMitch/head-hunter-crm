@@ -1,7 +1,7 @@
 <% provide(:title, t("person.add")) %>
 <% provide(:button_see_text, t("person.add_and_see_button")) %>
 <% provide(:button_text, t("add_button")) %>
-<% if logged_in? && current_user.admin? %>
+<% if policy(@person).create? %>
   <h1 class="center">
     <%= t("person.add") %>
   </h1>

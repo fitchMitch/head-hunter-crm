@@ -19,7 +19,7 @@
 
             <div class="col-md-2 col-sm-3 col-xs-4">
                 <p>
-                    <% if logged_in? %>
+                  <% if policy(person).destroy? %>
                     <%= link_to person,
                       method: :delete,
                       data: {
@@ -30,15 +30,18 @@
                       } do %>
                         <span class="glyphicon glyphicon-trash"></span>
                       <% end %>
-                      |
+                    |
+                    <% end %>
+                    <% if policy(person).update? %>
                       <%= link_to edit_person_path(person) do %>
                       <span class="glyphicon glyphicon-pencil"></span>
                       <% end %>
-                      |
-                      <%= link_to new_comaction_path({:person_id => person.id}) do %>
-                        <%= fa_icon('calendar-o') %>
-                      <% end %>
+                    |
                     <% end %>
+                    <%= link_to new_comaction_path({:person_id => person.id}) do %>
+                      <%= fa_icon('calendar-o') %>
+                    <% end %>
+
                 </p>
             </div>
 

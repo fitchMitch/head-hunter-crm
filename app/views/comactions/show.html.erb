@@ -26,10 +26,12 @@
   <div class='col-sm-1'>
     <div class="row ">
       <div class="col-sm-12 nav-ico">
-        <%= link_to edit_comaction_path do %>
-        <button class="btn btn-success">
-          <%= fa_icon('pencil 2x') %>
-        </button>
+        <% if policy(@comaction).update? %>
+          <%= link_to edit_comaction_path do %>
+            <button class="btn btn-success">
+              <%= fa_icon('pencil 2x') %>
+            </button>
+          <% end %>
         <% end %>
       </div>
       <div class="col-sm-12 nav-ico">
@@ -47,17 +49,19 @@
         <% end %>
       </div>
       <div class="col-sm-12  nav-ico">
-        <%= link_to @comaction,
-        method: :delete,
-        data: {
-          :confirm => t("confirm"),
-          :'sweet-alert-confirm' => t("confirm") ,
-          :'confirm-button-text' => t("confirm-button-text"),
-          :'cancel-button-text' => t("cancel-button-text")
-        } do %>
-          <button class="btn btn-success danger">
-            <%= fa_icon('trash 2x') %>
-          </button>
+        <% if policy(@comaction).destroy? %>
+          <%= link_to @comaction,
+          method: :delete,
+          data: {
+            :confirm => t("confirm"),
+            :'sweet-alert-confirm' => t("confirm") ,
+            :'confirm-button-text' => t("confirm-button-text"),
+            :'cancel-button-text' => t("cancel-button-text")
+          } do %>
+            <button class="btn btn-success danger">
+              <%= fa_icon('trash 2x') %>
+            </button>
+          <% end %>
         <% end %>
       </div>
     </div>

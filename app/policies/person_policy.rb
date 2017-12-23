@@ -1,12 +1,7 @@
-class MissionPolicy < ApplicationPolicy
+class PersonPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.admin?
-        scope.all
-      else
-        # scope.all
-        scope.mine(current_user.id)
-      end
+      scope.all
     end
   end
 
@@ -29,6 +24,4 @@ class MissionPolicy < ApplicationPolicy
   def destroy?
     owner_or_admin?
   end
-
-
 end

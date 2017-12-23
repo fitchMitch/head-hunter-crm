@@ -19,6 +19,7 @@ class ComactionsController < ApplicationController
 
   def new
     @comaction = Comaction.new
+    authorize @comaction
     @comaction.name = 'RdV'
     @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
     @forwhom = params[:person_id] || 0
@@ -42,6 +43,7 @@ class ComactionsController < ApplicationController
 
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
+    authorize @comactions
     unless params[:filter].nil?
       Comaction.statuses.each do |key,value|
         @comactions = @comactions.public_send(key) if params[:filter] == key
@@ -69,6 +71,7 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def edit
+    authorize @comaction
     @user = current_user
     @forwhom = @comaction.person.id
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
@@ -78,6 +81,7 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def show
+    authorize @comaction
   end
   #-----------------
   def add_ext
@@ -97,6 +101,7 @@ class ComactionsController < ApplicationController
     @comaction = @person.comactions.build(comaction_params)
     @comaction.user_id = current_user.id
     @comaction = trigger_nil_dates @comaction
+    authorize @comaction
 
     if @comaction.save
       if @comaction.start_time == nil  || @comaction.end_time == nil
@@ -113,6 +118,7 @@ class ComactionsController < ApplicationController
   end
 
   def update
+    authorize @comaction
     @comaction = trigger_nil_dates @comaction
     if @comaction.update(comaction_params)
       if @comaction.start_time == nil || @comaction.end_time == nil
@@ -131,6 +137,7 @@ class ComactionsController < ApplicationController
   end
 
   def destroy
+    authorize @comaction
     @comaction.destroy
     flash[:success] = I18n.t("comaction.message.deleted")
     redirect_to comactions_path

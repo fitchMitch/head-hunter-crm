@@ -3,7 +3,9 @@
   <%= t("person.list") %>
 </h1>
 
+<% if policy(@people).index? %>
 <%= will_paginate %>
 <%= render 'table_header' %>
-<%= render @people %>
+  <%= render @people %>
 <%= will_paginate %>
+<% end %>
