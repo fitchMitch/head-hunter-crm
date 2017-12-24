@@ -13,7 +13,7 @@ default: &default
 development:
   <<: *default
   database: jjflo_dev
-  password: <%= ENV["SGBD_PWD_DEV"] %>
+  password: <%= ENV['SGBD_PWD_DEV'] %>
   username: jjflo
 
 # Warning: The database defined as "test" will be erased and
@@ -28,5 +28,6 @@ test:
 production:
   <<: *default
   database: jjflo
-  password: <%= ENV["SGBD_PWD"] %>
+  password: <%= ENV['SGBD_PWD'] %>
   username: postgres
+# username: jjflo
