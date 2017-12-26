@@ -128,6 +128,7 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
 35.times do |n|
   person = people.sample
   company = companies.sample
+  user = users.sample
 
   name   =           "Mission" + (1..4500).to_a.sample.to_s
   reward =           (17..45).to_a.sample* 1000
@@ -137,9 +138,10 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
   whished_start_date = Date.today + (0..200).to_a.sample
   company_id =       company.id
   person_id  =       person.id
-  status  =          statuses.sample
-  is_done   =        [statuses[3], statuses[4]].include?(status)
-  signed    =         [statuses[2], statuses[3], statuses[4]].include?(status)
+  user_id  =         user.id
+  status  =          Mission.statuses.keys.sample
+  is_done   =        [:mission_billed, :mission_payed].include?(status)
+  signed    =        [:contract_signed, :mission_billed, :mission_payed].include?(status)
   paid_amount =      signed ? reward / 3 : 0
   Mission.create!(
     name:               name,
@@ -155,6 +157,7 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
     updated_at:         updated_at,
     company_id:         company_id,
     person_id:          person_id,
+    user_id:            user_id,
     status:             status
     )
 end
