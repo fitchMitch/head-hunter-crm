@@ -9,9 +9,9 @@ class EventSlot
     update_duration
   end
 
-  # def descro
-  #   "De  #{self.start_period.strftime('%H:%M')} à #{self.end_period.strftime('%H:%M')}"
-  # end
+  def descro
+    "De  #{self.start_period.strftime('%d %H:%M')} à #{self.end_period.strftime('%d %H:%M')}"
+  end
 
   def get_hours_duration
     min_left = self.min_duration % 60
@@ -53,18 +53,19 @@ class EventSlot
 
   def out_from_intersect(rdv_period)
     #purpose : self is a free zone, rdv_period is an appointment
+    # the rdv_period slices the free_zone in parts when it intersects with the free_zone
     return "not_a_EventSlot" unless rdv_period.is_a?(EventSlot)
     return "two_days_error #{self.descro} max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
     r = []
-    self_start_before = self.start_period <= rdv_period.start_period
-    self_end_after = rdv_period.end_period <= self.end_period
+    self_starts_before = self.start_period <= rdv_period.start_period
+    self_ends_after = rdv_period.end_period <= self.end_period
     # ---------------------
     if self.overlaps? rdv_period
-      if self_start_before
+      if self_starts_before
         starts = { :start_period => self.start_period, :end_period => rdv_period.start_period }
         r << EventSlot.new( starts )
       end
-      if self_end_after
+      if self_ends_after
         ends = {:start_period => rdv_period.end_period, :end_period => self.end_period }
         r << EventSlot.new( ends )
       end
@@ -79,7 +80,7 @@ class EventSlot
     h_start += 1 if self.start_period.minute >= 30
     h_finish= self.end_period.hour * 2 - 1
     h_finish += 1 if self.end_period.minute >= 30
-    (h_start.. h_finish)
+    (h_start .. h_finish)
   end
 
   class << self
@@ -91,24 +92,26 @@ class EventSlot
         unfinished = false
         next_comactions.each do |app|
           unless  app.start_time.nil? || app.end_time.nil? || app.end_time < d
-            es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app)})
-            freeZone_days.each do
-              ghost_day_free_zone = freeZone_days.shift
+            es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app.end_time)})
+            next if es_app.min_duration == 0
+            freeZone_days.each do |ghost_day_free_zone|
               next if ghost_day_free_zone.from_now_on == nil
               intersect = ghost_day_free_zone.out_from_intersect(es_app)
+              # intersect > 1 when there's been overlapping between ghost_day_free_zone and the appointment (app)
               unfinished = true if intersect.length > 1
-
+              # ghost_day_free_zone is to be withdrawn from freeZone_days
+              freeZone_days.delete(ghost_day_free_zone)
               freeZone_days += intersect #unless intersect == nil || intersect.empty? || intersect.instance_of?(String)
               messages +=  intersect if intersect.instance_of?(String)
             end
           end
         end
       end
-      {messages: messages, freeZone_days: freeZone_days}
+      return messages,freeZone_days
     end
-    def error_margin(app)
-      # tdt (app.end_time.advance(minutes: 0))
-      tdt (app.end_time)
+    def error_margin(end_time)
+      # tdt (end_time.advance(minutes: 0))
+      tdt (end_time)
     end
 
     def tdt (t)
@@ -172,21 +175,6 @@ class EventSlot
     self.end_period = endo
     update_duration
   end
-
-  # def round_hours
-  #   start_hour = self.start_period.hour
-  #   start_min = self.start_period.min
-  #
-  #   if start_min == 0
-  #   elsif start_min = start_min > 0 && start_min <= 30
-  #     start_min = 30
-  #   else
-  #     start_min = 0
-  #     start_hour += 1
-  #   end
-  #   start_hour -= 1  if start_hour == Comaction::WORK_HOURS.last
-  #   {min: start_min, hours: start_hour}
-  # end
 
   def overlaps_two_days?
     (self.end_period.beginning_of_day - self.start_period.beginning_of_day).to_i.round > 0

@@ -75,9 +75,7 @@ class ComactionsController < ApplicationController
     @user = current_user
     @forwhom = @comaction.person.id
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
-    res = availibilities()
-    @next_commactions = res[:next_commactions]
-    @freeZone_days =  res[:freeZone_days]
+    @next_commactions, @freeZone_days =  availibilities
   end
   #-----------------
   def show
@@ -165,13 +163,13 @@ class ComactionsController < ApplicationController
       attributes = {:start_period => d , :end_period => d.advance(days: 5)}
       freeZone_days = EventSlot.new(attributes).working_days_split
       #---
-      dash_it = EventSlot.dash_it(freeZone_days, next_comactions)
-      flash[:danger] = dash_it[:messages] unless dash_it[:messages].empty?
+      message , freeZone_days = EventSlot.dash_it(freeZone_days, next_comactions)
+      flash[:danger] = message unless message.empty?
 
-      freeZone_days = EventSlot.sharpen(dash_it[:freeZone_days])
+      freeZone_days = EventSlot.sharpen(freeZone_days)
       freeZone_days = EventSlot.sort_periods(freeZone_days) unless freeZone_days == nil
       #---
-      {next_commactions: next_comactions, freeZone_days: freeZone_days}
+      return next_commaction, freeZone_days
     end
 
     def trigger_nil_dates (comaction)
