@@ -24,9 +24,7 @@ class ComactionsController < ApplicationController
     @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
     @forwhom = params[:person_id] || 0
     @what_mission = params[:mission_id] || 0
-    res = availibilities()
-    @next_commactions = res[:next_commactions]
-    @freeZone_days =  res[:freeZone_days]
+    @next_commactions , @freeZone_days =  availibilities
   end
 
 
