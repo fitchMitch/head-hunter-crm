@@ -6,7 +6,6 @@
   <% else %>
   <div class='row '>
       <div class='col-xs-4'>
-        <% if policy(a).edit? %>
           <%= link_to edit_job_path(a.id)  do%>
             <span class="glyphicon glyphicon-pencil"></span>
             <%= a.job_title %>
@@ -14,7 +13,6 @@
           <small><span class="label label-default"><%= years_work(a)%>
             <%= t("mission.years") %>
           </span></small>
-        <% end %>
       </div>
       <div class='col-xs-7'>
         <small>
@@ -31,7 +29,6 @@
       </div>
 
       <div class='col-xs-1'>
-        <% if policy(a).destroy? %>
           <%= link_to job_path(a.id),
           method: :delete,
           data: {
@@ -42,7 +39,6 @@
           } do %>
             <span class="glyphicon glyphicon-trash"></span>
           <% end %>
-        <% end %>
       </div>
   </div>
   <div class='row '>
