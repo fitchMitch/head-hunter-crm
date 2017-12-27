@@ -169,7 +169,7 @@ class ComactionsController < ApplicationController
       freeZone_days = EventSlot.sharpen(freeZone_days)
       freeZone_days = EventSlot.sort_periods(freeZone_days) unless freeZone_days == nil
       #---
-      return next_commaction, freeZone_days
+      return next_comactions, freeZone_days
     end
 
     def trigger_nil_dates (comaction)
