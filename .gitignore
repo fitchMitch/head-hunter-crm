@@ -21,5 +21,6 @@
 /public/system/people/*
 /rails_cmds.txt
 /test_results.txt
+/erase_it_all.sql
 # Ignore Byebug command history file.
 .byebug_history
