@@ -1,7 +1,13 @@
 {
-  "port": "4000",
-  "log_file": "awesome_passenger_production.log",
+  "port": 443,
   "environment": "production",
   "daemonize": true,
-  "user": "jjllo"
+  "user": "jjflo",
+  "instance_registry_dir": "/var/run/passenger-instreg",
+  "daemonize": true,
+  "ssl": true,
+  "ssl_certificate": "/etc/letsencrypt/live/crm.etienneweil.fr/fullchain.pem",
+  "ssl_certificate_key": "/etc/letsencrypt/keys/0000_key-certbot.pem",
+  "nginx_config_template": "/var/www/jjflo/nginx_standalone_production_conf/nginx.config.erb",
+  "log_file": "awesome_passenger_production.log"
 }
