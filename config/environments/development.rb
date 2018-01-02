@@ -3,7 +3,7 @@ Rails.application.configure do
 
   # EWE Asset Pipeline debug
   # config.assets.debug = false
-  
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -43,7 +43,7 @@ Rails.application.configure do
    :port           => '587',
    :authentication => :plain,
    :user_name      => 'etienne.weil@gmail.com',
-   :password       => 'margoulin:85247'
+   :password       => ''
  }
 
   config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 3 * 1024 * 1024)
