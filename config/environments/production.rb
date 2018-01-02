@@ -30,7 +30,7 @@ Rails.application.configure do
    :port           => '587',
    :authentication => :plain,
    :user_name      => 'etienne.weil@gmail.com',
-   :password       => 'margoulin:85247'
+   :password       => ''
  }
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
