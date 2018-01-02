@@ -24,3 +24,6 @@
 /erase_it_all.sql
 # Ignore Byebug command history file.
 .byebug_history
+/config/database.yml
+/config/secrets.yml
+/Passengerfile.json.ssl
