@@ -14,8 +14,10 @@
 class ComactionsController < ApplicationController
 
   before_action :logged_in_user
-  before_action :get_comaction,   only: [:edit, :show, :update, :destroy]
-  before_action :get_uid,   only: [:new, :index, :edit]
+  before_action :get_comaction,       only: [:edit, :show, :update, :destroy]
+  before_action :get_uid,             only: [:new, :index, :edit]
+  #before_action :get_availibilities,  only: %i(new, edit)
+
 
   def new
     @comaction = Comaction.new
@@ -73,7 +75,7 @@ class ComactionsController < ApplicationController
     @user = current_user
     @forwhom = @comaction.person.id
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
-    @next_commactions, @freeZone_days =  availibilities
+    @next_commactions , @freeZone_days =  availibilities
   end
   #-----------------
   def show
@@ -195,5 +197,9 @@ class ComactionsController < ApplicationController
 
     def get_uid
       @uid = current_user.id
+    end
+
+    def get_availibilities
+      @next_commactions , @freeZone_days =  availibilities
     end
 end

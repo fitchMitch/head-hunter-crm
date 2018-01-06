@@ -30,7 +30,7 @@ class JobsController < ApplicationController
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
       message = "#{@job.person.firstname}" + I18n.t("job.new_saved")
-      # if Job.double_jobs(@person.id)
+      # if @job.person.double_jobs
       #   flash[:warning] = message + ' (ce profil a plusieurs emplois en parallèle)'
       # else
         flash[:info] = message

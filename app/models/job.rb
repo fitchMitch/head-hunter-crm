@@ -34,10 +34,6 @@ class Job < ApplicationRecord
   validates :end_date, presence: true, date: { after: :start_date }, unless: :no_end?
   validate :double_current_job?
 
-  def self.double_jobs(person_id)
-    Job.where("person_id = ? AND no_end = ?", person_id, true).count > 1
-  end
-
   def self.current_job(person_id)
     Job.find_by_person_id_and_no_end(person_id, true)
   end
