@@ -22,6 +22,7 @@
 #
 
 class Person < ApplicationRecord
+  include People::Docx
   has_many :jobs, dependent: :destroy
   #accepts_nested_attributes_for :jobs, allow_destroy: true
   has_many :missions, dependent: :destroy
@@ -31,9 +32,6 @@ class Person < ApplicationRecord
   before_save   :downcase_email
   before_save   :upcase_name
   before_save   :phone_number_format
-
-  before_destroy :remove_docx
-
 
   # ----- Search part
   include PgSearch
@@ -83,6 +81,10 @@ class Person < ApplicationRecord
     end
   end
 
+  def double_jobs
+    Job.where("person_id = ? AND no_end = ?", self.id, true).count > 1
+  end
+
   def full_name
     firstname.nil? ?  lastname.upcase : firstname + ' ' + lastname.upcase
   end
@@ -94,50 +96,13 @@ class Person < ApplicationRecord
     end
   end
 
-  def index_cv_content
-    doc = get_cv
-    return if doc == nil
-    ctt = []
-    doc.paragraphs.each do |pa|
-        ctt << pa.text.tr('\'' , ' ')
-    end
-    content =  ctt.join(' ')
-    ActiveRecord::Base.connection.execute <<-SQL
-    INSERT INTO pg_search_documents (searchable_type, searchable_id, content, created_at, updated_at)
-    VALUES ('Person' ,
-            #{self.id} ,
-            '#{content}'::text ,
-            now(),
-            now())
-    SQL
-  end
-
-  def remove_docx
-    self.remove_index_content
-    self.cv_docx = nil
-    self.save
-  end
-
-  def remove_index_content
-    ActiveRecord::Base.connection.execute <<-SQL
-      DELETE FROM  pg_search_documents where searchable_id = #{self.id}
-    SQL
-  end
-
-  def set_cv_content
-    doc = get_cv
-    return if doc == nil
-    ctt = []
-    doc.paragraphs.each  { |pa| ctt << pa.text.tr('\'' , ' ')}
-    self.update(:cv_content => ctt.join(' '))
-  end
   # ------------------------
   private
   # ------------------------
     def downcase_email
       return if email.nil? || email === ""
       self.email = email.downcase
-      self.email = SPACES.match(email)[1] || self.email
+      self.email = SPACES.match(email)[1] || email
     end
 
     def upcase_name
