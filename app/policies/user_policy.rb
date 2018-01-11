@@ -15,11 +15,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    me_or_admin
+    me_or_admin?
   end
 
   def update?
-    me_or_admin
+    me_or_admin?
   end
 
   def create?
@@ -31,7 +31,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   private
-    def me_or_admin
+    def me_or_admin?
       @user.id == record.id || (@user.id != record.id && @user.admin?)
     end
 

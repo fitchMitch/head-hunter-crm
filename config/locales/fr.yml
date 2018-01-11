@@ -269,6 +269,8 @@ fr:
       user_authentication: Authentification
       password_update: Mise à jour du mot de passe
       forgotten_password: Mot de passe oublié
+      activation: Votre compte est activé
+      link_no_working: Le lien d'activation est invalide
 
   years: années
   months: mois
