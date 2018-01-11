@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [        :edit, :update, :destroy, :show]
 
   def new
     @user = User.new
@@ -12,8 +12,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    authorize @user
   end
 
   def create
@@ -42,15 +40,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    authorize @user
-    admin_list = User.other_admins(@user)
-    # Missions are not destroyed but reassigned to the first admin found in the
-    # admin list.
-    reassign_missions(admin_list.first,@user)
     if @user == current_user
       flash[:success] = I18n.t('user.cannot_destroy')
     else
+      admin_list = User.other_admins(@user)
+      # Missions are not destroyed but reassigned to the first admin found in the
+      # admin list.
+      reassign_missions(admin_list.first,@user)
       Person.where('user_id = ?', @user.id).update_all(user_id: admin_list.first.id)
       @user.destroy
       flash[:success] = I18n.t('user.destroyed')
@@ -73,10 +69,7 @@ class UsersController < ApplicationController
     end
 
     def correct_user
-      # flash[:danger] = "Logguez vous d'abord"
       @user = User.find(params[:id])
       authorize @user
-      redirect_to(root_url) unless current_user? @user
     end
-
 end
