@@ -43,6 +43,4 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     assert_template 'people/edit'
   end
 
-
-
 end

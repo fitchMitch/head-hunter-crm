@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :get_company,   only: [:edit, :update]
+  before_action :get_company,   only: [:edit, :update, :show, :list_people]
   def new
     @company = Company.new
   end
@@ -11,7 +11,6 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company = Company.find(params[:id])
   end
 
   def search
@@ -19,7 +18,6 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
   end
 
   def create
@@ -42,14 +40,14 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # def destroy
+  # def destroy #not implemented on purpose
   #   Company.find(params[:id]).destroy
   #   flash[:success] = 'Société supprimée'
   #   redirect_to companies_path
   # end
 
   def list_people
-    @company = Company.find(params[:id])
+    #@company = Company.find(params[:id])
     @nbr = Job.where('company_id = ?', params[:id]).distinct.pluck(:person_id).count
     #@comactions = Comaction.includes(:user, :person, mission: [:company])
     params[:q] = {} if params[:q].nil?

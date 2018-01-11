@@ -18,7 +18,6 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    authorize @person
   end
 
   def show
@@ -62,7 +61,6 @@ class PeopleController < ApplicationController
   end
   # --------------------
   def update
-    authorize @person
     @person.user_id = current_user.id
     @person.cv_docx = params[:person][:cv_docx]
     if @person.update_attributes(person_params)
@@ -76,7 +74,6 @@ class PeopleController < ApplicationController
   end
   # --------------------
   def destroy
-    authorize @person
     mes = 'Contact supprimé'
     mes += ' avec son CV' if @person.cv_docx.file?
     @person.destroy
@@ -150,12 +147,15 @@ class PeopleController < ApplicationController
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = 'Logguez-vous d\'abord'
+      flash[:danger] = I18n.t("session.log_first")
       redirect_to login_url
     end
     unless params[:id].nil?
       @person = Person.find(params[:id])
+      authorize @person
       @jobs = @person.jobs.includes(:company).reload
+    else
+      redirect_to root_url
     end
   end
 end

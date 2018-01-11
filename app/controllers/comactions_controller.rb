@@ -16,7 +16,7 @@ class ComactionsController < ApplicationController
   before_action :logged_in_user
   before_action :get_comaction,       only: [:edit, :show, :update, :destroy]
   before_action :get_uid,             only: [:new, :index, :edit]
-  #before_action :get_availibilities,  only: %i(new, edit)
+  before_action :get_availibilities,  only: %i(new, edit)
 
 
   def new
@@ -26,7 +26,7 @@ class ComactionsController < ApplicationController
     @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
     @forwhom = params[:person_id] || 0
     @what_mission = params[:mission_id] || 0
-    @next_commactions , @freeZone_days =  availibilities
+    #@next_commactions , @freeZone_days =  availibilities
   end
 
 
@@ -71,15 +71,13 @@ class ComactionsController < ApplicationController
   end
   #-----------------
   def edit
-    authorize @comaction
     @user = current_user
     @forwhom = @comaction.person.id
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
-    @next_commactions , @freeZone_days =  availibilities
+    #@next_commactions , @freeZone_days =  availibilities
   end
   #-----------------
   def show
-    authorize @comaction
   end
   #-----------------
   def add_ext
@@ -116,7 +114,6 @@ class ComactionsController < ApplicationController
   end
 
   def update
-    authorize @comaction
     @comaction = trigger_nil_dates @comaction
     if @comaction.update(comaction_params)
       if @comaction.start_time == nil || @comaction.end_time == nil
@@ -135,7 +132,6 @@ class ComactionsController < ApplicationController
   end
 
   def destroy
-    authorize @comaction
     @comaction.destroy
     flash[:success] = I18n.t("comaction.message.deleted")
     redirect_to comactions_path
@@ -193,6 +189,7 @@ class ComactionsController < ApplicationController
       @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? 0 : 1
       @date_begin = @comaction.start_time
       @date_end = @comaction.end_time
+      authorize @comaction
     end
 
     def get_uid
