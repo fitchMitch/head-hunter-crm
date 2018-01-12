@@ -70,6 +70,7 @@ Person.create!(
   #Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
   note=              Faker::Lorem.sentence(3)
   is_client =        Faker::Boolean.boolean(0.1)
+  cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
   user_id=           user.id
   Person.create!(
     firstname:          firstname,
@@ -77,6 +78,7 @@ Person.create!(
     email:              email,
     phone_number:       phone_number,
     approx_age:         approx_age,
+    cv_docx:            cv_docx,
     is_jj_hired:        is_client,
     is_client:          is_client,
     note:               note,

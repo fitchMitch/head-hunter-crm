@@ -70,6 +70,7 @@ Person.create!(
   #Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
   note=              Faker::Lorem.sentence(3)
   is_client =        Faker::Boolean.boolean(0.1)
+  cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
   user_id=           user.id
   Person.create!(
     firstname:          firstname,
@@ -79,6 +80,7 @@ Person.create!(
     approx_age:         approx_age,
     is_jj_hired:        is_client,
     is_client:          is_client,
+    cv_docx:            cv_docx,
     note:               note,
     user_id:            user_id
     )
@@ -168,8 +170,8 @@ missions = Mission.all
 250.times do |n|
 
   name   =           "Rendez-vous " + n.to_s
-  status =           [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT, Comaction::STATUS_PRES, Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED, Comaction::STATUS_WORKING ].sample
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
+  status =           Comaction.statuses.keys.sample
+  action_type   =    Comaction.action_types.keys.sample
   person =           people.sample
   user   =           users.sample
   mission=           missions.sample
