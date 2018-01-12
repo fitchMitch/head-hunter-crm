@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
-  before_action :logged_in_user, only: %i[index edit update destroy]
+  before_action :logged_in_user
+  before_action :get_person, only: [ :edit, :update, :destroy]
 
   class Alljob
     include ActiveModel::AttributeAssignment
@@ -129,33 +130,28 @@ class PeopleController < ApplicationController
   #--------------------
   private
 
-  def person_params
-    params.require(:person).permit(
-      :title,
-      :firstname,
-      :lastname,
-      :email,
-      :phone_number,
-      :approx_age,
-      :is_jj_hired,
-      :is_client,
-      :note,
-      :cv_docx
-    )
-  end
+    def person_params
+      params.require(:person).permit(
+        :title,
+        :firstname,
+        :lastname,
+        :email,
+        :phone_number,
+        :approx_age,
+        :is_jj_hired,
+        :is_client,
+        :note,
+        :cv_docx
+      )
+    end
 
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = I18n.t("session.log_first")
-      redirect_to login_url
+    def get_person
+      unless params[:id].nil?
+        @person = Person.find(params[:id])
+        authorize @person
+        @jobs = @person.jobs.includes(:company).reload
+      else
+        redirect_to root_url
+      end
     end
-    unless params[:id].nil?
-      @person = Person.find(params[:id])
-      authorize @person
-      @jobs = @person.jobs.includes(:company).reload
-    else
-      redirect_to root_url
-    end
-  end
 end

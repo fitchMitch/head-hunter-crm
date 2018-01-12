@@ -57,19 +57,8 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should NOT create company" do
-    get new_company_path
-    @some_params = {
-        'company' => {
-          'name' => 'ACME'
-        }
-    }
-    post companies_url,params: @some_params
-    assert_response :success
-    assert_template "companies/new"
-  end
-
   test "should create company" do
+    log_in_as(@user)
     get new_company_path
     @some_params = {
         'company' => {
@@ -81,5 +70,5 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to companies_url
   end
-  
+
 end

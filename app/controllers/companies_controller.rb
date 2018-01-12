@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user 
   before_action :get_company,   only: [:edit, :update, :show, :list_people]
   def new
     @company = Company.new

@@ -35,6 +35,7 @@ class ApplicationPolicy
   end
 
   def owner_or_admin?
+    return false if @user.nil?
     @user.admin? || (record.respond_to?(:user_id) && record.user_id == @user.id)
   end
 

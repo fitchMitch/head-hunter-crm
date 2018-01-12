@@ -14,9 +14,9 @@
 class ComactionsController < ApplicationController
 
   before_action :logged_in_user
-  before_action :get_comaction,       only: [:edit, :show, :update, :destroy]
+  before_action :get_comaction,       only: [              :edit, :show, :update, :destroy]
   before_action :get_uid,             only: [:new, :index, :edit]
-  before_action :get_availibilities,  only: %i(new, edit)
+  before_action :get_availibilities,  only: [:new,         :edit]
 
 
   def new

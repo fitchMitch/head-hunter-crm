@@ -12,7 +12,7 @@
           <% else %>
             <i class="fa fa-user-o" aria-hidden="true"></i>
           <% end %>
-          <% if policy(@person).update? %>
+          <% if policy(@person).show? %>
             <%= link_to @person.full_name, edit_person_path(@person), class:@class_client  %>
             <% if @person.is_jj_hired %>
               <i class="fa fa-star" aria-hidden="true"></i>

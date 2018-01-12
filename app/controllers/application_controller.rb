@@ -16,7 +16,12 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:danger] = I18n.t("pundit.not_authorized")
-    redirect_to(request.referrer || root_path)
+    if logged_in?
+      redirect_to(request.referrer || root_path)
+    else
+      redirect_to login_path
+    end
+
   end
 
 end

@@ -33,7 +33,7 @@ rails g pundit:policy comaction
 rails g migration AddUserRefToMissions user:references
 rails g integration_test missions
 
-
+rails generate paperclip user avatar
 ----------------------------------
 rails routes -g new_comment
 rails routes -c Comments
