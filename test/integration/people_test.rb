@@ -1,8 +1,9 @@
 require 'test_helper'
+require 'fileutils'
 
 class PeopleTest < ActionDispatch::IntegrationTest
   def setup
-    @person = create(:person)
+    @person = create(:person_with_cv)
     @user = @person.user
     @admin = create(:admin)
   end
@@ -66,6 +67,15 @@ class PeopleTest < ActionDispatch::IntegrationTest
     @job.save!
     assert_difference 'Job.count', -1 do
       delete person_path(person)
+    end
+  end
+
+  test "dependent docx resources shoud be destroyed when people are" do
+    log_in_as(@admin)
+    get people_path
+    file_path  = @person.cv_docx.url.split(/\?/).first
+    refute File.exists?(file_path) do
+      delete person_path(@person)
     end
   end
 
