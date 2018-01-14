@@ -23,10 +23,10 @@
                     <%= link_to person,
                       method: :delete,
                       data: {
-                        :confirm => t("confirm"),
-                        :'sweet-alert-confirm' => t("confirm") ,
-                        :'confirm-button-text' => t("confirm-button-text"),
-                        :'cancel-button-text' => t("cancel-button-text")
+                        confirm:t('confirm'),
+                        'sweet-alert-confirm': t('confirm') ,
+                        'confirm-button-text': t('confirm-button-text'),
+                        'cancel-button-text': t('cancel-button-text')
                       } do %>
                         <span class="glyphicon glyphicon-trash"></span>
                       <% end %>
@@ -38,7 +38,7 @@
                       <% end %>
                     |
                     <% end %>
-                    <%= link_to new_comaction_path({:person_id => person.id}) do %>
+                    <%= link_to new_comaction_path({person_id: person.id}) do %>
                       <%= fa_icon('calendar-o') %>
                     <% end %>
 
@@ -57,7 +57,7 @@
 
             <div class="col-md-2 col-sm-3 hidden-xs ">
                 <small>
-                    <%= t("added") %>
+                    <%=t('added') %>
                     <%= time_ago_in_words(person.updated_at)  %>
                     <%= user_badge(person.user) %>
                 </small>
@@ -74,6 +74,6 @@
 </div>
 <% else %>
   <h3>
-    <%= t("person.no_one") %>
+    <%=t('person.no_one') %>
   </h3>
 <% end %>

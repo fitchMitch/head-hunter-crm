@@ -1,9 +1,9 @@
-<% provide(:title, t("comaction.calendar") ) %>
+<% provide(:title,t('comaction.calendar') ) %>
 <% provide(:calender_view, '1') %>
 <!-- <div class= 'row spaceDown'> -->
 <%= render 'new_modal' %>
 <h1 class='center'>
-  <%= t("comaction.title_list") %>
+  <%=t('comaction.title_list') %>
 </h1>
 
 <!-- extra div for emulating position:fixed of the menu -->
@@ -11,7 +11,7 @@
   <div class="col-xs-12">
     <%= render 'block_filters' %>
       <%= month_calendar events: @comactions do |date, comactions| %>
-        <!-- link_to new_comaction_path({:date => date}), method: 'get', class: 'cal_date' do  -->
+        <!-- link_to new_comaction_path({date: date}), method: 'get', class: 'cal_date' do  -->
         <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" data-whenever= '<%= date %>'>
           <%= date.strftime("%d")%>
           <%= t date.strftime("%b") %>

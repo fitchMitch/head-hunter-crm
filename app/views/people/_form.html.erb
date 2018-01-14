@@ -1,9 +1,9 @@
 <%= simple_form_for(@person) do |f| %>
 <div class='row'>
     <div class="col-sm-6 col-xs-12">
-        <%= f.input :is_client, label: t("Client"), input_html: {class:" input-sm"}%>
-        <%= f.input :firstname, label: t("person.firstname"), input_html:{class:" input-sm" } %>
-        <%= f.input :lastname, label: t("Name"), input_html:{class:" input-sm" } %>
+        <%= f.input :is_client, label:t('Client'), input_html: {class:" input-sm"}%>
+        <%= f.input :firstname, label:t('person.firstname'), input_html:{class:" input-sm" } %>
+        <%= f.input :lastname, label:t('Name'), input_html:{class:" input-sm" } %>
         <%= f.input :email, label: "Email", input_html: {class:" input-sm"}%>
         <%= f.input :cv_docx, as: :file %>
         <% if @person.cv_docx.present?  %>
@@ -11,10 +11,10 @@
         <% end %>
     </div>
     <div class="col-sm-6 col-xs-12 ">
-        <%= f.input :is_jj_hired, label: t("person.jj_employed"), input_html: {class:" input-sm"}%>
-        <%= f.input :phone_number, label: t("person.phone_number"), input_html:{ maxlength: 20, class:" input-sm" } %>
-        <%= f.input :approx_age, label: t("person.approx_age"),  input_html:{class:" input-sm" } %>
-        <%= f.input :note, label: t("person.comment") %>
+        <%= f.input :is_jj_hired, label:t('person.jj_employed'), input_html: {class:" input-sm"}%>
+        <%= f.input :phone_number, label:t('person.phone_number'), input_html:{ maxlength: 20, class:" input-sm" } %>
+        <%= f.input :approx_age, label:t('person.approx_age'),  input_html:{class:" input-sm" } %>
+        <%= f.input :note, label:t('person.comment') %>
     </div>
 </div>
 <div class='row'>

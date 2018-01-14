@@ -25,10 +25,9 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 		@comaction_hired.update(user_id: @user.id)
 		get comactions_url,
 				params: {
-					filter: "hired",
-					v: "table_view" }
-		# assert_select "body>div.container>div.row.spaceDown>div.row.spaceDown>#tab_list.tab-pane>div.row.mission_data>div.col-xs-1.status>small" , {minimum: 1, text: "Engagé"}
-		  assert_select ".status>small" , {minimum: 1, text: "Engagé"}
+					filter: 'hired',
+					v: 'table_view' }
+		  assert_select '.status>small' , {minimum: 1, text: 'Engagé'}
 
 	end
 
@@ -37,9 +36,9 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 		@comaction_hired.update(user_id: @user.id)
 		get comactions_url,
 				params: {
-					"filter" => "appointed",
-					"v" => "table_view" }
-		assert_select "div.mission_data", false
+					filter: 'appointed',
+					v: 'table_view' }
+		assert_select 'div.mission_data', false
 	end
 
 end

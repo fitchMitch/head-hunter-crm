@@ -3,7 +3,7 @@
     <%= search_form_for @q, html: {class: "form-inline"} do |f| %>
     <div class="input-group input-group-sm">
       <span class="input-group-addon" id="basic-addon1">
-        <%= t("filter") %>
+        <%=t('filter') %>
       </span>
       <%= button_filters_with_ransack(:mission,
                                   "status",
@@ -14,7 +14,7 @@
     </div>
     <% end %>
     <%= link_to missions_path, class: "btn btn-success" do %>
-      <%= fa_icon("undo", text: t("reinit") ) %>
+      <%= fa_icon("undo", text:t('reinit') ) %>
     <% end %>
   </div>
 </div>

@@ -4,7 +4,10 @@ class EventSlot
   attr_accessor :start_period, :end_period, :min_duration
 
   def initialize(attributes)
-    raise "start and endtime do not suit" unless attributes[:start_period].is_a?(DateTime) && attributes[:end_period].is_a?(DateTime) && attributes[:end_period] >= attributes[:start_period]
+    c1 = attributes[:start_period].is_a?(DateTime)
+    c2 = attributes[:end_period].is_a?(DateTime)
+    c3 = attributes[:end_period] >= attributes[:start_period]
+    raise "start and endtime do not suit" unless c1 && c2 && c3
     super
     update_duration
   end
@@ -33,8 +36,8 @@ class EventSlot
         day_offset = s.beginning_of_day.advance(days: diff)
         offset_e = s.end_of_day.advance(days: diff)
         r << EventSlot.new(
-          :start_period => day_offset,
-          :end_period => offset_e
+          start_period: day_offset,
+          end_period: offset_e
           ) unless day_offset.wday == 0 #sunday
       end
     else
@@ -62,11 +65,11 @@ class EventSlot
     # ---------------------
     if self.overlaps? rdv_period
       if self_starts_before
-        starts = { :start_period => self.start_period, :end_period => rdv_period.start_period }
+        starts = { start_period: self.start_period, end_period: rdv_period.start_period }
         r << EventSlot.new( starts )
       end
       if self_ends_after
-        ends = {:start_period => rdv_period.end_period, :end_period => self.end_period }
+        ends = {start_period: rdv_period.end_period, end_period: self.end_period }
         r << EventSlot.new( ends )
       end
     else
@@ -144,8 +147,8 @@ class EventSlot
   #   start_hour, start_min = starter[:hours] , starter[:min]
   #   (0..self.get_hours_duration).to_a.each do |h|
   #     r << EventSlot.new(
-  #       :start_period => self.start_period.beginning_of_day.advance(hours: (start_hour + h), minutes: start_min),
-  #       :end_period => self.end_period.beginning_of_day.advance(hours: (start_hour + h + 1), minutes: start_min)
+  #       start_period: self.start_period.beginning_of_day.advance(hours: (start_hour + h), minutes: start_min),
+  #       end_period: self.end_period.beginning_of_day.advance(hours: (start_hour + h + 1), minutes: start_min)
   #       )
   #   end
   #   r

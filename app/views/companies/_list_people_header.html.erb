@@ -2,21 +2,21 @@
   <div class="col-xs-3">
     <%= sort_link(@q, :person_lastname, default_sorting: :asc) do %>
       <strong>
-        <%= t("person.name") %>
+        <%=t('person.name') %>
       </strong>
     <% end %>
   </div>
   <div class="col-xs-3">
     <%= sort_link(@q, :job_title, default_order: :asc) do %>
       <strong>
-      <%= t("person.job") %>
+      <%=t('person.job') %>
     </strong>
     <% end %>
   </div>
   <div class="col-xs-3">
     <%= sort_link(@q, :start_date, default_order: :desc) do %>
       <strong>
-      <%= t("Dates") %>
+      <%=t('Dates') %>
     </strong>
     <% end %>
   </div>

@@ -27,15 +27,15 @@
 
       </div>
       <div class="col-sm-6  align-right">
-        <%= link_to new_comaction_path({:person_id => @person.id}) , class: "green-and-white-button" do %>
+        <%= link_to new_comaction_path({person_id: @person.id}) , class: "green-and-white-button" do %>
           <%= fa_icon('calendar-o ') %>
-          <%= t("rdv-short") %>
+          <%=t('rdv-short') %>
           <span class="red_star">*</span>
         <% end %>
 
-        <%= link_to new_mission_path({:person_id => @person.id}) , class: "green-and-white-button" do %>
+        <%= link_to new_mission_path({person_id: @person.id}) , class: "green-and-white-button" do %>
           <%= fa_icon('bookmark-o ') %>
-          <%= t("Mission") %>
+          <%=t('Mission') %>
           <span class="red_star">*</span>
         <% end %>
       </div>
@@ -45,7 +45,7 @@
     <div class='row spaceUp25'>
       <div class="col-xs-12">
         <h4 >
-          <%= t("person.add_experience") %>
+          <%=t('person.add_experience') %>
         </h4>
       </div>
     </div>
@@ -57,7 +57,7 @@
       <div class="col-xs-11 col-xs-offset-1 ">
         <h3>
           <i class="fa fa-building-o" aria-hidden="true"></i>
-          <%= t("person.experiences") %>
+          <%=t('person.experiences') %>
         </h3>
         <div class='row light_frame spaceUp25'>
           <div class='col-xs-1'>
@@ -81,7 +81,7 @@
           <li role="presentation">
             <a href="#cv" aria-controls="passed" role="tab" data-toggle="tab">
               <h4 class="person">
-                <%= fa_icon("vcard-o", text: t("cv")) %>
+                <%= fa_icon("vcard-o", text:t('cv')) %>
               </h4>
             </a>
           </li>
@@ -89,7 +89,7 @@
           <li role="presentation">
             <a href="#passed" aria-controls="passed" role="tab" data-toggle="tab">
               <h4 class="person">
-                <%= fa_icon("fast-backward", text: t("person.history_title")) %>
+                <%= fa_icon("fast-backward", text:t('person.history_title')) %>
               </h4>
             </a>
           </li>
@@ -98,7 +98,7 @@
           <li role="presentation">
             <a href="#future" aria-controls="future" role="tab" data-toggle="tab">
               <h4 class="person">
-                <%= t("person.future_tab_title") %>
+                <%=t('person.future_tab_title') %>
                 <%= fa_icon("play-circle-o" ) %>
               </h4>
             </a>
@@ -111,7 +111,7 @@
           <div class="empty-halfline"></div>
           <% if(@passed_comactions.nil? || @passed_comactions.empty?) && (@future_comactions.nil? || @future_comactions.empty?) %>
             <p>
-              <%= t("person.person_activity_void") %>
+              <%=t('person.person_activity_void') %>
             </p>
           <% end %>
           <div role="tabpanel" class="tab-pane fade " id="cv">
@@ -123,14 +123,14 @@
           </div>
           <div role="tabpanel" class="tab-pane fade " id="passed">
             <% if @passed_comactions.nil? || @passed_comactions.empty? %>
-              <%= t("empty_list") %>
+              <%=t('empty_list') %>
             <% else %>
               <%= render partial: "comactions/short_comaction", collection: @passed_comactions , as: :comaction%>
             <% end %>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="future">
             <% if @future_comactions.nil? || @future_comactions.empty?%>
-              <%= t("empty_list") %>
+              <%=t('empty_list') %>
             <% else %>
               <%= render partial: "comactions/short_comaction", collection: @future_comactions, as: :comaction %>
             <% end %>

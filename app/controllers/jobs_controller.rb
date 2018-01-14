@@ -29,14 +29,14 @@ class JobsController < ApplicationController
     if @job.save
       @company = Company.find(@job.company_id)
       @job.company = @company unless @company.nil?
-      message = "#{@job.person.firstname}" + I18n.t("job.new_saved")
+      message = "#{@job.person.firstname}" + I18n.t('job.new_saved')
       # if @job.person.double_jobs
       #   flash[:warning] = message + ' (ce profil a plusieurs emplois en parallèle)'
       # else
         flash[:info] = message
       # end
     else
-      flash[:danger] = I18n.t("job.danger_message")
+      flash[:danger] = I18n.t('job.danger_message')
     end
 
     redirect_to person_path(@person.id)
@@ -49,7 +49,7 @@ class JobsController < ApplicationController
       @person = Person.find(@job.person_id)
       redirect_to @person
     else
-      flash[:danger] = I18n.t("job.unpupdated")
+      flash[:danger] = I18n.t('job.unpupdated')
       render 'edit'
     end
   end
@@ -58,7 +58,7 @@ class JobsController < ApplicationController
     authorize @job
     person_id = @job.person_id
     @job.destroy
-    flash[:success] = I18n.t("job.canceled")
+    flash[:success] = I18n.t('job.canceled')
     redirect_to person_path(person_id)
   end
   #-----------------

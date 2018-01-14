@@ -18,15 +18,13 @@ class ComactionsController < ApplicationController
   before_action :get_uid,             only: [:new, :index, :edit]
   before_action :get_availibilities,  only: [:new,         :edit]
 
-
   def new
     @comaction = Comaction.new
     authorize @comaction
     @comaction.name = 'RdV'
-    @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
+    @date_begin = params[:date].nil? ? Date.strptime(params[:date], '%Y-%m-%d') : DateTime.now.to_date
     @forwhom = params[:person_id] || 0
     @what_mission = params[:mission_id] || 0
-    #@next_commactions , @freeZone_days =  availibilities
   end
 
 
@@ -39,23 +37,23 @@ class ComactionsController < ApplicationController
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
     # end Mission filter setup ----
     #----------------------
-    @status_selected = params[:filter].nil? ? "none" :  params[:filter]
+    @status_selected = params[:filter].nil? ? 'none' : params[:filter]
 
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
     authorize @comactions
     unless params[:filter].nil?
-      Comaction.statuses.each do |key,value|
+      Comaction.statuses.each do |key|
         @comactions = @comactions.public_send(key) if params[:filter] == key
       end
-      if params[:filter] === 'future'
+      if params[:filter] == 'future'
         @comactions = @comactions.newer_than 0
-      elsif params[:filter] === 'mission_id'
+      elsif params[:filter] == 'mission_id'
         @comactions = @comactions.mission_id(@q[:mission_id])
       else
         @comactions = @comactions.newer_than 21 # Three weeks
       end
-      @comactions = @comactions.unscheduled if params[:filter] === 'unscheduled'
+      @comactions = @comactions.unscheduled if params[:filter] == 'unscheduled'
     end
 
     @filter = nil || params[:filter]
@@ -69,17 +67,16 @@ class ComactionsController < ApplicationController
       render 'index'
      end
   end
-  #-----------------
+
   def edit
     @user = current_user
     @forwhom = @comaction.person.id
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
-    #@next_commactions , @freeZone_days =  availibilities
   end
-  #-----------------
+
   def show
   end
-  #-----------------
+
   def add_ext
     if params[:id].nil?
       set_next_url new_comaction_path
@@ -90,7 +87,7 @@ class ComactionsController < ApplicationController
     dest = 'new_' + model + '_path'
     redirect_to send dest
   end
-  #-----------------
+
   def create
     @person = Person.find(comaction_params[:person_id])
     @mission = Mission.find(comaction_params[:mission_id])
@@ -101,14 +98,14 @@ class ComactionsController < ApplicationController
 
     if @comaction.save
       if @comaction.start_time == nil  || @comaction.end_time == nil
-        flash[:info] = I18n.t("comaction.message.saved")
+        flash[:info] = I18n.t('comaction.message.saved')
       else
         @comaction.send_meeting_email(current_user, 1) if Rails.configuration.mail_wanted
-        flash[:info] =  I18n.t("comaction.message.saved_with_mail")
+        flash[:info] =  I18n.t('comaction.message.saved_with_mail')
       end
       redirect_to comactions_path
     else
-      flash[:danger] =  I18n.t("comaction.message.unsaved")
+      flash[:danger] =  I18n.t('comaction.message.unsaved')
       render :new
     end
   end
@@ -117,23 +114,23 @@ class ComactionsController < ApplicationController
     @comaction = trigger_nil_dates @comaction
     if @comaction.update(comaction_params)
       if @comaction.start_time == nil || @comaction.end_time == nil
-        flash[:success] = I18n.t("comaction.message.saved")
+        flash[:success] = I18n.t('comaction.message.saved')
       else
         @comaction.send_meeting_email(current_user, 0)
-        flash[:success] = I18n.t("comaction.message.updated_with_mail") if Rails.configuration.mail_wanted
+        flash[:success] = I18n.t('comaction.message.updated_with_mail') if Rails.configuration.mail_wanted
       end
       logger.warn("update won\'t work #{@comaction.inspect }")
       redirect_to comactions_path
     else
       logger.warn("update won\'t work #{@comaction.inspect }")
-      flash[:danger] = I18n.t("comaction.message.unupdated")
+      flash[:danger] = I18n.t('comaction.message.unupdated')
       render 'edit'
     end
   end
 
   def destroy
     @comaction.destroy
-    flash[:success] = I18n.t("comaction.message.deleted")
+    flash[:success] = I18n.t('comaction.message.deleted')
     redirect_to comactions_path
   end
 
@@ -141,30 +138,30 @@ class ComactionsController < ApplicationController
   private
   #---------------
     def last_missions
-      missions =[]
+      missions = []
       Comaction.all.mine(@uid).limit(20).each do |comac|
         missions << comac.mission
       end
-      missions = missions.sort {|a,b| b.updated_at <=> a.updated_at}.uniq &:id
+      missions = missions.sort { |a,b| b.updated_at <=> a.updated_at}.uniq &:id
     end
 
     # =================
     # AVailibility preview
     # =================
     def availibilities
-      #just looking into next week
+      # just looking into next week
       next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
-      #---
+
       d = DateTime.current
-      attributes = {:start_period => d , :end_period => d.advance(days: 5)}
+      attributes = {start_period: d, end_period: d.advance(days: 5)}
       freeZone_days = EventSlot.new(attributes).working_days_split
-      #---
+
       message , freeZone_days = EventSlot.dash_it(freeZone_days, next_comactions)
       flash[:danger] = message unless message.empty?
 
       freeZone_days = EventSlot.sharpen(freeZone_days)
       freeZone_days = EventSlot.sort_periods(freeZone_days) unless freeZone_days == nil
-      #---
+
       return next_comactions, freeZone_days
     end
 
@@ -175,7 +172,8 @@ class ComactionsController < ApplicationController
       end
       comaction
     end
-  # A list of the param names that can be used for filtering the Product list
+
+    # A list of the param names that can be used for filtering the Product list
     def filtering_params(params)
       params.slice(Comaction::ACTION_TYPES_NAMES.values)
     end

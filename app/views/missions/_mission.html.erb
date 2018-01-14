@@ -9,7 +9,7 @@
           <%= link_to mission.name, mission_path(mission) %>
         </strong>
         <div class="empty-halfline"></div>
-        <%= link_to  new_comaction_path({:mission_id => mission.id}) , class: "green-and-white-button" do %>
+        <%= link_to  new_comaction_path({mission_id: mission.id}) , class: "green-and-white-button" do %>
         <%= fa_icon("calendar-o")%><span class="red_star"> *</span>
         <% end %>
         <%= link_to  edit_mission_path(mission), class: "btn btn-success btn-xs"  do %>
@@ -21,13 +21,13 @@
         <br>
         <small>
           <% unless mission.reward.nil? || mission.reward == 0  %>
-            <%= t("mission.market") %> :
-            <%= number_to_currency mission.reward , :precision => 0 %>
+            <%=t('mission.market') %> :
+            <%= number_to_currency mission.reward , precision: 0 %>
           <% end %>
           <br>
           <% unless mission.paid_amount.nil? || mission.paid_amount == 0  %>
-            <%= t("paid") %> :
-            <%= number_to_currency mission.paid_amount, :precision => 0 %>
+            <%=t('paid') %> :
+            <%= number_to_currency mission.paid_amount, precision: 0 %>
           <% end %>
         </small>
     </div>
@@ -57,12 +57,12 @@
         class: "btn btn-success btn-xs danger",
         method: :delete,
         data: {
-          :confirm => t("confirm"),
-          :'sweet-alert-confirm' => t("confirm") ,
-          :'confirm-button-text' => t("confirm-button-text"),
-          :'cancel-button-text' => t("cancel-button-text")
+          confirm:t('confirm'),
+          'sweet-alert-confirm': t('confirm') ,
+          'confirm-button-text': t('confirm-button-text'),
+          'cancel-button-text': t('cancel-button-text')
           } do %>
-            <span class="glyphicon glyphicon-trash"></span> <%= t("Mission") %>
+            <span class="glyphicon glyphicon-trash"></span> <%=t('Mission') %>
           <% end %>
         <% end %>
     </div>

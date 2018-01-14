@@ -6,11 +6,11 @@
         <div class="">
           <div class="row filterContainer">
             <div class="col-xs-1 mint-background">
-              <span class="header-line"><%= t("filters") %></span>
+              <span class="header-line"><%=t('filters') %></span>
             </div>
             <div class="col-xs-11">
               <div class="input-group filter">
-                <span class="input-group-addon" id="basic-addon1"><%= t("Status") %></span>
+                <span class="input-group-addon" id="basic-addon1"><%=t('Status') %></span>
                 <%= button_filters(:comaction,
                                     "status",
                                     @status_selected,
@@ -18,29 +18,29 @@
                                     )%>
               </div>
               <div class="input-group filter">
-                <span class="input-group-addon" id="basic-addon2"><%= t("missions") %></span>
+                <span class="input-group-addon" id="basic-addon2"><%=t('missions') %></span>
                 <%= collection_select( :q,
                                       :mission_id_eq,
                                       @missions,
                                       :id,
                                       :name,
-                                      {:include_blank => true , selected: @mission_selected},
+                                      {include_blank: true , selected: @mission_selected},
                                       {
                                           id: "q_mission_id_eq",
                                           class: "form-control input-sm "
                                       })%>
               </div>
-              <%= link_to  comactions_path(:filter => 'unscheduled',
-                                          :v => 'table_view'),
+              <%= link_to  comactions_path(filter: 'unscheduled',
+                                          v: 'table_view'),
                                           class: "btn btn-success btn-sm" do %>
-              <%= fa_icon('list', text: t("comaction.filters.no_date")) %>
+              <%= fa_icon('list', text:t('comaction.filters.no_date')) %>
               <% end %>
-              <%= link_to  comactions_path(:filter => 'future'),
+              <%= link_to  comactions_path(filter: 'future'),
                                             class: "btn btn-success btn-sm" do %>
               <%= t 'comaction.filters.now_and_after' %>
               <% end %>
               <%= link_to  comactions_path, class: "btn btn-default btn-sm filter-end" do %>
-              <%= fa_icon("undo", text: t("reinit")) %>
+              <%= fa_icon("undo", text:t('reinit')) %>
               <% end %>
             </div>
           </div>

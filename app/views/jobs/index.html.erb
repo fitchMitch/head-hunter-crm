@@ -1,7 +1,7 @@
-<% provide(:title, t("job.list")) %>
+<% provide(:title,t('job.list')) %>
 
 <h1 class="center">
-  <%= t("job.list") %>
+  <%=t('job.list') %>
 </h1>
 <% if policy(@jobs).index? %>
   <%= will_paginate %>

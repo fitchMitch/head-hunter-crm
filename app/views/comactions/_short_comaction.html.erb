@@ -18,8 +18,8 @@
           <%= comaction.person.full_name %>
         <% end %> | <small><%= t_com_status comaction.status %></small>
         <br>
-        <p><%= link_to new_comaction_path({:person_id => comaction.person.id, :mission_id => comaction.mission.id}),  class: "green-and-white-button-small" do %>
-        <%= fa_icon("calendar-o", text: t("comaction.add_label")) %>
+        <p><%= link_to new_comaction_path({person_id: comaction.person.id, mission_id: comaction.mission.id}),  class: "green-and-white-button-small" do %>
+        <%= fa_icon("calendar-o", text:t('comaction.add_label')) %>
         <% end %></p>
     </div>
     <!-- <div class='col-xs-1'>

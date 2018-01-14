@@ -35,15 +35,15 @@ class Person < ApplicationRecord
 
   # ----- Search part
   include PgSearch
-  # multisearchable :against => [:firstname, :lastname, :email, :note]
+  # multisearchable against: [:firstname, :lastname, :email, :note]
   pg_search_scope :search_name,
-                :against => [[:firstname , 'B'],[:lastname, 'A'], [:note, 'C'] , [:cv_content, 'D']],
-                :associated_against => { :jobs => :job_title } ,
-                :using => {
-                  #:ignoring => :accents,
-                  :tsearch => {:any_word => true, :prefix => true},
-                  :trigram => {
-                      :threshold => 0.5
+                against: [[:firstname , 'B'],[:lastname, 'A'], [:note, 'C'] , [:cv_content, 'D']],
+                associated_against: { jobs: :job_title } ,
+                using: {
+                  #ignoring: :accents,
+                  tsearch: {any_word: true, prefix: true},
+                  trigram: {
+                      threshold: 0.5
                     }
                 }
 

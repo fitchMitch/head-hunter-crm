@@ -24,10 +24,10 @@
         <%= link_to @mission,
           method: :delete,
           data: {
-            :confirm => t("confirm"),
-            :'sweet-alert-confirm' => t("confirm") ,
-            :'confirm-button-text' => t("confirm-button-text"),
-            :'cancel-button-text' => t("cancel-button-text")
+            confirm:t('confirm'),
+            'sweet-alert-confirm': t('confirm') ,
+            'confirm-button-text': t('confirm-button-text'),
+            'cancel-button-text': t('cancel-button-text')
           } do %>
           <button class="btn btn-success danger">
             <%= fa_icon('trash 2x') %>
@@ -92,18 +92,18 @@
         <% unless @mission.reward.nil? || @mission.reward == 0 %>
         <div class='row right-align'>
           <div class='col-sm-12'>
-            <%= t("mission.remuneration") %>
+            <%=t('mission.remuneration') %>
             :
-            <strong ><%= number_to_currency @mission.reward  , :precision => 0 %></strong>
+            <strong ><%= number_to_currency @mission.reward  , precision: 0 %></strong>
           </div>
         </div>
         <% end %>
         <% unless @mission.paid_amount.nil? || @mission.paid_amount == 0 %>
         <div class='row right-align'>
           <div class='col-sm-12'>
-            <%= t("mission.already_cashed") %>
+            <%=t('mission.already_cashed') %>
             :
-            <strong ><%= number_to_currency @mission.paid_amount , :precision => 0  %></strong>
+            <strong ><%= number_to_currency @mission.paid_amount , precision: 0  %></strong>
           </div>
         </div>
         <% end %>
@@ -112,7 +112,7 @@
           <div class='col-sm-12'>
             <div class="frameMe">
               <i class="fa fa-calendar-o" aria-hidden="true"></i>
-              <%= t("mission.whished_start_date") %>
+              <%=t('mission.whished_start_date') %>
               :
               <strong>
                 <%= (@mission.whished_start_date).strftime("%d ") %>
@@ -122,7 +122,7 @@
               <hr>
               <i>
                 <strong>
-                  <%= t("Mission") %>
+                  <%=t('Mission') %>
                 </strong>
                 :
                 <%= @mission.criteria %></i>
@@ -135,16 +135,16 @@
         <div class="row leftFrame">
           <div class='col-sm-12'>
             <h3>
-              <%= t("mission.action_list_title") %>
+              <%=t('mission.action_list_title') %>
             </h3>
             <div class="empty-halfline"></div>
             <p>
-              <%= link_to new_person_path({:person_id => @mission.person.id}), class: "green-and-white-button" do %>
-                <%= fa_icon("user-circle", text: t("person.add"))%>  <span class="red_star">*</span>
+              <%= link_to new_person_path({person_id: @mission.person.id}), class: "green-and-white-button" do %>
+                <%= fa_icon("user-circle", text:t('person.add'))%>  <span class="red_star">*</span>
               <% end %>
 
-              <%= link_to new_comaction_path({:mission_id => @mission.id}), class: "green-and-white-button" do %>
-                <%= fa_icon("calendar-o", text: t("comaction.create")) %> <span class="red_star">*</span>
+              <%= link_to new_comaction_path({mission_id: @mission.id}), class: "green-and-white-button" do %>
+                <%= fa_icon("calendar-o", text:t('comaction.create')) %> <span class="red_star">*</span>
               <% end %>
             </div>
             </p>
@@ -157,7 +157,7 @@
                 <li role="presentation">
                   <a href="#passed" aria-controls="passed" role="tab" data-toggle="tab">
                     <h4 class="mission">
-                      <%= fa_icon("fast-backward", text: t("mission.history_title")) %>
+                      <%= fa_icon("fast-backward", text:t('mission.history_title')) %>
                     </h4>
                   </a>
                 </li>
@@ -166,7 +166,7 @@
                 <li role="presentation">
                   <a href="#future" aria-controls="future" role="tab" data-toggle="tab">
                     <h4 class="mission">
-                      <%= t("mission.future_tab_title") %>
+                      <%=t('mission.future_tab_title') %>
                       <%= fa_icon("play-circle-o" ) %>
                     </h4>
                   </a>
@@ -179,19 +179,19 @@
                 <div class="empty-halfline"></div>
                 <% if(@passed_comactions.nil? || @passed_comactions.empty?) && (@future_comactions.nil? || @future_comactions.empty?) %>
                   <p>
-                    <%= t("mission.mission_activity_void") %>
+                    <%=t('mission.mission_activity_void') %>
                   </p>
                 <% end %>
                 <div role="tabpanel" class="tab-pane fade active" id="passed">
                   <% if @passed_comactions.nil? %>
-                    <%= t("empty_list") %>
+                    <%=t('empty_list') %>
                   <% else %>
                     <%= render partial: "comactions/short_comaction", collection: @passed_comactions , as: :comaction%>
                   <% end %>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="future">
                   <% if @future_comactions.nil? %>
-                    <%= t("empty_list") %>
+                    <%=t('empty_list') %>
                   <% else %>
                     <%= render partial: "comactions/short_comaction", collection: @future_comactions, as: :comaction %>
                   <% end %>

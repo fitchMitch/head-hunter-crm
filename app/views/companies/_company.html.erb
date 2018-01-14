@@ -10,7 +10,7 @@
       <div class='col-xs-2'>
         <% if logged_in? %>
           <%= link_to  edit_company_path(company) do %>
-            <%= t("Edit") %>
+            <%=t('Edit') %>
             <span class="glyphicon glyphicon-pencil"></span>
           <% end %>
         <% end %>
@@ -30,7 +30,7 @@
     </div>
       <div class='col-xs-2'>
         <small>
-          <%= t("recorded_on") %>
+          <%=t('recorded_on') %>
           <%= time_ago_in_words company.created_at %>
         </small>
       </div>

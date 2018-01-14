@@ -6,7 +6,7 @@ require 'rails/test_help'
 #require "minitest/reporters"
 require 'color_pound_spec_reporter'
 #Minitest::Reporters.use! [ColorPoundSpecReporter.new]
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 #Minitest::Reporters.use! [Minitest::Reporters::HtmlReporter , Minitest::Reporters::ProgressReporter, Minitest::Reporters::SpecReporter ]
 
 

@@ -26,11 +26,11 @@ Rails.application.configure do
   config.assets.compile = false
   # Mailer configuration
   ActionMailer::Base.smtp_settings = {
-   :address        => ENV['SMTP_SERVER'],
-   :port           => '587',
-   :authentication => :plain,
-   :user_name      => ENV['SMTP_EMAIL'],
-   :password       => ENV['SMTP_PASSWORD'],
+   address:               ENV['SMTP_SERVER'],
+   port:                  '587',
+   authentication:        :plain,
+   user_name:             ENV['SMTP_EMAIL'],
+   password:              ENV['SMTP_PASSWORD'],
  }
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb

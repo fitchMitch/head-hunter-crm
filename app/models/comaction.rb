@@ -33,7 +33,7 @@ class Comaction < ApplicationRecord
                     mission: :name
                   },
                   using: {
-                    #:ignoring => :accents,
+                    # ignoring: :accents,
                     tsearch: { any_word: true, prefix: true },
                     trigram: {
                       threshold: 0.5

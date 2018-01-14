@@ -22,11 +22,11 @@ module ComactionsHelper
   def background_style(ev)
     # ev as a comaction
     type_style = {
-      :client_type => 'client-appointment',
-      :apply_type => 'applier-appointment',
-      :apply_customer_type => 'applier-client-appointment',
-      :exploration_type => 'exploration-appointment',
-      :other_type => 'none'
+      client_type: 'client-appointment',
+      apply_type: 'applier-appointment',
+      apply_customer_type: 'applier-client-appointment',
+      exploration_type: 'exploration-appointment',
+      other_type: 'none'
     }
     used_style = type_style[ev.action_type.to_sym]
     style = "status-frame #{used_style}"

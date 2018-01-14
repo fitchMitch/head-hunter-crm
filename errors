@@ -72,58 +72,58 @@ gem "pundit"
 Gemfile:37:5: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
 gem "pundit"
     ^^^^^^^^
-Gemfile:45:14: C: Unnecessary spacing detected.
+Gemfile:46:14: C: Unnecessary spacing detected.
   gem 'puma',         '3.11.0'
              ^^^^^^^^
-Gemfile:46:3: C: Gem factory_bot_rails should appear before puma in their gem group.
+Gemfile:47:3: C: Gem factory_bot_rails should appear before puma in their gem group.
   gem "factory_bot_rails",     "~> 4.0"
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:46:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+Gemfile:47:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   gem "factory_bot_rails",     "~> 4.0"
       ^^^^^^^^^^^^^^^^^^^
-Gemfile:46:27: C: Unnecessary spacing detected.
+Gemfile:47:27: C: Unnecessary spacing detected.
   gem "factory_bot_rails",     "~> 4.0"
                           ^^^^
-Gemfile:46:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+Gemfile:47:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   gem "factory_bot_rails",     "~> 4.0"
                                ^^^^^^^^
-Gemfile:47:3: C: Gem as-duration should appear before factory_bot_rails in their gem group.
+Gemfile:48:3: C: Gem as-duration should appear before factory_bot_rails in their gem group.
   gem 'as-duration'
   ^^^^^^^^^^^^^^^^^
-Gemfile:48:16: C: Unnecessary spacing detected.
+Gemfile:49:16: C: Unnecessary spacing detected.
   gem 'byebug',  '9.0.0', platform: :mri
                ^
-Gemfile:53:3: C: Gem better_errors should appear before tzinfo-data in their gem group.
+Gemfile:54:3: C: Gem better_errors should appear before tzinfo-data in their gem group.
   gem "better_errors"
   ^^^^^^^^^^^^^^^^^^^
-Gemfile:53:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+Gemfile:54:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   gem "better_errors"
       ^^^^^^^^^^^^^^^
-Gemfile:54:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+Gemfile:55:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   gem "binding_of_caller"
       ^^^^^^^^^^^^^^^^^^^
-Gemfile:55:15: C: Unnecessary spacing detected.
+Gemfile:56:15: C: Unnecessary spacing detected.
   gem 'faker',          '1.8.6'
               ^^^^^^^^^
-Gemfile:60:3: C: Gem listen should appear before web-console in their gem group.
+Gemfile:61:3: C: Gem listen should appear before web-console in their gem group.
   gem 'listen',                '3.0.8'
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:68:3: C: Gem minitest-reporters should appear before rails-controller-testing in their gem group.
+Gemfile:69:3: C: Gem minitest-reporters should appear before rails-controller-testing in their gem group.
   gem 'minitest-reporters',       '1.1.9'
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:69:3: C: Gem guard should appear before minitest-reporters in their gem group.
+Gemfile:70:3: C: Gem guard should appear before minitest-reporters in their gem group.
   gem 'guard',                    '2.13.0'
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:75:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+Gemfile:76:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   gem "passenger", "5.1.12", require: "phusion_passenger/rack_handler"
       ^^^^^^^^^^^
-Gemfile:75:20: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+Gemfile:76:20: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   gem "passenger", "5.1.12", require: "phusion_passenger/rack_handler"
                    ^^^^^^^^
-Gemfile:75:39: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+Gemfile:76:39: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   gem "passenger", "5.1.12", require: "phusion_passenger/rack_handler"
                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:76:1: C: Extra empty line detected at block body end.
+Gemfile:77:1: C: Extra empty line detected at block body end.
 Rakefile:1:1: C: Carriage return character detected.
 # Add your own tasks in files placed in lib/tasks ending in .rake, ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -157,13 +157,8 @@ class ApplicationController < ActionController::Base
 app/controllers/application_controller.rb:1:1: C: Carriage return character detected.
 class ApplicationController < ActionController::Base ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/application_controller.rb:11:29: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    flash[:danger] = I18n.t("session.log_first")
-                            ^^^^^^^^^^^^^^^^^^^
-app/controllers/application_controller.rb:18:29: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    flash[:danger] = I18n.t("pundit.not_authorized")
-                            ^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/application_controller.rb:21:1: C: Extra empty line detected at class body end.
+app/controllers/application_controller.rb:24:1: C: Extra empty line detected at method body end.
+app/controllers/application_controller.rb:26:1: C: Extra empty line detected at class body end.
 app/controllers/comactions_controller.rb:1:1: C: Carriage return character detected.
 # Table name: comactions ...
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -171,309 +166,260 @@ app/controllers/comactions_controller.rb:14:1: C: Class has too many lines. [147
 class ComactionsController < ApplicationController ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/controllers/comactions_controller.rb:15:1: C: Extra empty line detected at class body beginning.
-app/controllers/comactions_controller.rb:19:45: W: Within %i/%I, ':' and ',' are unnecessary and may be unwanted in the resulting symbols.
-  before_action :get_availibilities,  only: %i(new, edit)
-                                            ^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:21:1: C: Extra blank line detected.
-app/controllers/comactions_controller.rb:22:3: C: Assignment Branch Condition size for new is too high. [15.17/15]
+app/controllers/comactions_controller.rb:17:46: C: Space inside square brackets detected.
+  before_action :get_comaction,       only: [              :edit, :show, :update, :destroy]
+                                             ^^^^^^^^^^^^^^
+app/controllers/comactions_controller.rb:17:81: C: Line is too long. [91/80]
+  before_action :get_comaction,       only: [              :edit, :show, :update, :destroy]
+                                                                                ^^^^^^^^^^^
+app/controllers/comactions_controller.rb:21:3: C: Assignment Branch Condition size for new is too high. [15.17/15]
   def new
   ^^^
-app/controllers/comactions_controller.rb:26:33: C: Prefer the use of the nil? predicate.
-    @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
-                                ^^
-app/controllers/comactions_controller.rb:26:63: C: Operator : should be surrounded by a single space.
-    @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
-                                                              ^
-app/controllers/comactions_controller.rb:26:64: C: Unnecessary spacing detected.
-    @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
-                                                               ^
-app/controllers/comactions_controller.rb:26:81: C: Line is too long. [105/80]
-    @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:26:95: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @date_begin = params[:date] == nil ? DateTime.now.to_date :  Date.strptime(params[:date], "%Y-%m-%d")
-                                                                                              ^^^^^^^^^^
-app/controllers/comactions_controller.rb:29:5: C: Missing space after #.
-    #@next_commactions , @freeZone_days =  availibilities
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:32:1: C: Extra blank line detected.
-app/controllers/comactions_controller.rb:34:3: C: Assignment Branch Condition size for index is too high. [64.51/15]
+app/controllers/comactions_controller.rb:25:81: C: Line is too long. [102/80]
+    @date_begin = params[:date].nil? ? Date.strptime(params[:date], '%Y-%m-%d') : DateTime.now.to_date
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/comactions_controller.rb:30:1: C: Extra blank line detected.
+app/controllers/comactions_controller.rb:32:3: C: Assignment Branch Condition size for index is too high. [64.51/15]
   def index
   ^^^
-app/controllers/comactions_controller.rb:34:3: C: Cyclomatic complexity for index is too high. [12/6]
+app/controllers/comactions_controller.rb:32:3: C: Cyclomatic complexity for index is too high. [12/6]
   def index
   ^^^
-app/controllers/comactions_controller.rb:34:3: C: Method has too many lines. [28/10]
+app/controllers/comactions_controller.rb:32:3: C: Method has too many lines. [28/10]
   def index ...
   ^^^^^^^^^
-app/controllers/comactions_controller.rb:34:3: C: Perceived complexity for index is too high. [14/7]
+app/controllers/comactions_controller.rb:32:3: C: Perceived complexity for index is too high. [14/7]
   def index
   ^^^
-app/controllers/comactions_controller.rb:39:81: C: Line is too long. [109/80]
+app/controllers/comactions_controller.rb:37:81: C: Line is too long. [109/80]
     @mission_selected = params[:q].nil? || params[:q]['mission_id_eq'].nil? ? 0 : params[:q]['mission_id_eq']
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:42:47: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @status_selected = params[:filter].nil? ? "none" :  params[:filter]
-                                              ^^^^^^
-app/controllers/comactions_controller.rb:42:54: C: Operator : should be surrounded by a single space.
-    @status_selected = params[:filter].nil? ? "none" :  params[:filter]
-                                                     ^
-app/controllers/comactions_controller.rb:42:55: C: Unnecessary spacing detected.
-    @status_selected = params[:filter].nil? ? "none" :  params[:filter]
-                                                      ^
-app/controllers/comactions_controller.rb:48:38: C: Space missing after comma.
-      Comaction.statuses.each do |key,value|
-                                     ^
-app/controllers/comactions_controller.rb:48:39: W: Unused block argument - value. If it's necessary, use _ or _value as an argument name to indicate that it won't be used.
-      Comaction.statuses.each do |key,value|
-                                      ^^^^^
-app/controllers/comactions_controller.rb:51:7: C: Use the return of the conditional for variable assignment and comparison.
-      if params[:filter] === 'future' ...
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:51:26: C: Avoid the use of the case equality operator ===.
-      if params[:filter] === 'future'
-                         ^^^
-app/controllers/comactions_controller.rb:53:29: C: Avoid the use of the case equality operator ===.
-      elsif params[:filter] === 'mission_id'
-                            ^^^
-app/controllers/comactions_controller.rb:58:64: C: Avoid the use of the case equality operator ===.
-      @comactions = @comactions.unscheduled if params[:filter] === 'unscheduled'
-                                                               ^^^
-app/controllers/comactions_controller.rb:70:6: W: end at 70, 5 is not aligned with if at 64, 4.
+app/controllers/comactions_controller.rb:49:7: C: Use the return of the conditional for variable assignment and comparison.
+      if params[:filter] == 'future' ...
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/comactions_controller.rb:68:6: W: end at 68, 5 is not aligned with if at 62, 4.
      end
      ^^^
-app/controllers/comactions_controller.rb:73:3: C: Use empty lines between method definitions.
-  def edit
-  ^^^
-app/controllers/comactions_controller.rb:76:5: C: Do not use parallel assignment.
+app/controllers/comactions_controller.rb:74:5: C: Do not use parallel assignment.
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:76:51: C: Space found before comma.
+app/controllers/comactions_controller.rb:74:51: C: Space found before comma.
     @date_start, @date_end = @comaction.start_time , @comaction.end_time
                                                   ^
-app/controllers/comactions_controller.rb:77:5: C: Missing space after #.
-    #@next_commactions , @freeZone_days =  availibilities
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:80:3: C: Use empty lines between method definitions.
-  def show
-  ^^^
-app/controllers/comactions_controller.rb:83:3: C: Assignment Branch Condition size for add_ext is too high. [16.25/15]
+app/controllers/comactions_controller.rb:77:3: C: Put empty method definitions on a single line.
+  def show ...
+  ^^^^^^^^
+app/controllers/comactions_controller.rb:80:3: C: Assignment Branch Condition size for add_ext is too high. [16.25/15]
   def add_ext
   ^^^
-app/controllers/comactions_controller.rb:83:3: C: Use empty lines between method definitions.
-  def add_ext
-  ^^^
-app/controllers/comactions_controller.rb:94:3: C: Assignment Branch Condition size for create is too high. [32.26/15]
+app/controllers/comactions_controller.rb:91:3: C: Assignment Branch Condition size for create is too high. [32.26/15]
   def create
   ^^^
-app/controllers/comactions_controller.rb:94:3: C: Method has too many lines. [18/10]
+app/controllers/comactions_controller.rb:91:3: C: Method has too many lines. [18/10]
   def create ...
   ^^^^^^^^^^
-app/controllers/comactions_controller.rb:94:3: C: Use empty lines between method definitions.
-  def create
-  ^^^
-app/controllers/comactions_controller.rb:103:32: C: Prefer the use of the nil? predicate.
+app/controllers/comactions_controller.rb:100:32: C: Prefer the use of the nil? predicate.
       if @comaction.start_time == nil  || @comaction.end_time == nil
                                ^^
-app/controllers/comactions_controller.rb:103:38: C: Unnecessary spacing detected.
+app/controllers/comactions_controller.rb:100:38: C: Unnecessary spacing detected.
       if @comaction.start_time == nil  || @comaction.end_time == nil
                                      ^
-app/controllers/comactions_controller.rb:103:40: C: Operator || should be surrounded by a single space.
+app/controllers/comactions_controller.rb:100:40: C: Operator || should be surrounded by a single space.
       if @comaction.start_time == nil  || @comaction.end_time == nil
                                        ^^
-app/controllers/comactions_controller.rb:103:63: C: Prefer the use of the nil? predicate.
+app/controllers/comactions_controller.rb:100:63: C: Prefer the use of the nil? predicate.
       if @comaction.start_time == nil  || @comaction.end_time == nil
                                                               ^^
-app/controllers/comactions_controller.rb:104:31: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/controllers/comactions_controller.rb:101:31: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
         flash[:info] = I18n.t("comaction.message.saved")
                               ^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:106:81: C: Line is too long. [89/80]
+app/controllers/comactions_controller.rb:103:81: C: Line is too long. [89/80]
         @comaction.send_meeting_email(current_user, 1) if Rails.configuration.mail_wanted
                                                                                 ^^^^^^^^^
-app/controllers/comactions_controller.rb:107:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/controllers/comactions_controller.rb:104:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
         flash[:info] =  I18n.t("comaction.message.saved_with_mail")
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:111:22: C: Operator = should be surrounded by a single space.
+app/controllers/comactions_controller.rb:108:22: C: Operator = should be surrounded by a single space.
       flash[:danger] =  I18n.t("comaction.message.unsaved")
                      ^
-app/controllers/comactions_controller.rb:111:23: C: Unnecessary spacing detected.
+app/controllers/comactions_controller.rb:108:23: C: Unnecessary spacing detected.
       flash[:danger] =  I18n.t("comaction.message.unsaved")
                       ^
-app/controllers/comactions_controller.rb:111:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/controllers/comactions_controller.rb:108:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
       flash[:danger] =  I18n.t("comaction.message.unsaved")
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:116:3: C: Assignment Branch Condition size for update is too high. [26.61/15]
+app/controllers/comactions_controller.rb:113:3: C: Assignment Branch Condition size for update is too high. [26.61/15]
   def update
   ^^^
-app/controllers/comactions_controller.rb:116:3: C: Method has too many lines. [15/10]
+app/controllers/comactions_controller.rb:113:3: C: Method has too many lines. [15/10]
   def update ...
   ^^^^^^^^^^
-app/controllers/comactions_controller.rb:119:32: C: Prefer the use of the nil? predicate.
+app/controllers/comactions_controller.rb:116:32: C: Prefer the use of the nil? predicate.
       if @comaction.start_time == nil || @comaction.end_time == nil
                                ^^
-app/controllers/comactions_controller.rb:119:62: C: Prefer the use of the nil? predicate.
+app/controllers/comactions_controller.rb:116:62: C: Prefer the use of the nil? predicate.
       if @comaction.start_time == nil || @comaction.end_time == nil
                                                              ^^
-app/controllers/comactions_controller.rb:120:34: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/controllers/comactions_controller.rb:117:34: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
         flash[:success] = I18n.t("comaction.message.saved")
                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:123:34: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/controllers/comactions_controller.rb:120:34: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
         flash[:success] = I18n.t("comaction.message.updated_with_mail") if Rails.configuration.mail_wanted
                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:123:81: C: Line is too long. [106/80]
+app/controllers/comactions_controller.rb:120:81: C: Line is too long. [106/80]
         flash[:success] = I18n.t("comaction.message.updated_with_mail") if Rails.configuration.mail_wanted
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/comactions_controller.rb:122:41: C: Space inside string interpolation detected.
+      logger.warn("update won\'t work #{@comaction.inspect }")
+                                        ^^^^^^^^^^^^^^^^^^
 app/controllers/comactions_controller.rb:125:41: C: Space inside string interpolation detected.
       logger.warn("update won\'t work #{@comaction.inspect }")
                                         ^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:128:41: C: Space inside string interpolation detected.
-      logger.warn("update won\'t work #{@comaction.inspect }")
-                                        ^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:129:31: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/controllers/comactions_controller.rb:126:31: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
       flash[:danger] = I18n.t("comaction.message.unupdated")
                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:136:30: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/controllers/comactions_controller.rb:133:30: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
     flash[:success] = I18n.t("comaction.message.deleted")
                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:141:3: C: Keep a blank line before and after private.
+app/controllers/comactions_controller.rb:138:3: C: Keep a blank line before and after private.
   private
   ^^^^^^^
-app/controllers/comactions_controller.rb:142:3: C: Incorrect indentation detected (column 2 instead of 4).
+app/controllers/comactions_controller.rb:139:3: C: Incorrect indentation detected (column 2 instead of 4).
   #---------------
   ^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:143:5: C: Inconsistent indentation detected.
+app/controllers/comactions_controller.rb:140:5: C: Inconsistent indentation detected.
     def last_missions ...
     ^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:144:16: C: Surrounding space missing for operator =.
+app/controllers/comactions_controller.rb:141:16: C: Surrounding space missing for operator =.
       missions =[]
                ^
-app/controllers/comactions_controller.rb:148:32: C: Space between { and | missing.
+app/controllers/comactions_controller.rb:145:32: C: Space between { and | missing.
       missions = missions.sort {|a,b| b.updated_at <=> a.updated_at}.uniq &:id
                                ^^
-app/controllers/comactions_controller.rb:148:35: C: Space missing after comma.
+app/controllers/comactions_controller.rb:145:35: C: Space missing after comma.
       missions = missions.sort {|a,b| b.updated_at <=> a.updated_at}.uniq &:id
                                   ^
-app/controllers/comactions_controller.rb:148:68: C: Space missing inside }.
+app/controllers/comactions_controller.rb:145:68: C: Space missing inside }.
       missions = missions.sort {|a,b| b.updated_at <=> a.updated_at}.uniq &:id
                                                                    ^
-app/controllers/comactions_controller.rb:148:75: W: Ambiguous block operator. Parenthesize the method arguments if it's surely a block operator, or add a whitespace to the right of the & if it should be a binary AND.
+app/controllers/comactions_controller.rb:145:75: W: Ambiguous block operator. Parenthesize the method arguments if it's surely a block operator, or add a whitespace to the right of the & if it should be a binary AND.
       missions = missions.sort {|a,b| b.updated_at <=> a.updated_at}.uniq &:id
                                                                           ^
-app/controllers/comactions_controller.rb:154:5: C: Assignment Branch Condition size for availibilities is too high. [17.32/15]
+app/controllers/comactions_controller.rb:151:5: C: Assignment Branch Condition size for availibilities is too high. [17.32/15]
     def availibilities
     ^^^
-app/controllers/comactions_controller.rb:154:5: C: Inconsistent indentation detected.
+app/controllers/comactions_controller.rb:151:5: C: Inconsistent indentation detected.
     def availibilities ...
     ^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:155:7: C: Missing space after #.
+app/controllers/comactions_controller.rb:152:7: C: Missing space after #.
       #just looking into next week
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:156:81: C: Line is too long. [96/80]
+app/controllers/comactions_controller.rb:153:81: C: Line is too long. [96/80]
       next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
                                                                                 ^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:159:20: C: Space inside { missing.
+app/controllers/comactions_controller.rb:156:20: C: Space inside { missing.
       attributes = {:start_period => d , :end_period => d.advance(days: 5)}
                    ^
-app/controllers/comactions_controller.rb:159:21: C: Use the new Ruby 1.9 hash syntax.
+app/controllers/comactions_controller.rb:156:21: C: Use the new Ruby 1.9 hash syntax.
       attributes = {:start_period => d , :end_period => d.advance(days: 5)}
                     ^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:159:39: C: Space found before comma.
+app/controllers/comactions_controller.rb:156:39: C: Space found before comma.
       attributes = {:start_period => d , :end_period => d.advance(days: 5)}
                                       ^
-app/controllers/comactions_controller.rb:159:42: C: Use the new Ruby 1.9 hash syntax.
+app/controllers/comactions_controller.rb:156:42: C: Use the new Ruby 1.9 hash syntax.
       attributes = {:start_period => d , :end_period => d.advance(days: 5)}
                                          ^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:159:75: C: Space inside } missing.
+app/controllers/comactions_controller.rb:156:75: C: Space inside } missing.
       attributes = {:start_period => d , :end_period => d.advance(days: 5)}
                                                                           ^
-app/controllers/comactions_controller.rb:160:7: C: Use snake_case for variable names.
+app/controllers/comactions_controller.rb:157:7: C: Use snake_case for variable names.
       freeZone_days = EventSlot.new(attributes).working_days_split
       ^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:162:14: C: Space found before comma.
+app/controllers/comactions_controller.rb:159:14: C: Space found before comma.
       message , freeZone_days = EventSlot.dash_it(freeZone_days, next_comactions)
              ^
-app/controllers/comactions_controller.rb:162:17: C: Use snake_case for variable names.
+app/controllers/comactions_controller.rb:159:17: C: Use snake_case for variable names.
       message , freeZone_days = EventSlot.dash_it(freeZone_days, next_comactions)
                 ^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:162:81: C: Line is too long. [81/80]
+app/controllers/comactions_controller.rb:159:81: C: Line is too long. [81/80]
       message , freeZone_days = EventSlot.dash_it(freeZone_days, next_comactions)
                                                                                 ^
-app/controllers/comactions_controller.rb:165:7: C: Use snake_case for variable names.
+app/controllers/comactions_controller.rb:162:7: C: Use snake_case for variable names.
       freeZone_days = EventSlot.sharpen(freeZone_days)
       ^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:166:7: C: Use snake_case for variable names.
+app/controllers/comactions_controller.rb:163:7: C: Use snake_case for variable names.
       freeZone_days = EventSlot.sort_periods(freeZone_days) unless freeZone_days == nil
       ^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:166:81: C: Line is too long. [87/80]
+app/controllers/comactions_controller.rb:163:81: C: Line is too long. [87/80]
       freeZone_days = EventSlot.sort_periods(freeZone_days) unless freeZone_days == nil
                                                                                 ^^^^^^^
-app/controllers/comactions_controller.rb:166:82: C: Prefer the use of the nil? predicate.
+app/controllers/comactions_controller.rb:163:82: C: Prefer the use of the nil? predicate.
       freeZone_days = EventSlot.sort_periods(freeZone_days) unless freeZone_days == nil
                                                                                  ^^
-app/controllers/comactions_controller.rb:168:7: C: Redundant return detected.
+app/controllers/comactions_controller.rb:165:7: C: Redundant return detected.
       return next_comactions, freeZone_days
       ^^^^^^
-app/controllers/comactions_controller.rb:171:5: C: Inconsistent indentation detected.
+app/controllers/comactions_controller.rb:168:5: C: Inconsistent indentation detected.
     def trigger_nil_dates (comaction) ...
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:171:26: C: Do not put a space between a method name and the opening parenthesis.
+app/controllers/comactions_controller.rb:168:26: C: Do not put a space between a method name and the opening parenthesis.
     def trigger_nil_dates (comaction)
                          ^
-app/controllers/comactions_controller.rb:178:3: C: Incorrect indentation detected (column 2 instead of 4).
+app/controllers/comactions_controller.rb:175:3: C: Incorrect indentation detected (column 2 instead of 4).
   # A list of the param names that can be used for filtering the Product list
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:179:5: C: Use empty lines between method definitions.
+app/controllers/comactions_controller.rb:176:5: C: Use empty lines between method definitions.
     def filtering_params(params)
     ^^^
-app/controllers/comactions_controller.rb:179:5: C: Inconsistent indentation detected.
+app/controllers/comactions_controller.rb:176:5: C: Inconsistent indentation detected.
     def filtering_params(params) ...
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:183:5: C: Inconsistent indentation detected.
+app/controllers/comactions_controller.rb:180:5: C: Inconsistent indentation detected.
     def comaction_params ...
     ^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:184:81: C: Line is too long. [139/80]
+app/controllers/comactions_controller.rb:181:81: C: Line is too long. [139/80]
       params.require(:comaction).permit(:name, :status, :action_type, :start_time, :end_time, :user_id, :mission_id, :person_id, :is_dated)
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:187:5: C: Inconsistent indentation detected.
+app/controllers/comactions_controller.rb:184:5: C: Inconsistent indentation detected.
     def get_comaction ...
     ^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:187:9: C: Do not prefix reader method names with get_.
+app/controllers/comactions_controller.rb:184:9: C: Do not prefix reader method names with get_.
     def get_comaction
         ^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:189:7: W: Use parentheses in the method call to avoid confusion about precedence.
+app/controllers/comactions_controller.rb:186:7: W: Use parentheses in the method call to avoid confusion about precedence.
       @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? 0 : 1
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:189:74: C: Unnecessary spacing detected.
+app/controllers/comactions_controller.rb:186:74: C: Unnecessary spacing detected.
       @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? 0 : 1
                                                                          ^
-app/controllers/comactions_controller.rb:189:76: C: Operator ? should be surrounded by a single space.
+app/controllers/comactions_controller.rb:186:76: C: Operator ? should be surrounded by a single space.
       @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? 0 : 1
                                                                            ^
-app/controllers/comactions_controller.rb:189:81: C: Line is too long. [82/80]
+app/controllers/comactions_controller.rb:186:81: C: Line is too long. [82/80]
       @comaction.is_dated = @comaction.nil? || @comaction.start_time.nil?  ? 0 : 1
                                                                                 ^^
-app/controllers/comactions_controller.rb:195:5: C: Inconsistent indentation detected.
+app/controllers/comactions_controller.rb:192:5: C: Inconsistent indentation detected.
     def get_uid ...
     ^^^^^^^^^^^
-app/controllers/comactions_controller.rb:195:9: C: Do not prefix reader method names with get_.
+app/controllers/comactions_controller.rb:192:9: C: Do not prefix reader method names with get_.
     def get_uid
         ^^^^^^^
-app/controllers/comactions_controller.rb:199:5: C: Inconsistent indentation detected.
+app/controllers/comactions_controller.rb:196:5: C: Inconsistent indentation detected.
     def get_availibilities ...
     ^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:199:9: C: Do not prefix reader method names with get_.
+app/controllers/comactions_controller.rb:196:9: C: Do not prefix reader method names with get_.
     def get_availibilities
         ^^^^^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:200:24: C: Space found before comma.
+app/controllers/comactions_controller.rb:197:24: C: Space found before comma.
       @next_commactions , @freeZone_days =  availibilities
                        ^
-app/controllers/comactions_controller.rb:200:27: C: Use snake_case for variable names.
+app/controllers/comactions_controller.rb:197:27: C: Use snake_case for variable names.
       @next_commactions , @freeZone_days =  availibilities
                           ^^^^^^^^^^^^^^
-app/controllers/comactions_controller.rb:200:42: C: Operator = should be surrounded by a single space.
+app/controllers/comactions_controller.rb:197:42: C: Operator = should be surrounded by a single space.
       @next_commactions , @freeZone_days =  availibilities
                                          ^
-app/controllers/comactions_controller.rb:200:43: C: Unnecessary spacing detected.
+app/controllers/comactions_controller.rb:197:43: C: Unnecessary spacing detected.
       @next_commactions , @freeZone_days =  availibilities
                                           ^
 app/controllers/companies_controller.rb:1:1: C: Missing top-level class documentation comment.
@@ -482,6 +428,9 @@ class CompaniesController < ApplicationController
 app/controllers/companies_controller.rb:1:1: C: Carriage return character detected.
 class CompaniesController < ApplicationController ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/companies_controller.rb:2:32: C: Trailing whitespace detected.
+  before_action :logged_in_user 
+                               ^
 app/controllers/companies_controller.rb:3:30: C: Unnecessary spacing detected.
   before_action :get_company,   only: [:edit, :update, :show, :list_people]
                              ^^
@@ -749,7 +698,7 @@ app/controllers/password_resets_controller.rb:57:5: C: Inconsistent indentation 
 app/controllers/password_resets_controller.rb:58:7: C: Use a guard clause instead of wrapping the code inside a conditional expression.
       if @user.password_reset_expired?
       ^^
-app/controllers/people_controller.rb:1:1: C: Class has too many lines. [126/100]
+app/controllers/people_controller.rb:1:1: C: Class has too many lines. [124/100]
 class PeopleController < ApplicationController ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/controllers/people_controller.rb:1:1: C: Missing top-level class documentation comment.
@@ -758,63 +707,66 @@ class PeopleController < ApplicationController
 app/controllers/people_controller.rb:1:1: C: Carriage return character detected.
 class PeopleController < ApplicationController ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/people_controller.rb:2:40: C: %i-literals should be delimited by ( and ).
-  before_action :logged_in_user, only: %i[index edit update destroy]
-                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/people_controller.rb:4:3: C: Missing top-level class documentation comment.
+app/controllers/people_controller.rb:3:37: C: Space inside square brackets detected.
+  before_action :get_person, only: [ :edit, :update, :destroy]
+                                    ^
+app/controllers/people_controller.rb:5:3: C: Missing top-level class documentation comment.
   class Alljob
   ^^^^^
-app/controllers/people_controller.rb:6:81: C: Line is too long. [115/80]
+app/controllers/people_controller.rb:7:81: C: Line is too long. [115/80]
     attr_accessor :id, :job_title, :start_date, :end_date, :company_name, :salary, :person_id, :no_end, :company_id
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/people_controller.rb:16:81: C: Line is too long. [84/80]
+app/controllers/people_controller.rb:17:81: C: Line is too long. [84/80]
     @people = @q.result.includes(:jobs).page(params[:page] ? params[:page].to_i : 1)
                                                                                 ^^^^
-app/controllers/people_controller.rb:20:3: C: Put empty method definitions on a single line.
+app/controllers/people_controller.rb:21:3: C: Put empty method definitions on a single line.
   def edit ...
   ^^^^^^^^
-app/controllers/people_controller.rb:23:3: C: Assignment Branch Condition size for show is too high. [22.87/15]
+app/controllers/people_controller.rb:24:3: C: Assignment Branch Condition size for show is too high. [22.87/15]
   def show
   ^^^
-app/controllers/people_controller.rb:23:3: C: Method has too many lines. [11/10]
+app/controllers/people_controller.rb:24:3: C: Method has too many lines. [11/10]
   def show ...
   ^^^^^^^^
-app/controllers/people_controller.rb:42:3: C: Assignment Branch Condition size for create is too high. [25.5/15]
+app/controllers/people_controller.rb:43:3: C: Assignment Branch Condition size for create is too high. [25.5/15]
   def create
   ^^^
-app/controllers/people_controller.rb:42:3: C: Method has too many lines. [16/10]
+app/controllers/people_controller.rb:43:3: C: Method has too many lines. [16/10]
   def create ...
   ^^^^^^^^^^
-app/controllers/people_controller.rb:63:3: C: Use empty lines between method definitions.
+app/controllers/people_controller.rb:64:3: C: Use empty lines between method definitions.
   def update
   ^^^
-app/controllers/people_controller.rb:76:3: C: Use empty lines between method definitions.
+app/controllers/people_controller.rb:77:3: C: Use empty lines between method definitions.
   def destroy
   ^^^
-app/controllers/people_controller.rb:84:3: C: Use empty lines between method definitions.
+app/controllers/people_controller.rb:85:3: C: Use empty lines between method definitions.
   def add_company
   ^^^
-app/controllers/people_controller.rb:89:3: C: Assignment Branch Condition size for job_and_no_jobs is too high. [24.6/15]
+app/controllers/people_controller.rb:90:3: C: Assignment Branch Condition size for job_and_no_jobs is too high. [24.6/15]
   def job_and_no_jobs(jobs)
   ^^^
-app/controllers/people_controller.rb:89:3: C: Method has too many lines. [30/10]
+app/controllers/people_controller.rb:90:3: C: Method has too many lines. [30/10]
   def job_and_no_jobs(jobs) ...
   ^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/people_controller.rb:100:53: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/controllers/people_controller.rb:101:53: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
                                company_name: I18n.t("job.unemployed"),
                                                     ^^^^^^^^^^^^^^^^
-app/controllers/people_controller.rb:132:3: C: Method has too many lines. [12/10]
-  def person_params ...
-  ^^^^^^^^^^^^^^^^^
-app/controllers/people_controller.rb:147:3: C: Assignment Branch Condition size for logged_in_user is too high. [16.4/15]
-  def logged_in_user
-  ^^^
-app/controllers/people_controller.rb:150:31: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      flash[:danger] = I18n.t("session.log_first")
-                              ^^^^^^^^^^^^^^^^^^^
-app/controllers/people_controller.rb:153:5: C: Use a guard clause instead of wrapping the code inside a conditional expression.
-    unless params[:id].nil?
-    ^^^^^^
+app/controllers/people_controller.rb:133:5: C: Method has too many lines. [12/10]
+    def person_params ...
+    ^^^^^^^^^^^^^^^^^
+app/controllers/people_controller.rb:133:5: C: Inconsistent indentation detected.
+    def person_params ...
+    ^^^^^^^^^^^^^^^^^
+app/controllers/people_controller.rb:148:5: C: Inconsistent indentation detected.
+    def get_person ...
+    ^^^^^^^^^^^^^^
+app/controllers/people_controller.rb:148:9: C: Do not prefix reader method names with get_.
+    def get_person
+        ^^^^^^^^^^
+app/controllers/people_controller.rb:149:7: C: Do not use unless with else. Rewrite these with the positive case first.
+      unless params[:id].nil? ...
+      ^^^^^^^^^^^^^^^^^^^^^^^
 app/controllers/sessions_controller.rb:1:1: C: Missing top-level class documentation comment.
 class SessionsController < ApplicationController
 ^^^^^
@@ -888,6 +840,15 @@ class UsersController < ApplicationController
 app/controllers/users_controller.rb:1:1: C: Carriage return character detected.
 class UsersController < ApplicationController ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/users_controller.rb:2:32: C: Trailing whitespace detected.
+  before_action :logged_in_user 
+                               ^
+app/controllers/users_controller.rb:3:31: C: Unnecessary spacing detected.
+  before_action :correct_user,   only: [        :edit, :update, :destroy, :show]
+                              ^^
+app/controllers/users_controller.rb:3:41: C: Unnecessary spacing detected.
+  before_action :correct_user,   only: [        :edit, :update, :destroy, :show]
+                                        ^^^^^^^
 app/controllers/users_controller.rb:3:41: C: Space inside square brackets detected.
   before_action :correct_user,   only: [        :edit, :update, :destroy, :show]
                                         ^^^^^^^^
@@ -900,9 +861,12 @@ app/controllers/users_controller.rb:29:3: C: Put empty method definitions on a s
 app/controllers/users_controller.rb:42:3: C: Assignment Branch Condition size for destroy is too high. [17.29/15]
   def destroy
   ^^^
-app/controllers/users_controller.rb:46:39: C: Space missing after comma.
-    reassign_missions(admin_list.first,@user)
-                                      ^
+app/controllers/users_controller.rb:47:81: C: Line is too long. [81/80]
+      # Missions are not destroyed but reassigned to the first admin found in the
+                                                                                ^
+app/controllers/users_controller.rb:49:41: C: Space missing after comma.
+      reassign_missions(admin_list.first,@user)
+                                        ^
 app/controllers/users_controller.rb:50:81: C: Line is too long. [84/80]
       Person.where('user_id = ?', @user.id).update_all(user_id: admin_list.first.id)
                                                                                 ^^^^
@@ -1926,7 +1890,7 @@ app/models/concerns/users/authenticate.rb:35:81: C: Line is too long. [90/80]
       update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
                                                                                 ^^^^^^^^^^
 app/models/concerns/users/authenticate.rb:37:1: C: Extra empty line detected at module body end.
-app/models/event_slot.rb:1:1: C: Class has too many lines. [146/100]
+app/models/event_slot.rb:1:1: C: Class has too many lines. [149/100]
 class EventSlot ...
 ^^^^^^^^^^^^^^^
 app/models/event_slot.rb:1:1: C: Missing top-level class documentation comment.
@@ -1935,394 +1899,394 @@ class EventSlot
 app/models/event_slot.rb:1:1: C: Carriage return character detected.
 class EventSlot ...
 ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:7:11: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    raise "start and endtime do not suit" unless attributes[:start_period].is_a?(DateTime) && attributes[:end_period].is_a?(DateTime) && attributes[:end_period] >= attributes[:start_period]
+app/models/event_slot.rb:10:11: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    raise "start and endtime do not suit" unless c1 && c2 && c3 
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:7:81: C: Line is too long. [189/80]
-    raise "start and endtime do not suit" unless attributes[:start_period].is_a?(DateTime) && attributes[:end_period].is_a?(DateTime) && attributes[:end_period] >= attributes[:start_period]
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:13:12: C: Redundant self detected.
+app/models/event_slot.rb:10:64: C: Trailing whitespace detected.
+    raise "start and endtime do not suit" unless c1 && c2 && c3 
+                                                               ^
+app/models/event_slot.rb:16:12: C: Redundant self detected.
     "De  #{self.start_period.strftime('%d %H:%M')} à #{self.end_period.strftime('%d %H:%M')}"
            ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:13:56: C: Redundant self detected.
+app/models/event_slot.rb:16:56: C: Redundant self detected.
     "De  #{self.start_period.strftime('%d %H:%M')} à #{self.end_period.strftime('%d %H:%M')}"
                                                        ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:13:81: C: Line is too long. [93/80]
+app/models/event_slot.rb:16:81: C: Line is too long. [93/80]
     "De  #{self.start_period.strftime('%d %H:%M')} à #{self.end_period.strftime('%d %H:%M')}"
                                                                                 ^^^^^^^^^^^^^
-app/models/event_slot.rb:16:7: C: Do not prefix reader method names with get_.
+app/models/event_slot.rb:19:7: C: Do not prefix reader method names with get_.
   def get_hours_duration
       ^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:17:16: C: Redundant self detected.
+app/models/event_slot.rb:20:16: C: Redundant self detected.
     min_left = self.min_duration % 60
                ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:18:7: C: Redundant self detected.
+app/models/event_slot.rb:21:7: C: Redundant self detected.
     ((self.min_duration - min_left) / 60).round
       ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:23:6: C: Redundant self detected.
+app/models/event_slot.rb:26:6: C: Redundant self detected.
     (self.start_period..self.end_period).overlaps?(o_period.start_period..o_period.end_period)
      ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:23:25: C: Redundant self detected.
+app/models/event_slot.rb:26:25: C: Redundant self detected.
     (self.start_period..self.end_period).overlaps?(o_period.start_period..o_period.end_period)
                         ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:23:81: C: Line is too long. [94/80]
+app/models/event_slot.rb:26:81: C: Line is too long. [94/80]
     (self.start_period..self.end_period).overlaps?(o_period.start_period..o_period.end_period)
                                                                                 ^^^^^^^^^^^^^^
-app/models/event_slot.rb:26:3: C: Assignment Branch Condition size for working_days_split is too high. [20.05/15]
+app/models/event_slot.rb:29:3: C: Assignment Branch Condition size for working_days_split is too high. [20.05/15]
   def working_days_split
   ^^^
-app/models/event_slot.rb:26:3: C: Method has too many lines. [17/10]
+app/models/event_slot.rb:29:3: C: Method has too many lines. [17/10]
   def working_days_split ...
   ^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:27:5: C: Missing space after #.
+app/models/event_slot.rb:30:5: C: Missing space after #.
     #split days and does Eventslots out of them, except sundays
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:29:9: C: Redundant self detected.
+app/models/event_slot.rb:32:9: C: Redundant self detected.
     s = self.start_period
         ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:30:5: W: Useless assignment to variable - e.
+app/models/event_slot.rb:33:5: W: Useless assignment to variable - e.
     e = self.end_period
     ^
-app/models/event_slot.rb:30:9: C: Redundant self detected.
+app/models/event_slot.rb:33:9: C: Redundant self detected.
     e = self.end_period
         ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:35:9: C: Favor a normal unless-statement over a modifier clause in a multiline statement.
+app/models/event_slot.rb:38:9: C: Favor a normal unless-statement over a modifier clause in a multiline statement.
         r << EventSlot.new( ...
         ^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:36:11: C: Use the new Ruby 1.9 hash syntax.
+app/models/event_slot.rb:39:11: C: Use the new Ruby 1.9 hash syntax.
           :start_period => day_offset,
           ^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:37:11: C: Use the new Ruby 1.9 hash syntax.
+app/models/event_slot.rb:40:11: C: Use the new Ruby 1.9 hash syntax.
           :end_period => offset_e
           ^^^^^^^^^^^^^^
-app/models/event_slot.rb:38:11: C: Indent ) the same as the start of the line where ( is.
+app/models/event_slot.rb:41:11: C: Indent ) the same as the start of the line where ( is.
           ) unless day_offset.wday == 0 #sunday
           ^
-app/models/event_slot.rb:38:20: C: Use day_offset.wday.zero? instead of day_offset.wday == 0.
+app/models/event_slot.rb:41:20: C: Use day_offset.wday.zero? instead of day_offset.wday == 0.
           ) unless day_offset.wday == 0 #sunday
                    ^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:38:41: C: Missing space after #.
+app/models/event_slot.rb:41:41: C: Missing space after #.
           ) unless day_offset.wday == 0 #sunday
                                         ^^^^^^^
-app/models/event_slot.rb:41:23: C: Unnecessary spacing detected.
+app/models/event_slot.rb:44:23: C: Unnecessary spacing detected.
       r << self unless  day_offset.wday == 0 #sunday
                       ^
-app/models/event_slot.rb:41:25: C: Use day_offset.wday.zero? instead of day_offset.wday == 0.
+app/models/event_slot.rb:44:25: C: Use day_offset.wday.zero? instead of day_offset.wday == 0.
       r << self unless  day_offset.wday == 0 #sunday
                         ^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:41:46: C: Missing space after #.
+app/models/event_slot.rb:44:46: C: Missing space after #.
       r << self unless  day_offset.wday == 0 #sunday
                                              ^^^^^^^
-app/models/event_slot.rb:48:5: C: Redundant self detected.
+app/models/event_slot.rb:51:5: C: Redundant self detected.
     self.min_duration < Comaction::SHORTEST_MEETING_TIME
     ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:50:3: C: Use empty lines between method definitions.
+app/models/event_slot.rb:53:3: C: Use empty lines between method definitions.
   def starts_too_late
   ^^^
-app/models/event_slot.rb:51:5: C: Redundant self detected.
+app/models/event_slot.rb:54:5: C: Redundant self detected.
     self.start_period.hour >= (Comaction::WORK_HOURS.last.to_i - 1)
     ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:54:3: C: Assignment Branch Condition size for out_from_intersect is too high. [21.47/15]
+app/models/event_slot.rb:57:3: C: Assignment Branch Condition size for out_from_intersect is too high. [21.47/15]
   def out_from_intersect(rdv_period)
   ^^^
-app/models/event_slot.rb:54:3: C: Cyclomatic complexity for out_from_intersect is too high. [7/6]
+app/models/event_slot.rb:57:3: C: Cyclomatic complexity for out_from_intersect is too high. [7/6]
   def out_from_intersect(rdv_period)
   ^^^
-app/models/event_slot.rb:54:3: C: Method has too many lines. [18/10]
+app/models/event_slot.rb:57:3: C: Method has too many lines. [18/10]
   def out_from_intersect(rdv_period) ...
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:54:3: C: Perceived complexity for out_from_intersect is too high. [8/7]
+app/models/event_slot.rb:57:3: C: Perceived complexity for out_from_intersect is too high. [8/7]
   def out_from_intersect(rdv_period)
   ^^^
-app/models/event_slot.rb:55:5: C: Missing space after #.
+app/models/event_slot.rb:58:5: C: Missing space after #.
     #purpose : self is a free zone, rdv_period is an appointment
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:56:81: C: Line is too long. [88/80]
+app/models/event_slot.rb:59:81: C: Line is too long. [88/80]
     # the rdv_period slices the free_zone in parts when it intersects with the free_zone
                                                                                 ^^^^^^^^
-app/models/event_slot.rb:57:12: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+app/models/event_slot.rb:60:12: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
     return "not_a_EventSlot" unless rdv_period.is_a?(EventSlot)
            ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:58:30: C: Redundant self detected.
+app/models/event_slot.rb:61:30: C: Redundant self detected.
     return "two_days_error #{self.descro} max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
                              ^^^^^^^^^^^
-app/models/event_slot.rb:58:53: C: Unnecessary spacing detected.
+app/models/event_slot.rb:61:53: C: Unnecessary spacing detected.
     return "two_days_error #{self.descro} max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
                                                     ^
-app/models/event_slot.rb:58:58: C: Redundant self detected.
+app/models/event_slot.rb:61:58: C: Redundant self detected.
     return "two_days_error #{self.descro} max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
                                                          ^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:58:81: C: Line is too long. [113/80]
+app/models/event_slot.rb:61:81: C: Line is too long. [113/80]
     return "two_days_error #{self.descro} max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:60:26: C: Redundant self detected.
+app/models/event_slot.rb:63:26: C: Redundant self detected.
     self_starts_before = self.start_period <= rdv_period.start_period
                          ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:61:48: C: Redundant self detected.
+app/models/event_slot.rb:64:48: C: Redundant self detected.
     self_ends_after = rdv_period.end_period <= self.end_period
                                                ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:63:8: C: Redundant self detected.
+app/models/event_slot.rb:66:8: C: Redundant self detected.
     if self.overlaps? rdv_period
        ^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:65:20: C: Use the new Ruby 1.9 hash syntax.
+app/models/event_slot.rb:68:20: C: Use the new Ruby 1.9 hash syntax.
         starts = { :start_period => self.start_period, :end_period => rdv_period.start_period }
                    ^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:65:37: C: Redundant self detected.
+app/models/event_slot.rb:68:37: C: Redundant self detected.
         starts = { :start_period => self.start_period, :end_period => rdv_period.start_period }
                                     ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:65:56: C: Use the new Ruby 1.9 hash syntax.
+app/models/event_slot.rb:68:56: C: Use the new Ruby 1.9 hash syntax.
         starts = { :start_period => self.start_period, :end_period => rdv_period.start_period }
                                                        ^^^^^^^^^^^^^^
-app/models/event_slot.rb:65:81: C: Line is too long. [95/80]
+app/models/event_slot.rb:68:81: C: Line is too long. [95/80]
         starts = { :start_period => self.start_period, :end_period => rdv_period.start_period }
                                                                                 ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:66:28: C: Space inside parentheses detected.
+app/models/event_slot.rb:69:28: C: Space inside parentheses detected.
         r << EventSlot.new( starts )
                            ^
-app/models/event_slot.rb:66:35: C: Space inside parentheses detected.
+app/models/event_slot.rb:69:35: C: Space inside parentheses detected.
         r << EventSlot.new( starts )
                                   ^
-app/models/event_slot.rb:69:16: C: Space inside { missing.
+app/models/event_slot.rb:72:16: C: Space inside { missing.
         ends = {:start_period => rdv_period.end_period, :end_period => self.end_period }
                ^
-app/models/event_slot.rb:69:17: C: Use the new Ruby 1.9 hash syntax.
+app/models/event_slot.rb:72:17: C: Use the new Ruby 1.9 hash syntax.
         ends = {:start_period => rdv_period.end_period, :end_period => self.end_period }
                 ^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:69:57: C: Use the new Ruby 1.9 hash syntax.
+app/models/event_slot.rb:72:57: C: Use the new Ruby 1.9 hash syntax.
         ends = {:start_period => rdv_period.end_period, :end_period => self.end_period }
                                                         ^^^^^^^^^^^^^^
-app/models/event_slot.rb:69:72: C: Redundant self detected.
+app/models/event_slot.rb:72:72: C: Redundant self detected.
         ends = {:start_period => rdv_period.end_period, :end_period => self.end_period }
                                                                        ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:69:81: C: Line is too long. [88/80]
+app/models/event_slot.rb:72:81: C: Line is too long. [88/80]
         ends = {:start_period => rdv_period.end_period, :end_period => self.end_period }
                                                                                 ^^^^^^^^
-app/models/event_slot.rb:70:28: C: Space inside parentheses detected.
+app/models/event_slot.rb:73:28: C: Space inside parentheses detected.
         r << EventSlot.new( ends )
                            ^
-app/models/event_slot.rb:70:33: C: Space inside parentheses detected.
+app/models/event_slot.rb:73:33: C: Space inside parentheses detected.
         r << EventSlot.new( ends )
                                 ^
-app/models/event_slot.rb:79:12: C: Surrounding space missing for operator =.
+app/models/event_slot.rb:82:12: C: Surrounding space missing for operator =.
     h_start= self.start_period.hour * 2
            ^
-app/models/event_slot.rb:79:14: C: Redundant self detected.
+app/models/event_slot.rb:82:14: C: Redundant self detected.
     h_start= self.start_period.hour * 2
              ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:80:21: C: Redundant self detected.
+app/models/event_slot.rb:83:21: C: Redundant self detected.
     h_start += 1 if self.start_period.minute >= 30
                     ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:81:13: C: Surrounding space missing for operator =.
+app/models/event_slot.rb:84:13: C: Surrounding space missing for operator =.
     h_finish= self.end_period.hour * 2 - 1
             ^
-app/models/event_slot.rb:81:15: C: Redundant self detected.
+app/models/event_slot.rb:84:15: C: Redundant self detected.
     h_finish= self.end_period.hour * 2 - 1
               ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:82:22: C: Redundant self detected.
+app/models/event_slot.rb:85:22: C: Redundant self detected.
     h_finish += 1 if self.end_period.minute >= 30
                      ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:83:6: C: Space inside range literal.
+app/models/event_slot.rb:86:6: C: Space inside range literal.
     (h_start .. h_finish)
      ^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:87:5: C: Assignment Branch Condition size for dash_it is too high. [26.72/15]
+app/models/event_slot.rb:90:5: C: Assignment Branch Condition size for dash_it is too high. [26.72/15]
     def dash_it(freeZone_days, next_comactions)
     ^^^
-app/models/event_slot.rb:87:5: C: Cyclomatic complexity for dash_it is too high. [9/6]
+app/models/event_slot.rb:90:5: C: Cyclomatic complexity for dash_it is too high. [9/6]
     def dash_it(freeZone_days, next_comactions)
     ^^^
-app/models/event_slot.rb:87:5: C: Method has too many lines. [21/10]
+app/models/event_slot.rb:90:5: C: Method has too many lines. [21/10]
     def dash_it(freeZone_days, next_comactions) ...
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:87:5: C: Perceived complexity for dash_it is too high. [9/7]
+app/models/event_slot.rb:90:5: C: Perceived complexity for dash_it is too high. [9/7]
     def dash_it(freeZone_days, next_comactions)
     ^^^
-app/models/event_slot.rb:87:17: C: Use snake_case for variable names.
+app/models/event_slot.rb:90:17: C: Use snake_case for variable names.
     def dash_it(freeZone_days, next_comactions)
                 ^^^^^^^^^^^^^
-app/models/event_slot.rb:94:11: C: Use next to skip iteration.
+app/models/event_slot.rb:97:11: C: Use next to skip iteration.
           unless  app.start_time.nil? || app.end_time.nil? || app.end_time < d
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:94:17: C: Unnecessary spacing detected.
+app/models/event_slot.rb:97:17: C: Unnecessary spacing detected.
           unless  app.start_time.nil? || app.end_time.nil? || app.end_time < d
                 ^
-app/models/event_slot.rb:95:36: C: Redundant curly braces around a hash parameter.
+app/models/event_slot.rb:98:36: C: Redundant curly braces around a hash parameter.
             es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app.end_time)})
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:95:36: C: Space inside { missing.
+app/models/event_slot.rb:98:36: C: Space inside { missing.
             es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app.end_time)})
                                    ^
-app/models/event_slot.rb:95:81: C: Line is too long. [111/80]
+app/models/event_slot.rb:98:81: C: Line is too long. [111/80]
             es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app.end_time)})
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:95:110: C: Space inside } missing.
+app/models/event_slot.rb:98:110: C: Space inside } missing.
             es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app.end_time)})
                                                                                                              ^
-app/models/event_slot.rb:96:21: C: Use es_app.min_duration.zero? instead of es_app.min_duration == 0.
+app/models/event_slot.rb:99:21: C: Use es_app.min_duration.zero? instead of es_app.min_duration == 0.
             next if es_app.min_duration == 0
                     ^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:98:55: C: Prefer the use of the nil? predicate.
+app/models/event_slot.rb:101:55: C: Prefer the use of the nil? predicate.
               next if ghost_day_free_zone.from_now_on == nil
                                                       ^^
-app/models/event_slot.rb:100:81: C: Line is too long. [113/80]
+app/models/event_slot.rb:103:81: C: Line is too long. [113/80]
               # intersect > 1 when there's been overlapping between ghost_day_free_zone and the appointment (app)
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:104:15: C: Use snake_case for variable names.
+app/models/event_slot.rb:107:15: C: Use snake_case for variable names.
               freeZone_days += intersect #unless intersect == nil || intersect.empty? || intersect.instance_of?(String)
               ^^^^^^^^^^^^^
-app/models/event_slot.rb:104:42: C: Missing space after #.
+app/models/event_slot.rb:107:42: C: Missing space after #.
               freeZone_days += intersect #unless intersect == nil || intersect.empty? || intersect.instance_of?(String)
                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:104:81: C: Line is too long. [119/80]
+app/models/event_slot.rb:107:81: C: Line is too long. [119/80]
               freeZone_days += intersect #unless intersect == nil || intersect.empty? || intersect.instance_of?(String)
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:105:24: C: Operator += should be surrounded by a single space.
+app/models/event_slot.rb:108:24: C: Operator += should be surrounded by a single space.
               messages +=  intersect if intersect.instance_of?(String)
                        ^^
-app/models/event_slot.rb:105:26: C: Unnecessary spacing detected.
+app/models/event_slot.rb:108:26: C: Unnecessary spacing detected.
               messages +=  intersect if intersect.instance_of?(String)
                          ^
-app/models/event_slot.rb:110:7: C: Redundant return detected.
+app/models/event_slot.rb:113:7: C: Redundant return detected.
       return messages,freeZone_days
       ^^^^^^
-app/models/event_slot.rb:110:22: C: Space missing after comma.
+app/models/event_slot.rb:113:22: C: Space missing after comma.
       return messages,freeZone_days
                      ^
-app/models/event_slot.rb:112:5: C: Use empty lines between method definitions.
+app/models/event_slot.rb:115:5: C: Use empty lines between method definitions.
     def error_margin(end_time)
     ^^^
-app/models/event_slot.rb:114:10: W: (...) interpreted as grouped expression.
+app/models/event_slot.rb:117:10: W: (...) interpreted as grouped expression.
       tdt (end_time)
          ^
-app/models/event_slot.rb:114:11: C: Don't use parentheses around a variable.
+app/models/event_slot.rb:117:11: C: Don't use parentheses around a variable.
       tdt (end_time)
           ^^^^^^^^^^
-app/models/event_slot.rb:117:12: C: Do not put a space between a method name and the opening parenthesis.
+app/models/event_slot.rb:120:12: C: Do not put a space between a method name and the opening parenthesis.
     def tdt (t)
            ^
-app/models/event_slot.rb:121:16: C: Do not put a space between a method name and the opening parenthesis.
+app/models/event_slot.rb:124:16: C: Do not put a space between a method name and the opening parenthesis.
     def sharpen (arr)
                ^
-app/models/event_slot.rb:124:9: C: Align .map with arr on line 123.
+app/models/event_slot.rb:127:9: C: Align .map with arr on line 126.
         .map { |fz| fz.set_to_office_hours}
         ^^^^
-app/models/event_slot.rb:124:14: C: Pass &:set_to_office_hours as an argument to map instead of a block.
+app/models/event_slot.rb:127:14: C: Pass &:set_to_office_hours as an argument to map instead of a block.
         .map { |fz| fz.set_to_office_hours}
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:124:43: C: Space missing inside }.
+app/models/event_slot.rb:127:43: C: Space missing inside }.
         .map { |fz| fz.set_to_office_hours}
                                           ^
-app/models/event_slot.rb:125:9: C: Align .map with arr on line 123.
+app/models/event_slot.rb:128:9: C: Align .map with arr on line 126.
         .map { |fz| fz.from_now_on}.compact
         ^^^^
-app/models/event_slot.rb:125:14: C: Pass &:from_now_on as an argument to map instead of a block.
+app/models/event_slot.rb:128:14: C: Pass &:from_now_on as an argument to map instead of a block.
         .map { |fz| fz.from_now_on}.compact
              ^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:125:35: C: Space missing inside }.
+app/models/event_slot.rb:128:35: C: Space missing inside }.
         .map { |fz| fz.from_now_on}.compact
                                   ^
-app/models/event_slot.rb:126:9: C: Align .select with arr on line 123.
+app/models/event_slot.rb:129:9: C: Align .select with arr on line 126.
         .select do |fz|
         ^^^^^^^
-app/models/event_slot.rb:129:17: C: Use sort_by(&:start_period) instead of sort { |a, b| a.start_period <=> b.start_period }.
+app/models/event_slot.rb:132:17: C: Use sort_by(&:start_period) instead of sort { |a, b| a.start_period <=> b.start_period }.
       arr = arr.sort { |a,b| a.start_period <=> b.start_period }
                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:129:26: C: Space missing after comma.
+app/models/event_slot.rb:132:26: C: Space missing after comma.
       arr = arr.sort { |a,b| a.start_period <=> b.start_period }
                          ^
-app/models/event_slot.rb:134:20: C: Space between { and | missing.
+app/models/event_slot.rb:137:20: C: Space between { and | missing.
       arr.group_by {|es| I18n.t(es.start_period.strftime('%A')) + es.start_period.strftime(' %d')}
                    ^^
-app/models/event_slot.rb:134:81: C: Line is too long. [98/80]
+app/models/event_slot.rb:137:81: C: Line is too long. [98/80]
       arr.group_by {|es| I18n.t(es.start_period.strftime('%A')) + es.start_period.strftime(' %d')}
                                                                                 ^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:134:98: C: Space missing inside }.
+app/models/event_slot.rb:137:98: C: Space missing inside }.
       arr.group_by {|es| I18n.t(es.start_period.strftime('%A')) + es.start_period.strftime(' %d')}
                                                                                                  ^
-app/models/event_slot.rb:147:81: C: Line is too long. [115/80]
+app/models/event_slot.rb:150:81: C: Line is too long. [115/80]
   #       :start_period => self.start_period.beginning_of_day.advance(hours: (start_hour + h), minutes: start_min),
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:148:81: C: Line is too long. [114/80]
+app/models/event_slot.rb:151:81: C: Line is too long. [114/80]
   #       :end_period => self.end_period.beginning_of_day.advance(hours: (start_hour + h + 1), minutes: start_min)
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:156:19: C: Redundant self detected.
+app/models/event_slot.rb:159:19: C: Redundant self detected.
     return nil if self.end_period < now
                   ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:157:5: C: Redundant self detected.
+app/models/event_slot.rb:160:5: C: Redundant self detected.
     self.update_begin(now) if now > self.start_period
     ^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:157:37: C: Redundant self detected.
+app/models/event_slot.rb:160:37: C: Redundant self detected.
     self.update_begin(now) if now > self.start_period
                                     ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:161:3: C: Assignment Branch Condition size for set_to_office_hours is too high. [16.12/15]
+app/models/event_slot.rb:164:3: C: Assignment Branch Condition size for set_to_office_hours is too high. [16.12/15]
   def set_to_office_hours
   ^^^
-app/models/event_slot.rb:162:5: C: Redundant self detected.
+app/models/event_slot.rb:165:5: C: Redundant self detected.
     self.update_begin(start_period.change(hour: Comaction::WORK_HOURS.first)) if start_period.hour < Comaction::WORK_HOURS.first
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:162:81: C: Line is too long. [128/80]
+app/models/event_slot.rb:165:81: C: Line is too long. [128/80]
     self.update_begin(start_period.change(hour: Comaction::WORK_HOURS.first)) if start_period.hour < Comaction::WORK_HOURS.first
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:163:5: C: Redundant self detected.
+app/models/event_slot.rb:166:5: C: Redundant self detected.
     self.update_end  (  end_period.change(hour: Comaction::WORK_HOURS.last))  if end_period.hour   > Comaction::WORK_HOURS.last
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:163:20: W: (...) interpreted as grouped expression.
+app/models/event_slot.rb:166:20: W: (...) interpreted as grouped expression.
     self.update_end  (  end_period.change(hour: Comaction::WORK_HOURS.last))  if end_period.hour   > Comaction::WORK_HOURS.last
                    ^^
-app/models/event_slot.rb:163:22: C: Don't use parentheses around a method call.
+app/models/event_slot.rb:166:22: C: Don't use parentheses around a method call.
     self.update_end  (  end_period.change(hour: Comaction::WORK_HOURS.last))  if end_period.hour   > Comaction::WORK_HOURS.last
                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:163:23: C: Unnecessary spacing detected.
+app/models/event_slot.rb:166:23: C: Unnecessary spacing detected.
     self.update_end  (  end_period.change(hour: Comaction::WORK_HOURS.last))  if end_period.hour   > Comaction::WORK_HOURS.last
                       ^
-app/models/event_slot.rb:163:81: C: Line is too long. [127/80]
+app/models/event_slot.rb:166:81: C: Line is too long. [127/80]
     self.update_end  (  end_period.change(hour: Comaction::WORK_HOURS.last))  if end_period.hour   > Comaction::WORK_HOURS.last
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:163:100: C: Operator > should be surrounded by a single space.
+app/models/event_slot.rb:166:100: C: Operator > should be surrounded by a single space.
     self.update_end  (  end_period.change(hour: Comaction::WORK_HOURS.last))  if end_period.hour   > Comaction::WORK_HOURS.last
                                                                                                    ^
-app/models/event_slot.rb:168:50: C: Redundant self detected.
+app/models/event_slot.rb:171:50: C: Redundant self detected.
     return unless bego.is_a?(DateTime) || bego > self.end_period
                                                  ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:174:51: C: Redundant self detected.
+app/models/event_slot.rb:177:51: C: Redundant self detected.
     return  unless endo.is_a?(DateTime) || endo < self.start_period
                                                   ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:180:6: C: Redundant self detected.
+app/models/event_slot.rb:183:6: C: Redundant self detected.
     (self.end_period.beginning_of_day - self.start_period.beginning_of_day).to_i.round > 0
      ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:180:41: C: Redundant self detected.
+app/models/event_slot.rb:183:41: C: Redundant self detected.
     (self.end_period.beginning_of_day - self.start_period.beginning_of_day).to_i.round > 0
                                         ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:180:81: C: Line is too long. [90/80]
+app/models/event_slot.rb:183:81: C: Line is too long. [90/80]
     (self.end_period.beginning_of_day - self.start_period.beginning_of_day).to_i.round > 0
                                                                                 ^^^^^^^^^^
-app/models/event_slot.rb:183:3: C: Keep a blank line before and after private.
+app/models/event_slot.rb:186:3: C: Keep a blank line before and after private.
   private
   ^^^^^^^
-app/models/event_slot.rb:184:3: C: Incorrect indentation detected (column 2 instead of 4).
+app/models/event_slot.rb:187:3: C: Incorrect indentation detected (column 2 instead of 4).
   # =================
   ^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:185:5: C: Inconsistent indentation detected.
+app/models/event_slot.rb:188:5: C: Inconsistent indentation detected.
     def update_duration ...
     ^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:186:29: C: Redundant self detected.
+app/models/event_slot.rb:189:29: C: Redundant self detected.
       self.min_duration = ((self.end_period - self.start_period) * 24 * 60).to_i.round
                             ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:186:47: C: Redundant self detected.
+app/models/event_slot.rb:189:47: C: Redundant self detected.
       self.min_duration = ((self.end_period - self.start_period) * 24 * 60).to_i.round
                                               ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:186:81: C: Line is too long. [86/80]
+app/models/event_slot.rb:189:81: C: Line is too long. [86/80]
       self.min_duration = ((self.end_period - self.start_period) * 24 * 60).to_i.round
                                                                                 ^^^^^^
-app/models/event_slot.rb:189:5: C: Inconsistent indentation detected.
+app/models/event_slot.rb:192:5: C: Inconsistent indentation detected.
     def days_overlap ...
     ^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:190:8: C: Redundant self detected.
+app/models/event_slot.rb:193:8: C: Redundant self detected.
       (self.end_period - self.start_period).round
        ^^^^^^^^^^^^^^^
-app/models/event_slot.rb:190:26: C: Redundant self detected.
+app/models/event_slot.rb:193:26: C: Redundant self detected.
       (self.end_period - self.start_period).round
                          ^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:192:1: C: Extra empty line detected at class body end.
+app/models/event_slot.rb:195:1: C: Extra empty line detected at class body end.
 app/models/job.rb:18:1: C: Missing top-level class documentation comment.
 class Job < ApplicationRecord
 ^^^^^
@@ -2705,7 +2669,7 @@ class ApplicationPolicy ...
 app/policies/application_policy.rb:14:17: C: Use the new Ruby 1.9 hash syntax.
     scope.where(:id => record.id).exists?
                 ^^^^^^
-app/policies/application_policy.rb:45:3: C: Missing top-level class documentation comment.
+app/policies/application_policy.rb:46:3: C: Missing top-level class documentation comment.
   class Scope
   ^^^^^
 app/policies/comaction_policy.rb:1:1: C: Missing top-level class documentation comment.
@@ -2767,8 +2731,8 @@ app/policies/user_policy.rb:33:3: C: Keep a blank line before and after private.
   private
   ^^^^^^^
 app/policies/user_policy.rb:34:5: C: Inconsistent indentation detected.
-    def me_or_admin ...
-    ^^^^^^^^^^^^^^^
+    def me_or_admin? ...
+    ^^^^^^^^^^^^^^^^
 app/policies/user_policy.rb:37:1: C: Extra empty line detected at class body end.
 bin/bundle:1:1: C: Carriage return character detected.
 #!/usr/bin/env ruby.exe ...
@@ -2933,7 +2897,13 @@ Rails.application.configure do ...
 config/environments/test.rb:2:81: C: Line is too long. [85/80]
   # Settings specified here will take precedence over those in config/application.rb.
                                                                                 ^^^^^
-config/environments/test.rb:38:1: C: Extra blank line detected.
+config/environments/test.rb:25:3: C: Missing space after #.
+  #paperclip
+  ^^^^^^^^^^
+config/environments/test.rb:26:81: C: Line is too long. [121/80]
+  # Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/environments/test.rb:41:1: C: Extra blank line detected.
 config/initializers/application_controller_renderer.rb:1:1: C: Carriage return character detected.
 # Be sure to restart your server when you modify this file. ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4139,221 +4109,233 @@ db/seeds/development.rb:70:81: C: Line is too long. [86/80]
 db/seeds/development.rb:71:7: C: Surrounding space missing for operator =.
   note=              Faker::Lorem.sentence(3)
       ^
-db/seeds/development.rb:73:10: C: Surrounding space missing for operator =.
+db/seeds/development.rb:73:11: C: Operator = should be surrounded by a single space.
+  cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
+          ^
+db/seeds/development.rb:73:12: C: Unnecessary spacing detected.
+  cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
+           ^^^^^^^^^^^^
+db/seeds/development.rb:73:81: C: Line is too long. [118/80]
+  cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds/development.rb:74:10: C: Surrounding space missing for operator =.
   user_id=           user.id
          ^
-db/seeds/development.rb:84:5: C: Indent ) the same as the start of the line where ( is.
+db/seeds/development.rb:74:11: C: Unnecessary spacing detected.
+  user_id=           user.id
+          ^^^^^^^^^^
+db/seeds/development.rb:86:5: C: Indent ) the same as the start of the line where ( is.
     )
     ^
-db/seeds/development.rb:93:10: C: Surrounding space missing for operator =.
+db/seeds/development.rb:95:10: C: Surrounding space missing for operator =.
   company=companies.sample
          ^
-db/seeds/development.rb:95:12: C: Surrounding space missing for operator =.
+db/seeds/development.rb:97:12: C: Surrounding space missing for operator =.
   job_title=            Faker::Company.profession
            ^
-db/seeds/development.rb:96:9: C: Surrounding space missing for operator =.
+db/seeds/development.rb:98:9: C: Surrounding space missing for operator =.
   salary=               n* 100-n* 2
         ^
-db/seeds/development.rb:96:26: C: Surrounding space missing for operator *.
+db/seeds/development.rb:98:26: C: Surrounding space missing for operator *.
   salary=               n* 100-n* 2
                          ^
-db/seeds/development.rb:96:31: C: Surrounding space missing for operator -.
+db/seeds/development.rb:98:31: C: Surrounding space missing for operator -.
   salary=               n* 100-n* 2
                               ^
-db/seeds/development.rb:96:33: C: Surrounding space missing for operator *.
+db/seeds/development.rb:98:33: C: Surrounding space missing for operator *.
   salary=               n* 100-n* 2
                                 ^
-db/seeds/development.rb:98:13: C: Surrounding space missing for operator =.
+db/seeds/development.rb:100:13: C: Surrounding space missing for operator =.
   start_date=           Date.today
             ^
-db/seeds/development.rb:99:44: C: Surrounding space missing for operator *.
+db/seeds/development.rb:101:44: C: Surrounding space missing for operator *.
   start_date -=         (1..40).to_a.sample* 365
                                            ^
-db/seeds/development.rb:101:11: C: Surrounding space missing for operator =.
+db/seeds/development.rb:103:11: C: Surrounding space missing for operator =.
   end_date=             start_date + (100 *(n+1 ))
           ^
-db/seeds/development.rb:101:43: C: Surrounding space missing for operator *.
+db/seeds/development.rb:103:43: C: Surrounding space missing for operator *.
   end_date=             start_date + (100 *(n+1 ))
                                           ^
-db/seeds/development.rb:101:46: C: Surrounding space missing for operator +.
+db/seeds/development.rb:103:46: C: Surrounding space missing for operator +.
   end_date=             start_date + (100 *(n+1 ))
                                              ^
-db/seeds/development.rb:101:48: C: Space inside parentheses detected.
+db/seeds/development.rb:103:48: C: Space inside parentheses detected.
   end_date=             start_date + (100 *(n+1 ))
                                                ^
-db/seeds/development.rb:103:11: C: Surrounding space missing for operator =.
+db/seeds/development.rb:105:11: C: Surrounding space missing for operator =.
   end_date=             end_date.strftime("%F")
           ^
-db/seeds/development.rb:103:43: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+db/seeds/development.rb:105:43: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   end_date=             end_date.strftime("%F")
                                           ^^^^
-db/seeds/development.rb:104:13: C: Surrounding space missing for operator =.
+db/seeds/development.rb:106:13: C: Surrounding space missing for operator =.
   start_date=           start_date.strftime("%F")
             ^
-db/seeds/development.rb:104:45: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+db/seeds/development.rb:106:45: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   start_date=           start_date.strftime("%F")
                                             ^^^^
-db/seeds/development.rb:109:13: C: Surrounding space missing for operator =.
+db/seeds/development.rb:111:13: C: Surrounding space missing for operator =.
   company_id=           company.id
             ^
-db/seeds/development.rb:110:12: C: Surrounding space missing for operator =.
+db/seeds/development.rb:112:12: C: Surrounding space missing for operator =.
   person_id=            person.id
            ^
-db/seeds/development.rb:112:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:114:5: C: Align the elements of a hash literal if they span more than one line.
     salary:                salary,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:113:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:115:5: C: Align the elements of a hash literal if they span more than one line.
     start_date:            start_date,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:114:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:116:5: C: Align the elements of a hash literal if they span more than one line.
     end_date:              end_date,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:115:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:117:5: C: Align the elements of a hash literal if they span more than one line.
     jj_job:                false,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:116:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:118:5: C: Align the elements of a hash literal if they span more than one line.
     created_at:            created_at,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:117:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:119:5: C: Align the elements of a hash literal if they span more than one line.
     updated_at:            updated_at,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:118:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:120:5: C: Align the elements of a hash literal if they span more than one line.
     company_id:            company_id,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:119:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:121:5: C: Align the elements of a hash literal if they span more than one line.
     person_id:             person_id,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:120:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/development.rb:122:5: C: Align the elements of a hash literal if they span more than one line.
     no_end:                false
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:121:5: C: Align ) with (.
+db/seeds/development.rb:123:5: C: Align ) with (.
     )
     ^
-db/seeds/development.rb:121:5: C: Closing method call brace must be on the same line as the last argument when opening brace is on the same line as the first argument.
+db/seeds/development.rb:123:5: C: Closing method call brace must be on the same line as the last argument when opening brace is on the same line as the first argument.
     )
     ^
-db/seeds/development.rb:123:1: W: Useless assignment to variable - jobs.
+db/seeds/development.rb:125:1: W: Useless assignment to variable - jobs.
 jobs= Job.all
 ^^^^
-db/seeds/development.rb:123:5: C: Surrounding space missing for operator =.
+db/seeds/development.rb:125:5: C: Surrounding space missing for operator =.
 jobs= Job.all
     ^
-db/seeds/development.rb:127:1: C: Missing space after #.
+db/seeds/development.rb:129:1: C: Missing space after #.
 #statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:127:25: C: Use only ascii symbols in comments.
+db/seeds/development.rb:129:25: C: Use only ascii symbols in comments.
 #statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
                         ^
-db/seeds/development.rb:127:81: C: Line is too long. [99/80]
+db/seeds/development.rb:129:81: C: Line is too long. [99/80]
 #statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
                                                                                 ^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:128:1: C: Block has too many lines. [33/25]
+db/seeds/development.rb:130:1: C: Block has too many lines. [33/25]
 35.times do |n| ...
 ^^^^^^^^^^^^^^^
-db/seeds/development.rb:128:14: W: Unused block argument - n. You can omit the argument if you don't care about it.
+db/seeds/development.rb:130:14: W: Unused block argument - n. You can omit the argument if you don't care about it.
 35.times do |n|
              ^
-db/seeds/development.rb:133:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+db/seeds/development.rb:135:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   name   =           "Mission" + (1..4500).to_a.sample.to_s
                      ^^^^^^^^^
-db/seeds/development.rb:134:42: C: Surrounding space missing for operator *.
+db/seeds/development.rb:136:42: C: Surrounding space missing for operator *.
   reward =           (17..45).to_a.sample* 1000
                                          ^
-db/seeds/development.rb:135:44: C: Surrounding space missing for operator *.
+db/seeds/development.rb:137:44: C: Surrounding space missing for operator *.
   min_salary =       (200..400).to_a.sample* 100
                                            ^
-db/seeds/development.rb:136:13: C: Unnecessary spacing detected.
+db/seeds/development.rb:138:13: C: Unnecessary spacing detected.
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
             ^
-db/seeds/development.rb:136:15: C: Operator = should be surrounded by a single space.
+db/seeds/development.rb:138:15: C: Operator = should be surrounded by a single space.
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
               ^
-db/seeds/development.rb:136:33: C: Surrounding space missing for operator +.
+db/seeds/development.rb:138:33: C: Surrounding space missing for operator +.
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
                                 ^
-db/seeds/development.rb:136:53: C: Surrounding space missing for operator *.
+db/seeds/development.rb:138:53: C: Surrounding space missing for operator *.
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
                                                     ^
-db/seeds/development.rb:137:11: C: Unnecessary spacing detected.
+db/seeds/development.rb:139:11: C: Unnecessary spacing detected.
   criteria  =        Faker::Lorem.paragraph(3, true, 4)
           ^
-db/seeds/development.rb:137:13: C: Operator = should be surrounded by a single space.
+db/seeds/development.rb:139:13: C: Operator = should be surrounded by a single space.
   criteria  =        Faker::Lorem.paragraph(3, true, 4)
             ^
-db/seeds/development.rb:141:10: C: Unnecessary spacing detected.
+db/seeds/development.rb:143:10: C: Unnecessary spacing detected.
   user_id  =         user.id
          ^
-db/seeds/development.rb:141:12: C: Operator = should be surrounded by a single space.
+db/seeds/development.rb:143:12: C: Operator = should be surrounded by a single space.
   user_id  =         user.id
            ^
-db/seeds/development.rb:142:9: C: Unnecessary spacing detected.
+db/seeds/development.rb:144:9: C: Unnecessary spacing detected.
   status  =          Mission.statuses.keys.sample
         ^
-db/seeds/development.rb:142:11: C: Operator = should be surrounded by a single space.
+db/seeds/development.rb:144:11: C: Operator = should be surrounded by a single space.
   status  =          Mission.statuses.keys.sample
           ^
-db/seeds/development.rb:144:81: C: Line is too long. [89/80]
+db/seeds/development.rb:146:81: C: Line is too long. [89/80]
   signed    =        [:contract_signed, :mission_billed, :mission_payed].include?(status)
                                                                                 ^^^^^^^^^
-db/seeds/development.rb:162:5: C: Indent ) the same as the start of the line where ( is.
+db/seeds/development.rb:164:5: C: Indent ) the same as the start of the line where ( is.
     )
     ^
-db/seeds/development.rb:169:1: C: Extra empty line detected at block body beginning.
-db/seeds/development.rb:170:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+db/seeds/development.rb:171:1: C: Extra empty line detected at block body beginning.
+db/seeds/development.rb:172:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   name   =           "Rendez-vous " + n.to_s
                      ^^^^^^^^^^^^^^
-db/seeds/development.rb:172:14: C: Unnecessary spacing detected.
+db/seeds/development.rb:174:14: C: Unnecessary spacing detected.
   action_type   =    Comaction.action_types.keys.sample
              ^^
-db/seeds/development.rb:172:17: C: Operator = should be surrounded by a single space.
+db/seeds/development.rb:174:17: C: Operator = should be surrounded by a single space.
   action_type   =    Comaction.action_types.keys.sample
                 ^
-db/seeds/development.rb:175:10: C: Surrounding space missing for operator =.
+db/seeds/development.rb:177:10: C: Surrounding space missing for operator =.
   mission=           missions.sample
          ^
-db/seeds/development.rb:177:33: C: Operator + should be surrounded by a single space.
+db/seeds/development.rb:179:33: C: Operator + should be surrounded by a single space.
   updated_at =       created_at +  (1..150).to_a.sample
                                 ^
-db/seeds/development.rb:177:34: C: Unnecessary spacing detected.
+db/seeds/development.rb:179:34: C: Unnecessary spacing detected.
   updated_at =       created_at +  (1..150).to_a.sample
                                  ^
-db/seeds/development.rb:178:13: C: Unnecessary spacing detected.
+db/seeds/development.rb:180:13: C: Unnecessary spacing detected.
   start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..25).to_a.sample * 24 + (7..19).to_a.sample) * 60 * 60  : nil
             ^^
-db/seeds/development.rb:178:16: C: Operator = should be surrounded by a single space.
+db/seeds/development.rb:180:16: C: Operator = should be surrounded by a single space.
   start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..25).to_a.sample * 24 + (7..19).to_a.sample) * 60 * 60  : nil
                ^
-db/seeds/development.rb:178:43: C: Surrounding space missing for operator >.
+db/seeds/development.rb:180:43: C: Surrounding space missing for operator >.
   start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..25).to_a.sample * 24 + (7..19).to_a.sample) * 60 * 60  : nil
                                           ^
-db/seeds/development.rb:178:81: C: Line is too long. [143/80]
+db/seeds/development.rb:180:81: C: Line is too long. [143/80]
   start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..25).to_a.sample * 24 + (7..19).to_a.sample) * 60 * 60  : nil
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:178:137: C: Unnecessary spacing detected.
+db/seeds/development.rb:180:137: C: Unnecessary spacing detected.
   start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..25).to_a.sample * 24 + (7..19).to_a.sample) * 60 * 60  : nil
                                                                                                                                         ^
-db/seeds/development.rb:178:139: C: Operator : should be surrounded by a single space.
+db/seeds/development.rb:180:139: C: Operator : should be surrounded by a single space.
   start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..25).to_a.sample * 24 + (7..19).to_a.sample) * 60 * 60  : nil
                                                                                                                                           ^
-db/seeds/development.rb:179:11: C: Unnecessary spacing detected.
+db/seeds/development.rb:181:11: C: Unnecessary spacing detected.
   end_time    =      start_time.nil?  ? nil : start_time + (1..3).to_a.sample * 60 * 60
           ^^^
-db/seeds/development.rb:179:15: C: Operator = should be surrounded by a single space.
+db/seeds/development.rb:181:15: C: Operator = should be surrounded by a single space.
   end_time    =      start_time.nil?  ? nil : start_time + (1..3).to_a.sample * 60 * 60
               ^
-db/seeds/development.rb:179:37: C: Unnecessary spacing detected.
+db/seeds/development.rb:181:37: C: Unnecessary spacing detected.
   end_time    =      start_time.nil?  ? nil : start_time + (1..3).to_a.sample * 60 * 60
                                     ^
-db/seeds/development.rb:179:39: C: Operator ? should be surrounded by a single space.
+db/seeds/development.rb:181:39: C: Operator ? should be surrounded by a single space.
   end_time    =      start_time.nil?  ? nil : start_time + (1..3).to_a.sample * 60 * 60
                                       ^
-db/seeds/development.rb:179:81: C: Line is too long. [87/80]
+db/seeds/development.rb:181:81: C: Line is too long. [87/80]
   end_time    =      start_time.nil?  ? nil : start_time + (1..3).to_a.sample * 60 * 60
                                                                                 ^^^^^^^
-db/seeds/development.rb:192:5: C: Indent ) the same as the start of the line where ( is.
+db/seeds/development.rb:194:5: C: Indent ) the same as the start of the line where ( is.
     )
     ^
-db/seeds/development.rb:194:1: W: Useless assignment to variable - comactions.
+db/seeds/development.rb:196:1: W: Useless assignment to variable - comactions.
 comactions = Comaction.all
 ^^^^^^^^^^
 db/seeds/production.rb:1:1: C: Carriage return character detected.
@@ -4542,233 +4524,227 @@ db/seeds/test.rb:70:81: C: Line is too long. [86/80]
 db/seeds/test.rb:71:7: C: Surrounding space missing for operator =.
   note=              Faker::Lorem.sentence(3)
       ^
-db/seeds/test.rb:73:10: C: Surrounding space missing for operator =.
+db/seeds/test.rb:73:11: C: Operator = should be surrounded by a single space.
+  cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
+          ^
+db/seeds/test.rb:73:12: C: Unnecessary spacing detected.
+  cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
+           ^^^^^^^^^^^^
+db/seeds/test.rb:73:81: C: Line is too long. [118/80]
+  cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds/test.rb:74:10: C: Surrounding space missing for operator =.
   user_id=           user.id
          ^
-db/seeds/test.rb:84:5: C: Indent ) the same as the start of the line where ( is.
+db/seeds/test.rb:74:11: C: Unnecessary spacing detected.
+  user_id=           user.id
+          ^^^^^^^^^^
+db/seeds/test.rb:86:5: C: Indent ) the same as the start of the line where ( is.
     )
     ^
-db/seeds/test.rb:93:10: C: Surrounding space missing for operator =.
+db/seeds/test.rb:95:10: C: Surrounding space missing for operator =.
   company=companies.sample
          ^
-db/seeds/test.rb:95:12: C: Surrounding space missing for operator =.
+db/seeds/test.rb:97:12: C: Surrounding space missing for operator =.
   job_title=            Faker::Company.profession
            ^
-db/seeds/test.rb:96:9: C: Surrounding space missing for operator =.
+db/seeds/test.rb:98:9: C: Surrounding space missing for operator =.
   salary=               n* 100-n* 2
         ^
-db/seeds/test.rb:96:26: C: Surrounding space missing for operator *.
+db/seeds/test.rb:98:26: C: Surrounding space missing for operator *.
   salary=               n* 100-n* 2
                          ^
-db/seeds/test.rb:96:31: C: Surrounding space missing for operator -.
+db/seeds/test.rb:98:31: C: Surrounding space missing for operator -.
   salary=               n* 100-n* 2
                               ^
-db/seeds/test.rb:96:33: C: Surrounding space missing for operator *.
+db/seeds/test.rb:98:33: C: Surrounding space missing for operator *.
   salary=               n* 100-n* 2
                                 ^
-db/seeds/test.rb:98:13: C: Surrounding space missing for operator =.
+db/seeds/test.rb:100:13: C: Surrounding space missing for operator =.
   start_date=           Date.today
             ^
-db/seeds/test.rb:99:44: C: Surrounding space missing for operator *.
+db/seeds/test.rb:101:44: C: Surrounding space missing for operator *.
   start_date -=         (1..40).to_a.sample* 365
                                            ^
-db/seeds/test.rb:101:11: C: Surrounding space missing for operator =.
+db/seeds/test.rb:103:11: C: Surrounding space missing for operator =.
   end_date=             start_date + (100 *(n+1 ))
           ^
-db/seeds/test.rb:101:43: C: Surrounding space missing for operator *.
+db/seeds/test.rb:103:43: C: Surrounding space missing for operator *.
   end_date=             start_date + (100 *(n+1 ))
                                           ^
-db/seeds/test.rb:101:46: C: Surrounding space missing for operator +.
+db/seeds/test.rb:103:46: C: Surrounding space missing for operator +.
   end_date=             start_date + (100 *(n+1 ))
                                              ^
-db/seeds/test.rb:101:48: C: Space inside parentheses detected.
+db/seeds/test.rb:103:48: C: Space inside parentheses detected.
   end_date=             start_date + (100 *(n+1 ))
                                                ^
-db/seeds/test.rb:103:11: C: Surrounding space missing for operator =.
+db/seeds/test.rb:105:11: C: Surrounding space missing for operator =.
   end_date=             end_date.strftime("%F")
           ^
-db/seeds/test.rb:103:43: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+db/seeds/test.rb:105:43: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   end_date=             end_date.strftime("%F")
                                           ^^^^
-db/seeds/test.rb:104:13: C: Surrounding space missing for operator =.
+db/seeds/test.rb:106:13: C: Surrounding space missing for operator =.
   start_date=           start_date.strftime("%F")
             ^
-db/seeds/test.rb:104:45: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+db/seeds/test.rb:106:45: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   start_date=           start_date.strftime("%F")
                                             ^^^^
-db/seeds/test.rb:109:13: C: Surrounding space missing for operator =.
+db/seeds/test.rb:111:13: C: Surrounding space missing for operator =.
   company_id=           company.id
             ^
-db/seeds/test.rb:110:12: C: Surrounding space missing for operator =.
+db/seeds/test.rb:112:12: C: Surrounding space missing for operator =.
   person_id=            person.id
            ^
-db/seeds/test.rb:112:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:114:5: C: Align the elements of a hash literal if they span more than one line.
     salary:                salary,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:113:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:115:5: C: Align the elements of a hash literal if they span more than one line.
     start_date:            start_date,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:114:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:116:5: C: Align the elements of a hash literal if they span more than one line.
     end_date:              end_date,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:115:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:117:5: C: Align the elements of a hash literal if they span more than one line.
     jj_job:                false,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:116:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:118:5: C: Align the elements of a hash literal if they span more than one line.
     created_at:            created_at,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:117:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:119:5: C: Align the elements of a hash literal if they span more than one line.
     updated_at:            updated_at,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:118:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:120:5: C: Align the elements of a hash literal if they span more than one line.
     company_id:            company_id,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:119:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:121:5: C: Align the elements of a hash literal if they span more than one line.
     person_id:             person_id,
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:120:5: C: Align the elements of a hash literal if they span more than one line.
+db/seeds/test.rb:122:5: C: Align the elements of a hash literal if they span more than one line.
     no_end:                false
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:121:5: C: Align ) with (.
+db/seeds/test.rb:123:5: C: Align ) with (.
     )
     ^
-db/seeds/test.rb:121:5: C: Closing method call brace must be on the same line as the last argument when opening brace is on the same line as the first argument.
+db/seeds/test.rb:123:5: C: Closing method call brace must be on the same line as the last argument when opening brace is on the same line as the first argument.
     )
     ^
-db/seeds/test.rb:123:1: W: Useless assignment to variable - jobs.
+db/seeds/test.rb:125:1: W: Useless assignment to variable - jobs.
 jobs= Job.all
 ^^^^
-db/seeds/test.rb:123:5: C: Surrounding space missing for operator =.
+db/seeds/test.rb:125:5: C: Surrounding space missing for operator =.
 jobs= Job.all
     ^
-db/seeds/test.rb:127:1: W: Useless assignment to variable - statuses.
+db/seeds/test.rb:129:1: W: Useless assignment to variable - statuses.
 statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
 ^^^^^^^^
-db/seeds/test.rb:127:81: C: Line is too long. [98/80]
+db/seeds/test.rb:129:81: C: Line is too long. [98/80]
 statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
                                                                                 ^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:128:1: C: Block has too many lines. [33/25]
+db/seeds/test.rb:130:1: C: Block has too many lines. [33/25]
 35.times do |n| ...
 ^^^^^^^^^^^^^^^
-db/seeds/test.rb:128:14: W: Unused block argument - n. You can omit the argument if you don't care about it.
+db/seeds/test.rb:130:14: W: Unused block argument - n. You can omit the argument if you don't care about it.
 35.times do |n|
              ^
-db/seeds/test.rb:133:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+db/seeds/test.rb:135:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   name   =           "Mission" + (1..4500).to_a.sample.to_s
                      ^^^^^^^^^
-db/seeds/test.rb:134:42: C: Surrounding space missing for operator *.
+db/seeds/test.rb:136:42: C: Surrounding space missing for operator *.
   reward =           (17..45).to_a.sample* 1000
                                          ^
-db/seeds/test.rb:135:44: C: Surrounding space missing for operator *.
+db/seeds/test.rb:137:44: C: Surrounding space missing for operator *.
   min_salary =       (200..400).to_a.sample* 100
                                            ^
-db/seeds/test.rb:136:13: C: Unnecessary spacing detected.
+db/seeds/test.rb:138:13: C: Unnecessary spacing detected.
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
             ^
-db/seeds/test.rb:136:15: C: Operator = should be surrounded by a single space.
+db/seeds/test.rb:138:15: C: Operator = should be surrounded by a single space.
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
               ^
-db/seeds/test.rb:136:33: C: Surrounding space missing for operator +.
+db/seeds/test.rb:138:33: C: Surrounding space missing for operator +.
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
                                 ^
-db/seeds/test.rb:136:53: C: Surrounding space missing for operator *.
+db/seeds/test.rb:138:53: C: Surrounding space missing for operator *.
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
                                                     ^
-db/seeds/test.rb:137:11: C: Unnecessary spacing detected.
+db/seeds/test.rb:139:11: C: Unnecessary spacing detected.
   criteria  =        Faker::Lorem.paragraph(3, true, 4)
           ^
-db/seeds/test.rb:137:13: C: Operator = should be surrounded by a single space.
+db/seeds/test.rb:139:13: C: Operator = should be surrounded by a single space.
   criteria  =        Faker::Lorem.paragraph(3, true, 4)
             ^
-db/seeds/test.rb:141:10: C: Unnecessary spacing detected.
+db/seeds/test.rb:143:10: C: Unnecessary spacing detected.
   user_id  =         user.id
          ^
-db/seeds/test.rb:141:12: C: Operator = should be surrounded by a single space.
+db/seeds/test.rb:143:12: C: Operator = should be surrounded by a single space.
   user_id  =         user.id
            ^
-db/seeds/test.rb:142:9: C: Unnecessary spacing detected.
+db/seeds/test.rb:144:9: C: Unnecessary spacing detected.
   status  =          Mission.statuses.keys.sample
         ^
-db/seeds/test.rb:142:11: C: Operator = should be surrounded by a single space.
+db/seeds/test.rb:144:11: C: Operator = should be surrounded by a single space.
   status  =          Mission.statuses.keys.sample
           ^
-db/seeds/test.rb:144:81: C: Line is too long. [89/80]
+db/seeds/test.rb:146:81: C: Line is too long. [89/80]
   signed    =        [:contract_signed, :mission_billed, :mission_payed].include?(status)
                                                                                 ^^^^^^^^^
-db/seeds/test.rb:162:5: C: Indent ) the same as the start of the line where ( is.
+db/seeds/test.rb:164:5: C: Indent ) the same as the start of the line where ( is.
     )
     ^
-db/seeds/test.rb:169:1: C: Extra empty line detected at block body beginning.
-db/seeds/test.rb:170:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+db/seeds/test.rb:171:1: C: Extra empty line detected at block body beginning.
+db/seeds/test.rb:172:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   name   =           "Rendez-vous " + n.to_s
                      ^^^^^^^^^^^^^^
-db/seeds/test.rb:171:81: C: Line is too long. [216/80]
-  status =           [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT, Comaction::STATUS_PRES, Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED, Comaction::STATUS_WORKING ].sample
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:171:208: C: Space inside square brackets detected.
-  status =           [Comaction::STATUS_SOURCED, Comaction::STATUS_PRESELECTED, Comaction::STATUS_APPOINT, Comaction::STATUS_PRES, Comaction::STATUS_O_PRES, Comaction::STATUS_HIRED, Comaction::STATUS_WORKING ].sample
-                                                                                                                                                                                                               ^
-db/seeds/test.rb:172:14: C: Unnecessary spacing detected.
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
+db/seeds/test.rb:174:14: C: Unnecessary spacing detected.
+  action_type   =    Comaction.action_types.keys.sample
              ^^
-db/seeds/test.rb:172:17: C: Operator = should be surrounded by a single space.
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
+db/seeds/test.rb:174:17: C: Operator = should be surrounded by a single space.
+  action_type   =    Comaction.action_types.keys.sample
                 ^
-db/seeds/test.rb:172:68: C: Space missing after comma.
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
-                                                                   ^
-db/seeds/test.rb:172:81: C: Line is too long. [158/80]
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:172:99: C: Space missing after comma.
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
-                                                                                                  ^
-db/seeds/test.rb:172:150: C: Space inside square brackets detected.
-  action_type   =    [Comaction::CLIENT_TYPE, Comaction::APPLY_TYPE,Comaction::APPLY_CUSTOMER_TYPE,Comaction::EXPLORATION_TYPE, Comaction::OTHER_TYPE ].sample
-                                                                                                                                                     ^
-db/seeds/test.rb:175:10: C: Surrounding space missing for operator =.
+db/seeds/test.rb:177:10: C: Surrounding space missing for operator =.
   mission=           missions.sample
          ^
-db/seeds/test.rb:177:33: C: Operator + should be surrounded by a single space.
+db/seeds/test.rb:179:33: C: Operator + should be surrounded by a single space.
   updated_at =       created_at +  (1..150).to_a.sample
                                 ^
-db/seeds/test.rb:177:34: C: Unnecessary spacing detected.
+db/seeds/test.rb:179:34: C: Unnecessary spacing detected.
   updated_at =       created_at +  (1..150).to_a.sample
                                  ^
-db/seeds/test.rb:178:13: C: Unnecessary spacing detected.
+db/seeds/test.rb:180:13: C: Unnecessary spacing detected.
   start_time   =     (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
             ^^
-db/seeds/test.rb:178:16: C: Operator = should be surrounded by a single space.
+db/seeds/test.rb:180:16: C: Operator = should be surrounded by a single space.
   start_time   =     (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
                ^
-db/seeds/test.rb:178:43: C: Surrounding space missing for operator >.
+db/seeds/test.rb:180:43: C: Surrounding space missing for operator >.
   start_time   =     (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
                                           ^
-db/seeds/test.rb:178:81: C: Line is too long. [115/80]
+db/seeds/test.rb:180:81: C: Line is too long. [115/80]
   start_time   =     (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:178:107: C: Surrounding space missing for operator /.
+db/seeds/test.rb:180:107: C: Surrounding space missing for operator /.
   start_time   =     (0..100).to_a.sample >15 ? Date.today + (-20..15).to_a.sample + (-20..15).to_a.sample/24 : nil
                                                                                                           ^
-db/seeds/test.rb:179:11: C: Unnecessary spacing detected.
+db/seeds/test.rb:181:11: C: Unnecessary spacing detected.
   end_time    =      start_time.nil?  ? nil : start_time + (1..4).to_a.sample / 24
           ^^^
-db/seeds/test.rb:179:15: C: Operator = should be surrounded by a single space.
+db/seeds/test.rb:181:15: C: Operator = should be surrounded by a single space.
   end_time    =      start_time.nil?  ? nil : start_time + (1..4).to_a.sample / 24
               ^
-db/seeds/test.rb:179:37: C: Unnecessary spacing detected.
+db/seeds/test.rb:181:37: C: Unnecessary spacing detected.
   end_time    =      start_time.nil?  ? nil : start_time + (1..4).to_a.sample / 24
                                     ^
-db/seeds/test.rb:179:39: C: Operator ? should be surrounded by a single space.
+db/seeds/test.rb:181:39: C: Operator ? should be surrounded by a single space.
   end_time    =      start_time.nil?  ? nil : start_time + (1..4).to_a.sample / 24
                                       ^
-db/seeds/test.rb:179:81: C: Line is too long. [82/80]
+db/seeds/test.rb:181:81: C: Line is too long. [82/80]
   end_time    =      start_time.nil?  ? nil : start_time + (1..4).to_a.sample / 24
                                                                                 ^^
-db/seeds/test.rb:192:5: C: Indent ) the same as the start of the line where ( is.
+db/seeds/test.rb:194:5: C: Indent ) the same as the start of the line where ( is.
     )
     ^
-db/seeds/test.rb:194:1: W: Useless assignment to variable - comactions.
+db/seeds/test.rb:196:1: W: Useless assignment to variable - comactions.
 comactions = Comaction.all
 ^^^^^^^^^^
 db/seeds.rb:1:1: C: Carriage return character detected.
@@ -4913,27 +4889,15 @@ test/controllers/companies_controller_test.rb:55:5: W: Useless assignment to var
     company = Company.order('company_name DESC').first
     ^^^^^^^
 test/controllers/companies_controller_test.rb:60:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should NOT create company" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:63:9: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
-        'company' => { ...
-        ^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:67:23: C: Space missing after comma.
-    post companies_url,params: @some_params
-                      ^
-test/controllers/companies_controller_test.rb:69:21: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_template "companies/new"
-                    ^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:72:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should create company" do
        ^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:75:9: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
+test/controllers/companies_controller_test.rb:64:9: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
         'company' => { ...
         ^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:80:25: C: Space missing after comma.
+test/controllers/companies_controller_test.rb:69:25: C: Space missing after comma.
       post companies_url,params: @some_params
                         ^
-test/controllers/companies_controller_test.rb:84:1: C: Trailing whitespace detected.
+test/controllers/companies_controller_test.rb:73:1: C: Extra empty line detected at class body end.
 test/controllers/jobs_controller_test.rb:1:1: C: Carriage return character detected.
 require 'test_helper' ...
 ^^^^^^^^^^^^^^^^^^^^^
@@ -5120,9 +5084,7 @@ test/controllers/people_controller_test.rb:41:62: C: Prefer single-quoted string
 test/controllers/people_controller_test.rb:41:81: C: Line is too long. [89/80]
     patch person_path(@person), params: { person: { lastname:"", email: @person.email } }
                                                                                 ^^^^^^^^^
-test/controllers/people_controller_test.rb:46:1: C: Extra blank line detected.
-test/controllers/people_controller_test.rb:47:1: C: Extra blank line detected.
-test/controllers/people_controller_test.rb:47:1: C: Extra empty line detected at class body end.
+test/controllers/people_controller_test.rb:45:1: C: Extra empty line detected at class body end.
 test/controllers/sessions_controller_test.rb:1:1: C: Carriage return character detected.
 require 'test_helper' ...
 ^^^^^^^^^^^^^^^^^^^^^
@@ -5219,25 +5181,25 @@ require 'test_helper' ...
 test/controllers/users_controller_test.rb:9:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should get new" do
        ^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:14:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/controllers/users_controller_test.rb:15:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should redirect index when not logged in" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:19:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/controllers/users_controller_test.rb:20:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should redirect edit when logged in as wrong user" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:26:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/controllers/users_controller_test.rb:27:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should redirect update when logged in as wrong user" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:28:81: C: Line is too long. [86/80]
+test/controllers/users_controller_test.rb:29:81: C: Line is too long. [86/80]
     patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
                                                                                 ^^^^^^
-test/controllers/users_controller_test.rb:33:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/controllers/users_controller_test.rb:34:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should redirect destroy when not logged in" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:40:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/controllers/users_controller_test.rb:41:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should redirect destroy when logged in as a non-admin" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:47:1: C: Extra empty line detected at class body end.
+test/controllers/users_controller_test.rb:48:1: C: Extra empty line detected at class body end.
 test/factories/comaction.rb:1:1: C: Carriage return character detected.
 # Table name: comactions ...
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -5428,6 +5390,39 @@ test/factories/person.rb:12:16: C: Space missing inside {.
 test/factories/person.rb:12:21: C: Space missing inside }.
     is_client {false}
                     ^
+test/factories/person.rb:18:5: C: Missing space after #.
+    #email { "#{firstname.sub(/\s/, '_')}.#{lastname.sub(/\s/, '_')}@tryme.com".downcase }
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/factories/person.rb:18:81: C: Line is too long. [90/80]
+    #email { "#{firstname.sub(/\s/, '_')}.#{lastname.sub(/\s/, '_')}@tryme.com".downcase }
+                                                                                ^^^^^^^^^^
+test/factories/person.rb:19:12: C: Space missing inside {.
+    email {Faker::Internet.email }
+           ^
+test/factories/person.rb:21:38: C: Space missing inside }.
+    approx_age { (20..64).to_a.sample}
+                                     ^
+test/factories/person.rb:22:17: C: Space missing inside {.
+    created_at {42.days.ago }
+                ^
+test/factories/person.rb:23:36: C: Space missing inside }.
+    note { Faker::Lorem.sentence(4)}
+                                   ^
+test/factories/person.rb:24:18: C: Space missing inside {.
+    is_jj_hired {false}
+                 ^
+test/factories/person.rb:24:23: C: Space missing inside }.
+    is_jj_hired {false}
+                      ^
+test/factories/person.rb:25:16: C: Space missing inside {.
+    is_client {false}
+               ^
+test/factories/person.rb:25:21: C: Space missing inside }.
+    is_client {false}
+                    ^
+test/factories/person.rb:26:65: C: Space missing inside }.
+    cv_docx { File.new("#{Rails.root}/test/factories/test.docx")}
+                                                                ^
 test/factories/user.rb:1:1: C: Carriage return character detected.
 FactoryBot.define do ...
 ^^^^^^^^^^^^^^^^^^^^
@@ -5839,40 +5834,52 @@ test/integration/password_resets_test.rb:50:81: C: Line is too long. [106/80]
 test/integration/people_test.rb:1:1: C: Carriage return character detected.
 require 'test_helper' ...
 ^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:10:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/integration/people_test.rb:11:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should get new on saving error" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:15:31: C: Space inside { missing.
+test/integration/people_test.rb:16:31: C: Space inside { missing.
     post people_path, params: {person: person2 }
                               ^
-test/integration/people_test.rb:19:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/integration/people_test.rb:20:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "should land on show when saving" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:26:18: W: Ambiguous regexp literal. Parenthesize the method arguments if it's surely a regexp literal, or add a whitespace to the right of the / if it should be a division.
+test/integration/people_test.rb:27:18: W: Ambiguous regexp literal. Parenthesize the method arguments if it's surely a regexp literal, or add a whitespace to the right of the / if it should be a division.
     assert_match /Contact sauvegardé/, flash[:success]
                  ^
-test/integration/people_test.rb:29:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/integration/people_test.rb:30:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "people should get destroyed" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:35:12: C: Surrounding space missing for operator =.
+test/integration/people_test.rb:36:12: C: Surrounding space missing for operator =.
     @person=first_page_of_people.first
            ^
-test/integration/people_test.rb:58:55: C: Space found before comma.
+test/integration/people_test.rb:59:55: C: Space found before comma.
       assert_select 'a[href=?]', edit_person_path(per) , count: 0 unless per.user_id = @user.id
                                                       ^
-test/integration/people_test.rb:58:81: C: Line is too long. [95/80]
+test/integration/people_test.rb:59:81: C: Line is too long. [95/80]
       assert_select 'a[href=?]', edit_person_path(per) , count: 0 unless per.user_id = @user.id
                                                                                 ^^^^^^^^^^^^^^^
-test/integration/people_test.rb:58:86: W: Assignment in condition - you probably meant to use ==.
+test/integration/people_test.rb:59:86: W: Assignment in condition - you probably meant to use ==.
       assert_select 'a[href=?]', edit_person_path(per) , count: 0 unless per.user_id = @user.id
                                                                                      ^
-test/integration/people_test.rb:62:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/integration/people_test.rb:63:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "dependent resources shoud be destroyed when people are" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:72:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+test/integration/people_test.rb:73:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  test "dependent docx resources shoud be destroyed when people are" do
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/integration/people_test.rb:76:14: C: Unnecessary spacing detected.
+    file_path  = @person.cv_docx.url.split(/\?/).first
+             ^
+test/integration/people_test.rb:76:16: C: Operator = should be surrounded by a single space.
+    file_path  = @person.cv_docx.url.split(/\?/).first
+               ^
+test/integration/people_test.rb:77:17: W: File.exists? is deprecated in favor of File.exist?.
+    refute File.exists?(file_path) do
+                ^^^^^^^
+test/integration/people_test.rb:82:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   test "policy test on destroyed resources" do
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:83:1: C: Extra empty line detected at class body end.
+test/integration/people_test.rb:93:1: C: Extra empty line detected at class body end.
 test/integration/site_layout_test.rb:1:1: C: Carriage return character detected.
 require 'test_helper' ...
 ^^^^^^^^^^^^^^^^^^^^^
@@ -6413,4 +6420,4 @@ test/test_helper.rb:46:61: W: Redundant use of Object#to_s in interpolation.
     cls.constantize.new(user, record).public_send("#{action.to_s}?")
                                                             ^^^^
 
-171 files inspected, 2189 offenses detected
+171 files inspected, 2190 offenses detected

@@ -1,17 +1,17 @@
-<% provide(:title, t("search_title")) %>
-<% provide(:button_see_text, t("person.add_and_see_button")) %>
-<% provide(:button_text, t("add_button")) %>
+<% provide(:title,t('search_title')) %>
+<% provide(:button_see_text,t('person.add_and_see_button')) %>
+<% provide(:button_text,t('add_button')) %>
 <h1>Résultats
     <span class="glyphicon glyphicon-search"></span>
 </h1>
 
 <p>
-  <%= t("search.your_search") %> :
+  <%=t('search.your_search') %> :
   <strong><%= params[:quest] %></strong>
 </p>
 
 <% if @nb_result === 0 %>
-<p> <%= t("search.no_result") %>
+<p> <%=t('search.no_result') %>
     <strong><%= params[:quest] %></strong>
 </p>
 <% end %>
@@ -19,25 +19,25 @@
 <ul class="nav nav-pills" role="tablist">
     <li role="presentation" class="active">
         <a href="#tab_people" aria-controls="tab_people" role="tab" data-toggle="tab">
-          <%= t("Contacts") %>
+          <%=t('Contacts') %>
           <span class="badge"> <%= @people.count %> </span>
         </a>
     </li>
     <li role="presentation">
         <a href="#tab_companies" aria-controls="tab_companies" role="tab" data-toggle="tab">
-          <%= t("Companies") %>
+          <%=t('Companies') %>
           <span class="badge"> <%= @companies.count %> </span>
         </a>
     </li>
     <li role="presentation">
         <a href="#tab_missions" aria-controls="tab_missions" role="tab" data-toggle="tab">
-          <%= t("Missions") %>
+          <%=t('Missions') %>
           <span class="badge"> <%= @missions.count %> </span>
         </a>
     </li>
     <li role="presentation">
         <a href="#tab_comactions" aria-controls="tab_comactions" role="tab" data-toggle="tab">
-          <%= t("jj.rdv") %>
+          <%=t('jj.rdv') %>
           <span class="badge"> <%= @comactions.count %> </span>
         </a>
     </li>
@@ -61,7 +61,7 @@
             <div class="col-xs-3 hidden-xs"></div>
             <div class="col-xs-6">
                 <h1 class='center'>
-                  <%= t("person.add") %>
+                  <%=t('person.add') %>
                 </h1>
                 <%= render '/people/form' %>
             </div>
@@ -78,7 +78,7 @@
       <p class="center checkBelow">
         <%= link_to new_company_path do %>
         <button type="submit" class="btn btn-success ">
-          <%= fa_icon("plus", text: t("company.add")) %>
+          <%= fa_icon("plus", text:t('company.add')) %>
         </button>
         <% end %>
       </p>
@@ -92,7 +92,7 @@
         <p class="center checkBelow">
           <%= link_to new_mission_path do %>
           <button type="submit" class="btn btn-success ">
-            <%= fa_icon("plus", text: t("mission.create")) %>
+            <%= fa_icon("plus", text:t('mission.create')) %>
           </button>
           <% end %>
         </p>
@@ -107,7 +107,7 @@
         <p class="center checkBelow">
           <%= link_to new_comaction_path do %>
           <button type="submit" class="btn btn-success ">
-            <%= fa_icon("plus", text: t("comaction.add_label")) %>
+            <%= fa_icon("plus", text:t('comaction.add_label')) %>
           </button>
           <% end %>
         </p>

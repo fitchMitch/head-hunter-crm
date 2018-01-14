@@ -20,7 +20,7 @@ class Job < ApplicationRecord
   belongs_to  :company
 
   include PgSearch
-  # multisearchable :against => :job_title
+  # multisearchable against: :job_title
 
   def self.rebuild_pg_search_documents
     find_each { |record| record.update_pg_search_document }
@@ -48,7 +48,7 @@ class Job < ApplicationRecord
 
   def double_current_job?
     if has_current_job? and self.no_end
-      errors.messages[:job_title] << I18n.t("job.double_jobs")
+      errors.messages[:job_title] << I18n.t('job.double_jobs')
     end
   end
 

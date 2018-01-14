@@ -11,58 +11,58 @@
         input_html: {class: "form-control input-sm "} %>
       <%= link_to  'add_ext?model=mission'  do %>
         <button type='button' class="btn btn-xs">
-          <%= t("comaction.filters.add_mission") %>
+          <%=t('comaction.filters.add_mission') %>
         </button>
       <% end %>
   </div>
   <div class="col-sm-6 ">
         <%= f.association :person,
           collection: Person.order(updated_at: :desc),
-          label: t("For"),
+          label:t('For'),
           label_method: :full_name,
           value_method: :id,
           selected: @forwhom,
           include_blank: false %>
         <%= link_to  'add_ext?model=person'  do%>
         <button type='button' class="btn btn-xs">
-          <%= t("comaction.filters.add_contact") %>
+          <%=t('comaction.filters.add_contact') %>
         </button>
         <% end %>
     </div>
 </div>
 <div class="row ">
   <div class="col-xs-5">
-    <%= f.input :action_type, label: t("comaction.type"), collection: type_collection() %>
+    <%= f.input :action_type, label:t('comaction.type'), collection: type_collection() %>
   </div>
   <div class="col-xs-7">
-      <%= f.input :status, label: t("status"), collection: status_collection()  %>
+      <%= f.input :status, label:t('status'), collection: status_collection()  %>
   </div>
 </div>
 <div class="row ">
   <div class="col-sm-12">
-    <%= f.input :name, label: t("comaction.label"), input_html: {class:"input-sm"}%>
+    <%= f.input :name, label:t('comaction.label'), input_html: {class:"input-sm"}%>
   </div>
 </div>
 <div class='row'>
   <div class='col-sm-2'>
-     <%= f.input :is_dated, as: :boolean, label: t("comaction.date_q"),  required: false %>
+     <%= f.input :is_dated, as: :boolean, label:t('comaction.date_q'),  required: false %>
   </div>
   <div class='col-sm-10 align-right'>
      <%= f.input :start_time,
-       :as => :datetime,
-       :minute_step => 15,
-       :start_hour => 7,
-       :end_hour => 22,
-       label: t("comaction.start.date_and_hour"),
+       as: :datetime,
+       minute_step: 15,
+       start_hour: 7,
+       end_hour: 22,
+       label:t('comaction.start.date_and_hour'),
        required: false,
-       :selected => @date_begin,
+       selected: @date_begin,
        input_html: {class: "form-control input-sm"} %>
      <br>
      <%= f.input :end_time,
-       label: t("comaction.end.date_and_hour"),
-       :minute_step => 15,
+       label:t('comaction.end.date_and_hour'),
+       minute_step: 15,
        required: false,
-       :selected => @date_end,
+       selected: @date_end,
         input_html: {class: "form-control input-sm"} %>
   </div>
 </div>

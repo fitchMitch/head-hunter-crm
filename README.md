@@ -17,16 +17,16 @@ HH_CRM stands for  Head Hunters Customer RelationShip; This tool helps a Head Hu
 * pg_search as search engines to dig into the uploaded docx cv files
 * No queues, no cache servers
 
-## Deployment instructions
-` bundle install
-rails db:migrate
-rails db:seed `
+## Deployment
+`bundle install`
+`rails db:migrate`
+`rails db:seed `
 
 ## License
 
 The [MIT License](http://opensource.org/licenses/MIT) (MIT)
 
-Copyright (c) 2014 [InVision](http://www.invision.de)
+Copyright (c) 2018 [Etienne WEIL](https://www.linkedin.com/in/etienneweil/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -5,9 +5,9 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   def setup
     @base_title = I18n.t("brand")
     @user       = create(:user)
-    @mission   = create(:mission)
-    @company   = @mission.company
-    @person    = @mission.person
+    @mission    = create(:mission)
+    @company    = @mission.company
+    @person     = @mission.person
 
     log_in_as(@user)
   end

@@ -5,24 +5,24 @@
       <div class="col-xs-4">
         <%= sort_link(@q, :company_name, default_sorting: :asc) do %>
           <strong>
-            <%= t("Company") %>
+            <%=t('Company') %>
           </strong>
         <% end %>
       </div>
       <div class="col-xs-2">
         <strong>
-          <%= t("Action") %>
+          <%=t('Action') %>
         </strong>
       </div>
       <div class="col-xs-4">
         <strong>
-          <%= t("Missions") %>
+          <%=t('Missions') %>
         </strong>
       </div>
       <div class="col-xs-2">
         <%= sort_link(@q, :updated_at, default_order: :desc) do %>
           <strong>
-            <%= t("updated") %>
+            <%=t('updated') %>
           </strong>
         <% end %>
       </div>

@@ -18,14 +18,14 @@ class Company < ApplicationRecord
   default_scope { order(updated_at: :desc) }
 
   include PgSearch
-  # multisearchable :against => :company_name
+  # multisearchable against: :company_name
   pg_search_scope :search_name,
-                :against => :company_name,
-                :using => {
-                  #:ignoring => :accents,
-                  :tsearch => {:any_word => true, :prefix => true},
-                  :trigram => {
-                      :threshold => 0.5
+                against: :company_name,
+                using: {
+                  #ignoring: :accents,
+                  tsearch: {any_word: true, prefix: true},
+                  trigram: {
+                      threshold: 0.5
                     }
                 }
 
@@ -35,7 +35,7 @@ class Company < ApplicationRecord
 
   validates :company_name,  presence: true, length: { maximum: 40 }, uniqueness: { case_sensitive: false }
 
-  def mission_list 
+  def mission_list
     Mission.where('company_id = ?', self.id).order(created_at: :desc)
   end
 

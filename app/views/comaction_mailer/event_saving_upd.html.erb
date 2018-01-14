@@ -3,17 +3,17 @@
 
 <ul>
   <li>
-    <%= t("for") %> : <%= @comaction.person.full_name %>
+    <%=t('for') %> : <%= @comaction.person.full_name %>
   </li>
   <li>
-    <%= t("comaction.mission") %> : <%= @comaction.mission.name %>
+    <%=t('comaction.mission') %> : <%= @comaction.mission.name %>
   </li>
   <li>
     <%= ("comaction.start.date_and_hour") %> : <%= @comaction.start_time.strftime("%d %B à %H:%M")%> - Durée :   <%= distance_of_time_in_words(@comaction.start_time , @comaction.end_time) %>
   </li>
   <li>
-    <%= t("comaction.short-rdv") %>: <%= @comaction.name %>
+    <%=t('comaction.short-rdv') %>: <%= @comaction.name %>
   </li>
 </ul>
 <p></p>
-<p><%= t("brand") %></p>
+<p><%=t('brand') %></p>

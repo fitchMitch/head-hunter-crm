@@ -41,7 +41,7 @@ module People
       return if doc == nil
       ctt = []
       doc.paragraphs.each  { |pa| ctt << pa.text.tr('\'' , ' ')}
-      self.update(:cv_content => ctt.join(' '))
+      self.update(cv_content: ctt.join(' '))
     end
 
   end

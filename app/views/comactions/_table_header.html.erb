@@ -1,34 +1,34 @@
 <div class="row array_header">
   <div class="col-xs-4">
     <%= sort_link(@q, :name, default_sorting: :asc) do %>
-    <strong><%= t("Name")  %></strong>
+    <strong><%=t('Name')  %></strong>
     <% end %>
   </div>
   <div class="col-xs-2">
     <%= sort_link(@q, :start_time, default_order: :asc) do %>
       <strong>
-        <%= t("Date") %>
+        <%=t('Date') %>
       </strong>
     <% end %>
   </div>
   <div class="col-xs-2">
     <%= sort_link(@q, :person_lastname, default_order: :asc) do %>
       <strong>
-        <%= t("With") %>
+        <%=t('With') %>
       </strong>
     <% end %>
   </div>
   <div class="col-xs-1">
     <%= sort_link(@q, :status, default_order: :asc) do %>
       <strong>
-        <%= t("Status") %>
+        <%=t('Status') %>
       </strong>
     <% end %>
   </div>
   <div class="col-xs-2">
     <%= sort_link(@q, :mission_name, default_order: :asc) do %>
       <strong>
-        <%= t("Mission") %>
+        <%=t('Mission') %>
       </strong>
     <% end %>
   </div>

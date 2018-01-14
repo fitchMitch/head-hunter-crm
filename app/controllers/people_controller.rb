@@ -98,7 +98,7 @@ class PeopleController < ApplicationController
                                job_title:  I18n.t('job.unemployed'),
                                start_date: job.end_date,
                                end_date: memo,
-                               company_name: I18n.t("job.unemployed"),
+                               company_name: I18n.t('job.unemployed'),
                                company_id: 0,
                                salary: 0,
                                person_id: job.person_id,

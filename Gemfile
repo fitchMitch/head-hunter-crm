@@ -30,7 +30,7 @@ gem 'paperclip-i18n', '4.3.0'
 gem 'simple_calendar', '~> 2.2', '>= 2.2.5'
 gem 'icalendar', '~> 2.4', '>= 2.4.1'
 gem 'ransack', github: 'activerecord-hackery/ransack'
-gem 'docx', '~> 0.2.07', :require => ["docx"]
+gem 'docx', '~> 0.2.07', require: ["docx"]
 gem 'pg_search'
 gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-assets.org'
 gem 'sweet-alert2-rails'

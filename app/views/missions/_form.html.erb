@@ -1,10 +1,10 @@
 <%= simple_form_for @mission  do |f| %>
 <div class='row'>
     <div class="col-sm-5 ">
-        <%= f.association :company, collection: Company.order(updated_at: :desc), label: t("Company"), label_method: :company_name, value_method: :id, include_blank: false %>
+        <%= f.association :company, collection: Company.order(updated_at: :desc), label:t('Company'), label_method: :company_name, value_method: :id, include_blank: false %>
         <%= link_to  'add_ext?model=company' do%>
           <button type="button" class="btn btn-xs">
-            <%= t("mission.add_new_company") %>
+            <%=t('mission.add_new_company') %>
           </button>
         <% end %>
     </div>
@@ -12,7 +12,7 @@
         <%= f.association :person, collection: Person.order(updated_at: :desc), label:t("mission.contact"), label_method: :full_name, value_method: :id, selected: @forwhom, include_blank: false %>
         <%= link_to  'add_ext?model=person'  do%>
         <button type="button" class="btn btn-xs">
-          <%= t("mission.add_contact") %>
+          <%=t('mission.add_contact') %>
         </button>
         <% end %>
     </div>
@@ -20,27 +20,27 @@
 <div class="empty-halfline"></div>
 <div class="row ">
     <div class="col-sm-5">
-        <%= f.input :name, label: t("mission.name"), input_html: {class:" input-sm"}%> <br>
+        <%= f.input :name, label:t('mission.name'), input_html: {class:" input-sm"}%> <br>
     </div>
     <div class="col-sm-7 ">
-        <%= f.input :reward, label: t("mission.amount"),  input_html:{class:" input-sm" } %>
+        <%= f.input :reward, label:t('mission.amount'),  input_html:{class:" input-sm" } %>
     </div>
 </div>
 <div class="row ">
     <div class="col-sm-5">
-        <%= f.input :paid_amount, label: t("mission.paid_amount"), input_html: {class:" input-sm"}%>
+        <%= f.input :paid_amount, label:t('mission.paid_amount'), input_html: {class:" input-sm"}%>
     </div>
     <div class="col-sm-7 ">
-        <%= f.input :criteria, label: t("mission.person_searched"), as: :text, input_html:{class:" input-sm" } %>
+        <%= f.input :criteria, label:t('mission.person_searched'), as: :text, input_html:{class:" input-sm" } %>
     </div>
 </div>
 
 <div class="row ">
   <div class="col-sm-5">
-      <%= f.input :status, label: t("Status"), collection: mission_status_collection %>
+      <%= f.input :status, label:t('Status'), collection: mission_status_collection %>
   </div>
     <div class="col-sm-7 ">
-        <%= f.input :whished_start_date, label: t("mission.whished_start_date"), as: :date, start_year: Date.today.year, end_year: Date.today.year + 2, order: [:day, :month, :year], input_html:{class:" input-sm" } %>
+        <%= f.input :whished_start_date, label:t('mission.whished_start_date'), as: :date, start_year: Date.today.year, end_year: Date.today.year + 2, order: [:day, :month, :year], input_html:{class:" input-sm" } %>
     </div>
 </div>
 

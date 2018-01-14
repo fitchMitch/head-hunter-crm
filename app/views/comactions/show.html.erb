@@ -53,10 +53,10 @@
           <%= link_to @comaction,
           method: :delete,
           data: {
-            :confirm => t("confirm"),
-            :'sweet-alert-confirm' => t("confirm") ,
-            :'confirm-button-text' => t("confirm-button-text"),
-            :'cancel-button-text' => t("cancel-button-text")
+            confirm:t('confirm'),
+            'sweet-alert-confirm':t('confirm') ,
+            'confirm-button-text':t('confirm-button-text'),
+            'cancel-button-text':t('cancel-button-text')
           } do %>
             <button class="btn btn-success danger">
               <%= fa_icon('trash 2x') %>
@@ -163,7 +163,7 @@
         <div class="row leftFrame">
           <div class="col-xs-11 col-xs-offset-1">
             <%= link_to mission_path(@comaction.mission), class: 'btn btn-success btn-xs' do %>
-            <%= fa_icon('bookmark-o') %> <%= t("comaction.see_mission") %>
+            <%= fa_icon('bookmark-o') %> <%=t('comaction.see_mission') %>
             <% end %>
           </div>
         </div>

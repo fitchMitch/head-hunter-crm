@@ -35,13 +35,13 @@ class Mission < ApplicationRecord
 
   include PgSearch
   pg_search_scope :search_name,
-                  :against => [ [:name, 'A'], [:criteria , 'B'] ],
-                  :associated_against => { :company => :company_name } ,
-                  :using => {
-                    #:ignoring => :accents,
-                    :tsearch => {:any_word => true, :prefix => true},
-                    :trigram => {
-                        :threshold => 0.5
+                  against: [ [:name, 'A'], [:criteria , 'B'] ],
+                  associated_against: { company: :company_name } ,
+                  using: {
+                    #ignoring: :accents,
+                    tsearch: {any_word: true, prefix: true},
+                    trigram: {
+                        threshold: 0.5
                       }
                   }
   def self.rebuild_pg_search_documents

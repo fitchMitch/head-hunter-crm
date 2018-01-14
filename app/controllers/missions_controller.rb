@@ -54,10 +54,10 @@ class MissionsController < ApplicationController
     @mission.user_id = current_user.id
 
     if !@person.nil? && !@company.nil? && @mission.save
-      flash[:info] = I18n.t("mission.saved")
+      flash[:info] = I18n.t('mission.saved')
       redirect_to person_path(@person)
     else
-      flash[:danger] = I18n.t("mission.not_added")
+      flash[:danger] = I18n.t('mission.not_added')
       render :new
     end
   end
@@ -67,17 +67,17 @@ class MissionsController < ApplicationController
     @mission.signed     = [:contract_signed, :mission_billed, :mission_payed].include?(mission_params[:status])
 
     if @mission.update_attributes(mission_params)
-      flash[:success] = I18n.t("mission.updated")
+      flash[:success] = I18n.t('mission.updated')
       redirect_to @mission
     else
-      flash[:danger] = I18n.t("mission.unupdated")
+      flash[:danger] = I18n.t('mission.unupdated')
       render 'edit'
     end
   end
 
   def destroy
     @mission.destroy
-    flash[:success] = I18n.t("mission.destroyed")
+    flash[:success] = I18n.t('mission.destroyed')
     redirect_to missions_path
   end
 

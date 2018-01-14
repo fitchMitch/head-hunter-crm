@@ -1,7 +1,7 @@
 module ApplicationHelper
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
-    base_title = I18n.t("brand")
+    base_title = I18n.t('brand')
     if page_title.empty?
       base_title
     else
@@ -15,7 +15,7 @@ module ApplicationHelper
       options, collection_or_options = collection_or_options, nil
     end
     unless options[:renderer]
-      options = options.merge :renderer => CustomLinkRenderer
+      options = options.merge renderer: CustomLinkRenderer
     end
     super *[collection_or_options, options].compact
   end

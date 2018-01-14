@@ -1,5 +1,5 @@
 <%  @alljobs.each do |a| %>
-  <% if a.company_name == I18n.t("job.unemployed") %>
+  <% if a.company_name == I18n.t('job.unemployed') %>
     <div class='row'>
       <%= delay_bar(a) %>
     </div>
@@ -11,17 +11,17 @@
             <%= a.job_title %>
           <% end %>
           <small><span class="label label-default"><%= years_work(a)%>
-            <%= t("mission.years") %>
+            <%=t('mission.years') %>
           </span></small>
       </div>
       <div class='col-xs-7'>
         <small>
-            <%= t("from") %>
+            <%=t('from') %>
             <%= t a.start_date.strftime("%B") %>
             <%= a.start_date.strftime(" %Y") %>
-            <%= t("to") %>
+            <%=t('to') %>
             <% if a.no_end%>
-              <%= t("today") %>
+              <%=t('today') %>
             <% else %>
                 <%= a.end_date.strftime("%B %Y") %>
             <% end %>
@@ -32,10 +32,10 @@
           <%= link_to job_path(a.id),
           method: :delete,
           data: {
-            :confirm => t("confirm"),
-            :'sweet-alert-confirm' => t("confirm") ,
-            :'confirm-button-text' => t("confirm-button-text"),
-            :'cancel-button-text' => t("cancel-button-text")
+            confirm:t('confirm'),
+            'sweet-alert-confirm':t('confirm') ,
+            'confirm-button-text':t('confirm-button-text'),
+            'cancel-button-text':t('cancel-button-text')
           } do %>
             <span class="glyphicon glyphicon-trash"></span>
           <% end %>
@@ -59,7 +59,7 @@
       </div>
       <div class='col-xs-3'>
           <small>
-              <%= number_to_currency a.salary , :precision => 0 %>
+              <%= number_to_currency a.salary , precision: 0 %>
           </small>
       </div>
   </div>

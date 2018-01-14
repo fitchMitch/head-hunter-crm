@@ -5,9 +5,9 @@
     <div class="row">
       <div class="col-xs-12">
         <p class="">
-          <small><%= t("person.lastly") %></small>
+          <small><%=t('person.lastly') %></small>
           <%= current_job_part(@person) %>
-          <small><%= t("at") %></small>
+          <small><%=t('at') %></small>
           <%= current_company(@person) %>
         </p>
       </div>
@@ -17,7 +17,7 @@
     <div class='row'>
       <div class="col-xs-6 ">
         <strong>
-          <%= t("person.phone") %>
+          <%=t('person.phone') %>
         </strong>
       </div>
       <div class='col-xs-6'>
@@ -27,7 +27,7 @@
     <div class='row'>
       <div class="col-xs-6 ">
         <strong>
-          <%= t("person.cv_docx") %>
+          <%=t('person.cv_docx') %>
         </strong>
       </div>
       <div class='col-xs-6'>
@@ -37,7 +37,7 @@
         <% end %>
         <% elsif !@person.is_client? %>
         <span class="small_alert">
-          <%= t("person.no_cv") %>
+          <%=t('person.no_cv') %>
         </span>
         <% end %>
       </div>
@@ -53,12 +53,12 @@
     <div class='row'>
       <div class='col-xs-6'>
         <strong>
-          <%= t("person.approx_age") %>
+          <%=t('person.approx_age') %>
         </strong>
       </div>
       <div class='col-xs-6'>
         <%= @person.approx_age %>
-        <%= t("mission.years") %>
+        <%=t('mission.years') %>
       </div>
     </div>
   </div>

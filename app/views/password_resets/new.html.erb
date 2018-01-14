@@ -1,6 +1,6 @@
-<% provide(:title, t("user.forgotten_password")) %>
+<% provide(:title,t('user.forgotten_password')) %>
 <h1>
-  <%= t("user.forgotten_password") %>
+  <%=t('user.forgotten_password') %>
 </h1>
 
 <div class='row'>
@@ -9,7 +9,7 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.submit t("ok_button"), class: "btn btn-success center-block" %>
+      <%= f.submitt('ok_button'), class: "btn btn-success center-block" %>
     <% end %>
   </div>
 </div>
