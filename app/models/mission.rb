@@ -38,8 +38,8 @@ class Mission < ApplicationRecord
                   against: [ [:name, 'A'], [:criteria , 'B'] ],
                   associated_against: { company: :company_name } ,
                   using: {
-                    #ignoring: :accents,
-                    tsearch: {any_word: true, prefix: true},
+                    # ignoring: :accents,
+                    tsearch: { any_word: true, prefix: true },
                     trigram: {
                         threshold: 0.5
                       }
@@ -54,10 +54,10 @@ class Mission < ApplicationRecord
 
 
   validates :name, presence: true, length: { maximum: 50 }
-  #validates :reward, presence: true
-  #validates :whished_start_date, presence: true
+  # validates :reward, presence: true
+  # validates :whished_start_date, presence: true
   validates :status, inclusion: { in: statuses }
-  #validate :max_age_is_max
+  # validate :max_age_is_max
 
   # ------------------------
   # --    PRIVATE        ---

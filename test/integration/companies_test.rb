@@ -11,7 +11,7 @@ class CompaniesTest < ActionDispatch::IntegrationTest
     get new_company_path
     assert_template 'companies/new'
     company2 = attributes_for(:company, company_name: '')
-    post companies_path, params: {company: company2 }
+    post companies_path, params: { company: company2 }
     assert_template 'companies/new'
   end
 
@@ -26,7 +26,7 @@ class CompaniesTest < ActionDispatch::IntegrationTest
 
   test "there's an access to companies's detail page" do
     get companies_path
-    Company.paginate(page: 1).each do |com|
+    Company.all.each do |com|
       # assert_select 'a[href=?]', list_people_path(com)
       assert_select 'a[href=?]', edit_company_path(com)
     end

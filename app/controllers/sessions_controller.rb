@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       end
     else
       # Create an error message.
-      flash.now[:danger] =  I18n.t('session.fail_logging_message')
+      flash.now[:danger] = I18n.t('session.fail_logging_message')
       render 'new'
     end
   end

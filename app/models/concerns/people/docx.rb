@@ -8,16 +8,16 @@ module People
 
     def index_cv_content
       doc = get_cv
-      return if doc == nil
+      return if doc.nil?
       ctt = []
       doc.paragraphs.each do |pa|
           ctt << pa.text.tr('\'' , ' ')
       end
-      content =  ctt.join(' ')
+      content = ctt.join(' ')
       ActiveRecord::Base.connection.execute <<-SQL
       INSERT INTO pg_search_documents (searchable_type, searchable_id, content, created_at, updated_at)
       VALUES ('Person' ,
-              #{self.id} ,
+              # { self.id } ,
               '#{content}'::text ,
               now(),
               now())
@@ -32,13 +32,13 @@ module People
 
     def remove_index_content
       ActiveRecord::Base.connection.execute <<-SQL
-        DELETE FROM  pg_search_documents where searchable_id = #{self.id}
+        DELETE FROM  pg_search_documents where searchable_id = #{ self.id }
       SQL
     end
 
     def set_cv_content
       doc = get_cv
-      return if doc == nil
+      return if doc.nil?
       ctt = []
       doc.paragraphs.each  { |pa| ctt << pa.text.tr('\'' , ' ')}
       self.update(cv_content: ctt.join(' '))

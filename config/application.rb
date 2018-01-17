@@ -18,12 +18,12 @@ Bundler.require(*Rails.groups)
 module JjFloApp
   class Application < Rails::Application
     config.autoload_paths << "#{Rails.root}/lib"
-    #locale
-    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
+    # locale
+    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{ rb,yml }')]
     I18n.default_locale = :fr
-    config.time_zone = "Paris"
+    config.time_zone = 'Paris'
     config.beginning_of_week = :monday
-    config.mail_wanted = false
+    config.mail_wanted = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

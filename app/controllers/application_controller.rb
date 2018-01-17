@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def pointed_page
+    params[:page] ? params[:page].to_i : 1
+  end
+
   def user_not_authorized
     flash[:danger] = I18n.t('pundit.not_authorized')
     if logged_in?

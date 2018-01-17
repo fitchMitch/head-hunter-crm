@@ -90,11 +90,19 @@ fr:
     next: Suiv.
 
   comaction:
-    tutti: Toutes
-    rdv: Rendez-vous
-    short-rdv: RdV
-    menu:
-      title_list: calendrier en tables
+    action_type:
+      client_type: RdV Client
+      apply_type: RdV Candidat
+      apply_customer_type: RdV Candidat Client
+      exploration_type: RdV exploratoire
+      other_type: Autre rendez-vous
+    add_label: Ajouter une action, un RdV
+    availibility:
+      title: Disponibilités
+      command_message: Cliquez sur les parties vertes (votre disponibilité) pour renseigner les champs jour et heures en vis à vis.
+    create: Créer un rendez-vous/action
+    calendar: Calendrier
+    date_q: Date ?
     filters:
       now_and_after: Maintenant et +
       add_contact: Ajouter un nouveau contact
@@ -102,24 +110,10 @@ fr:
       with_no_comaction: Sans Rendez-vous
       no_date: Sans date
     label: Libellé du RDV/action
-    status: Etat d'avancement
-    type: Type de rendez-vous
-    mission: Nom de la Mission
-    date_q: Date ?
-    start:
-      date_and_hour: Date et heure de début
     end:
       date_and_hour: Date et heure de fin
-    title_list: Calendrier
-    title_list_short: Calendrier
-    update_title: Editer un RdV/action
-    add_label: Ajouter une action, un RdV
-    create: Créer un rendez-vous/action
-    calendar: Calendrier
-    see_mission: Voir la mission
-    availibility:
-      title: Disponibilités
-      command_message: Cliquez sur les parties vertes (votre disponibilité) pour renseigner les champs jour et heures en vis à vis.
+    menu:
+      title_list: calendrier en tables
     message:
       saved: Rendez-vous sauvegardé
       saved_with_mail: Rendez-vous sauvegardé (un email a été envoyé)
@@ -127,6 +121,11 @@ fr:
       updated_with_mail: Rendez-vous mis à jour (un email a été envoyé)
       unupdated: Ce rendez-vous n'a pas pu être mis à jour
       deleted: Rendez-vous supprimé
+    mission: Nom de la Mission
+    rdv: Rendez-vous
+    see_mission: Voir la mission
+    short-rdv: RdV
+    status: Etat d'avancement
     status:
       sourced: Sourcé
       preselected: Préselectionné
@@ -135,110 +134,123 @@ fr:
       o_pres: Autre RDV client
       hired: Engagé
       working: En poste
-    action_type:
-      client_type: RdV Client
-      apply_type: RdV Candidat
-      apply_customer_type: RdV Candidat Client
-      exploration_type: RdV exploratoire
-      other_type: Autre rendez-vous
+    start:
+      date_and_hour: Date et heure de début
+    tutti: Toutes
+    type: Type de rendez-vous
+    title_list: Calendrier
+    title_list_short: Calendrier
+    update_title: Editer un RdV/action
+    upside_down_error : La fin vient après le début :-)
 
   company:
+    add: Ajouter une société
     company_name: Nom de la société
-    worked_there: personnes y ont travaillé
     edit: Editer cette société
     list: Liste des sociétés
-    add: Ajouter une société
-
-  person:
-    name: Nom
-    job: Emploi
-    edit: Editer ce contact
-    add: Ajouter un contact
-    add_experience: Ajouter une expérience
-    experiences: Expériences
-    create : Créer un contact
-    list: Liste des contacts
-    citizenship: Civilité
-    firstname: Prénom
-    jj_employed: Embauché grâce à JJ
-    phone_number: Numéro de téléphone
-    approx_age: Age approximatif
-    comment: Commentaire
-    cv: Son CV
-    cv_docx: CV (au format docx)
-    no_cv: Pas de CV !
-    phone: Téléphone
-    no_one: Personne n'est encore inscrit
-    passed_jobs: Postes occupés (non exhaustifs)
-    have_meeting: Prendre rendez-vous
-    add_and_see_button: Ajouter et voir
-    save_and_see_button: Sauvegarder et voir
-    history_title: Historique JJ
-    future_tab_title: A venir
-    person_activity_void: Certainement des choses à faire ensemble ...
-    lastly: Dernièrement
+    worked_there: personnes y ont travaillé
 
   job:
-    last: Poste occupé
-    date_in: Date de prise de fonction
-    date_end: Date de fin de contrat
-    salary: Salaire
-    jj: Poste fourni par %{brand}
-    still_in: en poste
     add: Ajouter une nouvelle société
-    confirm_for: Wesh ? C'est sûr pour %{him} ?
-    edit: Editer ce poste
-    list : Liste des emplois
     add: Ajouter une expérience
     add_first: Créez la première société !
+    canceled: Emploi supprimé
+    confirm_for: Wesh ? C'est sûr pour %{him} ?
     danger_message: Cette expérience n'a pas pu être ajoutée
     double_jobs: Cet utilisateur a déjà un poste à plein temps
-    unemployed: sans emploi
-    canceled: Emploi supprimé
-    unupdated: Le contact n'a pas pu être mis à jour
+    date_in: Date de prise de fonction
+    date_end: Date de fin de contrat
+    edit: Editer ce poste
+    jj: Poste fourni par %{brand}
+    last: Poste occupé
+    list : Liste des emplois
     new_saved: Nouvel emploi de sauvegardé
+    salary: Salaire
+    still_in: en poste
+    unemployed: sans emploi
+    unupdated: Le contact n'a pas pu être mis à jour
+
+  mail:
+    expired: Le mot de passe a expiré.
+    not_found: L'adresse email n'a pas été trouvée ...
+    reset_instructions: Un email a été envoyé avec des instructions de mise à jour de votre mot de passe
+    reset: Le mot de passe a été réinitialisé.
+    shall_not_empty: ne doit pas rester vide.
+    activation: Activation de compte
+    password_reset: Mise à jour du mot de passe
 
   mission:
-    status: Etat d'avancement du contrat
-    create: Créer une mission
+    action_list_title: Activité
     add_new: Créer une nouvelle mission
     add_new_company: Créer une nouvelle société
     add_contact: Ajouter un nouveau contact
-    paid_amount: Montant touché
-    list: Liste des missions
-    edit: Editer une mission
-    name: Nom de la mission
-    amount: Montant de la mission
-    person_searched: Contenu de la mission
-    contact: Contact client
-    max_salary: Salaire annuel maximal
-    whished_start_date: Date de début de travail
-    due : Echéance
-    market : Marché
-    years: ans
-    Between: Entre
     Age frame: Tranche d'âge
-    minimum_salary: Salaire minimum
-    maximum_salary: Salaire maximum
-    remuneration: Rémunération JuinJuillet
-    whished_start_date: Date de lancement de la mission
     already_cashed: Déjà encaissé
-    action_list_title: Activité
-    history_title: Historique
-    passed_tab_title: Passé
-    future_tab_title: A venir
-    mission_activity_void: Aucune activité répertoriée à ce jour
-    updated: Mission mise à jour
-    unupdated: Cette mission n'a pas pu être mise à jour
-    not_added: Cette mission n'a pas pu être ajoutée
-    saved: Mission sauvegardée :-)
+    Between: Entre
+    amount: Montant de la mission
+    contact: Contact client
+    create: Créer une mission
     destroyed: Mission supprimée
+    due : Echéance
+    edit: Editer une mission
+    future_tab_title: A venir
+    history_title: Historique
+    list: Liste des missions
+    market : Marché
+    maximum_salary: Salaire maximum
+    max_salary: Salaire annuel maximal
+    minimum_salary: Salaire minimum
+    mission_activity_void: Aucune activité répertoriée à ce jour
+    name: Nom de la mission
+    not_added: Cette mission n'a pas pu être ajoutée
+    passed_tab_title: Passé
+    remuneration: Rémunération JuinJuillet
+    person_searched: Contenu de la mission
+    saved: Mission sauvegardée :-)
+    status: Etat d'avancement du contrat
     status:
+      paid_amount: Montant touché
       opportunity: Lead
       contract_sent: Contrat envoyé
       contract_signed: Contrat signé
       mission_billed: Contrat facturé
       mission_payed: Mission payée
+    updated: Mission mise à jour
+    unupdated: Cette mission n'a pas pu être mise à jour
+    whished_start_date: Date de lancement de la mission
+    years: ans
+
+  person:
+    add: Ajouter un contact
+    add_and_see_button: Ajouter et voir
+    add_experience: Ajouter une expérience
+    approx_age: Age approximatif
+    citizenship: Civilité
+    comment: Commentaire
+    create : Créer un contact
+    cv: Son CV
+    cv_docx: CV (au format docx)
+    edit: Editer ce contact
+    experiences: Expériences
+    firstname: Prénom
+    future_tab_title: A venir
+    have_meeting: Prendre rendez-vous
+    history_title: Historique JJ
+    job: Emploi
+    jj_employed: Embauché grâce à JJ
+    lastly: Dernièrement
+    list: Liste des contacts
+    name: Nom
+    no_cv: Pas de CV !
+    no_one: Personne n'est encore inscrit
+    phone_number: Numéro de téléphone
+    passed_jobs: Postes occupés (non exhaustifs)
+    phone: Téléphone
+    person_activity_void: Certainement des choses à faire ensemble ...
+    save_and_see_button: Sauvegarder et voir
+    saved: Contact sauvegardé
+    updated: Contact mis à jour
+
   pundit:
     not_authorized: Vous n'êtes pas autorisé à faire cette action
 
@@ -247,30 +259,30 @@ fr:
     no_result: Aucun résultat pour votre recherche
 
   session:
-    not_logged_message:  Votre compte n'est pas activé. Vérifiez votre boîte à lettes, elle contient un email d'activation.
     fail_logging_message: L'un ou l'autre de l'email ou du mot de passe sont invalides
     log_first: Logguez-vous d'abord
+    not_logged_message:  Votre compte n'est pas activé. Vérifiez votre boîte à lettes, elle contient un email d'activation.
 
   user:
     admin_label: Administrateur ?
     account_create: Créer un compte
-    cannot_destroy: Cet utilisateur ne peut pas être supprimé
-    destroyed: Utilisateur supprimé
-    email_activation: Un message comportant un lien d'activation de compte a été envoyé.
-    password: Mot de passe
-    password_confirmation: Confirmation de mot de passe
-    list: Liste des utilisateurs
-    login: Login
-    profile_update_failed: Le profil n'a pas pu être mis à jour
-    profile_update_success: Profil mis à jour
-    profile_update: Modifier le profil
-    remember_me: Se souvenir de moi
     authentication:
       user_authentication: Authentification
       password_update: Mise à jour du mot de passe
       forgotten_password: Mot de passe oublié
       activation: Votre compte est activé
       link_no_working: Le lien d'activation est invalide
+    cannot_destroy: Cet utilisateur ne peut pas être supprimé
+    destroyed: Utilisateur supprimé
+    email_activation: Un message comportant un lien d'activation de compte a été envoyé.
+    list: Liste des utilisateurs
+    login: Login
+    password: Mot de passe
+    password_confirmation: Confirmation de mot de passe
+    profile_update_failed: Le profil n'a pas pu être mis à jour
+    profile_update_success: Profil mis à jour
+    profile_update: Modifier le profil
+    remember_me: Se souvenir de moi
 
   years: années
   months: mois

@@ -6,14 +6,14 @@ class ComactionMailer < ApplicationMailer
         e = Icalendar::Event.new
         e.dtstart = comaction.start_time
         e.dtend = comaction.end_time
-        e.organizer = %W(mailto:#{email })
-        e.summary  = "Meeting avec #{comaction.person.full_name }"
-        e.description = "Mission : #{comaction.mission.name } pour la société #{comaction.mission.company.company_name }"
-        #e.uid = comaction.id
+        e.organizer = %W(mailto:#{email})
+        e.summary  = "Meeting avec #{ comaction.person.full_name }"
+        e.description = "Mission : #{ comaction.mission.name } pour la société #{ comaction.mission.company.company_name }"
+        # e.uid = comaction.id
         file_name = comaction.person.firstname  + '\.ics'
 
         ical.add_event(e)
-        #ical.publish
+        # ical.publish
 
         mail.attachments[file_name] = { mime_type: 'application/ics', content: ical.to_ical }
     end
@@ -24,6 +24,7 @@ class ComactionMailer < ApplicationMailer
       subj = "RdV #{I18n.t("brand")} "+ comaction.person.full_name
       mail to: user.email, subject: subj
     end
+    
     def event_saving_upd(comaction, user)
       @comaction = comaction
       make_ical_appointment(comaction, user.email)

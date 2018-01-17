@@ -7,36 +7,36 @@ $(document).on "turbolinks:load", ->
     theme: "bootstrap"
   status_related =[ 'sourced', 'preselected', 'appointed', 'pres', 'o_pres', 'hired', 'working']
 
-  #---------------------------------------------------
+  # ---------------------------------------------------
   $('[data-toggle="tooltip"]').tooltip()
-  #---------------------------------------------------
+  # ---------------------------------------------------
   $(".not-busy").on 'click', ->
     date_elem = $(this).attr("data-block").split("-")
     arr = [date_elem[3], parseInt(date_elem[2]), date_elem[1], hour_helper(parseInt(date_elem[0]/2)), "00"]
     setDateTime(arr)
-  #---------------------------------------------------
+  # ---------------------------------------------------
   # qs = (key) ->
   #   key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&") # escape RegEx meta chars
   #   match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"))
   #   match && decodeURIComponent(match[1].replace(/\+/g, " "))
-  #---------------------------------------------------
+  # ---------------------------------------------------
   el  = ("#comaction_start_time_#{i}i" for i in[1..6])
   ele  = ("#comaction_end_time_#{i}i" for i in[1..6])
   closures  = []
   frameze = "frameze"
 
-  #---------------------------------------------------
+  # ---------------------------------------------------
   $(".status-frame").popover({delay: { "show": 300, "hide": 150 }})
-  #---------------------------------------------------
+  # ---------------------------------------------------
   $("#comaction_end_time_3i,#comaction_end_time_2i,#comaction_end_time_1i").hide()
-  #---------------------------------------------------
+  # ---------------------------------------------------
   unless $('input').is(':checked')
     $(el[0]).parent().parent().parent().fadeOut()
     $("#comaction_is_dated").parent().addClass(frameze)
 
-  #---------------------------------------------------
+  # ---------------------------------------------------
   # Events
-  #---------------------------------------------------
+  # ---------------------------------------------------
   for i in [0..5]
     closures[i] = do (i) ->
       $(el[i]).on 'change', ->
@@ -46,7 +46,7 @@ $(document).on "turbolinks:load", ->
           hour = parseInt($(el[i]).val(), 10) + 1
           hour = "0" + hour if hour < 10
           $(ele[i]).val(hour.toString())
-  #---------------------------------------------------
+  # ---------------------------------------------------
   $("#comaction_is_dated").on 'click', ->
     if ($('input').is(':checked'))
       $(el[0]).parent().parent().parent().fadeIn("slow")
@@ -88,17 +88,17 @@ $(document).on "turbolinks:load", ->
     setDate(pushed_date)
     undefined
 
-  #---------------------------------------------------
+  # ---------------------------------------------------
   hour_helper = (x) -> if (parseInt(x,10) < 10) then "0" + x else x
   setDate = (arr) ->
     $("#comaction_start_time_1i, #comaction_end_time_1i").val(arr[0]) # year
     $("#comaction_start_time_2i, #comaction_end_time_2i").val(arr[1]) # month
     $("#comaction_start_time_3i, #comaction_end_time_3i").val(arr[2]) # day
-  #---------------------------------------------------
+  # ---------------------------------------------------
   setDateTime = (arr) ->
     setDate(arr)
     $("#comaction_start_time_4i").val(arr[3]) # hour
     $("#comaction_end_time_4i").val(hour_helper(parseInt(arr[3],10) + 1)) # hour
     $("#comaction_start_time_5i, #comaction_end_time_5i").val(arr[4]) # minutes
-  #---------------------------------------------------
+  # ---------------------------------------------------
   undefined

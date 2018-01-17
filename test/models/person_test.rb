@@ -41,7 +41,7 @@ class PersonTest < ActiveSupport::TestCase
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
     valid_addresses.each do |valid_address|
       @person.email = valid_address
-      assert @person.valid?, "#{valid_address.inspect } should be valid"
+      assert @person.valid?, "#{valid_address.inspect} should be valid"
     end
   end
 
@@ -49,7 +49,7 @@ class PersonTest < ActiveSupport::TestCase
     invalid_addresses = %w[useré@example.com USERfoo.COM A_US-ER@foo  dsqfdqsfq fim@]
     invalid_addresses.each do |invalid_address|
       @person.email = invalid_address
-      refute @person.valid?, "#{invalid_address.inspect } should be invalid"
+      refute @person.valid?, "#{invalid_address.inspect} should be invalid"
     end
   end
 

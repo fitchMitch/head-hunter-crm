@@ -16,7 +16,7 @@ FactoryBot.define do
   factory :comaction do
     name                    { 'action commerciale' + (17..4500).to_a.sample.to_s }
     status                  { Comaction.statuses.keys.sample }
-    action_type             { Comaction.action_types.keys.sample}
+    action_type             { Comaction.action_types.keys.sample }
     start_time              { Time.now.beginning_of_day + ((1..40).to_a.sample * 24 + (7..20).to_a.sample ) * 60 * 60 }
     end_time                { start_time + ((2..4).to_a.sample/2 ) * 60 * 60 }
     user
@@ -26,8 +26,8 @@ FactoryBot.define do
 
   factory :comaction_hired, class: Comaction do
     name                    { 'action commerciale' + (17..4500).to_a.sample.to_s }
-    status                  {:hired}
-    action_type             {:exploration_type}
+    status                  {:hired }
+    action_type             {:exploration_type }
     start_time              { Time.now.beginning_of_day + ((1..40).to_a.sample * 24 + (7..20).to_a.sample ) * 60 * 60 }
     end_time                { start_time + ((2..4).to_a.sample/2 ) * 60 * 60 }
     user

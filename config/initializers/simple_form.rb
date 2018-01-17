@@ -7,7 +7,7 @@ SimpleForm.setup do |config|
   # whole input.
   config.wrappers :default, class: :input,
     hint_class: :field_with_hint, error_class: :field_with_errors do |b|
-    ## Extensions enabled by default
+    # # Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
     # You can make any of these extensions optional by
@@ -21,7 +21,7 @@ SimpleForm.setup do |config|
     # You can also pass a string as f.input placeholder: "Placeholder"
     b.use :placeholder
 
-    ## Optional extensions
+    # # Optional extensions
     # They are disabled unless you pass `f.input EXTENSION_NAME => true`
     # to the input. If so, they will retrieve the values from the model
     # if any exists. If you want to enable any of those
@@ -43,12 +43,12 @@ SimpleForm.setup do |config|
     # Calculates readonly automatically from readonly attributes
     b.optional :readonly
 
-    ## Inputs
+    # # Inputs
     b.use :label_input
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
 
-    ## full_messages_for
+    # # full_messages_for
     # If you want to display the full error message for the attribute, you can
     # use the component :full_error, like:
     #
@@ -101,7 +101,7 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required, explicit_label| "#{required } #{label }" }
+  # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = nil

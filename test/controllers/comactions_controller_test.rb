@@ -84,9 +84,9 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     refute flash.empty?
     assert_redirected_to root_path
   end
-  #---------------
+  # ---------------
   # create
-  #---------------
+  # ---------------
   test 'should create a comaction' do
     log_in_as(@user)
     get new_comaction_path
@@ -100,13 +100,12 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
           user_id: @user.id
         }
     }
-    assert_response :success
+    assert_redirected_to comactions_url
     refute flash.empty?
-    assert_template partial: '_form', count: 1
   end
-  #---------------
+  # ---------------
   # edit
-  #---------------
+  # ---------------
 
   test 'should validate comaction edit page' do
     log_in_as(@user)

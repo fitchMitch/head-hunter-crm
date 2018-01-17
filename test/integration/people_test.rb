@@ -13,7 +13,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     get new_person_path
     assert_template 'people/new'
     person2 = attributes_for(:person, lastname: '')
-    post people_path, params: {person: person2 }
+    post people_path, params: { person: person2 }
     assert_template 'people/new'
   end
 

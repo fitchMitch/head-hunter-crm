@@ -14,7 +14,7 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 		comaction2Param['person_id'] = @person.id
 		comaction2Param['mission_id'] = @mission.id
 		get new_comaction_path
-		post comactions_path, params: {comaction: comaction2Param}
+		post comactions_path, params: { comaction: comaction2Param }
 		follow_redirect!
 	  assert_response :success
 		assert_template partial: '_month_calendar', count: 1
@@ -27,7 +27,7 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 				params: {
 					filter: 'hired',
 					v: 'table_view' }
-		  assert_select '.status>small' , {minimum: 1, text: 'Engagé'}
+		  assert_select '.status>small' , { minimum: 1, text: 'Engagé'}
 
 	end
 

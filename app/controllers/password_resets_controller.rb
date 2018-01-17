@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  before_action :get_user,   only: [:edit, :update]
+  before_action :find_user , only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
 
   def new
@@ -10,10 +10,10 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = 'Email sent with password reset instructions'
+      flash[:info] = I18n.t('mail.reset_instructions')
       redirect_to root_url
     else
-      flash.now[:danger] = 'Email address not found'
+      flash.now[:danger] = I18n.t('mail.not_found')
       render 'new'
     end
   end
@@ -23,11 +23,11 @@ class PasswordResetsController < ApplicationController
 
   def update
     if params[:user][:password].empty?                  # Case (3)
-      @user.errors.add(:password, 'ne doit pas rester vide')
+      @user.errors.add(:password, I18n.t('mail.shall_not_empty'))
       render 'edit'
     elsif @user.update_attributes(user_params)          # Case (4)
       log_in @user
-      flash[:success] = 'Le mot de passe a été réinitialisé.'
+      flash[:success] = I18n.t('mail.reset')
       redirect_to @user
     else
       render 'edit'                                     # Case (2)
@@ -42,21 +42,20 @@ class PasswordResetsController < ApplicationController
     end
 
     # Before filters
-    def get_user
+    def find_user
       @user = User.find_by(email: params[:email])
     end
 
     # Confirms a valid user.
     def valid_user
-      unless (@user && @user.activated? && @user.authenticated?(:reset, params[:id]))
-        redirect_to root_url
-      end
+      condition =  @user && @user.activated? && @user.authenticated?(:reset, params[:id])
+      redirect_to root_url unless condition
     end
 
     # Checks expiration of reset token.
     def check_expiration
       if @user.password_reset_expired?
-        flash[:danger] = 'Le mot de passe a expiré'
+        flash[:danger] = I18n.t('mail.expired')
         redirect_to new_password_reset_url
       end
     end

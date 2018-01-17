@@ -1,8 +1,7 @@
 module MissionsHelper
 
   def special_label(mission)
-    # <div class="<%= latelyness mission %>">
-    supp=''
+    supp = ''
     if (mission.is_done)
       supp = "<i class='fa fa-gavel colorMe' aria-hidden='true'></i>"
     elsif (mission.signed)
@@ -20,25 +19,25 @@ module MissionsHelper
     end
   end
 
-  def search_checkboxes_names (name,i)
+  def search_checkboxes_names(name, i)
     (name + i.to_s).to_sym
   end
 
-  def t_mis_status (k)
+  def t_mis_status(k)
     I18n.t("mission.status.#{k}")
   end
 
   def mission_status_collection
     colle=[]
-    Mission::statuses.each do |k,v|
-      colle << [t_mis_status(k),k]
+    Mission::statuses.each do |k,_|
+      colle << [t_mis_status(k), k]
     end
     colle
   end
 
   def button_filters_missions(selected, css)
-    statuses = [["",""]]
-    Mission::statuses.each do |k,v|
+    statuses = [['', '']]
+    Mission::statuses.each do |k, v|
       statuses << [t_mis_status(k),v]
     end
     opt = options_for_select(statuses, selected)
@@ -46,8 +45,8 @@ module MissionsHelper
   end
 
   def missions_options(sel)
-    opt = mission_status_collection + [" "]
-    options_for_select(opt,[sel,sel])
+    opt = mission_status_collection + [' ']
+    options_for_select(opt, [sel, sel])
   end
 
 end

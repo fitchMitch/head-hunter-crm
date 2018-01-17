@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
 
-  make_name =  ->
+  make_name = ->
     t = "Mission "
     t += $("#mission_company_id option:selected").text()
     t += " "

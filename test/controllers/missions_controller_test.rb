@@ -8,17 +8,17 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     @company   = @mission.company
     @person    = @mission.person
     @some_params = {
-        'mission' => {
-          'name' => 'Yet another',
-          'start_date' =>  Date.today.years_ago(10),
-          'end_date' =>  Date.today.years_ago(8),
-          'reward' =>  2222,
-          'paid_amount' =>  111,
-          'criteria' =>  "test",
-          'person_id' =>  @person.id,
-          'company_id' =>  @company.id,
-          'user_id' =>  @user.id,
-          'is_done' =>  false
+        'mission': {
+          'name': 'Yet another',
+          'start_date':  Date.today.years_ago(10),
+          'end_date':  Date.today.years_ago(8),
+          'reward':  2222,
+          'paid_amount':  111,
+          'criteria':  "test",
+          'person_id':  @person.id,
+          'company_id':  @company.id,
+          'user_id':  @user.id,
+          'is_done':  false
       }
     }
   end

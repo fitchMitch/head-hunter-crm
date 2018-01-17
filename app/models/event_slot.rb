@@ -7,7 +7,7 @@ class EventSlot
     c1 = attributes[:start_period].is_a?(DateTime)
     c2 = attributes[:end_period].is_a?(DateTime)
     c3 = attributes[:end_period] >= attributes[:start_period]
-    raise "start and endtime do not suit" unless c1 && c2 && c3
+    raise 'start and endtime do not suit' unless c1 && c2 && c3
     super
     update_duration
   end
@@ -27,7 +27,7 @@ class EventSlot
   end
 
   def working_days_split
-    #split days and does Eventslots out of them, except sundays
+    # split days and does Eventslots out of them, except sundays
     r = []
     s = self.start_period
     e = self.end_period
@@ -50,15 +50,16 @@ class EventSlot
   def too_short
     self.min_duration < Comaction::SHORTEST_MEETING_TIME
   end
+
   def starts_too_late
     self.start_period.hour >= (Comaction::WORK_HOURS.last.to_i - 1)
   end
 
   def out_from_intersect(rdv_period)
-    #purpose : self is a free zone, rdv_period is an appointment
+    # purpose : self is a free zone, rdv_period is an appointment
     # the rdv_period slices the free_zone in parts when it intersects with the free_zone
-    return "not_a_EventSlot" unless rdv_period.is_a?(EventSlot)
-    return "two_days_error #{self.descro} max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
+    return 'not_a_EventSlot' unless rdv_period.is_a?(EventSlot)
+    return "two_days_error #{ self.descro } max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
     r = []
     self_starts_before = self.start_period <= rdv_period.start_period
     self_ends_after = rdv_period.end_period <= self.end_period
@@ -66,11 +67,11 @@ class EventSlot
     if self.overlaps? rdv_period
       if self_starts_before
         starts = { start_period: self.start_period, end_period: rdv_period.start_period }
-        r << EventSlot.new( starts )
+        r << EventSlot.new(starts)
       end
       if self_ends_after
-        ends = {start_period: rdv_period.end_period, end_period: self.end_period }
-        r << EventSlot.new( ends )
+        ends = { start_period: rdv_period.end_period, end_period: self.end_period }
+        r << EventSlot.new(ends)
       end
     else
       r << self
@@ -87,7 +88,7 @@ class EventSlot
   end
 
   class << self
-    def dash_it(freeZone_days, next_comactions)
+    def dash_it(free_zone_days, next_comactions)
       d = DateTime.current
       unfinished = true
       messages = []
@@ -95,37 +96,37 @@ class EventSlot
         unfinished = false
         next_comactions.each do |app|
           unless  app.start_time.nil? || app.end_time.nil? || app.end_time < d
-            es_app = EventSlot.new({start_period: tdt(app.start_time), end_period: error_margin(app.end_time)})
+            es_app = EventSlot.new({ start_period: tdt(app.start_time), end_period: error_margin(app.end_time)})
             next if es_app.min_duration == 0
-            freeZone_days.each do |ghost_day_free_zone|
-              next if ghost_day_free_zone.from_now_on == nil
+            free_zone_days.each do |ghost_day_free_zone|
+              next if ghost_day_free_zone.from_now_on.nil?
               intersect = ghost_day_free_zone.out_from_intersect(es_app)
               # intersect > 1 when there's been overlapping between ghost_day_free_zone and the appointment (app)
               unfinished = true if intersect.length > 1
-              # ghost_day_free_zone is to be withdrawn from freeZone_days
-              freeZone_days.delete(ghost_day_free_zone)
-              freeZone_days += intersect #unless intersect == nil || intersect.empty? || intersect.instance_of?(String)
-              messages +=  intersect if intersect.instance_of?(String)
+              # ghost_day_free_zone is to be withdrawn from free_zone_days
+              free_zone_days.delete(ghost_day_free_zone)
+              free_zone_days += intersect #unless intersect.nil? || intersect.empty? || intersect.instance_of?(String)
+              messages += intersect if intersect.instance_of?(String)
             end
           end
         end
       end
-      return messages,freeZone_days
+      return messages,free_zone_days
     end
     def error_margin(end_time)
       # tdt (end_time.advance(minutes: 0))
       tdt (end_time)
     end
 
-    def tdt (t)
+    def tdt(t)
       DateTime.parse(t.to_s)
     end
 
     def sharpen (arr)
       return nil unless arr.is_a?(Array)
       arr = arr
-        .map { |fz| fz.set_to_office_hours}
-        .map { |fz| fz.from_now_on}.compact
+        .map { |fz| fz.set_to_office_hours }
+        .map { |fz| fz.from_now_on }.compact
         .select do |fz|
           !fz.too_short
         end
@@ -156,8 +157,8 @@ class EventSlot
 
   def from_now_on
     now = DateTime.current
-    return nil if self.end_period < now
-    self.update_begin(now) if now > self.start_period
+    return nil if end_period < now
+    self.update_begin(now) if now > start_period
     self
   end
 
@@ -168,29 +169,30 @@ class EventSlot
   end
 
   def update_begin(bego)
-    return unless bego.is_a?(DateTime) || bego > self.end_period
+    return unless bego.is_a?(DateTime) || bego > end_period
     self.start_period = bego
     update_duration
   end
 
   def update_end(endo)
-    return  unless endo.is_a?(DateTime) || endo < self.start_period
+    return  unless endo.is_a?(DateTime) || endo < start_period
     self.end_period = endo
     update_duration
   end
 
   def overlaps_two_days?
-    (self.end_period.beginning_of_day - self.start_period.beginning_of_day).to_i.round > 0
+    (end_period.beginning_of_day - start_period.beginning_of_day).to_i.round > 0
   end
+
   # =================
   private
   # =================
     def update_duration
-      self.min_duration = ((self.end_period - self.start_period) * 24 * 60).to_i.round
+      self.min_duration = ((end_period - start_period) * 24 * 60).to_i.round
     end
 
     def days_overlap
-      (self.end_period - self.start_period).round
+      (end_period - start_period).round
     end
 
 end

@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  mail:
+    reset_instructions: Email sent with password reset instructions
+    not_found: 'Email address not found'

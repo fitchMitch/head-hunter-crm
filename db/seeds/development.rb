@@ -6,26 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'as-duration'
-#-----------------
+# -----------------
 # Common
-#-----------------
+# -----------------
 created_at=           Time.zone.now
-updated_at=           Time.zone.now
-#-----------------
+updated_at=          Time.zone.now
+# -----------------
 # Users
-#-----------------
+# -----------------
 User.create!(name:                   'Etienne WEIL',
-    email:                 "weil.etienne@hotmail.fr",
-    password:              "123456",
-    password_confirmation: "123456",
+    email:                 'weil.etienne@hotmail.fr',
+    password:              '123456',
+    password_confirmation: '123456',
     admin:                  true,
     activated: true,
     activated_at: Time.zone.now)
 
 3.times do |n|
   name  = Faker::Name.name
-  email = "example-#{ n+1 }@railstutorial.org"
-  password = "password"
+  email = "example-#{n+1}@railstutorial.org"
+  password = 'password'
   User.create!(name:                  name,
     email:                 email,
     password:              password,
@@ -34,24 +34,24 @@ User.create!(name:                   'Etienne WEIL',
     activated_at: Time.zone.now)
 end
 users = User.all
-#-----------------
+# -----------------
 # Companies
-#-----------------
+# -----------------
 9.times do |n|
   company_name = Faker::Company.name
   Company.create!(company_name:      company_name )
 end
 companies=Company.all
-#-----------------
+# -----------------
 # People
-#-----------------
+# -----------------
 user = users.sample
 
 Person.create!(
-    firstname:          "Yolande",
-    lastname:           "Moreau",
-    email:              "yolande.moreau@gmail.com",
-    phone_number:       "9876543210",
+    firstname:          'Yolande',
+    lastname:           'Moreau',
+    email:              'yolande.moreau@gmail.com',
+    phone_number:       '9876543210',
     approx_age:         65,
     is_jj_hired:        true,
     is_client:          false,
@@ -67,7 +67,7 @@ Person.create!(
   phone_number=      Faker::PhoneNumber.phone_number
 
   approx_age=         (18..70).to_a.sample
-  #Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
+  # Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
   note=              Faker::Lorem.sentence(3)
   is_client =        Faker::Boolean.boolean(0.1)
   cv_docx =             Faker::Boolean.boolean(0.4) == true ? File.new("#{Rails.root}/test/factories/test.docx") : nil
@@ -87,9 +87,9 @@ Person.create!(
 end
 people = Person.all
 
-#-----------------
+# -----------------
 # Jobs
-#-----------------
+# -----------------
 75.times do |n|
   person = people.sample
   company=companies.sample
@@ -106,7 +106,7 @@ people = Person.all
   start_date=           start_date.strftime("%F")
   # puts start_date
   # puts end_date
-  # puts "---------------------"
+  # puts '---------------------'
 
   company_id=           company.id
   person_id=            person.id
@@ -123,16 +123,16 @@ people = Person.all
     )
 end
 jobs= Job.all
-#-----------------
+# -----------------
 # Missions
-#-----------------
-#statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
+# -----------------
+# statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
 35.times do |n|
   person = people.sample
   company = companies.sample
   user = users.sample
 
-  name   =           "Mission" + (1..4500).to_a.sample.to_s
+  name   =           'Mission' + (1..4500).to_a.sample.to_s
   reward =           (17..45).to_a.sample* 1000
   min_salary =       (200..400).to_a.sample* 100
   max_salary  =      min_salary +(1..10).to_a.sample* 1000
@@ -164,12 +164,12 @@ jobs= Job.all
     )
 end
 missions = Mission.all
-#-----------------
+# -----------------
 # Comactions
-#-----------------
+# -----------------
 250.times do |n|
 
-  name   =           "Rendez-vous " + n.to_s
+  name   =           'Rendez-vous ' + n.to_s
   status =           Comaction.statuses.keys.sample
   action_type   =    Comaction.action_types.keys.sample
   person =           people.sample
@@ -180,7 +180,7 @@ missions = Mission.all
   start_time   =     (0..100).to_a.sample >15 ? Time.now.beginning_of_day + ((-20..25).to_a.sample * 24 + (7..19).to_a.sample) * 60 * 60  : nil
   end_time    =      start_time.nil?  ? nil : start_time + (1..3).to_a.sample * 60 * 60
 
-  Comaction.create!(
+  Comaction.create(
     name:               name,
     status:             status,
     action_type:        action_type,

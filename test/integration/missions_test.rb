@@ -20,7 +20,7 @@ class MissionsTest < ActionDispatch::IntegrationTest
       }
     }
     log_in_as(@user)
-    #add a mission
+    # add a mission
     get new_mission_path
     post missions_url ,  params: @some_params
     assert_redirected_to person_url(@person)

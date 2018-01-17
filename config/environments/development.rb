@@ -40,12 +40,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: host }
 
   ActionMailer::Base.smtp_settings = {
-   address:         ENV['SMTP_SERVER'],
-   port:            '587',
-   authentication: :plain,
-   user_name:       ENV['SMTP_EMAIL'],
-   password:        ENV['SMTP_PASSWORD'],
- }
+    address:         ENV['SMTP_SERVER'],
+    port:            '587',
+    authentication: :plain,
+    user_name:       ENV['SMTP_EMAIL'],
+    password:        ENV['SMTP_PASSWORD'],
+  }
 
   config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 3 * 1024 * 1024)
   # Print deprecation notices to the Rails logger.

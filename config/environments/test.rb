@@ -22,7 +22,8 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  #paperclip
+
+  # paperclip
   # Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
 
   # Raise exceptions instead of rendering exception templates.
@@ -36,7 +37,19 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  # 17/01/18 ---------
+  config.action_mailer.raise_delivery_errors = true
+  host = 'localhost:3000' # Don't use this literally; use your local dev host instead
+  config.action_mailer.default_url_options = { host: host }
+
+  ActionMailer::Base.smtp_settings = {
+    address:         ENV['SMTP_SERVER'],
+    port:            '587',
+    authentication: :plain,
+    user_name:       ENV['SMTP_EMAIL'],
+    password:        ENV['SMTP_PASSWORD'],
+  }
+  # 17/01/18 ---------
 
 
   # Print deprecation notices to the stderr.

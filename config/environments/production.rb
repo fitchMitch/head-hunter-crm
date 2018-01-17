@@ -26,12 +26,12 @@ Rails.application.configure do
   config.assets.compile = false
   # Mailer configuration
   ActionMailer::Base.smtp_settings = {
-   address:               ENV['SMTP_SERVER'],
-   port:                  '587',
-   authentication:        :plain,
-   user_name:             ENV['SMTP_EMAIL'],
-   password:              ENV['SMTP_PASSWORD'],
- }
+    address:               ENV['SMTP_SERVER'],
+    port:                  '587',
+    authentication:        :plain,
+    user_name:             ENV['SMTP_EMAIL'],
+    password:              ENV['SMTP_PASSWORD'],
+  }
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -63,7 +63,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "sample_app_#{Rails.env }"
+  # config.active_job.queue_name_prefix = "sample_app_#{ Rails.env }"
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -87,7 +87,7 @@ Rails.application.configure do
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
+    config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Do not dump schema after migrations.

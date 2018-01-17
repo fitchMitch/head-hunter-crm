@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user 
+  before_action :logged_in_user
   before_action :correct_user,   only: [        :edit, :update, :destroy, :show]
 
   def new
@@ -44,10 +44,11 @@ class UsersController < ApplicationController
       flash[:success] = I18n.t('user.cannot_destroy')
     else
       admin_list = User.other_admins(@user)
+      destinator = admin_list.first.id
       # Missions are not destroyed but reassigned to the first admin found in the
       # admin list.
-      reassign_missions(admin_list.first,@user)
-      Person.where('user_id = ?', @user.id).update_all(user_id: admin_list.first.id)
+      reassign_missions(admin_list.first, @user)
+      Person.where('user_id = ?', @user.id).update_all(user_id: destinator)
       @user.destroy
       flash[:success] = I18n.t('user.destroyed')
     end
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   private
-    def reassign_missions(user_dest,user_to_destroy)
+    def reassign_missions(user_dest, user_to_destroy)
       Mission.transaction do
         Mission.lock.mine(user_to_destroy.id).each do |m|
           m.user_id = user_dest.id
@@ -65,7 +66,12 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:name,
+        :email,
+        :password,
+        :password_confirmation,
+        :admin
+      )
     end
 
     def correct_user

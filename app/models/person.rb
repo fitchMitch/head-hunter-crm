@@ -24,7 +24,7 @@
 class Person < ApplicationRecord
   include People::Docx
   has_many :jobs, dependent: :destroy
-  #accepts_nested_attributes_for :jobs, allow_destroy: true
+  # accepts_nested_attributes_for :jobs, allow_destroy: true
   has_many :missions, dependent: :destroy
   has_many :comactions, dependent: :destroy
   belongs_to :user
@@ -40,8 +40,8 @@ class Person < ApplicationRecord
                 against: [[:firstname , 'B'],[:lastname, 'A'], [:note, 'C'] , [:cv_content, 'D']],
                 associated_against: { jobs: :job_title } ,
                 using: {
-                  #ignoring: :accents,
-                  tsearch: {any_word: true, prefix: true},
+                  # ignoring: :accents,
+                  tsearch: { any_word: true, prefix: true },
                   trigram: {
                       threshold: 0.5
                     }
@@ -53,7 +53,7 @@ class Person < ApplicationRecord
   # ----- End of Search part
   default_scope { order(updated_at: :desc) }
 
-  #has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
+  # has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
   has_attached_file :cv_docx
   validates_attachment_content_type :cv_docx, content_type: /\Aapplication\/vnd\.openxmlformats/
   validates_with AttachmentSizeValidator, attributes: :cv_docx, less_than: 2.megabytes
@@ -82,7 +82,7 @@ class Person < ApplicationRecord
   end
 
   def double_jobs
-    Job.where("person_id = ? AND no_end = ?", self.id, true).count > 1
+    Job.where('person_id = ? AND no_end = ?', self.id, true).count > 1
   end
 
   def full_name
@@ -91,7 +91,7 @@ class Person < ApplicationRecord
 
   def get_cv
     if cv_docx.file?
-      pth = "public/" + cv_docx.url.to_s.split("?")[0]
+      pth = 'public/' + cv_docx.url.to_s.split('?')[0]
       Docx::Document.open(pth)
     end
   end
@@ -100,7 +100,7 @@ class Person < ApplicationRecord
   private
   # ------------------------
     def downcase_email
-      return if email.nil? || email === ""
+      return if email.nil? || email === ''
       self.email = email.downcase
       self.email = SPACES.match(email)[1] || email
     end
@@ -116,10 +116,10 @@ class Person < ApplicationRecord
     def format_by_two (nr)
       nr = nr.sub( '+33' , '0').tr '^0-9', ''
 
-      reg2 = /(\d{2})(\d{2})(\d{2})(\d{2})(\d+)/
+      reg2 = /(\d{ 2 })(\d{ 2 })(\d{ 2 })(\d{ 2 })(\d+)/
       my_match = reg2.match(nr)
       return nr if my_match == nil
-      my_match.captures.compact.join(" ")
+      my_match.captures.compact.join(' ')
     end
 
 end

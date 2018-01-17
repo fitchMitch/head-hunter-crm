@@ -49,8 +49,8 @@ module SessionsHelper
     session[:next_url] = url  #if request.get?
   end
 
-  def goto_next_url (default)
-    url  = session[:next_url] || default
+  def goto_next_url(default)
+    url = session[:next_url] || default
     set_next_url nil
     redirect_to(url || root_url)
   end

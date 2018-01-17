@@ -26,7 +26,7 @@ window.sweetAlertConfirmConfig  = {
   type: 'question',
   showCancelButton: true,
   confirmButtonText: 'Oui ',
-  text: "Ce sera définitif",
+  text: 'Ce sera définitif',
   cancelButtonColor: '#f58976',
   confirmButtonColor: '#4ef0bf'
 };

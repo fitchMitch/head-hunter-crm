@@ -2,7 +2,7 @@
 
 HH_CRM stands for  Head Hunters Customer RelationShip; This tool helps a Head Hunter team to organize its interview plannings, get resumes and fullfill customers missions.
 
-*users* manage *people* having *jobs*. Other people are *company* representatives for which users set *missions* to fullfill (euros) according to a list of *commercial actions* available in business plannings with status describing a classical Head Hunter's business events workflow.
+**users** manage **people** having **jobs**. Other people are **company** representatives for which users set **missions** to fullfill (euros) according to a list of **commercial actions** available in business plannings with status describing a classical Head Hunter's business events workflow.
 
 ## Using
 * Rails 5.0.1
@@ -14,12 +14,18 @@ HH_CRM stands for  Head Hunters Customer RelationShip; This tool helps a Head Hu
 * Minitest with 75% coverage
 
 ## Services (job queues, cache servers, search engines, etc.)
-* pg_search as search engines to dig into the uploaded docx cv files
+* *pg_search* as search engines to dig into the *uploaded docx cv files*
 * No queues, no cache servers
+* *I18n* use
 
 ## Deployment
 `bundle install`
 `rails db:migrate`
+According to the role's permissions you'll have to set the following extensions manually or not:
+* fuzzystrmatch
+* pg_trgm
+* plpgsql
+* unaccent
 `rails db:seed `
 
 ## License

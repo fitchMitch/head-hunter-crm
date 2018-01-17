@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
   # end
 
   def search
-    if params[:quest] == nil || params[:quest]=~/\A\s+\z/
+    if params[:quest].nil? || params[:quest]=~/\A\s+\z/
        redirect_to comactions_path
     else
       params[:page] ||= 1
@@ -27,7 +27,6 @@ class StaticPagesController < ApplicationController
       @missions = Mission.search_name(params[:quest]).includes(:company, :person).page(params[:page])
       # --------------
       @comactions = Comaction.search_name(params[:quest]).includes(:user, :person, mission: [:company]).page(params[:page])
-      #
 
       @nb_results = @people.count + @companies.count + @missions.count + @comactions.count
       render 'static_pages/search_results'
@@ -37,7 +36,6 @@ class StaticPagesController < ApplicationController
   private
   def search_params
     params.permit(:quest)
-    #code
   end
 
 end

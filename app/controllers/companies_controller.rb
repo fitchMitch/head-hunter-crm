@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
-  before_action :logged_in_user 
-  before_action :get_company,   only: [:edit, :update, :show, :list_people]
+  before_action :logged_in_user
+  before_action :find_company, only: [:edit, :update, :show, :list_people]
   def new
     @company = Company.new
   end
@@ -13,15 +13,15 @@ class CompaniesController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def search
     @search_companies = Company.find(params[:q])
   end
 
-  def show
-  end
-
   def create
-    @company = Company.new(company_params)    # Not the final implementation!
+    @company = Company.new(company_params) # Not the final implementation!
     if @company.save
       flash[:info] = 'Société sauvegardée.'
       goto_next_url companies_path
@@ -41,19 +41,14 @@ class CompaniesController < ApplicationController
   end
 
   # def destroy #not implemented on purpose
-  #   Company.find(params[:id]).destroy
-  #   flash[:success] = 'Société supprimée'
-  #   redirect_to companies_path
   # end
 
   def list_people
-    #@company = Company.find(params[:id])
     @nbr = Job.where('company_id = ?', params[:id]).distinct.pluck(:person_id).count
-    #@comactions = Comaction.includes(:user, :person, mission: [:company])
     params[:q] = {} if params[:q].nil?
     params[:q]['company_id_eq'] = params[:id]
     @q = Job.ransack(params[:q])
-    @jobs = @q.result.includes(:company, :person).page(params[:page] ? params[:page].to_i : 1)
+    @jobs = @q.result.includes(:company, :person).page(pointed_page)
 
     render 'companies/company_people'
   end
@@ -63,8 +58,7 @@ class CompaniesController < ApplicationController
       params.require(:company).permit(:company_name)
     end
 
-    def get_company
-      #flash[:danger] = "Logguez vous d'abord"
+    def find_company
       @company = Company.find(params[:id])
     end
 end

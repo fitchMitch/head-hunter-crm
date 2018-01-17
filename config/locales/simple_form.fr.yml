@@ -5,29 +5,29 @@ fr:
         person:
           attributes:
             firstname:
-              blank: "Cette créature a un prénom"
+              blank: Cette créature a un prénom
             lastname:
-              blank: "Cette créature a un nom"
+              blank: Cette créature a un nom
             email:
-              blank: "Email oublié"
+              blank: Email oublié
             phone_number:
-              too_short: "Le numéro est trop court"
-              too_long: "Le numéro est trop long"
+              too_short: Le numéro est trop court
+              too_long: Le numéro est trop long
             cell_phone_number:
-              too_short: "Le numéro est trop court"
-              too_long: "Le numéro est trop long"
+              too_short: Le numéro est trop court
+              too_long: Le numéro est trop long
 
   simple_form:
-    "yes": 'Oui'
-    "no": 'Non'
+    yes: Oui
+    no: Non
     required:
-      text: 'requis'
+      text: requis
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Veuillez régler les problèmes ci-dessous :"
+      default_message: Veuillez régler les problèmes ci-dessous 
     # Examples
     # labels:
     #   defaults:
@@ -39,7 +39,7 @@ fr:
     #       email: 'E-mail.'
     hints:
       defaults:
-        #firstname: 'Votre prénom'
+        # firstname: 'Votre prénom'
     #     password: 'No special characters, please.'
     # include_blanks:
     #   defaults:

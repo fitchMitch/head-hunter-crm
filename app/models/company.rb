@@ -13,7 +13,7 @@ class Company < ApplicationRecord
   has_many :people, through: :jobs
   has_many :missions, dependent: :destroy
 
-  before_save   :upcase_company_name
+  before_save :upcase_company_name
 
   default_scope { order(updated_at: :desc) }
 
@@ -22,8 +22,8 @@ class Company < ApplicationRecord
   pg_search_scope :search_name,
                 against: :company_name,
                 using: {
-                  #ignoring: :accents,
-                  tsearch: {any_word: true, prefix: true},
+                  # ignoring: :accents,
+                  tsearch: { any_word: true, prefix: true },
                   trigram: {
                       threshold: 0.5
                     }
@@ -33,7 +33,10 @@ class Company < ApplicationRecord
     find_each { |record| record.update_pg_search_document }
   end
 
-  validates :company_name,  presence: true, length: { maximum: 40 }, uniqueness: { case_sensitive: false }
+  validates :company_name,
+    presence: true,
+    length: { maximum: 40 },
+    uniqueness: { case_sensitive: false }
 
   def mission_list
     Mission.where('company_id = ?', self.id).order(created_at: :desc)
