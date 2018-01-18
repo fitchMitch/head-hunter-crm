@@ -1,5 +1,5 @@
 Inspecting 171 files
-CCCCCCCWCCCCCCCCCWWCCWCWCWWCWCCCCCCWCCCWWWCCCCCCCCCCCCCCWCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCWCCCCCCCWCCCCWWWCCWCWWWECCCCCCWWCCCCWWCCWCCWCCWWCCC.CCW
+CCCCCCCWCCCCCCCCCWWCCWCWCWWCWCCCCCCWCCCWWWCCCCCCCCCCCCCCWCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCWCCCCCCCWCCCCWWWCCWCEEFFEEEECCWWCCEEEEFCFCEEEEWECEE.FEW
 
 Offenses:
 
@@ -246,7 +246,7 @@ app/controllers/comactions_controller.rb:134:3: C: Keep a blank line before and 
   ^^^^^^^
 app/controllers/comactions_controller.rb:135:3: C: Incorrect indentation detected (column 2 instead of 4).
   # ---------------
-  ^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^
 app/controllers/comactions_controller.rb:136:5: C: Inconsistent indentation detected.
     def last_missions ...
     ^^^^^^^^^^^^^^^^^
@@ -357,7 +357,7 @@ app/controllers/jobs_controller.rb:63:3: C: Keep a blank line before and after p
   ^^^^^^^
 app/controllers/jobs_controller.rb:64:3: C: Incorrect indentation detected (column 2 instead of 4).
   # ---------------
-  ^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^
 app/controllers/jobs_controller.rb:65:5: C: Inconsistent indentation detected.
     def job_params ...
     ^^^^^^^^^^^^^^
@@ -393,7 +393,7 @@ app/controllers/missions_controller.rb:101:3: C: Keep a blank line before and af
   ^^^^^^^
 app/controllers/missions_controller.rb:102:3: C: Incorrect indentation detected (column 2 instead of 4).
   # ---------------
-  ^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^
 app/controllers/missions_controller.rb:103:5: C: Method has too many lines. [12/10]
     def mission_params ...
     ^^^^^^^^^^^^^^^^^^
@@ -664,7 +664,7 @@ app/helpers/application_helper.rb:68:7: C: Convert if nested inside else to elsi
       ^^
 app/helpers/application_helper.rb:69:7: C: Use 2 (not 0) spaces for indentation.
       ['dans', s / a_year, 'année']
-
+      
 app/helpers/application_helper.rb:83:19: C: Surrounding space missing for operator /.
         ['dans', s/3600, 'heures, à', hm]
                   ^
@@ -681,9 +681,6 @@ app/helpers/comactions_helper.rb:2:1: C: Extra empty line detected at module bod
 app/helpers/comactions_helper.rb:3:3: C: Method has too many lines. [15/10]
   def idtype(ev) ...
   ^^^^^^^^^^^^^^
-app/helpers/comactions_helper.rb:4:5: C: Missing space after #.
-    # ev is a a compaction, ev.action_type is a symbol
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/helpers/comactions_helper.rb:32:5: W: Useless assignment to variable - style.
     style = "status-frame #{used_style}"
     ^^^^^
@@ -750,9 +747,6 @@ app/helpers/comactions_helper.rb:72:81: C: Line is too long. [105/80]
 app/helpers/comactions_helper.rb:75:7: C: Use snake_case for method names.
   def getComactionTitle(c)
       ^^^^^^^^^^^^^^^^^
-app/helpers/comactions_helper.rb:77:8: C: Space inside string interpolation detected.
-    # { t_com_ac_type(c.action_type)} [#{t_com_status(c.status)}] "
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/helpers/comactions_helper.rb:80:7: C: Use snake_case for method names.
   def getComactionDetails(c)
       ^^^^^^^^^^^^^^^^^^^
@@ -906,9 +900,6 @@ app/helpers/people_helper.rb:3:19: C: Do not use spaces inside percent literal d
 app/helpers/people_helper.rb:7:7: C: Annotation keywords like TODO should be all upper case, followed by a colon, and a space, then a note describing the problem.
     # TODO parameter here is hard coded : 3 years
       ^^^^^
-app/helpers/people_helper.rb:8:5: C: Missing space after #.
-    # puts Date.parse(paul.end_date)
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/helpers/people_helper.rb:10:81: C: Line is too long. [117/80]
     step = 3 * 365 / 12 # bar length is full with 12 steps from the grid (and not 12 months) corresponding to 3 years
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1063,18 +1054,12 @@ app/mailers/comaction_mailer.rb:11:81: C: Line is too long. [123/80]
 app/mailers/comaction_mailer.rb:11:83: C: Space inside string interpolation detected.
         e.description = "Mission : #{ comaction.mission.name } pour la société #{ comaction.mission.company.company_name }"
                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/mailers/comaction_mailer.rb:12:9: C: Missing space after #.
-        # e.uid = comaction.id
-        ^^^^^^^^^^^^^^^^^^^^^
 app/mailers/comaction_mailer.rb:13:47: C: Unnecessary spacing detected.
         file_name = comaction.person.firstname  + '\.ics'
                                               ^
 app/mailers/comaction_mailer.rb:13:49: C: Operator + should be surrounded by a single space.
         file_name = comaction.person.firstname  + '\.ics'
                                                 ^
-app/mailers/comaction_mailer.rb:16:9: C: Missing space after #.
-        # ical.publish
-        ^^^^^^^^^^^^^
 app/mailers/comaction_mailer.rb:18:81: C: Line is too long. [93/80]
         mail.attachments[file_name] = { mime_type: 'application/ics', content: ical.to_ical }
                                                                                 ^^^^^^^^^^^^^
@@ -1149,37 +1134,43 @@ app/models/comaction.rb:105:20: C: Operator ? should be surrounded by a single s
 app/models/comaction.rb:105:81: C: Line is too long. [130/80]
       is_new == 1  ? ComactionMailer.one_event_saving(self, u).deliver_now : ComactionMailer.event_saving_upd(self, u).deliver_now
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/comaction.rb:109:3: C: Assignment Branch Condition size for end_time_is_after_and_overlap is too high. [66.37/15]
+app/models/comaction.rb:109:3: C: Assignment Branch Condition size for end_time_is_after_and_overlap is too high. [66.47/15]
   def end_time_is_after_and_overlap
   ^^^
 app/models/comaction.rb:109:3: C: Cyclomatic complexity for end_time_is_after_and_overlap is too high. [21/6]
   def end_time_is_after_and_overlap
   ^^^
-app/models/comaction.rb:109:3: C: Method has too many lines. [20/10]
+app/models/comaction.rb:109:3: C: Method has too many lines. [21/10]
   def end_time_is_after_and_overlap ...
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/models/comaction.rb:109:3: C: Perceived complexity for end_time_is_after_and_overlap is too high. [21/7]
   def end_time_is_after_and_overlap
   ^^^
-app/models/comaction.rb:115:81: C: Line is too long. [173/80]
-      test_condition_ok = other.user_id == user_id && other.start_time.present? && other.end_time.present? && cond_current_time_data # overlap is possible only if c0 is true
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/comaction.rb:128:78: C: Space inside string interpolation detected.
+app/models/comaction.rb:115:81: C: Line is too long. [85/80]
+      o_cond_current_time_data = other.start_time.present? && other.end_time.present?
+                                                                                ^^^^^
+app/models/comaction.rb:116:81: C: Line is too long. [105/80]
+      test_condition_ok = other.user_id == user_id && o_cond_current_time_data && cond_current_time_data 
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/comaction.rb:116:105: C: Trailing whitespace detected.
+      test_condition_ok = other.user_id == user_id && o_cond_current_time_data && cond_current_time_data 
+                                                                                                        ^
+app/models/comaction.rb:129:78: C: Space inside string interpolation detected.
         logger.debug("---------------- occuring overlap : other\'s name : #{ other.name } | self\'s name : #{name}-------------------")
                                                                              ^^^^^^^^^^
-app/models/comaction.rb:128:81: C: Line is too long. [135/80]
+app/models/comaction.rb:129:81: C: Line is too long. [135/80]
         logger.debug("---------------- occuring overlap : other\'s name : #{ other.name } | self\'s name : #{name}-------------------")
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/comaction.rb:129:66: C: Space inside string interpolation detected.
+app/models/comaction.rb:130:66: C: Space inside string interpolation detected.
         errors.add(:end_time, "Superposition de rendez-vous   #{ other.name } avec : (#{ other.person.full_name }) ")
                                                                  ^^^^^^^^^^
-app/models/comaction.rb:129:81: C: Line is too long. [117/80]
+app/models/comaction.rb:130:81: C: Line is too long. [117/80]
         errors.add(:end_time, "Superposition de rendez-vous   #{ other.name } avec : (#{ other.person.full_name }) ")
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/comaction.rb:129:90: C: Space inside string interpolation detected.
+app/models/comaction.rb:130:90: C: Space inside string interpolation detected.
         errors.add(:end_time, "Superposition de rendez-vous   #{ other.name } avec : (#{ other.person.full_name }) ")
                                                                                          ^^^^^^^^^^^^^^^^^^^^^^
-app/models/comaction.rb:137:3: W: Useless private access modifier.
+app/models/comaction.rb:138:3: W: Useless private access modifier.
   private
   ^^^^^^^
 app/models/company.rb:11:1: C: Missing top-level class documentation comment.
@@ -1191,9 +1182,6 @@ app/models/company.rb:12:39: C: Missing space after #.
 app/models/company.rb:23:17: C: Align the parameters of a method call if they span more than one line.
                 against: :company_name, ...
                 ^^^^^^^^^^^^^^^^^^^^^^^
-app/models/company.rb:25:19: C: Missing space after #.
-                  # ignoring: :accents,
-                  ^^^^^^^^^^^^^^^^^^^^
 app/models/company.rb:28:23: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
                       threshold: 0.5
                       ^^^^^^^^^^^^^^
@@ -1230,12 +1218,6 @@ app/models/concerns/people/docx.rb:14:7: C: Use 2 (not 4) spaces for indentation
 app/models/concerns/people/docx.rb:14:33: C: Space found before comma.
           ctt << pa.text.tr('\'' , ' ')
                                 ^
-app/models/concerns/people/docx.rb:20:18: C: Redundant self detected.
-              # { self.id } ,
-                 ^^^^^^^
-app/models/concerns/people/docx.rb:20:18: C: Space inside string interpolation detected.
-              # { self.id } ,
-                 ^^^^^^^
 app/models/concerns/people/docx.rb:28:7: C: Redundant self detected.
       self.remove_index_content
       ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1335,9 +1317,6 @@ app/models/event_slot.rb:29:3: C: Assignment Branch Condition size for working_d
 app/models/event_slot.rb:29:3: C: Method has too many lines. [17/10]
   def working_days_split ...
   ^^^^^^^^^^^^^^^^^^^^^^
-app/models/event_slot.rb:30:5: C: Missing space after #.
-    # split days and does Eventslots out of them, except sundays
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/models/event_slot.rb:32:9: C: Redundant self detected.
     s = self.start_period
         ^^^^^^^^^^^^^^^^^
@@ -1386,9 +1365,6 @@ app/models/event_slot.rb:58:3: C: Method has too many lines. [18/10]
 app/models/event_slot.rb:58:3: C: Perceived complexity for out_from_intersect is too high. [8/7]
   def out_from_intersect(rdv_period)
   ^^^
-app/models/event_slot.rb:59:5: C: Missing space after #.
-    # purpose : self is a free zone, rdv_period is an appointment
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/models/event_slot.rb:60:81: C: Line is too long. [88/80]
     # the rdv_period slices the free_zone in parts when it intersects with the free_zone
                                                                                 ^^^^^^^^
@@ -1634,9 +1610,6 @@ app/models/mission.rb:38:61: C: Space inside square brackets detected.
 app/models/mission.rb:39:65: C: Space found before comma.
                   associated_against: { company: :company_name } ,
                                                                 ^
-app/models/mission.rb:41:21: C: Missing space after #.
-                    # ignoring: :accents,
-                    ^^^^^^^^^^^^^^^^^^^^
 app/models/mission.rb:44:25: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
                         threshold: 0.5
                         ^^^^^^^^^^^^^^
@@ -1650,15 +1623,6 @@ app/models/mission.rb:51:81: C: Line is too long. [93/80]
   scope :active, -> { where('status != ? AND status != ?', :mission_billed, :mission_payed) }
                                                                                 ^^^^^^^^^^^^^
 app/models/mission.rb:55:1: C: Extra blank line detected.
-app/models/mission.rb:57:3: C: Missing space after #.
-  # validates :reward, presence: true
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/mission.rb:58:3: C: Missing space after #.
-  # validates :whished_start_date, presence: true
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/mission.rb:60:3: C: Missing space after #.
-  # validate :max_age_is_max
-  ^^^^^^^^^^^^^^^^^^^^^^^^^
 app/models/mission.rb:65:3: W: Useless private access modifier.
   private
   ^^^^^^^
@@ -1670,9 +1634,6 @@ app/models/person.rb:1:1: C: Carriage return character detected.
 app/models/person.rb:24:1: C: Missing top-level class documentation comment.
 class Person < ApplicationRecord
 ^^^^^
-app/models/person.rb:27:3: C: Missing space after #.
-  # accepts_nested_attributes_for :jobs, allow_destroy: true
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/models/person.rb:40:17: C: Align the parameters of a method call if they span more than one line.
                 against: [[:firstname , 'B'],[:lastname, 'A'], [:note, 'C'] , [:cv_content, 'D']], ...
                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1691,9 +1652,6 @@ app/models/person.rb:40:81: C: Line is too long. [98/80]
 app/models/person.rb:41:57: C: Space found before comma.
                 associated_against: { jobs: :job_title } ,
                                                         ^
-app/models/person.rb:43:19: C: Missing space after #.
-                  # ignoring: :accents,
-                  ^^^^^^^^^^^^^^^^^^^^
 app/models/person.rb:46:23: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
                       threshold: 0.5
                       ^^^^^^^^^^^^^^
@@ -1703,12 +1661,9 @@ app/models/person.rb:47:21: C: Indent the right brace the same as the start of t
 app/models/person.rb:51:15: C: Pass &:update_pg_search_document as an argument to find_each instead of a block.
     find_each { |record| record.update_pg_search_document }
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/person.rb:56:3: C: Missing space after #.
+app/models/person.rb:56:81: C: Line is too long. [124/80]
   # has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/models/person.rb:56:81: C: Line is too long. [123/80]
-  # has_attached_file :cv_docx, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/missing.jpg"
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/models/person.rb:58:61: C: Use %r around regular expression.
   validates_attachment_content_type :cv_docx, content_type: /\Aapplication\/vnd\.openxmlformats/
                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1952,19 +1907,19 @@ app/policies/user_policy.rb:34:5: C: Inconsistent indentation detected.
     ^^^^^^^^^^^^^^^^
 app/policies/user_policy.rb:37:1: C: Extra empty line detected at class body end.
 bin/bundle:1:1: C: Carriage return character detected.
-# !/usr/bin/env ruby.exe ...
+#!/usr/bin/env ruby.exe ...
 ^^^^^^^^^^^^^^^^^^^^^^^
 bin/rails:1:1: C: Carriage return character detected.
-# !/usr/bin/env ruby.exe ...
+#!/usr/bin/env ruby.exe ...
 ^^^^^^^^^^^^^^^^^^^^^^^
 bin/rake:1:1: C: Carriage return character detected.
-# !/usr/bin/env ruby.exe ...
+#!/usr/bin/env ruby.exe ...
 ^^^^^^^^^^^^^^^^^^^^^^^
 bin/setup:1:1: C: Carriage return character detected.
-# !/usr/bin/env ruby.exe ...
+#!/usr/bin/env ruby.exe ...
 ^^^^^^^^^^^^^^^^^^^^^^^
 bin/update:1:1: C: Carriage return character detected.
-# !/usr/bin/env ruby.exe ...
+#!/usr/bin/env ruby.exe ...
 ^^^^^^^^^^^^^^^^^^^^^^^
 config/application.rb:1:1: C: Carriage return character detected.
 require_relative 'boot' ...
@@ -1973,9 +1928,6 @@ config/application.rb:13:1: C: Extra blank line detected.
 config/application.rb:19:3: C: Missing top-level class documentation comment.
   class Application < Rails::Application
   ^^^^^
-config/application.rb:21:5: C: Missing space after #.
-    # locale
-    ^^^^^^^
 config/application.rb:27:81: C: Line is too long. [82/80]
     # Settings in config/environments/* take precedence over those specified here.
                                                                                 ^^
@@ -1990,7 +1942,7 @@ config/application.rb:39:5: C: Use a guard clause instead of wrapping the code i
     ^^
 config/application.rb:39:5: C: Use 2 (not 0) spaces for indentation.
     if message.include?("#original_exception is deprecated")
-
+    
 config/application.rb:39:25: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
     if message.include?("#original_exception is deprecated")
                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2070,12 +2022,9 @@ config/environments/test.rb:2:81: C: Line is too long. [85/80]
   # Settings specified here will take precedence over those in config/application.rb.
                                                                                 ^^^^^
 config/environments/test.rb:25:1: C: Extra blank line detected.
-config/environments/test.rb:26:3: C: Missing space after #.
-  # paperclip
-  ^^^^^^^^^^
-config/environments/test.rb:27:81: C: Line is too long. [123/80]
-  # Paperclip::Attachment.default_options[:path] = "#{ Rails.root }/spec/test_files/:class/:id_partition/:style.:extension"
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/environments/test.rb:27:81: C: Line is too long. [121/80]
+  # Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 config/environments/test.rb:42:81: C: Line is too long. [85/80]
   host = 'localhost:3000' # Don't use this literally; use your local dev host instead
                                                                                 ^^^^^
@@ -3255,12 +3204,9 @@ db/seeds/development.rb:69:13: C: Surrounding space missing for operator =.
 db/seeds/development.rb:69:14: C: Unnecessary spacing detected.
   approx_age=         (18..70).to_a.sample
              ^^^^^^^^
-db/seeds/development.rb:70:3: C: Missing space after #.
+db/seeds/development.rb:70:81: C: Line is too long. [87/80]
   # Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:70:81: C: Line is too long. [86/80]
-  # Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
-                                                                                ^^^^^^
+                                                                                ^^^^^^^
 db/seeds/development.rb:71:7: C: Surrounding space missing for operator =.
   note=              Faker::Lorem.sentence(3)
       ^
@@ -3375,15 +3321,12 @@ jobs= Job.all
 db/seeds/development.rb:125:5: C: Surrounding space missing for operator =.
 jobs= Job.all
     ^
-db/seeds/development.rb:129:1: C: Missing space after #.
+db/seeds/development.rb:129:26: C: Use only ascii symbols in comments.
 # statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/development.rb:129:25: C: Use only ascii symbols in comments.
+                         ^
+db/seeds/development.rb:129:81: C: Line is too long. [100/80]
 # statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
-                        ^
-db/seeds/development.rb:129:81: C: Line is too long. [99/80]
-# statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission facturée', 'Mission payée']
-                                                                                ^^^^^^^^^^^^^^^^^^^
+                                                                                ^^^^^^^^^^^^^^^^^^^^
 db/seeds/development.rb:130:1: C: Block has too many lines. [33/25]
 35.times do |n| ...
 ^^^^^^^^^^^^^^^
@@ -3661,12 +3604,9 @@ db/seeds/test.rb:69:13: C: Surrounding space missing for operator =.
 db/seeds/test.rb:69:14: C: Unnecessary spacing detected.
   approx_age=         (18..70).to_a.sample
              ^^^^^^^^
-db/seeds/test.rb:70:3: C: Missing space after #.
+db/seeds/test.rb:70:81: C: Line is too long. [87/80]
   # Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/seeds/test.rb:70:81: C: Line is too long. [86/80]
-  # Time.zone.now.parse(Faker::Time:between(70.years.ago, 18.years.ago)).strftime("%F")
-                                                                                ^^^^^^
+                                                                                ^^^^^^^
 db/seeds/test.rb:71:7: C: Surrounding space missing for operator =.
   note=              Faker::Lorem.sentence(3)
       ^
@@ -3897,14 +3837,11 @@ db/seeds/test.rb:196:1: W: Useless assignment to variable - comactions.
 comactions = Comaction.all
 ^^^^^^^^^^
 db/seeds.rb:1:1: C: Carriage return character detected.
-load(Rails.root.join( 'db', 'seeds', "#{ Rails.env.downcase }.rb")) ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+load(Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb")) ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 db/seeds.rb:1:22: C: Space inside parentheses detected.
-load(Rails.root.join( 'db', 'seeds', "#{ Rails.env.downcase }.rb"))
+load(Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb"))
                      ^
-db/seeds.rb:1:42: C: Space inside string interpolation detected.
-load(Rails.root.join( 'db', 'seeds', "#{ Rails.env.downcase }.rb"))
-                                         ^^^^^^^^^^^^^^^^^^
 lib/extensions/business_month_calendar.rb:1:1: C: Carriage return character detected.
 # ---------- BusinessMonthCalendar ------------------------------ ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3953,176 +3890,70 @@ lib/extensions/hash/merging.rb:5:29: W: Unused block argument - key. If it's nec
 test/controllers/account_activations_controller_test.rb:1:1: C: Carriage return character detected.
 require 'test_helper' ...
 ^^^^^^^^^^^^^^^^^^^^^
-test/controllers/comactions_controller_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/controllers/comactions_controller_test.rb:15:1: C: Class has too many lines. [118/100]
-class ComactionControllerTest < ActionDispatch::IntegrationTest ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/comactions_controller_test.rb:22:1: C: Extra empty line detected at method body end.
-test/controllers/comactions_controller_test.rb:30:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get show" do
-       ^^^^^^^^^^^^^^^^^
-test/controllers/comactions_controller_test.rb:50:81: C: Line is too long. [83/80]
-  test 'should validate and redirect comaction updates to comactions index page' do
-                                                                                ^^^
-test/controllers/comactions_controller_test.rb:93:24: C: Space found before comma.
-    post comactions_url ,
-                       ^
-test/controllers/comactions_controller_test.rb:94:7: C: Align the parameters of a method call if they span more than one line.
-      params: { ...
-      ^^^^^^^^^
-test/controllers/comactions_controller_test.rb:102:5: C: Indent the right brace the same as the start of the line where the left brace is.
-    }
-    ^
-test/controllers/comactions_controller_test.rb:131:45: C: Surrounding space missing for operator *.
-        end_time: @comaction.start_time - 60*60*24
-                                            ^
-test/controllers/comactions_controller_test.rb:131:48: C: Surrounding space missing for operator *.
-        end_time: @comaction.start_time - 60*60*24
-                                               ^
-test/controllers/comactions_controller_test.rb:141:5: W: Useless assignment to variable - delta.
-    delta = @former_comaction.end_time - @former_comaction.start_time
-    ^^^^^
-test/controllers/comactions_controller_test.rb:145:54: C: Surrounding space missing for operator *.
-        start_time: @former_comaction.start_time + 30*60,
-                                                     ^
-test/controllers/comactions_controller_test.rb:146:50: C: Surrounding space missing for operator *.
-        end_time: @former_comaction.end_time + 30*60
-                                                 ^
-test/controllers/comactions_controller_test.rb:152:1: C: Extra blank line detected.
-test/controllers/comactions_controller_test.rb:152:1: C: Extra empty line detected at class body end.
-test/controllers/companies_controller_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:9:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get edit" do
-       ^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:15:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect home when disconnected" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:20:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get new" do
-       ^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:26:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get show" do
-       ^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:32:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect update" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:34:81: C: Line is too long. [94/80]
-    patch company_path(@company), params: { company: { company_name: @company.company_name } }
-                                                                                ^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:39:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should edit when wrong update" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:41:68: C: Space missing after colon.
-    patch company_path(@company), params: { company: { company_name:""} }
-                                                                   ^
-test/controllers/companies_controller_test.rb:41:69: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    patch company_path(@company), params: { company: { company_name:""} }
-                                                                    ^^
-test/controllers/companies_controller_test.rb:41:71: C: Space inside } missing.
-    patch company_path(@company), params: { company: { company_name:""} }
-                                                                      ^
-test/controllers/companies_controller_test.rb:46:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should list people from a company" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:53:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "Should get properly sorted list" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:55:5: W: Useless assignment to variable - company.
-    company = Company.order('company_name DESC').first
-    ^^^^^^^
-test/controllers/companies_controller_test.rb:60:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should create company" do
-       ^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:64:9: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
-        'company' => { ...
-        ^^^^^^^^^^^^^^
-test/controllers/companies_controller_test.rb:69:25: C: Space missing after comma.
-      post companies_url,params: @some_params
-                        ^
-test/controllers/companies_controller_test.rb:73:1: C: Extra empty line detected at class body end.
-test/controllers/jobs_controller_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/controllers/jobs_controller_test.rb:4:3: C: Assignment Branch Condition size for setup is too high. [15.23/15]
-  def setup
+test/controllers/comactions_controller_test.rb:152:1: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+end
+^^^
+test/controllers/companies_controller_test.rb:18:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
   ^^^
-test/controllers/jobs_controller_test.rb:4:3: C: Method has too many lines. [19/10]
-  def setup ...
-  ^^^^^^^^^
-test/controllers/jobs_controller_test.rb:6:9: C: Surrounding space missing for operator =.
-    @job= create(:job)
-        ^
-test/controllers/jobs_controller_test.rb:9:10: C: Surrounding space missing for operator =.
-    @user= @job.person.user
-         ^
-test/controllers/jobs_controller_test.rb:11:9: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
-        'job' => { ...
-        ^^^^^^^^^^
-test/controllers/jobs_controller_test.rb:13:24: C: Operator => should be surrounded by a single space.
-          'start_date' =>  Date.today.years_ago(10),
-                       ^^
-test/controllers/jobs_controller_test.rb:14:22: C: Operator => should be surrounded by a single space.
-          'end_date' =>  Date.today.years_ago(8),
-                     ^^
-test/controllers/jobs_controller_test.rb:17:23: C: Operator => should be surrounded by a single space.
-          'person_id' =>  @person.id,
-                      ^^
-test/controllers/jobs_controller_test.rb:18:24: C: Operator => should be surrounded by a single space.
-          'company_id' =>  @company.id,
-                       ^^
-test/controllers/jobs_controller_test.rb:19:21: C: Operator => should be surrounded by a single space.
-          'user_id' =>  @user.id,
-                    ^^
-test/controllers/jobs_controller_test.rb:20:20: C: Operator => should be surrounded by a single space.
-          'no_end' =>  false
-                   ^^
-test/controllers/jobs_controller_test.rb:21:7: C: Indent the right brace the same as the start of the line where the left brace is.
-      }
-      ^
-test/controllers/jobs_controller_test.rb:26:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get edit" do
-       ^^^^^^^^^^^^^^^^^
-test/controllers/jobs_controller_test.rb:31:7: C: Unnecessary spacing detected.
-  test  'should update' do
-      ^
-test/controllers/jobs_controller_test.rb:31:7: C: Put one space between the method name and the first argument.
-  test  'should update' do
-      ^^
-test/controllers/jobs_controller_test.rb:33:54: C: Space missing after colon.
-                                            job_title:'testeur',
-                                                     ^
-test/controllers/jobs_controller_test.rb:35:36: C: Closing hash brace must be on the same line as the last hash element when opening brace is on the same line as the first hash element.
-                                   }
-                                   ^
-test/controllers/jobs_controller_test.rb:39:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get new" do
-       ^^^^^^^^^^^^^^^^
-test/controllers/jobs_controller_test.rb:44:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get index" do
-       ^^^^^^^^^^^^^^^^^^
-test/controllers/jobs_controller_test.rb:49:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should create job" do
-       ^^^^^^^^^^^^^^^^^^^
-test/controllers/jobs_controller_test.rb:51:18: C: Space found before comma.
-    post jobs_url , params: @some_params
-                 ^
-test/controllers/jobs_controller_test.rb:56:34: C: Space missing after comma.
+test/controllers/companies_controller_test.rb:24:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/companies_controller_test.rb:30:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/companies_controller_test.rb:37:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/companies_controller_test.rb:44:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/companies_controller_test.rb:51:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/companies_controller_test.rb:58:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/companies_controller_test.rb:72:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/jobs_controller_test.rb:42:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/jobs_controller_test.rb:47:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/jobs_controller_test.rb:53:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/jobs_controller_test.rb:55:47: E: unexpected token kWHEN
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'should redirect to person's path list when destroy'
+                                              ^^^^
+test/controllers/jobs_controller_test.rb:56:24: E: unexpected token tCONSTANT
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
     assert_difference 'Job.count',-1 do
-                                 ^
-test/controllers/jobs_controller_test.rb:62:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should show double jobs" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/jobs_controller_test.rb:63:5: W: Useless assignment to variable - job1.
-    job1 = create(:job, no_end:  true, person: @person)
-    ^^^^
-test/controllers/jobs_controller_test.rb:64:31: C: Unnecessary spacing detected.
-    job2 = build(:job, no_end:  true, person: @person)
-                              ^
-test/controllers/jobs_controller_test.rb:67:1: C: Extra empty line detected at class body end.
+                       ^^^
+test/controllers/jobs_controller_test.rb:62:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'should show double jobs'
+        ^^^^^^
+test/controllers/jobs_controller_test.rb:62:32: F: unterminated string meets end of file
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'should show double jobs'
+                               ^
 test/controllers/missions_controller_test.rb:11:18: E: unexpected token tCOLON
 (Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
         'mission': {
@@ -4147,142 +3978,122 @@ test/controllers/missions_controller_test.rb:21:20: E: unexpected token tCOLON
 (Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
           'is_done':  false
                    ^
-test/controllers/missions_controller_test.rb:93:1: E: unexpected token $end
+test/controllers/missions_controller_test.rb:32:9: E: unexpected token tIDENTIFIER
 (Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
-test/controllers/people_controller_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/controllers/people_controller_test.rb:9:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get edit" do
-       ^^^^^^^^^^^^^^^^^
-test/controllers/people_controller_test.rb:15:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect home when disconnected" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/people_controller_test.rb:20:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get new" do
-       ^^^^^^^^^^^^^^^^
-test/controllers/people_controller_test.rb:26:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get show" do
-       ^^^^^^^^^^^^^^^^^
-test/controllers/people_controller_test.rb:32:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect update" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/people_controller_test.rb:34:81: C: Line is too long. [106/80]
-    patch person_path(@person), params: { person: { firstname: @person.firstname, email: @person.email } }
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/people_controller_test.rb:39:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should edit when wrong update" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/people_controller_test.rb:41:61: C: Space missing after colon.
-    patch person_path(@person), params: { person: { lastname:"", email: @person.email } }
-                                                            ^
-test/controllers/people_controller_test.rb:41:62: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    patch person_path(@person), params: { person: { lastname:"", email: @person.email } }
-                                                             ^^
-test/controllers/people_controller_test.rb:41:81: C: Line is too long. [89/80]
-    patch person_path(@person), params: { person: { lastname:"", email: @person.email } }
-                                                                                ^^^^^^^^^
-test/controllers/people_controller_test.rb:45:1: C: Extra empty line detected at class body end.
-test/controllers/sessions_controller_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/controllers/sessions_controller_test.rb:4:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get new" do
-       ^^^^^^^^^^^^^^^^
-test/controllers/sessions_controller_test.rb:8:1: C: Extra empty line detected at class body end.
-test/controllers/static_pages_controller_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:4:1: C: Extra empty line detected at class body beginning.
-test/controllers/static_pages_controller_test.rb:6:26: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @base_title = I18n.t("brand")
-                         ^^^^^^^
-test/controllers/static_pages_controller_test.rb:15:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get root" do
-       ^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:20:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get about" do
-       ^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:23:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "title", "#{ I18n.t("about")} | #{@base_title }"
-                  ^^^^^^^
-test/controllers/static_pages_controller_test.rb:23:32: C: Space inside string interpolation detected.
-    assert_select "title", "#{ I18n.t("about")} | #{@base_title }"
-                               ^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:23:39: C: Prefer single-quoted strings inside interpolations.
-    assert_select "title", "#{ I18n.t("about")} | #{@base_title }"
-                                      ^^^^^^^
-test/controllers/static_pages_controller_test.rb:23:53: C: Space inside string interpolation detected.
-    assert_select "title", "#{ I18n.t("about")} | #{@base_title }"
-                                                    ^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:26:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get contact" do
-       ^^^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:29:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "title", "#{ I18n.t("contact")} | #{@base_title }"
-                  ^^^^^^^
-test/controllers/static_pages_controller_test.rb:29:32: C: Space inside string interpolation detected.
-    assert_select "title", "#{ I18n.t("contact")} | #{@base_title }"
-                               ^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:29:39: C: Prefer single-quoted strings inside interpolations.
-    assert_select "title", "#{ I18n.t("contact")} | #{@base_title }"
-                                      ^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:29:55: C: Space inside string interpolation detected.
-    assert_select "title", "#{ I18n.t("contact")} | #{@base_title }"
-                                                      ^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:32:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should search and find people" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:35:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "div.person>a", @person.full_name
-                  ^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:38:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should search and find missions" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:41:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "div.mission>strong>a", @mission.name
-                  ^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:44:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should search and find companies" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:47:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "div.company>a>span", @company.company_name
-                  ^^^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:50:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should not allow empty search" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/static_pages_controller_test.rb:51:39: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    get search_path, params: { quest: " "}
-                                      ^^^
-test/controllers/static_pages_controller_test.rb:51:42: C: Space inside } missing.
-    get search_path, params: { quest: " "}
-                                         ^
-test/controllers/static_pages_controller_test.rb:57:1: C: Extra empty line detected at class body end.
-test/controllers/users_controller_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:9:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get new" do
-       ^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:15:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect index when not logged in" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:20:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect edit when logged in as wrong user" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:27:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect update when logged in as wrong user" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:29:81: C: Line is too long. [86/80]
-    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
-                                                                                ^^^^^^
-test/controllers/users_controller_test.rb:34:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect destroy when not logged in" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:41:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should redirect destroy when logged in as a non-admin" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/controllers/users_controller_test.rb:48:1: C: Extra empty line detected at class body end.
+  test 'should get edit'
+        ^^^^^^
+test/controllers/missions_controller_test.rb:38:10: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test  'should update' do
+         ^^^^^^
+test/controllers/missions_controller_test.rb:44:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'should create mission'
+        ^^^^^^
+test/controllers/missions_controller_test.rb:51:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'should get new'
+        ^^^^^^
+test/controllers/missions_controller_test.rb:57:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'should get show'
+        ^^^^^^
+test/controllers/missions_controller_test.rb:63:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'should get index'
+        ^^^^^^
+test/controllers/missions_controller_test.rb:69:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'admin should see other's missions '
+        ^^^^^
+test/controllers/missions_controller_test.rb:75:17: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'shouldn't destroy mission'
+                ^
+test/controllers/missions_controller_test.rb:77:27: E: unexpected token tCONSTANT
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+    assert_no_difference 'Mission.count' do
+                          ^^^^^^^
+test/controllers/missions_controller_test.rb:83:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'should destroy mission'
+        ^^^^^^
+test/controllers/missions_controller_test.rb:85:24: E: unexpected token tCONSTANT
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+    assert_difference 'Mission.count',-1 do
+                       ^^^^^^^
+test/controllers/missions_controller_test.rb:85:37: F: unterminated string meets end of file
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+    assert_difference 'Mission.count',-1 do
+                                    ^
+test/controllers/people_controller_test.rb:18:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/people_controller_test.rb:24:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/people_controller_test.rb:30:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/people_controller_test.rb:37:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/people_controller_test.rb:44:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/sessions_controller_test.rb:9:1: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+end
+^^^
+test/controllers/static_pages_controller_test.rb:24:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/static_pages_controller_test.rb:30:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/static_pages_controller_test.rb:36:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/static_pages_controller_test.rb:42:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/static_pages_controller_test.rb:48:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/static_pages_controller_test.rb:56:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/users_controller_test.rb:18:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/users_controller_test.rb:25:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/users_controller_test.rb:32:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/users_controller_test.rb:39:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/controllers/users_controller_test.rb:47:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
 test/factories/comaction.rb:1:1: C: Carriage return character detected.
 # Table name: comactions ...
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4404,30 +4215,21 @@ test/factories/mission.rb:13:11: C: Unnecessary spacing detected.
 test/factories/person.rb:1:1: C: Carriage return character detected.
 FactoryBot.define do ...
 ^^^^^^^^^^^^^^^^^^^^
-test/factories/person.rb:5:5: C: Missing space after #.
+test/factories/person.rb:5:81: C: Line is too long. [93/80]
     # email { "#{ firstname.sub(/\s/, '_')}.#{ lastname.sub(/\s/, '_')}@tryme.com".downcase }
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/factories/person.rb:5:81: C: Line is too long. [92/80]
-    # email { "#{ firstname.sub(/\s/, '_')}.#{ lastname.sub(/\s/, '_')}@tryme.com".downcase }
-                                                                                ^^^^^^^^^^^^
+                                                                                ^^^^^^^^^^^^^
 test/factories/person.rb:10:36: C: Space missing inside }.
     note { Faker::Lorem.sentence(4)}
                                    ^
-test/factories/person.rb:18:5: C: Missing space after #.
+test/factories/person.rb:18:81: C: Line is too long. [93/80]
     # email { "#{ firstname.sub(/\s/, '_')}.#{ lastname.sub(/\s/, '_')}@tryme.com".downcase }
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/factories/person.rb:18:81: C: Line is too long. [92/80]
-    # email { "#{ firstname.sub(/\s/, '_')}.#{ lastname.sub(/\s/, '_')}@tryme.com".downcase }
-                                                                                ^^^^^^^^^^^^
+                                                                                ^^^^^^^^^^^^^
 test/factories/person.rb:23:36: C: Space missing inside }.
     note { Faker::Lorem.sentence(4)}
                                    ^
-test/factories/person.rb:26:28: C: Space inside string interpolation detected.
-    cv_docx { File.new("#{ Rails.root }/test/factories/test.docx")}
-                           ^^^^^^^^^^
-test/factories/person.rb:26:67: C: Space missing inside }.
-    cv_docx { File.new("#{ Rails.root }/test/factories/test.docx")}
-                                                                  ^
+test/factories/person.rb:26:65: C: Space missing inside }.
+    cv_docx { File.new("#{Rails.root}/test/factories/test.docx")}
+                                                                ^
 test/factories/user.rb:1:1: C: Carriage return character detected.
 FactoryBot.define do ...
 ^^^^^^^^^^^^^^^^^^^^
@@ -4449,291 +4251,82 @@ test/factories/user.rb:19:29: C: Prefer single-quoted strings when you don't nee
 test/factories/user.rb:21:54: C: Space missing inside }.
     password_digest         { User.digest('password')}
                                                      ^
-test/helpers/sessions_helper_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/helpers/sessions_helper_test.rb:4:1: C: Extra empty line detected at class body beginning.
-test/helpers/sessions_helper_test.rb:10:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "current_user returns right user when session is nil" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/helpers/sessions_helper_test.rb:15:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "current_user returns nil when remember digest is wrong" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/helpers/sessions_helper_test.rb:20:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "current_user is ok " do
-       ^^^^^^^^^^^^^^^^^^^^^
-test/helpers/sessions_helper_test.rb:22:39: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_equal current_user, @user, "logged guy is current_user"
-                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/application_helper_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/integration/application_helper_test.rb:4:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "full title helper" do
-       ^^^^^^^^^^^^^^^^^^^
-test/integration/application_helper_test.rb:5:5: C: Use snake_case for variable names.
-    siteToBuild = I18n.t("brand")
-    ^^^^^^^^^^^
-test/integration/application_helper_test.rb:5:26: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    siteToBuild = I18n.t("brand")
-                         ^^^^^^^
-test/integration/application_helper_test.rb:6:29: C: Unnecessary spacing detected.
-    assert_equal full_title,      siteToBuild
-                            ^^^^^
-test/integration/application_helper_test.rb:7:29: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_equal full_title("Help"), "Help | "  +  siteToBuild
-                            ^^^^^^
-test/integration/application_helper_test.rb:7:38: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_equal full_title("Help"), "Help | "  +  siteToBuild
-                                     ^^^^^^^^^
-test/integration/application_helper_test.rb:7:47: C: Unnecessary spacing detected.
-    assert_equal full_title("Help"), "Help | "  +  siteToBuild
-                                              ^
-test/integration/application_helper_test.rb:7:49: C: Operator + should be surrounded by a single space.
-    assert_equal full_title("Help"), "Help | "  +  siteToBuild
-                                                ^
-test/integration/application_helper_test.rb:7:50: C: Unnecessary spacing detected.
-    assert_equal full_title("Help"), "Help | "  +  siteToBuild
-                                                 ^
-test/integration/comactions_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:4:1: C: Use 2 (not 1) spaces for indentation.
-	def setup
-^
-test/integration/comactions_test.rb:4:1: C: Tab detected.
-	def setup
-^
-test/integration/comactions_test.rb:5:1: C: Tab detected.
-		@comaction = create(:comaction)
-^^
-test/integration/comactions_test.rb:5:2: C: Use 2 (not 1) spaces for indentation.
-		@comaction = create(:comaction)
- ^
-test/integration/comactions_test.rb:6:1: C: Tab detected.
-		@user = create(:user)
-^^
-test/integration/comactions_test.rb:7:1: C: Tab detected.
-		@mission = create (:mission)
-^^
-test/integration/comactions_test.rb:7:20: W: (...) interpreted as grouped expression.
-		@mission = create (:mission)
-                   ^
-test/integration/comactions_test.rb:7:21: C: Don't use parentheses around a literal.
-		@mission = create (:mission)
-                    ^^^^^^^^^^
-test/integration/comactions_test.rb:8:1: C: Tab detected.
-		@person = create(:person)
-^^
-test/integration/comactions_test.rb:9:1: C: Tab detected.
-		log_in_as(@user)
-^^
-test/integration/comactions_test.rb:10:1: C: Tab detected.
+test/helpers/sessions_helper_test.rb:18:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/helpers/sessions_helper_test.rb:23:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/application_helper_test.rb:9:1: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+end
+^^^
+test/integration/comactions_test.rb:32:2: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
 	end
-^
-test/integration/comactions_test.rb:12:1: C: Tab detected.
-	test "should comaction post be a success" do
-^
-test/integration/comactions_test.rb:12:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-	test "should comaction post be a success" do
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:13:1: C: Tab detected.
-		comaction2Param  = attributes_for(:comaction)
-^^
-test/integration/comactions_test.rb:13:2: C: Use 2 (not 1) spaces for indentation.
-		comaction2Param  = attributes_for(:comaction)
- ^
-test/integration/comactions_test.rb:13:3: C: Use snake_case for variable names.
-		comaction2Param  = attributes_for(:comaction)
-  ^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:13:18: C: Unnecessary spacing detected.
-		comaction2Param  = attributes_for(:comaction)
-                 ^
-test/integration/comactions_test.rb:13:20: C: Operator = should be surrounded by a single space.
-		comaction2Param  = attributes_for(:comaction)
-                   ^
-test/integration/comactions_test.rb:14:1: C: Tab detected.
-		comaction2Param['person_id'] = @person.id
-^^
-test/integration/comactions_test.rb:15:1: C: Tab detected.
-		comaction2Param['mission_id'] = @mission.id
-^^
-test/integration/comactions_test.rb:16:1: C: Tab detected.
-		get new_comaction_path
-^^
-test/integration/comactions_test.rb:17:1: C: Tab detected.
-		post comactions_path, params: { comaction: comaction2Param }
-^^
-test/integration/comactions_test.rb:18:1: C: Tab detected.
-		follow_redirect!
-^^
-test/integration/comactions_test.rb:19:1: C: Tab detected.
-	  assert_response :success
-^
-test/integration/comactions_test.rb:19:4: C: Inconsistent indentation detected.
-	  assert_response :success
-   ^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:20:1: C: Tab detected.
-		assert_template partial: '_month_calendar', count: 1
-^^
-test/integration/comactions_test.rb:21:1: C: Tab detected.
+ ^^^
+test/integration/comactions_test.rb:42:2: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
 	end
-^
-test/integration/comactions_test.rb:23:1: C: Tab detected.
-	test "should filter with statuses" do
-^
-test/integration/comactions_test.rb:23:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-	test "should filter with statuses" do
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:24:1: C: Tab detected.
-		@comaction_hired = create(:comaction_hired)
-^^
-test/integration/comactions_test.rb:24:2: C: Use 2 (not 1) spaces for indentation.
-		@comaction_hired = create(:comaction_hired)
- ^
-test/integration/comactions_test.rb:25:1: C: Tab detected.
-		@comaction_hired.update(user_id: @user.id)
-^^
-test/integration/comactions_test.rb:26:1: C: Tab detected.
-		get comactions_url,
-^^
-test/integration/comactions_test.rb:27:1: C: Tab detected.
-				params: {
-^^^^
-test/integration/comactions_test.rb:27:5: C: Align the parameters of a method call if they span more than one line.
-				params: { ...
-    ^^^^^^^^^
-test/integration/comactions_test.rb:28:1: C: Tab detected.
-					filter: 'hired',
-^^^^^
-test/integration/comactions_test.rb:28:6: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
-					filter: 'hired',
-     ^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:29:1: C: Tab detected.
-					v: 'table_view' }
-^^^^^
-test/integration/comactions_test.rb:29:22: C: Closing hash brace must be on the line after the last hash element when opening brace is on a separate line from the first hash element.
-					v: 'table_view' }
-                     ^
-test/integration/comactions_test.rb:30:1: C: Tab detected.
-		  assert_select '.status>small' , { minimum: 1, text: 'Engagé'}
-^^
-test/integration/comactions_test.rb:30:5: C: Inconsistent indentation detected.
-		  assert_select '.status>small' , { minimum: 1, text: 'Engagé'}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:30:34: C: Space found before comma.
-		  assert_select '.status>small' , { minimum: 1, text: 'Engagé'}
-                                 ^
-test/integration/comactions_test.rb:30:37: C: Redundant curly braces around a hash parameter.
-		  assert_select '.status>small' , { minimum: 1, text: 'Engagé'}
-                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:30:65: C: Space inside } missing.
-		  assert_select '.status>small' , { minimum: 1, text: 'Engagé'}
-                                                                ^
-test/integration/comactions_test.rb:31:1: C: Extra empty line detected at block body end.
-test/integration/comactions_test.rb:32:1: C: Tab detected.
-	end
-^
-test/integration/comactions_test.rb:34:1: C: Tab detected.
-	test "should filter with statuses and fail" do
-^
-test/integration/comactions_test.rb:34:7: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-	test "should filter with statuses and fail" do
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:35:1: C: Tab detected.
-		@comaction_hired = create(:comaction_hired)
-^^
-test/integration/comactions_test.rb:35:2: C: Use 2 (not 1) spaces for indentation.
-		@comaction_hired = create(:comaction_hired)
- ^
-test/integration/comactions_test.rb:36:1: C: Tab detected.
-		@comaction_hired.update(user_id: @user.id)
-^^
-test/integration/comactions_test.rb:37:1: C: Tab detected.
-		get comactions_url,
-^^
-test/integration/comactions_test.rb:38:1: C: Tab detected.
-				params: {
-^^^^
-test/integration/comactions_test.rb:38:5: C: Align the parameters of a method call if they span more than one line.
-				params: { ...
-    ^^^^^^^^^
-test/integration/comactions_test.rb:39:1: C: Tab detected.
-					filter: 'appointed',
-^^^^^
-test/integration/comactions_test.rb:39:6: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
-					filter: 'appointed',
-     ^^^^^^^^^^^^^^^^^^^
-test/integration/comactions_test.rb:40:1: C: Tab detected.
-					v: 'table_view' }
-^^^^^
-test/integration/comactions_test.rb:40:22: C: Closing hash brace must be on the line after the last hash element when opening brace is on a separate line from the first hash element.
-					v: 'table_view' }
-                     ^
-test/integration/comactions_test.rb:41:1: C: Tab detected.
-		assert_select 'div.mission_data', false
-^^
-test/integration/comactions_test.rb:42:1: C: Tab detected.
-	end
-^
-test/integration/comactions_test.rb:43:1: C: Extra empty line detected at class body end.
-test/integration/companies_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/integration/companies_test.rb:6:10: C: Surrounding space missing for operator =.
-    @user= create(:user)
-         ^
-test/integration/companies_test.rb:10:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get new on saving error" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/companies_test.rb:18:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should land on show when saving" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/companies_test.rb:24:18: W: Ambiguous regexp literal. Parenthesize the method arguments if it's surely a regexp literal, or add a whitespace to the right of the / if it should be a division.
+ ^^^
+test/integration/companies_test.rb:24:18: W: ambiguous first argument; put parentheses or a space even after the operator
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
     assert_match /Société sauvegardée/, flash[:info]
                  ^
-test/integration/missions_test.rb:4:3: C: Block has too many lines. [26/25]
-  test "admin should see other's missions " do ...
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/missions_test.rb:11:9: C: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
-        'mission' => { ...
-        ^^^^^^^^^^^^^^
-test/integration/missions_test.rb:13:32: C: Operator => should be surrounded by a single space.
+test/integration/companies_test.rb:25:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/companies_test.rb:33:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/missions_test.rb:4:32: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'admin should see other's missions '
+                               ^
+test/integration/missions_test.rb:11:10: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+        'mission' => {
+         ^^^^^^^
+test/integration/missions_test.rb:12:12: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+          'name' => 'Yet another',
+           ^^^^
+test/integration/missions_test.rb:13:12: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
           'whished_start_date' =>  Date.today.years_ago(-8),
-                               ^^
-test/integration/missions_test.rb:14:20: C: Operator => should be surrounded by a single space.
+           ^^^^^^^^^^^^^^^^^^
+test/integration/missions_test.rb:14:12: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
           'reward' =>  2222,
-                   ^^
-test/integration/missions_test.rb:15:25: C: Operator => should be surrounded by a single space.
+           ^^^^^^
+test/integration/missions_test.rb:15:12: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
           'paid_amount' =>  111,
-                        ^^
-test/integration/missions_test.rb:16:22: C: Operator => should be surrounded by a single space.
+           ^^^^^^^^^^^
+test/integration/missions_test.rb:16:12: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
           'criteria' =>  "test",
-                     ^^
-test/integration/missions_test.rb:16:26: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-          'criteria' =>  "test",
-                         ^^^^^^
-test/integration/missions_test.rb:17:23: C: Operator => should be surrounded by a single space.
+           ^^^^^^^^
+test/integration/missions_test.rb:17:12: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
           'person_id' =>  @person.id,
-                      ^^
-test/integration/missions_test.rb:18:24: C: Operator => should be surrounded by a single space.
+           ^^^^^^^^^
+test/integration/missions_test.rb:18:12: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
           'company_id' =>  @company.id,
-                       ^^
-test/integration/missions_test.rb:20:7: C: Indent the right brace the same as the start of the line where the left brace is.
-      }
-      ^
-test/integration/missions_test.rb:23:5: C: Missing space after #.
-    # add a mission
-    ^^^^^^^^^^^^^^
-test/integration/missions_test.rb:25:22: C: Space found before comma.
-    post missions_url ,  params: @some_params
-                     ^
-test/integration/missions_test.rb:34:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select ".mission>strong>a", "Yet another"
-                  ^^^^^^^^^^^^^^^^^^^
-test/integration/missions_test.rb:34:40: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select ".mission>strong>a", "Yet another"
-                                       ^^^^^^^^^^^^^
+           ^^^^^^^^^^
+test/integration/missions_test.rb:19:12: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+          'user_id' => @user.id
+           ^^^^^^^
+test/integration/missions_test.rb:19:19: F: unterminated string meets end of file
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+          'user_id' => @user.id
+                  ^
 test/integration/password_resets_test.rb:1:1: C: Carriage return character detected.
 require 'test_helper' ...
 ^^^^^^^^^^^^^^^^^^^^^
@@ -4758,52 +4351,62 @@ test/integration/password_resets_test.rb:46:81: C: Line is too long. [94/80]
 test/integration/password_resets_test.rb:50:81: C: Line is too long. [106/80]
               params: { email: user.email, user: { password: 'foobaz', password_confirmation: 'foobaz' } }
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:11:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should get new on saving error" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:20:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "should land on show when saving" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:27:18: W: Ambiguous regexp literal. Parenthesize the method arguments if it's surely a regexp literal, or add a whitespace to the right of the / if it should be a division.
+test/integration/people_test.rb:27:18: W: ambiguous first argument; put parentheses or a space even after the operator
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
     assert_match /Contact sauvegardé/, flash[:success]
                  ^
-test/integration/people_test.rb:30:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "people should get destroyed" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:36:12: C: Surrounding space missing for operator =.
-    @person=first_page_of_people.first
-           ^
-test/integration/people_test.rb:59:55: C: Space found before comma.
+test/integration/people_test.rb:28:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/people_test.rb:43:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/people_test.rb:52:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/people_test.rb:58:22: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+      assert_select 'a[href=?]', person_path(per)
+                     ^
+test/integration/people_test.rb:59:22: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
       assert_select 'a[href=?]', edit_person_path(per) , count: 0 unless per.user_id = @user.id
-                                                      ^
-test/integration/people_test.rb:59:81: C: Line is too long. [95/80]
-      assert_select 'a[href=?]', edit_person_path(per) , count: 0 unless per.user_id = @user.id
-                                                                                ^^^^^^^^^^^^^^^
-test/integration/people_test.rb:59:86: W: Assignment in condition - you probably meant to use ==.
-      assert_select 'a[href=?]', edit_person_path(per) , count: 0 unless per.user_id = @user.id
-                                                                                     ^
-test/integration/people_test.rb:63:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "dependent resources shoud be destroyed when people are" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:73:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "dependent docx resources shoud be destroyed when people are" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:76:14: C: Unnecessary spacing detected.
-    file_path  = @person.cv_docx.url.split(/\?/).first
-             ^
-test/integration/people_test.rb:76:16: C: Operator = should be surrounded by a single space.
-    file_path  = @person.cv_docx.url.split(/\?/).first
-               ^
-test/integration/people_test.rb:77:17: W: File.exists? is deprecated in favor of File.exist?.
-    refute File.exists?(file_path) do
-                ^^^^^^^
-test/integration/people_test.rb:82:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "policy test on destroyed resources" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/people_test.rb:93:1: C: Extra empty line detected at class body end.
+                     ^
+test/integration/people_test.rb:63:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'dependent resources shoud be destroyed when people are'
+        ^^^^^^^^^
+test/integration/people_test.rb:63:48: E: unexpected token kWHEN
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'dependent resources shoud be destroyed when people are'
+                                               ^^^^
+test/integration/people_test.rb:68:24: E: unexpected token tCONSTANT
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+    assert_difference 'Job.count', -1 do
+                       ^^^
+test/integration/people_test.rb:73:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'dependent docx resources shoud be destroyed when people are'
+        ^^^^^^^^^
+test/integration/people_test.rb:73:53: E: unexpected token kWHEN
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'dependent docx resources shoud be destroyed when people are'
+                                                    ^^^^
+test/integration/people_test.rb:82:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'policy test on destroyed resources'
+        ^^^^^^
+test/integration/people_test.rb:89:27: E: unexpected token tCONSTANT
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+    assert_no_difference 'Job.count' do
+                          ^^^
+test/integration/people_test.rb:89:36: F: unterminated string meets end of file
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+    assert_no_difference 'Job.count' do
+                                   ^
 test/integration/site_layout_test.rb:1:1: C: Carriage return character detected.
 require 'test_helper' ...
 ^^^^^^^^^^^^^^^^^^^^^
@@ -4825,225 +4428,46 @@ test/integration/site_layout_test.rb:15:19: C: Prefer single-quoted strings when
 test/integration/site_layout_test.rb:15:39: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
     assert_select "title", full_title("Contact")
                                       ^^^^^^^^^
-test/integration/users_edit_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_edit_test.rb:5:3: C: Use 2 (not 4) spaces for indentation.
-      @user = create(:user)
-  ^^^^
-test/integration/users_edit_test.rb:9:7: C: Unnecessary spacing detected.
-  test  'unsuccessful edit' do
-      ^
-test/integration/users_edit_test.rb:9:7: C: Put one space between the method name and the first argument.
-  test  'unsuccessful edit' do
-      ^^
-test/integration/users_edit_test.rb:14:52: C: Unnecessary spacing detected.
-    patch user_path(@user), params: { user: { name:  "", email: "foo@invalid", password: "foo", password_confirmation: "bar" } }
-                                                   ^
-test/integration/users_edit_test.rb:14:54: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    patch user_path(@user), params: { user: { name:  "", email: "foo@invalid", password: "foo", password_confirmation: "bar" } }
-                                                     ^^
-test/integration/users_edit_test.rb:14:65: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    patch user_path(@user), params: { user: { name:  "", email: "foo@invalid", password: "foo", password_confirmation: "bar" } }
-                                                                ^^^^^^^^^^^^^
-test/integration/users_edit_test.rb:14:81: C: Line is too long. [128/80]
-    patch user_path(@user), params: { user: { name:  "", email: "foo@invalid", password: "foo", password_confirmation: "bar" } }
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_edit_test.rb:14:90: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    patch user_path(@user), params: { user: { name:  "", email: "foo@invalid", password: "foo", password_confirmation: "bar" } }
-                                                                                         ^^^^^
-test/integration/users_edit_test.rb:14:120: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    patch user_path(@user), params: { user: { name:  "", email: "foo@invalid", password: "foo", password_confirmation: "bar" } }
-                                                                                                                       ^^^^^
-test/integration/users_edit_test.rb:19:7: C: Unnecessary spacing detected.
-  test  'failing edit' do
-      ^
-test/integration/users_edit_test.rb:19:7: C: Put one space between the method name and the first argument.
-  test  'failing edit' do
-      ^^
-test/integration/users_edit_test.rb:23:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "h1" ,I18n.t("user.profile_update")
-                  ^^^^
-test/integration/users_edit_test.rb:23:23: C: Space found before comma.
-    assert_select "h1" ,I18n.t("user.profile_update")
-                      ^
-test/integration/users_edit_test.rb:23:24: C: Space missing after comma.
-    assert_select "h1" ,I18n.t("user.profile_update")
-                       ^
-test/integration/users_edit_test.rb:23:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "h1" ,I18n.t("user.profile_update")
-                               ^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_edit_test.rb:25:13: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    email = "foo@bar.com"
-            ^^^^^^^^^^^^^
-test/integration/users_edit_test.rb:26:53: C: Unnecessary spacing detected.
-    patch user_path(@user2), params: { user: { name:  name, email: email, password: "", password_confirmation: "" } }
-                                                    ^
-test/integration/users_edit_test.rb:26:81: C: Line is too long. [117/80]
-    patch user_path(@user2), params: { user: { name:  name, email: email, password: "", password_confirmation: "" } }
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_edit_test.rb:26:85: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    patch user_path(@user2), params: { user: { name:  name, email: email, password: "", password_confirmation: "" } }
-                                                                                    ^^
-test/integration/users_edit_test.rb:26:112: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    patch user_path(@user2), params: { user: { name:  name, email: email, password: "", password_confirmation: "" } }
-                                                                                                               ^^
-test/integration/users_edit_test.rb:28:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "h1" ,I18n.t("user.profile_update")
-                  ^^^^
-test/integration/users_edit_test.rb:28:23: C: Space found before comma.
-    assert_select "h1" ,I18n.t("user.profile_update")
-                      ^
-test/integration/users_edit_test.rb:28:24: C: Space missing after comma.
-    assert_select "h1" ,I18n.t("user.profile_update")
-                       ^
-test/integration/users_edit_test.rb:28:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "h1" ,I18n.t("user.profile_update")
-                               ^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_edit_test.rb:38:13: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    email = "foo@bar.com"
-            ^^^^^^^^^^^^^
-test/integration/users_edit_test.rb:39:13: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    passw = ""
-            ^^
-test/integration/users_edit_test.rb:45:21: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_template "users/edit"
-                    ^^^^^^^^^^^^
-test/integration/users_edit_test.rb:52:1: C: Extra empty line detected at block body beginning.
-test/integration/users_edit_test.rb:55:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "normal user cannot destroy any other" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_index_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_index_test.rb:4:1: C: Extra empty line detected at class body beginning.
-test/integration/users_index_test.rb:10:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "index as admin including pagination and delete links" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_index_test.rb:14:7: C: Missing space after #.
-      # assert_select 'div.pagination'
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_index_test.rb:19:68: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-          assert_select 'a[href=?]', user_path(user), text: I18n.t("delete")
-                                                                   ^^^^^^^^
-test/integration/users_index_test.rb:25:5: W: end at 25, 4 is not aligned with test "index as admin including pagination and delete links" do at 10, 2.
+test/integration/users_edit_test.rb:32:36: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'fail editing somebody else's profile (but with friendly forwarding)'
+                                   ^
+test/integration/users_edit_test.rb:32:76: E: unexpected token tSTRING_BEG
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'fail editing somebody else's profile (but with friendly forwarding)'
+                                                                           ^
+test/integration/users_edit_test.rb:37:14: E: unexpected token tCONSTANT
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+    name  = 'Foo Bar'
+             ^^^
+test/integration/users_edit_test.rb:51:9: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  test 'normal user shouldn't see any user creation link'
+        ^^^^^^
+test/integration/users_edit_test.rb:56:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/users_index_test.rb:31:5: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
     end
     ^^^
-test/integration/users_index_test.rb:27:5: C: Inconsistent indentation detected.
-    test "index as non-admin" do ...
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_index_test.rb:27:10: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    test "index as non-admin" do
-         ^^^^^^^^^^^^^^^^^^^^
-test/integration/users_login_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_login_test.rb:8:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "login with invalid information" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_login_test.rb:9:3: C: Use 2 (not 4) spaces for indentation.
-      get login_path
-  ^^^^
-test/integration/users_login_test.rb:11:52: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      post login_path, params: { session: { email: "", password: "" } }
-                                                   ^^
-test/integration/users_login_test.rb:11:66: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      post login_path, params: { session: { email: "", password: "" } }
-                                                                 ^^
-test/integration/users_login_test.rb:15:7: C: Incorrect indentation detected (column 6 instead of 4).
-      # assert flash.empty?
-      ^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_login_test.rb:18:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "login with valid information" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_login_test.rb:20:81: C: Line is too long. [86/80]
-    post login_path, params: { session: { email: @user.email, password: 'password' } }
-                                                                                ^^^^^^
-test/integration/users_login_test.rb:23:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "a[href=?]", login_path, count: 0
-                  ^^^^^^^^^^^
-test/integration/users_login_test.rb:24:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "a[href=?]", logout_path
-                  ^^^^^^^^^^^
-test/integration/users_login_test.rb:25:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "a[href=?]", edit_user_path(@user)
-                  ^^^^^^^^^^^
-test/integration/users_login_test.rb:31:5: C: Missing space after #.
-    # assert_select "a[href=?]", login_path
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_login_test.rb:32:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "a[href=?]", logout_path,      count: 0
-                  ^^^^^^^^^^^
-test/integration/users_login_test.rb:33:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_select "a[href=?]", user_path(@user), count: 0
-                  ^^^^^^^^^^^
-test/integration/users_login_test.rb:35:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "login with remembering" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_login_test.rb:40:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "login without remembering" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:8:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "invalid signup information" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:9:11: C: Unnecessary spacing detected.
-    @admin  = create(:admin)
-          ^
-test/integration/users_signup_test.rb:9:13: C: Operator = should be surrounded by a single space.
-    @admin  = create(:admin)
-            ^
-test/integration/users_signup_test.rb:13:49: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      post users_path, params: { user: { name:  "",
-                                                ^^
-test/integration/users_signup_test.rb:14:9: C: Align the elements of a hash literal if they span more than one line.
-        email: "user@invalid",
-        ^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:14:16: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        email: "user@invalid",
-               ^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:15:9: C: Align the elements of a hash literal if they span more than one line.
-        password:"foo",
-        ^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:15:17: C: Space missing after colon.
-        password:"foo",
-                ^
-test/integration/users_signup_test.rb:15:18: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        password:"foo",
-                 ^^^^^
-test/integration/users_signup_test.rb:16:9: C: Align the elements of a hash literal if they span more than one line.
-        password_confirmation: "bar",
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:16:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        password_confirmation: "bar",
-                               ^^^^^
-test/integration/users_signup_test.rb:17:9: C: Align the elements of a hash literal if they span more than one line.
-        admin: false } }
-        ^^^^^^^^^^^^
-test/integration/users_signup_test.rb:23:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "valid signup information with account activation" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:24:11: C: Unnecessary spacing detected.
-    @admin  = create(:admin)
-          ^
-test/integration/users_signup_test.rb:24:13: C: Operator = should be surrounded by a single space.
-    @admin  = create(:admin)
-            ^
-test/integration/users_signup_test.rb:30:16: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        email: "user@example.com",
-               ^^^^^^^^^^^^^^^^^^
-test/integration/users_signup_test.rb:31:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        password: "password",
-                  ^^^^^^^^^^
-test/integration/users_signup_test.rb:32:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        password_confirmation: "password",
-                               ^^^^^^^^^^
-test/integration/users_signup_test.rb:33:21: C: Closing hash brace must be on the line after the last hash element when opening brace is on a separate line from the first hash element.
-        admin: true } }
-                    ^
-test/integration/users_signup_test.rb:53:1: C: Extra empty line detected at block body end.
+test/integration/users_login_test.rb:34:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/users_login_test.rb:38:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/users_login_test.rb:46:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/integration/users_signup_test.rb:54:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
 test/mailers/previews/user_mailer_preview.rb:1:1: C: Carriage return character detected.
 # Preview all emails at http://localhost:3000/rails/mailers/user_mailer ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -5056,43 +4480,10 @@ test/mailers/previews/user_mailer_preview.rb:8:35: C: Don't use parentheses arou
                                   ^^^^^^
 test/mailers/previews/user_mailer_preview.rb:16:1: C: Extra empty line detected at method body end.
 test/mailers/previews/user_mailer_preview.rb:18:1: C: Extra empty line detected at class body end.
-test/mailers/user_mailer_test.rb:1:1: C: Carriage return character detected.
-require 'test_helper' ...
-^^^^^^^^^^^^^^^^^^^^^
-test/mailers/user_mailer_test.rb:4:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "account_activation" do
-       ^^^^^^^^^^^^^^^^^^^^
-test/mailers/user_mailer_test.rb:7:41: W: (...) interpreted as grouped expression.
-    mail = UserMailer.account_activation (user)
-                                        ^
-test/mailers/user_mailer_test.rb:7:42: C: Don't use parentheses around a variable.
-    mail = UserMailer.account_activation (user)
-                                         ^^^^^^
-test/mailers/user_mailer_test.rb:8:18: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_equal "Activation de compte", mail.subject
-                 ^^^^^^^^^^^^^^^^^^^^^^
-test/mailers/user_mailer_test.rb:10:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_equal ["no-reply@etienneweil.fr"], mail.from
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^
-test/mailers/user_mailer_test.rb:13:18: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_match "Bienvenue", mail.body.encoded
-                 ^^^^^^^^^^^
-test/mailers/user_mailer_test.rb:14:41: C: Unnecessary spacing detected.
-    assert_match CGI.escape(user.email),  mail.body.encoded
-                                        ^
-test/mailers/user_mailer_test.rb:17:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "password_reset" do
-       ^^^^^^^^^^^^^^^^
-test/mailers/user_mailer_test.rb:21:17: C: Unnecessary spacing detected.
-    assert_equal  I18n.t('mail.password_reset'), mail.subject
-                ^
-test/mailers/user_mailer_test.rb:21:17: C: Put one space between the method name and the first argument.
-    assert_equal  I18n.t('mail.password_reset'), mail.subject
-                ^^
-test/mailers/user_mailer_test.rb:23:5: C: Missing space after #.
-    # assert_equal ['your_sender_adress'], mail.from
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/mailers/user_mailer_test.rb:27:1: C: Extra empty line detected at class body end.
+test/mailers/user_mailer_test.rb:26:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
 test/models/comaction_test.rb:20:1: C: Extra blank line detected.
 test/models/comaction_test.rb:22:1: C: Extra empty line detected at class body beginning.
 test/models/comaction_test.rb:34:31: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
@@ -5111,203 +4502,104 @@ test/models/comaction_test.rb:53:37: C: Space missing after comma.
     assert_equal @comaction.is_dated,1
                                     ^
 test/models/comaction_test.rb:55:1: C: Extra empty line detected at class body end.
-test/models/company_test.rb:14:1: C: Extra empty line detected at class body beginning.
-test/models/company_test.rb:19:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "company should be valid" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/company_test.rb:23:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "company_name should be present" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/company_test.rb:24:29: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @company.company_name = "     "
-                            ^^^^^^^
-test/models/company_test.rb:28:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "company_name should be present - 2 " do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/company_test.rb:29:29: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @company.company_name = ""
-                            ^^
-test/models/company_test.rb:33:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "company_name should not be too long" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/company_test.rb:34:29: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @company.company_name = "a"* 41
-                            ^^^
-test/models/company_test.rb:34:32: C: Surrounding space missing for operator *.
-    @company.company_name = "a"* 41
-                               ^
-test/models/company_test.rb:38:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "company_name should be unique" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/job_test.rb:25:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "job_title should exist" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/job_test.rb:30:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "salary but not too much !" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/job_test.rb:35:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "start_date should exist" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/job_test.rb:40:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "end_date should exist when no_end is false" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/job_test.rb:46:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "start_date should be before end_date" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:1:1: C: Carriage return character detected.
-# == Schema Information ...
-^^^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:36:21: C: Surrounding space missing for operator =.
-    @person.lastname=''
-                    ^
-test/models/person_test.rb:40:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "email validation should accept valid addresses" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:41:23: C: %w-literals should be delimited by ( and ).
-    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:41:81: C: Line is too long. [110/80]
-    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:44:34: C: Space inside string interpolation detected.
-      assert @person.valid?, "#{ valid_address.inspect } should be valid"
-                                 ^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:48:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "email validation should reject invalid addresses" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:49:25: C: %w-literals should be delimited by ( and ).
-    invalid_addresses = %w[useré@example.com USERfoo.COM A_US-ER@foo  dsqfdqsfq fim@]
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:49:69: C: Use only a single space inside array percent literal.
-    invalid_addresses = %w[useré@example.com USERfoo.COM A_US-ER@foo  dsqfdqsfq fim@]
-                                                                    ^^
-test/models/person_test.rb:49:81: C: Line is too long. [85/80]
-    invalid_addresses = %w[useré@example.com USERfoo.COM A_US-ER@foo  dsqfdqsfq fim@]
-                                                                                ^^^^^
-test/models/person_test.rb:52:34: C: Space inside string interpolation detected.
-      refute @person.valid?, "#{ invalid_address.inspect } should be invalid"
-                                 ^^^^^^^^^^^^^^^^^^^^^^^
-test/models/person_test.rb:57:24: C: Surrounding space missing for operator *.
+test/models/company_test.rb:26:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/company_test.rb:31:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/company_test.rb:36:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/company_test.rb:42:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/job_test.rb:33:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/job_test.rb:38:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/job_test.rb:44:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/job_test.rb:51:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/person_test.rb:54:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/person_test.rb:57:22: E: unexpected token tIDENTIFIER
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
     @person.email = 'a'*205 +  '@' + 'b'*47  + '.fr'
-                       ^
-test/models/person_test.rb:57:41: C: Surrounding space missing for operator *.
+                     ^
+test/models/person_test.rb:57:33: F: unexpected `@'
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
     @person.email = 'a'*205 +  '@' + 'b'*47  + '.fr'
-                                        ^
-test/models/person_test.rb:57:44: C: Unnecessary spacing detected.
-    @person.email = 'a'*205 +  '@' + 'b'*47  + '.fr'
-                                           ^
-test/models/person_test.rb:57:46: C: Operator + should be surrounded by a single space.
-    @person.email = 'a'*205 +  '@' + 'b'*47  + '.fr'
-                                             ^
-test/models/person_test.rb:62:25: C: Surrounding space missing for operator =.
-    @person.phone_number='a'* 9
-                        ^
-test/models/person_test.rb:62:29: C: Surrounding space missing for operator *.
-    @person.phone_number='a'* 9
-                            ^
-test/models/person_test.rb:67:25: C: Surrounding space missing for operator =.
-    @person.phone_number='a'* 19
-                        ^
-test/models/person_test.rb:67:29: C: Surrounding space missing for operator *.
-    @person.phone_number='a'* 19
-                            ^
-test/models/user_test.rb:1:1: C: Carriage return character detected.
-# == Schema Information ...
-^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:22:1: C: Extra empty line detected at class body beginning.
-test/models/user_test.rb:31:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "name should be present" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:32:18: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @user.name = "     "
-                 ^^^^^^^
-test/models/user_test.rb:36:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "email should be present" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:37:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @user.email = "     "
-                  ^^^^^^^
-test/models/user_test.rb:41:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "name should not be too long" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:42:18: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @user.name = "a" * 51
-                 ^^^
-test/models/user_test.rb:46:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "email should not be too long" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:47:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @user.email = "a" * 244 + "@example.com"
-                  ^^^
-test/models/user_test.rb:47:31: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @user.email = "a" * 244 + "@example.com"
-                              ^^^^^^^^^^^^^^
-test/models/user_test.rb:51:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "email validation should accept valid addresses" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:52:23: C: %w-literals should be delimited by ( and ).
-    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:52:81: C: Line is too long. [110/80]
-    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
-                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:55:32: C: Space inside string interpolation detected.
-      assert @user.valid?, "#{ valid_address.inspect } should be valid"
-                               ^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:59:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "email addresses should be unique" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:66:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "email addresses should be saved as lower-case" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:67:24: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    mixed_case_email = "Foo@ExAMPle.CoM"
-                       ^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:73:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "password should be present (nonblank)" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:74:52: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @user.password = @user.password_confirmation = " " * 6
-                                                   ^^^
-test/models/user_test.rb:78:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "password should have a minimum length" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:79:52: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @user.password = @user.password_confirmation = "a" * 5
-                                                   ^^^
-test/models/user_test.rb:83:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "authenticated? should return false for a user with nil digest" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:87:8: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "trigram ok" do
-       ^^^^^^^^^^^^
-test/models/user_test.rb:88:18: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    @user.name = "Patrick Person"
-                 ^^^^^^^^^^^^^^^^
-test/models/user_test.rb:89:31: C: Space missing after comma.
-    assert_equal @user.trigram,"PPE", "trigram OK for real"
-                              ^
-test/models/user_test.rb:89:32: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_equal @user.trigram,"PPE", "trigram OK for real"
-                               ^^^^^
-test/models/user_test.rb:89:39: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_equal @user.trigram,"PPE", "trigram OK for real"
-                                      ^^^^^^^^^^^^^^^^^^^^^
-test/models/user_test.rb:91:1: C: Extra empty line detected at class body end.
+                                ^
+test/models/user_test.rb:39:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:44:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:49:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:57:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:64:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:71:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:76:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:81:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:85:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
+test/models/user_test.rb:90:3: E: unexpected token kEND
+(Using Ruby 2.1 parser; configure using TargetRubyVersion parameter, under AllCops)
+  end
+  ^^^
 test/test_helper.rb:1:1: C: Carriage return character detected.
 ENV['RAILS_ENV'] ||= 'test' ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test/test_helper.rb:6:1: C: Missing space after #.
-# require "minitest/reporters"
+#require "minitest/reporters"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test/test_helper.rb:8:1: C: Missing space after #.
-# Minitest::Reporters.use! [ColorPoundSpecReporter.new]
+#Minitest::Reporters.use! [ColorPoundSpecReporter.new]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test/test_helper.rb:10:1: C: Missing space after #.
-# Minitest::Reporters.use! [Minitest::Reporters::HtmlReporter , Minitest::Reporters::ProgressReporter, Minitest::Reporters::SpecReporter ]
+#Minitest::Reporters.use! [Minitest::Reporters::HtmlReporter , Minitest::Reporters::ProgressReporter, Minitest::Reporters::SpecReporter ]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test/test_helper.rb:10:81: C: Line is too long. [137/80]
-# Minitest::Reporters.use! [Minitest::Reporters::HtmlReporter , Minitest::Reporters::ProgressReporter, Minitest::Reporters::SpecReporter ]
+#Minitest::Reporters.use! [Minitest::Reporters::HtmlReporter , Minitest::Reporters::ProgressReporter, Minitest::Reporters::SpecReporter ]
                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test/test_helper.rb:12:1: C: Extra blank line detected.
 test/test_helper.rb:13:7: C: Use nested module/class definitions instead of compact style.
@@ -5340,11 +4632,8 @@ test/test_helper.rb:40:20: C: Space inside string interpolation detected.
 test/test_helper.rb:40:81: C: Line is too long. [99/80]
     msg = "User #{ user.inspect } should NOT be permitted to #{action} #{record}, but is permitted"
                                                                                 ^^^^^^^^^^^^^^^^^^^
-test/test_helper.rb:46:55: C: Space inside string interpolation detected.
-    cls.constantize.new(user, record).public_send("{action.to_s}?")
-                                                      ^^^^^^^^^^^
-test/test_helper.rb:46:62: W: Redundant use of Object#to_s in interpolation.
-    cls.constantize.new(user, record).public_send("#{ action.to_s }?")
-                                                             ^^^^
+test/test_helper.rb:46:61: W: Redundant use of Object#to_s in interpolation.
+    cls.constantize.new(user, record).public_send("#{action.to_s}?")
+                                                            ^^^^
 
-171 files inspected, 1828 offenses detected
+171 files inspected, 1540 offenses detected
