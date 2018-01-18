@@ -7,7 +7,7 @@ class CompaniesTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
   end
 
-  test "should get new on saving error" do
+  test 'should get new on saving error'
     get new_company_path
     assert_template 'companies/new'
     company2 = attributes_for(:company, company_name: '')
@@ -15,7 +15,7 @@ class CompaniesTest < ActionDispatch::IntegrationTest
     assert_template 'companies/new'
   end
 
-  test "should land on show when saving" do
+  test 'should land on show when saving'
     company2 = attributes_for(:company)
     get new_company_path
     post companies_path, params: { company: company2 }
@@ -24,7 +24,7 @@ class CompaniesTest < ActionDispatch::IntegrationTest
     assert_match /Société sauvegardée/, flash[:info]
   end
 
-  test "there's an access to companies's detail page" do
+  test 'there's an access to companies's detail page'
     get companies_path
     Company.all.each do |com|
       # assert_select 'a[href=?]', list_people_path(com)

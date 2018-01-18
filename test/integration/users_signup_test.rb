@@ -5,7 +5,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     ActionMailer::Base.deliveries.clear
   end
 
-  test "invalid signup information" do
+  test 'invalid signup information'
     @admin  = create(:admin)
     log_in_as(@admin)
     get signup_path
@@ -20,7 +20,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template partial: '_form', count: 1
   end
 
-  test "valid signup information with account activation" do
+  test 'valid signup information with account activation'
     @admin  = create(:admin)
     log_in_as(@admin)
     get signup_path

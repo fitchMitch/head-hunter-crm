@@ -8,7 +8,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     @admin = create(:admin)
   end
 
-  test "should get new on saving error" do
+  test 'should get new on saving error'
     log_in_as(@user)
     get new_person_path
     assert_template 'people/new'
@@ -17,7 +17,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     assert_template 'people/new'
   end
 
-  test "should land on show when saving" do
+  test 'should land on show when saving'
     log_in_as(@user)
     person2 = attributes_for(:person)
     get new_person_path
@@ -27,7 +27,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     assert_match /Contact sauvegardé/, flash[:success]
   end
 
-  test "people should get destroyed" do
+  test 'people should get destroyed'
     log_in_as(@user)
     get people_path
     assert_response :success
@@ -42,7 +42,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "ad admin, there's an access to people's detail page" do
+  test 'ad admin, there's an access to people's detail page'
     log_in_as(@admin)
     get people_path
     Person.paginate(page: 1).each do |per|
@@ -51,7 +51,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "as user, there aint no access to people's detail page" do
+  test 'as user, there aint no access to people's detail page'
     log_in_as(@user)
     get people_path
     Person.paginate(page: 1).each do |per|
@@ -60,7 +60,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "dependent resources shoud be destroyed when people are" do
+  test 'dependent resources shoud be destroyed when people are'
     log_in_as(@admin)
     @job = create(:job)
     person = @job.person
@@ -70,7 +70,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "dependent docx resources shoud be destroyed when people are" do
+  test 'dependent docx resources shoud be destroyed when people are'
     log_in_as(@admin)
     get people_path
     file_path  = @person.cv_docx.url.split(/\?/).first
@@ -79,7 +79,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "policy test on destroyed resources" do
+  test 'policy test on destroyed resources'
     @user2 = create(:user2)
     log_in_as(@user2)
     @job = create(:job)

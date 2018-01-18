@@ -27,7 +27,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
-  test "should get show" do
+  test 'should get show'
     log_in_as(@user)
     get comaction_path(@comaction)
     assert_response :success
@@ -141,8 +141,8 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     get edit_comaction_path(@comaction)
     patch comaction_path(@comaction), params: {
       comaction: {
-        start_time: @former_comaction.start_time + 30*60,
-        end_time: @former_comaction.end_time + 30*60
+        start_time: @former_comaction.start_time + 10*60,
+        end_time: @former_comaction.end_time + 10*60
       }
     }
     refute flash.empty?

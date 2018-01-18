@@ -112,7 +112,8 @@ class Comaction < ApplicationRecord
       errors.add :end_time, I18n.t('comaction.upside_down_error')
     end
     Comaction.mine(user_id).each do |other|
-      test_condition_ok = other.user_id == user_id && other.start_time.present? && other.end_time.present? && cond_current_time_data # overlap is possible only if c0 is true
+      o_cond_current_time_data = other.start_time.present? && other.end_time.present?
+      test_condition_ok = other.user_id == user_id && o_cond_current_time_data && cond_current_time_data 
       next if !test_condition_ok || self == other
 
       # there's overlapping in any case Ci below

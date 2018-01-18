@@ -7,7 +7,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     @non_admin = create(:user2)
   end
 
-  test "index as admin including pagination and delete links" do
+  test 'index as admin including pagination and delete links'
       log_in_as(@admin)
       get users_path
       assert_template 'users/index'
@@ -24,7 +24,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
       end
     end
 
-    test "index as non-admin" do
+    test 'index as non-admin'
       log_in_as(@non_admin)
       get users_path
       assert_select 'a', text: 'delete', count: 0

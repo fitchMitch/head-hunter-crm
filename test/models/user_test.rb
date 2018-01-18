@@ -28,27 +28,27 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
-  test "name should be present" do
+  test 'name should be present'
     @user.name = "     "
     refute @user.valid?
   end
 
-  test "email should be present" do
+  test 'email should be present'
     @user.email = "     "
     refute @user.valid?
   end
 
-  test "name should not be too long" do
+  test 'name should not be too long'
     @user.name = "a" * 51
     refute @user.valid?
   end
 
-  test "email should not be too long" do
+  test 'email should not be too long'
     @user.email = "a" * 244 + "@example.com"
     refute @user.valid?
   end
 
-  test "email validation should accept valid addresses" do
+  test 'email validation should accept valid addresses'
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
     valid_addresses.each do |valid_address|
       @user.email = valid_address
@@ -56,35 +56,35 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "email addresses should be unique" do
+  test 'email addresses should be unique'
     duplicate_user = @user.dup
     duplicate_user.email = @user.email.upcase
     @user.save
     refute duplicate_user.valid?
   end
 
-  test "email addresses should be saved as lower-case" do
+  test 'email addresses should be saved as lower-case'
     mixed_case_email = "Foo@ExAMPle.CoM"
     @user.email = mixed_case_email
     @user.save
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
 
-  test "password should be present (nonblank)" do
+  test 'password should be present (nonblank)'
     @user.password = @user.password_confirmation = " " * 6
     refute @user.valid?
   end
 
-  test "password should have a minimum length" do
+  test 'password should have a minimum length'
     @user.password = @user.password_confirmation = "a" * 5
     refute @user.valid?
   end
 
-  test "authenticated? should return false for a user with nil digest" do
+  test 'authenticated? should return false for a user with nil digest'
     refute @user.authenticated?(:remember, '')
   end
 
-  test "trigram ok" do
+  test 'trigram ok'
     @user.name = "Patrick Person"
     assert_equal @user.trigram,"PPE", "trigram OK for real"
   end

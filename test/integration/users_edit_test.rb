@@ -29,7 +29,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "fail editing somebody else's profile (but with friendly forwarding)" do
+  test 'fail editing somebody else's profile (but with friendly forwarding)'
     get edit_user_path(@user)
     log_in_as(@user)
     assert_redirected_to edit_user_url(@user)
@@ -48,10 +48,10 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     refute_equal email, @user.email
   end
 
-  test "normal user shouldn't see any user creation link" do
+  test 'normal user shouldn't see any user creation link'
 
   end
 
-  test "normal user cannot destroy any other" do
+  test 'normal user cannot destroy any other'
   end
 end

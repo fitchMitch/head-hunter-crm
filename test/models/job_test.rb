@@ -22,28 +22,28 @@ class JobTest < ActiveSupport::TestCase
     @job = create(:job)
   end
 
-  test "job_title should exist" do
+  test 'job_title should exist'
     @job.job_title = ''
     refute @job.valid?
   end
 
-  test "salary but not too much !" do
+  test 'salary but not too much !'
     @job.salary = '12345678901'
     refute @job.valid?
   end
 
-  test "start_date should exist" do
+  test 'start_date should exist'
     @job.start_date = ''
     refute @job.valid?
   end
 
-  test "end_date should exist when no_end is false" do
+  test 'end_date should exist when no_end is false'
     @job.no_end = false
     @job.end_date = ''
     refute @job.valid?
   end
 
-  test "start_date should be before end_date" do
+  test 'start_date should be before end_date'
     @job.start_date, @job.end_date = @job.end_date, @job.start_date
     assert_no_difference 'Job.count' do
       @job.save

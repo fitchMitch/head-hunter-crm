@@ -9,7 +9,7 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 		log_in_as(@user)
 	end
 
-	test "should comaction post be a success" do
+	test 'should comaction post be a success'
 		comaction2Param  = attributes_for(:comaction)
 		comaction2Param['person_id'] = @person.id
 		comaction2Param['mission_id'] = @mission.id
@@ -20,7 +20,7 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 		assert_template partial: '_month_calendar', count: 1
 	end
 
-	test "should filter with statuses" do
+	test 'should filter with statuses'
 		@comaction_hired = create(:comaction_hired)
 		@comaction_hired.update(user_id: @user.id)
 		get comactions_url,
@@ -31,7 +31,7 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 
 	end
 
-	test "should filter with statuses and fail" do
+	test 'should filter with statuses and fail'
 		@comaction_hired = create(:comaction_hired)
 		@comaction_hired.update(user_id: @user.id)
 		get comactions_url,

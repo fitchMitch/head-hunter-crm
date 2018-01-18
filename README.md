@@ -20,13 +20,17 @@ HH_CRM stands for  Head Hunters Customer RelationShip; This tool helps a Head Hu
 
 ## Deployment
 `bundle install`
+
 `rails db:migrate`
+
 According to the role's permissions you'll have to set the following extensions manually or not:
 * fuzzystrmatch
 * pg_trgm
 * plpgsql
 * unaccent
+
 `rails db:seed `
+
 
 ## License
 

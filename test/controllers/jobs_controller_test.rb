@@ -23,7 +23,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
   end
 
-  test "should get edit" do
+  test 'should get edit'
     get edit_job_path(@job)
     assert_response :success
   end
@@ -36,30 +36,30 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to person_path(@person)
   end
 
-  test "should get new" do
+  test 'should get new'
     get new_job_path
     assert_response :success
   end
 
-  test "should get index" do
+  test 'should get index'
     get jobs_path
     assert_response :success
   end
 
-  test "should create job" do
+  test 'should create job'
     get new_job_path
     post jobs_url , params: @some_params
     assert_redirected_to person_url(@person)
   end
 
-  test "should redirect to person's path list when destroy" do
+  test 'should redirect to person's path list when destroy'
     assert_difference 'Job.count',-1 do
       delete job_path(@job)
     end
     assert_redirected_to person_path(@person)
   end
 
-  test "should show double jobs" do
+  test 'should show double jobs'
     job1 = create(:job, no_end:  true, person: @person)
     job2 = build(:job, no_end:  true, person: @person)
     assert_not job2.valid?
