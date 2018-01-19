@@ -27,7 +27,7 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
-  test 'should get show'
+  test 'should get show' do
     log_in_as(@user)
     get comaction_path(@comaction)
     assert_response :success
@@ -147,6 +147,4 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     }
     refute flash.empty?
   end
-
-
 end
