@@ -16,26 +16,26 @@ class CompanyTest < ActiveSupport::TestCase
     @company = build(:company)
   end
 
-  test 'company should be valid'
+  test 'company should be valid' do
     assert @company.valid?
   end
 
-  test 'company_name should be present'
+  test 'company_name should be present' do
     @company.company_name = "     "
     refute @company.valid?
   end
 
-  test 'company_name should be present - 2 '
+  test 'company_name should be present - 2 ' do
     @company.company_name = ""
     refute @company.valid?
   end
 
-  test 'company_name should not be too long'
+  test 'company_name should not be too long' do
     @company.company_name = "a"* 41
     refute @company.valid?
   end
 
-  test 'company_name should be unique'
+  test 'company_name should be unique' do
     @company2 = create(:company)
     @company.company_name = @company2.company_name
     refute @company.valid?

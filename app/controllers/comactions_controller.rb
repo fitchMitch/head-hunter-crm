@@ -70,8 +70,7 @@ class ComactionsController < ApplicationController
     @date_start, @date_end = @comaction.start_time, @comaction.end_time
   end
 
-  def show
-  end
+  def show ; end
 
   def create
     @person = Person.find(comaction_params[:person_id])
@@ -85,7 +84,7 @@ class ComactionsController < ApplicationController
       if @comaction.start_time.nil?  || @comaction.end_time.nil?
         flash[:info] = I18n.t('comaction.message.saved')
       else
-        @comaction.send_meeting_email(current_user, 1) if Rails.configuration.mail_wanted
+        @comaction.send_meeting_email(current_user, true)
         flash[:info] = I18n.t('comaction.message.saved_with_mail')
       end
       redirect_to comactions_path
@@ -98,11 +97,11 @@ class ComactionsController < ApplicationController
   def update
     @comaction = trigger_nil_dates @comaction
     if @comaction.update(comaction_params)
-      if @comaction.start_time.nil? || @comaction.end_time.nil?
+      if @comaction.start_time.nil? || @comaction.end_time.nil? || !Rails.configuration.mail_wanted
         flash[:success] = I18n.t('comaction.message.saved')
       else
-        @comaction.send_meeting_email(current_user, 0)
-        flash[:success] = I18n.t('comaction.message.updated_with_mail') if Rails.configuration.mail_wanted
+        @comaction.send_meeting_email(current_user, false)
+        flash[:success] = I18n.t('comaction.message.updated_with_mail')
       end
       logger.warn("update won\'t work #{@comaction.inspect}")
       redirect_to comactions_path
