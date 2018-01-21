@@ -29,4 +29,10 @@ module PeopleHelper
     t.html_safe
   end
 
+  def estimated_age(person)
+    secs_per_year = 60 * 60 * 24 * 365
+    years_shift = (Time.current.to_f - person.updated_at.to_f)/secs_per_year
+    person.approx_age + years_shift.round
+  end
+
 end
