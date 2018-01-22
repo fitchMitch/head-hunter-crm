@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class MissionsTest < ActionDispatch::IntegrationTest
-  test 'admin should see other's missions ' do
+  test 'admin should see other\'s missions ' do
     @admin = create(:admin)
     @user = create(:user)
     @person = create(:person)

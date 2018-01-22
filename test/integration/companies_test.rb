@@ -24,7 +24,7 @@ class CompaniesTest < ActionDispatch::IntegrationTest
     assert_match /Société sauvegardée/, flash[:info]
   end
 
-  test 'there's an access to companies's detail page' do
+  test 'there\'s an access to companies\'s detail page' do
     get companies_path
     Company.all.each do |com|
       # assert_select 'a[href=?]', list_people_path(com)

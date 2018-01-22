@@ -42,7 +42,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'ad admin, there's an access to people's detail page' do
+  test 'ad admin, there\'s an access to people\'s detail page' do
     log_in_as(@admin)
     get people_path
     Person.paginate(page: 1).each do |per|
@@ -51,7 +51,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'as user, there aint no access to people's detail page' do
+  test 'as user, there aint no access to people\'s detail page' do
     log_in_as(@user)
     get people_path
     Person.paginate(page: 1).each do |per|

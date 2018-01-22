@@ -53,7 +53,7 @@ class PersonTest < ActiveSupport::TestCase
     end
   end
 
-  test 'email shouldn't be too long' do
+  test 'email shouldn\'t be too long' do
     @person.email = 'a'*205 +  '@' + 'b'*47  + '.fr'
     refute @person.valid?
   end
