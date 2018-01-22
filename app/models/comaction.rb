@@ -56,8 +56,6 @@ class Comaction < ApplicationRecord
                     :apply_customer_type,
                     :exploration_type,
                     :other_type]
-
-
   # ===========
   # Initialization
   # ===========
