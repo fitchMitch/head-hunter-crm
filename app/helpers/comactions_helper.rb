@@ -79,7 +79,7 @@ module ComactionsHelper
 
   def getComactionTitle(c)
     "<strong>#{c.person.full_name}</strong><br>\
-    # { t_com_ac_type(c.action_type)} [#{t_com_status(c.status)}] "
+    #{t_com_ac_type(c.action_type)} [#{t_com_status(c.status)}] "
   end
 
   def getComactionDetails(c)
