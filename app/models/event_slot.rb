@@ -46,11 +46,6 @@ class EventSlot
     timeframe = do_union(new_min, new_max)
   end
 
-  def extend_to_square_days
-    self.time_frame = extend_to_day_start
-    self.time_frame = extend_to_day_end
-  end
-
   def crop_after(new_max)
     excluding = TimeFrame.new(min: new_max, duration: 100.years)
     self.time_frame = time_frame.without(excluding).first
@@ -62,7 +57,9 @@ class EventSlot
   end
 
   def day_slices
-    extend_to_square_days
+    # extend_to_square_days
+    self.time_frame = extend_to_day_start
+    self.time_frame = extend_to_day_end
     # slice_days is a TimeFrame array
     secs_in_a_day = 60 * 60 * 24
     slice_days = time_frame.split_by_interval(secs_in_a_day)
@@ -94,22 +91,6 @@ class EventSlot
     tf_to_exclude << TimeFrame.new(min: now - 100.years, max: now)
   end
 
-  def working_days_split
-    slice_days = filter_week_end(future_days_slice)
-    slice_days = limit_to_office_hours(slice_days) # time_frames list
-    EventSlot.time_frames_to_array(slice_days)
-  end
-
-  def next_comactions_filter(next_comactions)
-    #Reminder :next_comactions is an EventSlot array
-    EventSlot.to_time_frames(next_comactions)
-  end
-
-  def exclude(tf_to_exclude)
-    time_frames = time_frame.without(*tf_to_exclude)
-    EventSlot.time_frames_to_array(time_frames)
-  end
-
   def dash_it(next_comactions)
     # free_zone_days is ordered by design
     # so is next_comactions
@@ -118,9 +99,9 @@ class EventSlot
     #    non_working_schedules (including week-ends)
     time_frames_to_exclude = week_end_filter
     time_frames_to_exclude += out_scheduled_filter
-    time_frames_to_exclude += next_comactions_filter(next_comactions)
+    time_frames_to_exclude += EventSlot.to_time_frames(next_comactions)
 
-    exclude(time_frames_to_exclude)
+    EventSlot.time_frames_to_array(time_frame.without(*time_frames_to_exclude))
   end
 
   def to_half_hours_range

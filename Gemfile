@@ -55,6 +55,7 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'faker',          '1.8.6'
+  gem 'color_pound_spec_reporter'
 end
 
 group :development do
@@ -65,7 +66,6 @@ group :development do
 end
 
 group :test do
-  gem 'color_pound_spec_reporter'
   gem 'rails-controller-testing', '0.1.1'
   gem 'minitest-reporters',       '1.1.9'
   gem 'guard',                    '2.13.0'

@@ -18,7 +18,7 @@
     <%= f.input :person_id, as: :hidden %>
   </div>
   <div class="col-sm-7 ">
-    <%= f.input :start_date, label:t('job.date_in'), as: :date,  end_year: Date.today.year, order: [:day, :month, :year], input_html:{class:" input-sm" } %>
+    <%= f.input :start_date, label: t('job.date_in'), as: :date,  end_year: Date.today.year, start_year: Date.today.year-21, order: [:day, :month, :year], input_html:{class:" input-sm" }%>
   </div>
 </div>
 
@@ -27,7 +27,7 @@
     <%= f.input :salary, label:t('job.salary'), input_html:{class:" input-sm" } %>
   </div>
   <div class="col-sm-7 ">
-    <%= f.input :end_date, label:t('job.date_end'), as: :date, end_year: Date.today.year, order: [:day, :month, :year], input_html:{class:" input-sm" } %>
+    <%= f.input :end_date, label:t('job.date_end'), as: :date, start_year: Date.today.year-20,  end_year: Date.today.year+1, order: [:day, :month, :year], input_html:{class:" input-sm" }  %>
   </div>
 </div>
 
