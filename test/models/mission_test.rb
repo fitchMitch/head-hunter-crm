@@ -38,7 +38,7 @@ class MissionTest < ActiveSupport::TestCase
   end
 
   test 'saving missions should be ok' do
-    @mission2 = build(:mission)
+    @mission2 = @mission.dup
     assert @mission2.valid?
     assert_difference 'Mission.count' do
       @mission2.save
