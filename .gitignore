@@ -22,9 +22,9 @@
 /config/database.yml
 /config/secrets.yml
 # Ignore Byebug command history file.
-.erase_it_all.sql
-.test_result.txt
-.byebug_history
-.errors
-.Passengerfile.json.ssl
-.rails_possible_commands.txt
+/erase_it_all.sql
+/test_result.txt
+/byebug_history
+/errors
+/Passengerfile.json.ssl
+/rails_possible_commands.txt
