@@ -15,23 +15,18 @@ class JobsController < ApplicationController
     @person = Person.find(@job.person_id)
     authorize @job
   end
-  # -----------------
-  # def show
-  # end
-  # -----------------
+
+  def show; end
 
   def create
     @person = Person.find(job_params[:person_id])
-
-    @job = @person.jobs.build(job_params)
-    @job.end_date = nil if @job.no_end?
-    authorize @job
+    @job = prepare_job(@person)
 
     if @job.save
       @company = Company.find(@job.company_id)
-      @job.company = @company unless @company.nil?
-      message = @job.person.firstname.to_s + ' ' + I18n.t('job.new_saved')
-      flash[:info] = message
+      # @job.company = @company unless @company.nil?
+      # flash[:info] = @job.person.firstname.to_s + ' ' + I18n.t('job.new_saved')
+      flash[:info] = "#{@job.person.firstname} #{t('job.new_saved')}"
     else
       flash[:danger] = I18n.t('job.danger_message')
     end
@@ -39,10 +34,17 @@ class JobsController < ApplicationController
     redirect_to person_path(@person.id)
   end
 
+  def prepare_job(person)
+    @job = person.jobs.build(job_params)
+    @job.end_date = nil if @job.no_end?
+    authorize @job
+    @job
+  end
+
   def update
     authorize @job
     if @job.update_attributes job_params
-      flash[:success] = 'Emploi mis à jour'
+      flash[:success] = I18n.t('job.updated')
       @person = Person.find(@job.person_id)
       redirect_to @person
     else

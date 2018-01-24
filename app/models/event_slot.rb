@@ -1,198 +1,145 @@
 class EventSlot
-  include ActiveModel::Model
-
-  attr_accessor :start_period, :end_period, :min_duration
+  attr_accessor :time_frame
 
   def initialize(attributes)
-    c1 = attributes[:start_period].is_a?(DateTime)
-    c2 = attributes[:end_period].is_a?(DateTime)
-    c3 = attributes[:end_period] >= attributes[:start_period]
-    raise 'start and endtime do not suit' unless c1 && c2 && c3
-    super
-    update_duration
+    att = check_attributes(attributes)
+    # if both max and duration are given, max is a priority
+    self.time_frame = att[:duration] == 0 ? TimeFrame.new(min: att[:min], max: att[:max]) : TimeFrame.new(min: att[:min], duration: att[:duration])
   end
 
-  def descro
-    "De  #{self.start_period.strftime('%d %H:%M')} à #{self.end_period.strftime('%d %H:%M')}"
+  def check_attributes(attri)
+    min = attri.fetch(:min, 0)
+    max = attri.fetch(:max, 0)
+    duration = attri.fetch(:duration, 0)
+
+    duration = 0 if max != 0
+    raise 'minimum is badly initialized' if !min.is_a?(Time) && min != 0
+    raise 'maximum is badly initialized' if !max.is_a?(Time) && max != 0
+    raise 'missing parameters max or duration' if max == 0 && duration == 0
+    raise 'starting time is not defined' if min == 0
+
+    { min: min, max: max, duration: duration }
   end
 
-  def get_hours_duration
-    min_left = self.min_duration % 60
-    ((self.min_duration - min_left) / 60).round
+  def descro(text = [])
+    text << "De #{time_frame.min.strftime('%d')}"
+    text << I18n.t(time_frame.min.strftime('%B').to_s)
+    text << time_frame.min.strftime('%B %H:%M').to_s
+    text << "à #{time_frame.max.strftime('%H:%M')}"
+    text.join(' ')
   end
 
-  def overlaps?(o_period)
-    return nil unless o_period.is_a?(EventSlot)
-    (self.start_period..self.end_period).overlaps?(o_period.start_period..o_period.end_period)
+  def do_union(new_min, new_max)
+    timeframes = [time_frame, TimeFrame.new(min: new_min, max: new_max)]
+    TimeFrame.union(timeframes).first
   end
 
-  def working_days_split
-    # split days and does Eventslots out of them, except sundays
-    r = []
-    s = self.start_period
-    e = self.end_period
-    if overlaps_two_days?
-      (0..days_overlap).to_a.each do |diff|
-        day_offset = s.beginning_of_day.advance(days: diff)
-        offset_e = s.end_of_day.advance(days: diff)
-        r << EventSlot.new(
-          start_period: day_offset,
-          end_period: offset_e
-          ) unless day_offset.wday == 0 #sunday
-      end
-    else
-      r << self unless  day_offset.wday == 0 #sunday
-    end
-    return nil if r.empty?
-    r
+  def extend_to_day_start
+    new_min = time_frame.min.beginning_of_day
+    new_max = time_frame.min
+    timeframe = do_union(new_min, new_max)
   end
 
-  def too_short
-    self.min_duration < Comaction::SHORTEST_MEETING_TIME
+  def extend_to_day_end
+    new_min = time_frame.max
+    new_max = time_frame.max.end_of_day
+    timeframe = do_union(new_min, new_max)
   end
 
-  def starts_too_late
-    self.start_period.hour >= (Comaction::WORK_HOURS.last.to_i - 1)
+  def crop_after(new_max)
+    excluding = TimeFrame.new(min: new_max, duration: 100.years)
+    self.time_frame = time_frame.without(excluding).first
   end
 
-  def out_from_intersect(rdv_period)
-    # purpose : self is a free zone, rdv_period is an appointment
-    # the rdv_period slices the free_zone in parts when it intersects with the free_zone
-    return 'not_a_EventSlot' unless rdv_period.is_a?(EventSlot)
-    return "two_days_error #{ self.descro } max: 1440"  if self.overlaps_two_days? || rdv_period.overlaps_two_days?
-    r = []
-    self_starts_before = self.start_period <= rdv_period.start_period
-    self_ends_after = rdv_period.end_period <= self.end_period
-    # ---------------------
-    if self.overlaps? rdv_period
-      if self_starts_before
-        starts = { start_period: self.start_period, end_period: rdv_period.start_period }
-        r << EventSlot.new(starts)
-      end
-      if self_ends_after
-        ends = { start_period: rdv_period.end_period, end_period: self.end_period }
-        r << EventSlot.new(ends)
-      end
-    else
-      r << self
-    end
-    r
+  def crop_before(new_min)
+    excluding = TimeFrame.new(min: new_min - 100.years, duration: 100.years)
+    self.time_frame = time_frame.without(excluding).first
+  end
+
+  def day_slices
+    # extend_to_square_days
+    self.time_frame = extend_to_day_start
+    self.time_frame = extend_to_day_end
+    # slice_days is a TimeFrame array
+    secs_in_a_day = 60 * 60 * 24
+    slice_days = time_frame.split_by_interval(secs_in_a_day)
+    event_slots = EventSlot.time_frames_to_array(slice_days)
+  end
+
+  def slicing_days
+    start, ending = time_frame.min, time_frame.max
+    event_slots = EventSlot.adjust_extremities(day_slices, start, ending)
+  end
+
+  def week_end_filter
+    d = day_slices.delete_if { |es| es.time_frame.min.on_weekday? }
+    EventSlot.to_time_frames(d)
+  end
+
+  def out_scheduled_filter
+    now = Time.current
+    tf_to_exclude = []
+    days  = slicing_days.each { |es|
+      new_min1 = es.time_frame.min.beginning_of_day
+      new_max1 = es.time_frame.min.beginning_of_day.advance(hours: Comaction::WORK_HOURS.first)
+      tf_to_exclude << TimeFrame.new(min: new_min1, max: new_max1)
+
+      new_min2 = es.time_frame.min.beginning_of_day.advance(hours: Comaction::WORK_HOURS.last)
+      new_max2 = es.time_frame.min.end_of_day
+      tf_to_exclude << TimeFrame.new(min: new_min2, max: new_max2)
+    }
+    tf_to_exclude << TimeFrame.new(min: now - 100.years, max: now)
+  end
+
+  def dash_it(next_comactions)
+    # free_zone_days is ordered by design
+    # so is next_comactions
+    # Purpose : exclude for free_zone
+    #    next_comactions
+    #    non_working_schedules (including week-ends)
+    time_frames_to_exclude = week_end_filter
+    time_frames_to_exclude += out_scheduled_filter
+    time_frames_to_exclude += EventSlot.to_time_frames(next_comactions)
+
+    EventSlot.time_frames_to_array(time_frame.without(*time_frames_to_exclude))
   end
 
   def to_half_hours_range
-    h_start= self.start_period.hour * 2
-    h_start += 1 if self.start_period.minute >= 30
-    h_finish= self.end_period.hour * 2 - 1
-    h_finish += 1 if self.end_period.minute >= 30
+    h_start= self.time_frame.min.hour * 2
+    h_start += 1 if self.time_frame.min.min >= 30
+    h_finish= self.time_frame.max.hour * 2 - 1
+    h_finish += 1 if self.time_frame.max.min >= 30
     (h_start .. h_finish)
   end
 
   class << self
-    def dash_it(free_zone_days, next_comactions)
-      d = DateTime.current
-      unfinished = true
-      messages = []
-      while unfinished
-        unfinished = false
-        next_comactions.each do |app|
-          unless  app.start_time.nil? || app.end_time.nil? || app.end_time < d
-            es_app = EventSlot.new({ start_period: tdt(app.start_time), end_period: error_margin(app.end_time)})
-            next if es_app.min_duration == 0
-            free_zone_days.each do |ghost_day_free_zone|
-              next if ghost_day_free_zone.from_now_on.nil?
-              intersect = ghost_day_free_zone.out_from_intersect(es_app)
-              # intersect > 1 when there's been overlapping between ghost_day_free_zone and the appointment (app)
-              unfinished = true if intersect.length > 1
-              # ghost_day_free_zone is to be withdrawn from free_zone_days
-              free_zone_days.delete(ghost_day_free_zone)
-              free_zone_days += intersect #unless intersect.nil? || intersect.empty? || intersect.instance_of?(String)
-              messages += intersect if intersect.instance_of?(String)
-            end
-          end
-        end
+    def adjust_extremities(event_slots, start, ending)
+      event_slots.first.crop_before(start)
+      event_slots.last.crop_after(ending)
+      event_slots
+    end
+
+    def time_frames_to_array(timeframes)
+      arr = []
+      timeframes.each do |tf|
+        arr << EventSlot.new(min: tf.min, duration: tf.duration)
       end
-      return messages,free_zone_days
-    end
-    def error_margin(end_time)
-      # tdt (end_time.advance(minutes: 0))
-      tdt (end_time)
+      arr
     end
 
-    def tdt(t)
-      DateTime.parse(t.to_s)
-    end
-
-    def sharpen (arr)
-      return nil unless arr.is_a?(Array)
-      arr = arr
-        .map { |fz| fz.set_to_office_hours }
-        .map { |fz| fz.from_now_on }.compact
-        .select do |fz|
-          !fz.too_short
-        end
-      arr = arr.sort { |a,b| a.start_period <=> b.start_period }
+    def to_time_frames(event_slots)
+      arr = []
+      event_slots.each do |es|
+        arr << TimeFrame.new(min: es.time_frame.min, duration: es.time_frame.duration)
+      end
       arr
     end
 
     def sort_periods(arr)
-      arr.group_by {|es| I18n.t(es.start_period.strftime('%A')) + es.start_period.strftime(' %d')}
+      arr.group_by { |es| I18n.t(es.time_frame.min.strftime('%A')) + es.time_frame.min.strftime(' %d') }
     end
   end
-  # ---------------------
-
-  # def split_in_hours
-  #   return "extremes_hit" if overlaps_two_days?
-  #   return [self] if self.min_duration < 60
-  #   r = []
-  #   starter = self.round_hours
-  #   start_hour, start_min = starter[:hours] , starter[:min]
-  #   (0..self.get_hours_duration).to_a.each do |h|
-  #     r << EventSlot.new(
-  #       start_period: self.start_period.beginning_of_day.advance(hours: (start_hour + h), minutes: start_min),
-  #       end_period: self.end_period.beginning_of_day.advance(hours: (start_hour + h + 1), minutes: start_min)
-  #       )
-  #   end
-  #   r
-  # end
-
-  def from_now_on
-    now = DateTime.current
-    return nil if end_period < now
-    self.update_begin(now) if now > start_period
-    self
-  end
-
-  def set_to_office_hours
-    self.update_begin(start_period.change(hour: Comaction::WORK_HOURS.first)) if start_period.hour < Comaction::WORK_HOURS.first
-    self.update_end  (  end_period.change(hour: Comaction::WORK_HOURS.last))  if end_period.hour   > Comaction::WORK_HOURS.last
-    self
-  end
-
-  def update_begin(bego)
-    return unless bego.is_a?(DateTime) || bego > end_period
-    self.start_period = bego
-    update_duration
-  end
-
-  def update_end(endo)
-    return  unless endo.is_a?(DateTime) || endo < start_period
-    self.end_period = endo
-    update_duration
-  end
-
-  def overlaps_two_days?
-    (end_period.beginning_of_day - start_period.beginning_of_day).to_i.round > 0
-  end
-
   # =================
   private
   # =================
-    def update_duration
-      self.min_duration = ((end_period - start_period) * 24 * 60).to_i.round
-    end
-
-    def days_overlap
-      (end_period - start_period).round
-    end
-
 end

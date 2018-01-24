@@ -169,6 +169,7 @@ fr:
     still_in: en poste
     unemployed: sans emploi
     unupdated: Le contact n'a pas pu être mis à jour
+    updated: Emploi mis à jour
 
   mail:
     expired: Le mot de passe a expiré.

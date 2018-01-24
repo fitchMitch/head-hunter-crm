@@ -28,3 +28,4 @@
 /config/secrets.yml
 /Passengerfile.json.ssl
 /rails_possible_commands.txt
+/errors

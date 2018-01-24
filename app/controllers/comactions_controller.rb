@@ -70,8 +70,7 @@ class ComactionsController < ApplicationController
     @date_start, @date_end = @comaction.start_time, @comaction.end_time
   end
 
-  def show
-  end
+  def show ; end
 
   def create
     @person = Person.find(comaction_params[:person_id])
@@ -85,7 +84,7 @@ class ComactionsController < ApplicationController
       if @comaction.start_time.nil?  || @comaction.end_time.nil?
         flash[:info] = I18n.t('comaction.message.saved')
       else
-        @comaction.send_meeting_email(current_user, 1) if Rails.configuration.mail_wanted
+        @comaction.send_meeting_email(current_user, true)
         flash[:info] = I18n.t('comaction.message.saved_with_mail')
       end
       redirect_to comactions_path
@@ -98,11 +97,11 @@ class ComactionsController < ApplicationController
   def update
     @comaction = trigger_nil_dates @comaction
     if @comaction.update(comaction_params)
-      if @comaction.start_time.nil? || @comaction.end_time.nil?
+      if @comaction.start_time.nil? || @comaction.end_time.nil? || !Rails.configuration.mail_wanted
         flash[:success] = I18n.t('comaction.message.saved')
       else
-        @comaction.send_meeting_email(current_user, 0)
-        flash[:success] = I18n.t('comaction.message.updated_with_mail') if Rails.configuration.mail_wanted
+        @comaction.send_meeting_email(current_user, false)
+        flash[:success] = I18n.t('comaction.message.updated_with_mail')
       end
       logger.warn("update won\'t work #{@comaction.inspect}")
       redirect_to comactions_path
@@ -150,21 +149,27 @@ class ComactionsController < ApplicationController
     # =================
     # AVailibility preview
     # =================
-    def availibilities
-      # just looking into next week
-      next_comactions = Comaction.mine(@uid).newer_than(0).older_than(5).order(start_time: :asc)
+    def next_comactions
+      next_comactions_event_slots = []
+      next_c = Comaction.mine(@uid).newer_than(0).older_than(Comaction::PERSPECTIVE).order(start_time: :asc)
+      next_c.each do |nc|
+        next_comactions_event_slots << EventSlot.new({min: nc.start_time, max: nc.end_time})
+      end
+      next_comactions_event_slots
+    end
 
-      d = DateTime.current
-      attributes = { start_period: d, end_period: d.advance(days: 5) }
-      free_zone_days = EventSlot.new(attributes).working_days_split
+    def availibilities (next_comactions)
+      # reminder : next_comactions are EventSlots
+      d = Time.current
+      attributes = { min: d, duration: Comaction::PERSPECTIVE.days }
+      free_zone = EventSlot.new(attributes)
+      # free_zone is an EventSlot
 
-      message, free_zone_days = EventSlot.dash_it free_zone_days, next_comactions
-      flash[:danger] = message unless message.empty?
-
-      free_zone_days = EventSlot.sharpen free_zone_days
+      # message, free_zone_days = free_zone.dash_it next_comactions
+      free_zone_days = free_zone.dash_it next_comactions
+      # flash[:danger] = message unless message.empty?
+      # free_zone_days = EventSlot.sharpen free_zone_days
       free_zone_days = EventSlot.sort_periods free_zone_days unless free_zone_days.nil?
-
-      return next_comactions, free_zone_days
     end
 
     def trigger_nil_dates(comaction)
@@ -207,6 +212,7 @@ class ComactionsController < ApplicationController
     end
 
     def find_availibilities
-      @next_commactions, @free_zone_days = availibilities
+      @next_comactions = next_comactions
+      @free_zone_days = availibilities @next_comactions
     end
 end

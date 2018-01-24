@@ -17,7 +17,11 @@ class SessionsHelperTest < ActionView::TestCase
     assert_nil current_user
   end
 
+<<<<<<< HEAD
   test 'current_user is ok' do
+=======
+  test 'current_user is ok ' do
+>>>>>>> 679db34a8534c1e32c5dfe3bdd869701a74aa0f9
     log_in_as(@user)
     assert_equal current_user, @user, "logged guy is current_user"
   end
