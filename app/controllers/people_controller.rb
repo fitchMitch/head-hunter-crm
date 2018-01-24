@@ -135,7 +135,7 @@ class PeopleController < ApplicationController
         :email,
         :phone_number,
         :approx_age,
-        :is_jj_hired,
+        :is_hh_hired,
         :is_client,
         :note,
         :cv_docx

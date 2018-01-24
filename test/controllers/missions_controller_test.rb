@@ -23,13 +23,13 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  test 'shouldn't get edit'
+  test 'shouldn\'t get edit' do
     log_in_as(@user)
     get edit_mission_path(@mission)
     assert_redirected_to root_path
   end
 
-  test 'should get edit'
+  test 'should get edit' do
     log_in_as(@admin)
     get edit_mission_path(@mission)
     assert_response :success
@@ -41,38 +41,42 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to mission_path(@mission)
   end
 
-  test 'should create mission'
+  test 'should create mission' do
     log_in_as(@user)
     get new_mission_path
     post missions_url , params: @some_params
     assert_redirected_to person_url(@person)
   end
 
-  test 'should get new'
+  test 'should get new' do
     log_in_as(@user)
     get new_mission_path
     assert_response :success
   end
 
-  test 'should get show'
+  test 'should get show' do
     log_in_as(@admin)
     get mission_path(@mission)
     assert_response :success
   end
 
-  test 'should get index'
+  test 'should get index' do
     log_in_as(@user)
     get missions_path
     assert_response :success
   end
 
-  test 'admin should see other's missions '
+<<<<<<< HEAD
+  test 'admin should see other\'s missions' do
+=======
+  test 'admin should see other\'s missions ' do
+>>>>>>> 679db34a8534c1e32c5dfe3bdd869701a74aa0f9
     log_in_as(@admin)
     get missions_path
     assert_response :success
   end
 
-  test 'shouldn't destroy mission'
+  test 'shouldn\'t destroy mission' do
     log_in_as(@user)
     assert_no_difference 'Mission.count' do
       delete mission_path(@mission)
@@ -80,7 +84,7 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test 'should destroy mission'
+  test 'should destroy mission' do
     log_in_as(@admin)
     assert_difference 'Mission.count',-1 do
       delete mission_path(@mission)

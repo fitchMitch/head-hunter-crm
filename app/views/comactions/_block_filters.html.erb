@@ -11,11 +11,12 @@
             <div class="col-xs-11">
               <div class="input-group filter">
                 <span class="input-group-addon" id="basic-addon1"><%=t('Status') %></span>
-                <%= button_filters(:comaction,
-                                    "status",
-                                    @status_selected,
-                                    'form-control input-sm filter'
-                                    )%>
+                <%= button_filters ({
+                  klass: 'comaction',
+                  enum: 'status',
+                  selec: @status_selected,
+                  css: 'form-control input-sm filter'
+                  ransack: false}) %>
               </div>
               <div class="input-group filter">
                 <span class="input-group-addon" id="basic-addon2"><%=t('missions') %></span>

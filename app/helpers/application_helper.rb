@@ -12,7 +12,8 @@ module ApplicationHelper
   # change the default link renderer for will_paginate
   def will_paginate(collection_or_options = nil, options = {})
     if collection_or_options.is_a? Hash
-      options, collection_or_options = collection_or_options, nil
+      options = collection_or_options
+      collection_or_options = nil
     end
     unless options[:renderer]
       options = options.merge renderer: CustomLinkRenderer
@@ -24,77 +25,75 @@ module ApplicationHelper
     "<span class=\"badge badge-default\">#{u.trigram}</span>".html_safe
   end
 
-  def search_hash_key(thisHash,value)
+  def search_hash_key(thisHash, value)
     thisHash.select { |_, v| v == value.to_sym }.keys
   end
 
   def future_time_in_words(t1)
+
+    def which_key(time_steps, time_data)
+      return :seconde if time_data[:s].zero?
+      triggers = time_steps.values.sort.reverse
+      best_level = (triggers.select { |trigger| trigger < time_data[:s]}).sort.last
+      time_steps.key best_level
+    end
+
+    def say_it(time_steps, level, time_data)
+      triggers = time_steps.values.sort.reverse
+      wording_for_future = {
+        a_year:       ['dans nr années','a_year'],
+        a_month:      ['dans nr mois','a_month'],
+        two_weeks:    ['dans nr semaines','a_week'],
+        a_week:       ['dayz en huit', 'null'],
+        the_day_after:[ 'dayz prochain', 'null'],
+        tomorrow:     ['demain, à hour h', 'hour'],
+        hour:         ['à hour h', 'hour'],
+        minute:       ['dans nr minute', 'minute'],
+        seconde:      ['dans quelques secondes', 'null']
+      }
+      wording_for_past = {
+        a_year:       ['il y a nr années','a_year'],
+        a_month:      ['il y a nr mois', 'a_month'],
+        two_weeks:    ['il y a nr semaines', 'a_week'],
+        a_week:       ['il y a plus de nr semaine', 'a_week'],
+        the_day_after:[ 'dayz dernier, à hour h', 'hour'],
+        tomorrow:     ['hier, à hour h', 'hour'],
+        hour:         ['hier, à hour h', 'hour'],
+        minute:       ['il y a minute min', 'minute'],
+        seconde:      ['il y a quelques secondes', 'null']
+      }
+
+
+      lexico = (time_data[:direction] == 'past') ? wording_for_past : wording_for_future
+      wording = lexico[level][0]
+      unit = lexico[level][1].to_sym
+      wording = wording.sub(/nr/, (time_data[:s] / time_steps[unit]).to_i.to_s) unless unit == :null
+      wording = wording.sub(/dayz/, I18n.t(time_data[:t1].strftime('%A')))
+      wording = wording.sub(/hour/, time_data[:t1].strftime('%HhM'))
+      wording = wording.sub(/minute/, time_data[:t1].strftime('%M'))
+    end
+
+    time_steps = {
+      null: 0,
+      seconde: 1,
+      minute: 60,
+      hour: 60 * 60,
+      tomorrow: 24 * 60 * 60,
+      the_day_after: 2 * 24 * 60 * 60,
+      a_week: 7 * 24 * 60 * 60,
+      two_weeks: 2 * 7 * 24 * 60 * 60,
+      a_month: 30 * 24 * 60 * 60,
+      a_year: 365 * 24 * 60 * 60
+    }
     s = t1.strftime('%s').to_i - Time.zone.now.strftime('%s').to_i
-    tomorrow = 60 * 60 * 24
-    the_day_after = tomorrow * 2
-    three_days = tomorrow * 3
-    a_week = tomorrow * 7
-    twoWeeks = a_week * 2
-    a_month = tomorrow * 30
-    a_year = tomorrow * 365
-    hm = t1.strftime('%Hh%M')
+    time_data = {s: s, t1: t1, direction: 'past'}
 
-    resolution = if s < 0
-      s = -s
-      if s > a_year # seconds in a year
-        ['il y a', s / a_year, 'année']
-      elsif s > a_month
-        ['il y a', s / a_month, 'mois']
-      elsif s > twoWeeks
-        ['il y a', s / a_week, 'semaines']
-      elsif s > a_week
-        [I18n.t(t1.strftime('%A')), ' dernier à', hm]
-      elsif s > three_days
-        [I18n.t(t1.strftime('%A')), ' dernier à', hm]
-      elsif s > the_day_after
-        [I18n.t(t1.strftime('%a')), 'hier à ', hm]
-      elsif s > tomorrow
-        ['hier à', hm]
-      elsif s > 3600 # seconds in an hour
-        ['il y a', s / 3600, 'heures, à', hm]
-      elsif s > 60
-        ['depuis', s / 36, 'minutes']
-      elsif s > 0
-        ['il y a', s, 'secondes']
-      else
-        ['']
-      end
+    if s < 0
+      time_data[:s] = -time_data[:s]
     else
-      if s > a_year # seconds in a year
-      ['dans', s / a_year, 'année']
-      elsif s > a_month
-        ['dans', s / a_month, 'mois']
-      elsif s > twoWeeks
-        ['dans', s / a_week, 'semaines']
-      elsif s > a_week
-        [I18n.t(t1.strftime('%A')), ' en huit à', hm]
-      elsif s > three_days
-        [I18n.t(t1.strftime('%A')), ' à', hm]
-      elsif s > the_day_after
-        [I18n.t(t1.strftime('%a')), ' à', hm]
-      elsif s > tomorrow
-        ['demain à', hm]
-      elsif s > 3600 # seconds in an hour
-        ['dans', s/3600, 'heures, à', hm]
-      elsif s > 60
-        ['à', hm]
-      elsif s > 0
-        ['dans quelques secondes']
-      else
-        ['']
-      end
+      time_data[:direction] = 'future'
     end
-
-    # singular v. plural resolution
-    if resolution[0] == 1
-      resolution.join(' ')[0...-1]
-    else
-      resolution.join(' ')
-    end
+    level = which_key(time_steps, time_data)
+    say_it(time_steps, level, time_data)
   end
 end

@@ -6,37 +6,37 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     @user = @person.user
   end
 
-  test 'should get edit'
+  test 'should get edit' do
     log_in_as(@user)
     get edit_person_path(@person)
     assert_response :success
   end
 
-  test 'should redirect home when disconnected'
+  test 'should redirect home when disconnected' do
     get edit_person_path(@person)
     assert_redirected_to login_url
   end
 
-  test 'should get new'
+  test 'should get new' do
     log_in_as(@user)
     get new_person_path
     assert_response :success
   end
 
-  test 'should get show'
+  test 'should get show' do
     log_in_as(@user)
     get person_path(@person.id)
     assert_response :success
   end
 
-  test 'should redirect update'
+  test 'should redirect update' do
     log_in_as(@user)
     patch person_path(@person), params: { person: { firstname: @person.firstname, email: @person.email } }
     refute flash[:success] == ''
     assert_redirected_to person_url
   end
 
-  test 'should edit when wrong update'
+  test 'should edit when wrong update' do
     log_in_as(@user)
     patch person_path(@person), params: { person: { lastname:"", email: @person.email } }
     refute flash[:danger].empty?

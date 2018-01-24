@@ -66,7 +66,12 @@ module ComactionsHelper
     #
     periods.each do |per|
       per.to_half_hours_range.each do |n|
-        block[n] = "<span class='not-busy' data-block='#{n}-#{ per.start_period.day }-#{ per.start_period.month }-#{ per.start_period.year }' data-toggle='tooltip' data-placement='left' title='#{ n/2 }h'></span>"
+        items = []
+        items << "<span class='not-busy' data-block='#{n}-#{per.time_frame.min.day}"
+        items << "-#{per.time_frame.min.month}-#{per.time_frame.min.year}' "
+        items << "data-toggle='tooltip' data-placement='left' title='#{n/2}h'></span>"
+
+        block[n] = items.join('')
       end
     end
     block.slice(Comaction::WORK_HOURS.first * 2 .. Comaction::WORK_HOURS.last * 2 - 1).join('').html_safe
@@ -74,7 +79,7 @@ module ComactionsHelper
 
   def getComactionTitle(c)
     "<strong>#{c.person.full_name}</strong><br>\
-    # { t_com_ac_type(c.action_type)} [#{t_com_status(c.status)}] "
+    #{t_com_ac_type(c.action_type)} [#{t_com_status(c.status)}] "
   end
 
   def getComactionDetails(c)

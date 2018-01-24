@@ -9,7 +9,7 @@
 #  phone_number         :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  is_jj_hired          :boolean
+#  is_hh_hired          :boolean
 #  is_client            :boolean
 #  note                 :text
 #  user_id              :integer
