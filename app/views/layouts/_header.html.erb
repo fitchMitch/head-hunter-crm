@@ -17,12 +17,12 @@
         </li>
         <!-- <li>
           <= link_to  "#" do >
-            <=t('jj.add_time_title') >
+            <=t('hh.add_time_title') >
           < end >
         </li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <%=t('jj.rdv') %>
+            <%=t('hh.rdv') %>
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
@@ -63,7 +63,7 @@
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <%=t('jj.people_and_companies') %>
+            <%=t('hh.people_and_companies') %>
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
@@ -102,32 +102,32 @@
             <% if policy(current_user).create? %>
               <li>
                 <%= link_to  signup_path do %>
-                <%= fa_icon("plus-circle", text:t('jj.account_create')) %>
+                <%= fa_icon("plus-circle", text:t('hh.account_create')) %>
                 <% end %>
               </li>
               <li class="divider"></li>
             <% end %>
             <li>
               <%= link_to  edit_user_path(current_user) do %>
-              <%= fa_icon("user", text:t('jj.parameters')) %>
+              <%= fa_icon("user", text:t('hh.parameters')) %>
               <% end %>
             </li>
             <li>
               <%= link_to  users_path do  %>
               <i class="fa fa-users" aria-hidden="true"></i>
-              JJ's
+              HH's
               <% end %>
             </li>
             <li class="divider"></li>
             <li>
               <%= link_to  "#" do %>
-              <%= fa_icon("dashboard", text:t('jj.dashboard_title')) %>
+              <%= fa_icon("dashboard", text:t('hh.dashboard_title')) %>
               <% end %>
             </li>
             <li class="divider"></li>
             <li>
               <%= link_to  logout_path, method: "delete" do %>
-              <%= fa_icon("sign-out", text:t('jj.disconnect')) %>
+              <%= fa_icon("sign-out", text:t('hh.disconnect')) %>
               <% end %>
             </li>
           </ul>

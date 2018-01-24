@@ -14,11 +14,11 @@
           <% end %>
           <% if policy(@person).show? %>
             <%= link_to @person.full_name, edit_person_path(@person), class:@class_client  %>
-            <% if @person.is_jj_hired %>
+            <% if @person.is_hh_hired %>
               <i class="fa fa-star" aria-hidden="true"></i>
             <% end %>
           <% else %>
-            <% if @person.is_jj_hired %>
+            <% if @person.is_hh_hired %>
               <i class="fa fa-star" aria-hidden="true"></i>
               <%= @person.full_name %>
             <% end %>

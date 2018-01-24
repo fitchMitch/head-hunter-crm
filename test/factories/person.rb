@@ -8,7 +8,7 @@ FactoryBot.define do
     approx_age { (20..64).to_a.sample }
     created_at { 42.days.ago }
     note { Faker::Lorem.sentence(4)}
-    is_jj_hired { false }
+    is_hh_hired { false }
     is_client { false }
     user
   end
@@ -21,7 +21,7 @@ FactoryBot.define do
     approx_age { (20..64).to_a.sample }
     created_at { 42.days.ago }
     note { Faker::Lorem.sentence(4)}
-    is_jj_hired { false }
+    is_hh_hired { false }
     is_client { false }
     cv_docx { File.new("#{Rails.root}/test/factories/test.docx")}
     user

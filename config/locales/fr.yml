@@ -69,7 +69,7 @@ fr:
   With: Avec
 
   update_date: Mise à jour
-  jj:
+  hh:
     maxim: "HH Recrutement"
     rdv: Rendez-vous
     people_and_companies: Contacts et sociétés
@@ -161,7 +161,7 @@ fr:
     date_in: Date de prise de fonction
     date_end: Date de fin de contrat
     edit: Editer ce poste
-    jj: Poste fourni par %{brand}
+    hh: Poste fourni par %{brand}
     last: Poste occupé
     list : Liste des emplois
     new_saved: Nouvel emploi de sauvegardé
@@ -235,9 +235,9 @@ fr:
     firstname: Prénom
     future_tab_title: A venir
     have_meeting: Prendre rendez-vous
-    history_title: Historique JJ
+    history_title: Historique HH
     job: Emploi
-    jj_employed: Embauché grâce à JJ
+    hh_employed: Embauché grâce à HH
     lastly: Dernièrement
     list: Liste des contacts
     name: Nom
