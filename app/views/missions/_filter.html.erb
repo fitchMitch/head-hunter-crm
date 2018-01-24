@@ -5,12 +5,13 @@
       <span class="input-group-addon" id="basic-addon1">
         <%=t('filter') %>
       </span>
-      <%= button_filters_with_ransack ({klass: 'mission',
+      <%= button_filters ({klass: 'mission',
                                   enum: 'status',
                                   selec: @status_selected,
                                   css: 'form-control input-sm filter',
                                   id: 'q_status_eq',
-                                  name: 'q[status_eq]'}) %>
+                                  name: 'q[status_eq]'
+                                  ransack: true}) %>
     </div>
     <% end %>
     <%= link_to missions_path, class: "btn btn-success" do %>
