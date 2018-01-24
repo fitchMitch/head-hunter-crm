@@ -70,7 +70,7 @@ class JobsController < ApplicationController
         :salary,
         :start_date,
         :end_date,
-        :jj_job,
+        :hh_job,
         :company_id,
         :person_id,
         :no_end

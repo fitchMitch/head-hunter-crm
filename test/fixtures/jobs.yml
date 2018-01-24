@@ -7,7 +7,7 @@
 #  salary     :float
 #  start_date :date
 #  end_date   :date
-#  jj_job     :boolean
+#  hh_job     :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  company_id :integer
@@ -22,7 +22,7 @@
 #   salary: 1.5
 #   start_date: 2017-01-25
 #   end_date: 2017-01-25
-#   jj_job: false
+#   hh_job: false
 #   person: one
 #   company: one
 #   no_end: false
@@ -32,7 +32,7 @@
 #   salary: 1.5
 #   start_date: 2017-01-26
 #   end_date: 2017-01-27
-#   jj_job: false
+#   hh_job: false
 #   person: two
 #   company: one
 #   no_end: false
@@ -43,7 +43,7 @@
 #   salary: n*1000 -1 -n
 #   start_date: 2017-01-25
 #   end_date: 2017-01-25
-#   jj_job: false
+#   hh_job: false
 #   company: one
 #   person: two
 #   no_end: false

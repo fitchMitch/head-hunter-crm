@@ -66,7 +66,11 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+<<<<<<< HEAD
+  test 'admin should see other\'s missions' do
+=======
   test 'admin should see other\'s missions ' do
+>>>>>>> 679db34a8534c1e32c5dfe3bdd869701a74aa0f9
     log_in_as(@admin)
     get missions_path
     assert_response :success

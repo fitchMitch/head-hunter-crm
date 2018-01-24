@@ -12,7 +12,7 @@ default: &default
 
 development:
   <<: *default
-  database: jjflo_dev
+  database: hhcrm_dev
   password: <%= ENV['SGBD_PWD_DEV'] %>
   username: jjflo
 
@@ -21,13 +21,13 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: jjflo_test
+  database: hhcrm_test
   password: jjflo
   username: jjflo
 
 production:
   <<: *default
-  database: jjflo
+  database: hhcrm
   password: <%= ENV['SGBD_PWD'] %>
   username: postgres
 # username: jjflo

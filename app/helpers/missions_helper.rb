@@ -34,7 +34,7 @@ module MissionsHelper
     end
     colle
   end
-
+  # TODO get rid of following code
   def button_filters_missions(selected, css)
     statuses = [['', '']]
     Mission::statuses.each do |k, v|

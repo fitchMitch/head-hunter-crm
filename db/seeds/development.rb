@@ -53,7 +53,7 @@ Person.create!(
     email:              'yolande.moreau@gmail.com',
     phone_number:       '9876543210',
     approx_age:         65,
-    is_jj_hired:        true,
+    is_hh_hired:        true,
     is_client:          false,
     note:               Faker::Lorem.sentence(1),
     user_id:            user.id
@@ -79,7 +79,7 @@ Person.create!(
     phone_number:       phone_number,
     approx_age:         approx_age,
     cv_docx:            cv_docx,
-    is_jj_hired:        is_client,
+    is_hh_hired:        is_client,
     is_client:          is_client,
     note:               note,
     user_id:            user_id
@@ -114,7 +114,7 @@ people = Person.all
     salary:                salary,
     start_date:            start_date,
     end_date:              end_date,
-    jj_job:                false,
+    hh_job:                false,
     created_at:            created_at,
     updated_at:            updated_at,
     company_id:            company_id,

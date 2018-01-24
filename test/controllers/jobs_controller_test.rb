@@ -13,7 +13,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
           'start_date' =>  Date.today.years_ago(10),
           'end_date' =>  Date.today.years_ago(8),
           'salary' =>  2222,
-          'jj_job' =>  true,
+          'hh_job' =>  true,
           'person_id' =>  @person.id,
           'company_id' =>  @company.id,
           'user_id' =>  @user.id,

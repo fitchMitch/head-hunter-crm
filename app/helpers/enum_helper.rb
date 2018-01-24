@@ -4,25 +4,16 @@ module EnumHelper
       rand_params,
       empty_option
     )
-    s = "<select class='#{rand_params[:css]}'
-      id='#{rand_params[:klass]}_filter_#{rand_params[:enum]}'>
-      #{opt}</select>".html_safe
+    s= []
+    s << "<select class='#{rand_params[:css]}'"
+    if rand_params[:ransack]
+      s << "id='#{rand_params[:klass]}_filter_#{rand_params[:enum]}'>"
+    else
+      s << "id='#{rand_params[:id]}'name='#{rand_params[:name]}'>"
+    end
+    s << "#{opt}</select>"
+    s.join('').html_safe
   end
-
-  def button_filters_with_ransack(rand_params, empty_option = true)
-    opt = options_for_enum(
-      rand_params,
-      empty_option
-    )
-    s = "<select class='#{rand_params[:css]}'
-      id='#{rand_params[:id]}'
-      name='#{rand_params[:name]}'>
-      #{opt}
-      </select>".html_safe
-  end
-  # ['sym_klass'],
-  # rand_params['enum'],
-  # rand_params['selec']
 
   def options_for_enum(rand_params, empty_option)
     klass = rand_params[:klass].camelize

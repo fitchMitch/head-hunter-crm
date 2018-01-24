@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20171216144636) do
     t.float    "salary"
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "jj_job"
+    t.boolean  "hh_job"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "company_id"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20171216144636) do
     t.string   "phone_number"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.boolean  "is_jj_hired"
+    t.boolean  "is_hh_hired"
     t.boolean  "is_client"
     t.text     "note"
     t.integer  "user_id"
