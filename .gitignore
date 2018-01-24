@@ -17,14 +17,14 @@
 !/log/.keep
 !/tmp/.keep
 /coverage
-/test_result.txt
 /public/system/people/*
 /rails_cmds.txt
-/test_results.txt
-/erase_it_all.sql
-# Ignore Byebug command history file.
-.byebug_history
 /config/database.yml
 /config/secrets.yml
-/Passengerfile.json.ssl
-/rails_possible_commands.txt
+# Ignore Byebug command history file.
+.erase_it_all.sql
+.test_result.txt
+.byebug_history
+.errors
+.Passengerfile.json.ssl
+.rails_possible_commands.txt
