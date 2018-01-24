@@ -42,6 +42,9 @@ sudo certbot certonly --webroot -w /var/www/example -d example.com -d www.exampl
 sudo certbot certonly --webroot -w /var/www/jjflo/code -d crm.etienneweil.fr
 sudo certbot renew --dry-run
 ----------------------------------
+GIT
+git checkout -b iss53
+
 git remote -v in order to view (cf https://help.github.com/articles/removing-a-remote/)
 git remote show origin
 git remote rm jjflo in order to withdraw
