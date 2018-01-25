@@ -12,7 +12,7 @@
 #  person_id   :integer
 #  end_time    :datetime
 #  status      :integer
-#  action_type :integer
+#  action_type :integer          default("client_type")
 #
 
 require 'test_helper'

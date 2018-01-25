@@ -104,6 +104,16 @@
             </a>
           </li>
           <% end %>
+          <% unless @related_missions.nil? || @related_missions.empty? %>
+          <li role="presentation">
+            <a href="#missions" aria-controls="missions" role="tab" data-toggle="tab">
+              <h4 class="person">
+                <%=t('Missions') %>
+                <%= fa_icon("bookmark-o" ) %>
+              </h4>
+            </a>
+          </li>
+          <% end %>
         </ul>
 
         <!-- Tab panes -->
@@ -133,6 +143,13 @@
               <%=t('empty_list') %>
             <% else %>
               <%= render partial: "comactions/short_comaction", collection: @future_comactions, as: :comaction %>
+            <% end %>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="missions">
+            <% if @future_comactions.nil? || @future_comactions.empty?%>
+              <%=t('empty_list') %>
+            <% else %>
+              <%= render partial: "missions/mission_short", collection: @related_missions, as: :mission %>
             <% end %>
           </div>
         </div>

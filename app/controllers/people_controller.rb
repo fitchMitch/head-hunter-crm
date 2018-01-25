@@ -29,6 +29,7 @@ class PeopleController < ApplicationController
     @passed_comactions = Comaction.unscoped.older_than(0).from_person(@person)
     @future_comactions = Comaction.unscoped.newer_than(0).from_person(@person)
     @current_job = Job.current_job(@person.id)
+    @related_missions = Mission.where(person_id: @person.id)
 
     @doc = @person.get_cv
 

@@ -12,7 +12,7 @@
 #  person_id   :integer
 #  end_time    :datetime
 #  status      :integer
-#  action_type :integer
+#  action_type :integer          default("client_type")
 #
 
 class Comaction < ApplicationRecord
@@ -74,7 +74,6 @@ class Comaction < ApplicationRecord
   scope :older_than, ->(d, day_adjust = false) {
     d ||= 0
     if day_adjust
-
       extra_hours  = (DateTime.current.end_of_day - DateTime.current) * 24
       where('(start_time <= ?)', DateTime.current.advance(days: d, hours: extra_hours))
     else
