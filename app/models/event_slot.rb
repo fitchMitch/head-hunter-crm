@@ -13,10 +13,9 @@ class EventSlot
     duration = attri.fetch(:duration, 0)
 
     duration = 0 if max != 0
-    raise 'minimum is badly initialized' if !min.is_a?(Time) && min != 0
-    raise 'maximum is badly initialized' if !max.is_a?(Time) && max != 0
+    raise 'minimum is badly initialized' if !min.is_a?(Time) || min == 0
+    raise 'maximum is badly initialized' unless max.is_a?(Time) || max == 0
     raise 'missing parameters max or duration' if max == 0 && duration == 0
-    raise 'starting time is not defined' if min == 0
 
     { min: min, max: max, duration: duration }
   end
@@ -34,13 +33,13 @@ class EventSlot
     TimeFrame.union(timeframes).first
   end
 
-  def extend_to_day_start
+  def extend_to_day_start #start at the first hour
     new_min = time_frame.min.beginning_of_day
     new_max = time_frame.min
     timeframe = do_union(new_min, new_max)
   end
 
-  def extend_to_day_end
+  def extend_to_midnight # end at midnight
     new_min = time_frame.max
     new_max = time_frame.max.end_of_day
     timeframe = do_union(new_min, new_max)
@@ -59,7 +58,7 @@ class EventSlot
   def day_slices
     # extend_to_square_days
     self.time_frame = extend_to_day_start
-    self.time_frame = extend_to_day_end
+    self.time_frame = extend_to_midnight
     # slice_days is a TimeFrame array
     secs_in_a_day = 60 * 60 * 24
     slice_days = time_frame.split_by_interval(secs_in_a_day)
@@ -80,11 +79,11 @@ class EventSlot
     now = Time.current
     tf_to_exclude = []
     days  = slicing_days.each { |es|
-      new_min1 = es.time_frame.min.beginning_of_day
-      new_max1 = es.time_frame.min.beginning_of_day.advance(hours: Comaction::WORK_HOURS.first)
-      tf_to_exclude << TimeFrame.new(min: new_min1, max: new_max1)
+      day_start = es.time_frame.min.beginning_of_day
+      new_max1 = day_start.advance(hours: Comaction::WORK_HOURS.first)
+      tf_to_exclude << TimeFrame.new(min: day_start, max: new_max1)
 
-      new_min2 = es.time_frame.min.beginning_of_day.advance(hours: Comaction::WORK_HOURS.last)
+      new_min2 = day_start.advance(hours: Comaction::WORK_HOURS.last)
       new_max2 = es.time_frame.min.end_of_day
       tf_to_exclude << TimeFrame.new(min: new_min2, max: new_max2)
     }

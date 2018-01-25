@@ -9,7 +9,7 @@ module EnumHelper
     if rand_params[:ransack]
       s << "id='#{rand_params[:klass]}_filter_#{rand_params[:enum]}'>"
     else
-      s << "id='#{rand_params[:id]}'name='#{rand_params[:name]}'>"
+      s << "id='#{rand_params[:id]}' name='#{rand_params[:name]}'>"
     end
     s << "#{opt}</select>"
     s.join('').html_safe
