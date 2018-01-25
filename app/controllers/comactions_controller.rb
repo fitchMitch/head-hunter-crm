@@ -29,6 +29,7 @@ class ComactionsController < ApplicationController
   end
 
   def index
+    authorize Comaction
     # --- modal material
     @comaction = Comaction.new
     # ----------------------
@@ -37,9 +38,8 @@ class ComactionsController < ApplicationController
 
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
-    authorize @comactions
 
-    unless params[:filter].nil?
+    params[:filter].try do
       Comaction.statuses.each do |key,value|
         @comactions = @comactions.public_send(key) if params[:filter] == key
       end
@@ -81,7 +81,7 @@ class ComactionsController < ApplicationController
     authorize @comaction
 
     if @comaction.save
-      if @comaction.start_time.nil?  || @comaction.end_time.nil?
+      if @comaction.start_time.nil?  || @comaction.end_time.nil? || !Rails.configuration.mail_wanted
         flash[:info] = I18n.t('comaction.message.saved')
       else
         @comaction.send_meeting_email(current_user, true)
@@ -151,7 +151,7 @@ class ComactionsController < ApplicationController
     # =================
     def next_comactions
       next_comactions_event_slots = []
-      next_c = Comaction.mine(@uid).newer_than(0).older_than(Comaction::PERSPECTIVE).order(start_time: :asc)
+      next_c = Comaction.mine(@uid).newer_than(0).older_than(Comaction::PERSPECTIVE, true).order(start_time: :asc)
       next_c.each do |nc|
         next_comactions_event_slots << EventSlot.new({min: nc.start_time, max: nc.end_time})
       end
@@ -163,12 +163,7 @@ class ComactionsController < ApplicationController
       d = Time.current
       attributes = { min: d, duration: Comaction::PERSPECTIVE.days }
       free_zone = EventSlot.new(attributes)
-      # free_zone is an EventSlot
-
-      # message, free_zone_days = free_zone.dash_it next_comactions
       free_zone_days = free_zone.dash_it next_comactions
-      # flash[:danger] = message unless message.empty?
-      # free_zone_days = EventSlot.sharpen free_zone_days
       free_zone_days = EventSlot.sort_periods free_zone_days unless free_zone_days.nil?
     end
 
@@ -200,11 +195,11 @@ class ComactionsController < ApplicationController
     end
 
     def find_comaction
+      authorize Comaction
       @comaction = Comaction.find(params[:id])
       @comaction.is_dated = (@comaction.nil? || @comaction.start_time.nil?) ? 0 : 1
       @date_begin = @comaction.start_time
       @date_end = @comaction.end_time
-      authorize @comaction
     end
 
     def retrieve_uid

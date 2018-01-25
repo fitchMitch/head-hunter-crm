@@ -143,12 +143,12 @@ class PeopleController < ApplicationController
     end
 
     def find_person
-      unless params[:id].nil?
-        @person = Person.find(params[:id])
-        authorize @person
-        @jobs = @person.jobs.includes(:company).reload
-      else
+      authorize Person
+      if params[:id].nil?
         redirect_to root_url
+      else
+        @person = Person.find(params[:id])
+        @jobs = @person.jobs.includes(:company).reload
       end
     end
 end

@@ -24,8 +24,6 @@ class JobsController < ApplicationController
 
     if @job.save
       @company = Company.find(@job.company_id)
-      # @job.company = @company unless @company.nil?
-      # flash[:info] = @job.person.firstname.to_s + ' ' + I18n.t('job.new_saved')
       flash[:info] = "#{@job.person.firstname} #{t('job.new_saved')}"
     else
       flash[:danger] = I18n.t('job.danger_message')
