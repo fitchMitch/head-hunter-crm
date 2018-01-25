@@ -23,12 +23,10 @@ class ComactionsTest < ActionDispatch::IntegrationTest
 	test 'should filter with statuses' do
 		@comaction_hired = create(:comaction_hired)
 		@comaction_hired.update(user_id: @user.id)
-		get comactions_url,
-				params: {
+		get comactions_url, params: {
 					filter: 'hired',
 					v: 'table_view' }
-		  assert_select '.status>small' , { minimum: 1, text: 'Engagé'}
-
+		assert_select '.status>small' , { minimum: 1, text: 'Engagé'}
 	end
 
 	test 'should filter with statuses and fail' do

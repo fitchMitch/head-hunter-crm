@@ -39,7 +39,7 @@ class ComactionsController < ApplicationController
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
 
-    params[:filter].try do
+    unless params[:filter].nil? 
       Comaction.statuses.each do |key,value|
         @comactions = @comactions.public_send(key) if params[:filter] == key
       end

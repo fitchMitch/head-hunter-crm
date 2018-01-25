@@ -27,8 +27,23 @@ class PeopleTest < ActionDispatch::IntegrationTest
     assert_match /Contact sauvegardé/, flash[:success]
   end
 
-  test 'people should get destroyed' do
+  test 'as simple user, people should get destroyed' do
     log_in_as(@user)
+    get people_path
+    assert_response :success
+    assert_template 'people/index'
+    first_page_of_people = Person.paginate(page: 1)
+    @person=first_page_of_people.first
+    first_page_of_people.each do |per|
+      assert_select 'a[href=?]', person_path(per)
+    end
+    assert_no_difference 'Person.count' do
+      delete person_path(@person)
+    end
+  end
+
+  test 'as admin, people should get destroyed' do
+    log_in_as(@admin)
     get people_path
     assert_response :success
     assert_template 'people/index'
@@ -42,7 +57,7 @@ class PeopleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'ad admin, there\'s an access to people\'s detail page' do
+  test 'as admin, there\'s an access to people\'s detail page' do
     log_in_as(@admin)
     get people_path
     Person.paginate(page: 1).each do |per|
