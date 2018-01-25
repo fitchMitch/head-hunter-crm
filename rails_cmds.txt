@@ -44,6 +44,7 @@ sudo certbot renew --dry-run
 ----------------------------------
 GIT
 git checkout -b iss53
+git branch -d branch_name (local)
 
 git remote -v in order to view (cf https://help.github.com/articles/removing-a-remote/)
 git remote show origin

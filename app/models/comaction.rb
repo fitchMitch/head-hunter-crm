@@ -24,7 +24,7 @@ class Comaction < ApplicationRecord
 
   WORK_HOURS = (8..22).to_a
   SHORTEST_MEETING_TIME = 45
-  PERSPECTIVE = 6 # next n days
+  PERSPECTIVE = 7 # next n days
 
   include PgSearch
   pg_search_scope :search_name,
@@ -71,11 +71,17 @@ class Comaction < ApplicationRecord
     d ||= 7
     where('(start_time >= ? OR start_time is null) ', d.days.ago)
   }
-  scope :older_than, ->(d) {
+  scope :older_than, ->(d, day_adjust = false) {
     d ||= 0
-    d = -d
-    where('(start_time <= ?)', d.days.ago)
+    if day_adjust
+
+      extra_hours  = (DateTime.current.end_of_day - DateTime.current) * 24
+      where('(start_time <= ?)', DateTime.current.advance(days: d, hours: extra_hours))
+    else
+      where('(start_time <= ?)', (-d).days.ago)
+    end
   }
+
   scope :mine,          ->(uid) { where('comactions.user_id = ?', uid) }
   scope :unscheduled,   -> { where('start_time is null ') }
   scope :scheduled,     -> { where('start_time is not null ') }
@@ -87,11 +93,8 @@ class Comaction < ApplicationRecord
   # Validations
   # ===========
   validates :name, presence: true, length: { maximum: 100 }
-  validates :status, presence: true
-  validates :action_type, presence: true
-
-  validates :status, inclusion: { in: statuses }
-  validates :action_type, inclusion: { in: action_types }
+  validates :status, presence: true, inclusion: { in: statuses }
+  validates :action_type, presence: true, inclusion: { in: action_types }
 
   validate  :check_conditions
   # ===========
@@ -115,7 +118,7 @@ class Comaction < ApplicationRecord
       time_frame = TimeFrame.new(min: start_time, max: end_time)
       time_frame_other = TimeFrame.new(min: other.start_time, max: other.end_time)
       if time_frame.overlaps?(time_frame_other)
-        logger.debug("---------------- occuring overlap : other\'s name : #{ other.name } | self\'s name : #{name}-------------------")
+        logger.debug("---------------- occuring overlap : other\'s name : #{other.name} | self\'s name : #{name}-------------------")
         errors.add(:end_time, "Superposition de rendez-vous #{other.name} avec : (#{other.person.full_name}) ")
       end
     end
