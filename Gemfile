@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem 'bundler', '>= 1.8.4'
-gem 'rails',        '5.0.1'
+gem 'rails',   '~> 5.0.6'
 # gem 'sqlite3', '1.3.12'
 gem 'pg', '~> 0.20.0'
 gem 'sass-rails',   '5.0.6'
