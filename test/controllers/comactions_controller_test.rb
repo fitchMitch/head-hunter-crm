@@ -141,8 +141,8 @@ class ComactionControllerTest < ActionDispatch::IntegrationTest
     get edit_comaction_path(@comaction)
     patch comaction_path(@comaction), params: {
       comaction: {
-        start_time: @former_comaction.start_time + 10*60,
-        end_time: @former_comaction.end_time + 10*60
+        start_time: @former_comaction.start_time + 10, # seconds
+        end_time: @former_comaction.end_time + 3 * 60 * 60
       }
     }
     refute flash.empty?
