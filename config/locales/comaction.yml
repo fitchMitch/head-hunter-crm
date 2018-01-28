@@ -1,0 +1,54 @@
+fr:
+  comaction:
+    action_type:
+      client_type: RdV Client
+      apply_type: RdV Candidat
+      apply_customer_type: RdV Candidat Client
+      exploration_type: RdV exploratoire
+      other_type: Autre rendez-vous
+    add_label: Ajouter une action, un RdV
+    availibility:
+      title: Disponibilités
+      command_message: Cliquez sur les parties vertes (votre disponibilité) pour renseigner les champs jour et heures en vis à vis.
+    create: Créer un rendez-vous/action
+    calendar: Calendrier
+    date_q: Date ?
+    filters:
+      now_and_after: Maintenant et +
+      add_contact: Ajouter un nouveau contact
+      add_mission: Ajouter une mission
+      with_no_comaction: Sans Rendez-vous
+      no_date: Sans date
+    label: Libellé du RDV/action
+    end:
+      date_and_hour: Date et heure de fin
+    menu:
+      title_list: calendrier en tables
+    message:
+      saved: Rendez-vous sauvegardé
+      saved_with_mail: Rendez-vous sauvegardé (un email a été envoyé)
+      unsaved : Ce rendez-vous n'a pas pu être ajouté
+      updated_with_mail: Rendez-vous mis à jour (un email a été envoyé)
+      unupdated: Ce rendez-vous n'a pas pu être mis à jour
+      deleted: Rendez-vous supprimé
+    mission: Nom de la Mission
+    rdv: Rendez-vous
+    see_mission: Voir la mission
+    short-rdv: RdV
+    status: Etat d'avancement
+    status:
+      sourced: Sourcé
+      preselected: Préselectionné
+      appointed: RDV HH
+      pres: Présentation client
+      o_pres: Autre RDV client
+      hired: Engagé
+      working: En poste
+    start:
+      date_and_hour: Date et heure de début
+    tutti: Toutes
+    type: Type de rendez-vous
+    title_list: Calendrier
+    title_list_short: Calendrier
+    update_title: Editer un RdV/action
+    upside_down_error : La fin vient après le début :-)

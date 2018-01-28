@@ -1,0 +1,21 @@
+fr:
+  user:
+    admin_label: Administrateur ?
+    account_create: Créer un compte
+    authentication:
+      user_authentication: Authentification
+      password_update: Mise à jour du mot de passe
+      forgotten_password: Mot de passe oublié
+      activation: Votre compte est activé
+      link_no_working: Le lien d'activation est invalide
+    cannot_destroy: Cet utilisateur ne peut pas être supprimé
+    destroyed: Utilisateur supprimé
+    email_activation: Un message comportant un lien d'activation de compte a été envoyé.
+    list: Liste des utilisateurs
+    login: Login
+    password: Mot de passe
+    password_confirmation: Confirmation de mot de passe
+    profile_update_failed: Le profil n'a pas pu être mis à jour
+    profile_update_success: Profil mis à jour
+    profile_update: Modifier le profil
+    remember_me: Se souvenir de moi

@@ -1,0 +1,41 @@
+fr:
+  mission:
+    action_list_title: Activité
+    add_new: Créer une nouvelle mission
+    add_new_company: Créer une nouvelle société
+    add_contact: Ajouter un nouveau contact
+    Age frame: Tranche d'âge
+    already_cashed: Déjà encaissé
+    Between: Entre
+    amount: Montant de la mission
+    contact: Contact client
+    create: Créer une mission
+    destroyed: Mission supprimée
+    due : Echéance
+    edit: Editer une mission
+    future_tab_title: A venir
+    history_title: Historique
+    list: Liste des missions
+    market : Marché
+    maximum_salary: Salaire maximum
+    max_salary: Salaire annuel maximal
+    minimum_salary: Salaire minimum
+    mission_activity_void: Aucune activité répertoriée à ce jour
+    name: Nom de la mission
+    not_added: Cette mission n'a pas pu être ajoutée
+    passed_tab_title: Passé
+    remuneration: Rémunération JuinJuillet
+    person_searched: Contenu de la mission
+    saved: Mission sauvegardée :-)
+    status: Etat d'avancement du contrat
+    status:
+      paid_amount: Montant touché
+      opportunity: Lead
+      contract_sent: Contrat envoyé
+      contract_signed: Contrat signé
+      mission_billed: Contrat facturé
+      mission_payed: Mission payée
+    updated: Mission mise à jour
+    unupdated: Cette mission n'a pas pu être mise à jour
+    whished_start_date: Date de lancement de la mission
+    years: ans

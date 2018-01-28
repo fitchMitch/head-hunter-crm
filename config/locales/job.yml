@@ -1,0 +1,21 @@
+fr:
+  job:
+    add: Ajouter une nouvelle société
+    add: Ajouter une expérience
+    add_first: Créez la première société !
+    canceled: Emploi supprimé
+    confirm_for: Wesh ? C'est sûr pour %{him} ?
+    danger_message: Cette expérience n'a pas pu être ajoutée
+    double_jobs: Cet utilisateur a déjà un poste à plein temps
+    date_in: Date de prise de fonction
+    date_end: Date de fin de contrat
+    edit: Editer ce poste
+    hh: Poste fourni par %{brand}
+    last: Poste occupé
+    list : Liste des emplois
+    new_saved: Nouvel emploi de sauvegardé
+    salary: Salaire
+    still_in: en poste
+    unemployed: sans emploi
+    unupdated: Le contact n'a pas pu être mis à jour
+    updated: Emploi mis à jour

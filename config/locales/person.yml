@@ -1,0 +1,31 @@
+fr:
+  person:
+    add: Ajouter un contact
+    add_and_see_button: Ajouter et voir
+    add_experience: Ajouter une expérience
+    approx_age: Age approximatif
+    citizenship: Civilité
+    comment: Commentaire
+    create : Créer un contact
+    cv: Son CV
+    cv_docx: CV (au format docx)
+    edit: Editer ce contact
+    experiences: Expériences
+    firstname: Prénom
+    future_tab_title: A venir
+    have_meeting: Prendre rendez-vous
+    history_title: Historique HH
+    job: Emploi
+    hh_employed: Embauché grâce à HH
+    lastly: Dernièrement
+    list: Liste des contacts
+    name: Nom
+    no_cv: Pas de CV !
+    no_one: Personne n'est encore inscrit
+    phone_number: Numéro de téléphone
+    passed_jobs: Postes occupés (non exhaustifs)
+    phone: Téléphone
+    person_activity_void: Certainement des choses à faire ensemble ...
+    save_and_see_button: Sauvegarder et voir
+    saved: Contact sauvegardé
+    updated: Contact mis à jour
