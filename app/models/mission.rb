@@ -18,6 +18,7 @@
 #  whished_start_date :date
 #  status             :integer          default("opportunity")
 #  user_id            :integer
+#  signed_at          :datetime
 #
 
 class Mission < ApplicationRecord
@@ -48,7 +49,9 @@ class Mission < ApplicationRecord
     find_each { |record| record.update_pg_search_document }
   end
 
-  scope :active, -> { where('status != ? AND status != ?', :mission_billed, :mission_payed) }
+  scope :active, -> {
+    where('status != ? AND status != ?', status[:mission_billed], status[:mission_payed])
+  }
   scope :mine, ->(uid) { where('user_id = ?', uid) }
   # scope :not_paid, -> { where('status != ?', :mission_payed) }
 

@@ -18,6 +18,7 @@
 #  whished_start_date :date
 #  status             :integer          default("opportunity")
 #  user_id            :integer
+#  signed_at          :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

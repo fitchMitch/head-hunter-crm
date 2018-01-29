@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216144636) do
+ActiveRecord::Schema.define(version: 20180129151902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20171216144636) do
     t.date     "whished_start_date"
     t.integer  "status",             default: 0
     t.integer  "user_id"
+    t.datetime "signed_at"
     t.index ["company_id"], name: "index_missions_on_company_id", using: :btree
     t.index ["person_id"], name: "index_missions_on_person_id", using: :btree
     t.index ["user_id"], name: "index_missions_on_user_id", using: :btree

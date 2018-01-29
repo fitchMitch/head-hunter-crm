@@ -62,6 +62,7 @@ class MissionsController < ApplicationController
   def update
     @mission.is_done = [:mission_billed, :mission_payed].include?(mission_params[:status])
     @mission.signed  = [:contract_signed, :mission_billed, :mission_payed].include?(mission_params[:status])
+    @mission.signed_at = @mission.signed_at || DateTime.now if @mission.signed
 
     if @mission.update_attributes(mission_params)
       flash[:success] = I18n.t('mission.updated')

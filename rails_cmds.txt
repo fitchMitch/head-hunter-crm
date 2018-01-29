@@ -31,8 +31,11 @@ rails g pundit:install
 rails g pundit:policy user
 rails g pundit:policy comaction
 rails g migration AddUserRefToMissions user:references
+rails g migration AddColumnToMissions signed_at:datetime
+---------------
 rails g integration_test missions
-
+rails g test_unit:scaffold article
+---------------
 rails generate paperclip user avatar
 ----------------------------------
 rails routes -g new_comment
