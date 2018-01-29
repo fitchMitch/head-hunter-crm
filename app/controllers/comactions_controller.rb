@@ -21,7 +21,7 @@ class ComactionsController < ApplicationController
   def new
     @comaction = Comaction.new
     authorize @comaction
-    @comaction.name = 'RdV'
+    # @comaction.name = 'RdV'
     @now = DateTime.now.to_date
     @date_begin = params[:date].nil? ? @now : Date.strptime(params[:date], '%Y-%m-%d')
     @forwhom = params[:person_id] || 0
@@ -39,7 +39,7 @@ class ComactionsController < ApplicationController
     @q = Comaction.mine(@uid).ransack(params[:q])
     @comactions = @q.result.includes(:user, :person, mission: [:company])
 
-    unless params[:filter].nil? 
+    unless params[:filter].nil?
       Comaction.statuses.each do |key,value|
         @comactions = @comactions.public_send(key) if params[:filter] == key
       end

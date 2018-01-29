@@ -6,6 +6,7 @@ fr:
       apply_customer_type: RdV Candidat Client
       exploration_type: RdV exploratoire
       other_type: Autre rendez-vous
+      task_type: Travail HH
     add_label: Ajouter une action, un RdV
     availibility:
       title: Disponibilités
@@ -37,13 +38,14 @@ fr:
     short-rdv: RdV
     status: Etat d'avancement
     status:
-      sourced: Sourcé
-      preselected: Préselectionné
       appointed: RDV HH
-      pres: Présentation client
-      o_pres: Autre RDV client
       hired: Engagé
+      o_pres: Autre RDV client
+      preselected: Préselectionné
+      pres: Présentation client
+      sourced: Sourcé
       working: En poste
+      homework: interne 
     start:
       date_and_hour: Date et heure de début
     tutti: Toutes

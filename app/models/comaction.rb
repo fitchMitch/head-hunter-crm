@@ -44,18 +44,24 @@ class Comaction < ApplicationRecord
     find_each(&:update_pg_search_document)
   end
 
-  enum status: [:sourced,
-                :preselected,
-                :appointed,
-                :pres,
-                :o_pres,
-                :hired,
-                :working ]
-  enum action_type: [:client_type,
-                    :apply_type,
-                    :apply_customer_type,
-                    :exploration_type,
-                    :other_type]
+  enum status: [
+    :sourced,
+    :preselected,
+    :appointed,
+    :pres,
+    :o_pres,
+    :hired,
+    :working,
+    :homework
+  ]
+  enum action_type: [
+    :client_type,
+    :apply_type,
+    :apply_customer_type,
+    :exploration_type,
+    :other_type,
+    :task_type
+  ]
   # ===========
   # Initialization
   # ===========
@@ -123,11 +129,11 @@ class Comaction < ApplicationRecord
     end
   end
 
-  # Sends meeting email.
-  def self.t_com_status(k)
-    I18n.t("comaction.status.#{k}")
-  end
+  # def self.t_com_status(k)
+  #   I18n.t("comaction.status.#{k}")
+  # end
 
+  # Sends meeting email.
   def send_meeting_email(u, is_new)
     if Rails.configuration.mail_wanted
       ComactionMailer.one_event_saving(self, u, is_new).deliver_now

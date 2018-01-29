@@ -12,7 +12,7 @@
   width: 380px;
   margin-top : 10px;
   margin-right: 10px;
-  
+
 }
 
 .select2.select2-container.select2-container--bootstrap{
@@ -123,6 +123,10 @@ hr.calendar{
 }
 .exploration-appointment{ //EXPLORATION_TYPE
   background-color: #b7d0bf;
+}
+.task_type{
+  background-color: $color2;
+  color: white;
 }
 .popover-title{
   background: $color2;

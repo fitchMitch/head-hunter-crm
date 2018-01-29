@@ -26,24 +26,22 @@ module ComactionsHelper
       apply_type: 'applier-appointment',
       apply_customer_type: 'applier-client-appointment',
       exploration_type: 'exploration-appointment',
-      other_type: 'none'
+      other_type: 'none',
+      task_type: 'task_type'
     }
     used_style = type_style[ev.action_type.to_sym]
     style = "status-frame #{used_style}"
   end
-  def t_com_status(k)
-    k = :opportunity if k == '' || k == ' '
-    I18n.t("comaction.status.#{k}")
-  end
 
-  def t_com_ac_type(k)
-    I18n.t("comaction.action_type.#{k}")
+  def enum_translate(k,type)
+    k = :opportunity if k == '' || k == ' '
+    I18n.t("comaction.#{type}.#{k}")
   end
 
   def status_collection
     colle=[]
     Comaction::statuses.each do |k, _|
-      colle << [t_com_status(k),k]
+      colle << [enum_translate(k,"status"),k]
     end
     colle
   end
@@ -51,7 +49,7 @@ module ComactionsHelper
   def type_collection
     colle = []
      Comaction::action_types.each do |k, _|
-      colle << [t_com_ac_type(k), k]
+      colle << [enum_translate(k,"action_type"),k]
     end
     colle
   end
@@ -79,7 +77,7 @@ module ComactionsHelper
 
   def getComactionTitle(c)
     "<strong>#{c.person.full_name}</strong><br>\
-    #{t_com_ac_type(c.action_type)} [#{t_com_status(c.status)}] "
+    #{enum_translate(c.action_type, 'action_type')} [#{enum_translate(c.status, 'status')}] "
   end
 
   def getComactionDetails(c)

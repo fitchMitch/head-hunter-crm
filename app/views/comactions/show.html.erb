@@ -7,7 +7,9 @@
     <table class='rdv'>
       <tr>
         <td>
-          <h3><%= t_com_ac_type @comaction.action_type %></h3>
+          <h3>
+            <%= enum_translate @comaction.action_type, "action_type" %>
+          </h3>
         </td>
       </tr>
       <tr>
@@ -94,9 +96,9 @@
             <strong>
               <%= link_to person_path(@comaction.person) do %>
               <%= @comaction.person.full_name %>
-              <br>
               <% end %>
-              <%= t_com_status @comaction.status %>
+              <br>
+              <%= enum_translate @comaction.status, "status" %>
             </strong>
           </div>
         </div>
