@@ -9,8 +9,8 @@ require 'as-duration'
 # -----------------
 # Common
 # -----------------
-created_at=           Time.zone.now
-updated_at=          Time.zone.now
+created_at =          Time.zone.now
+updated_at =          Time.zone.now
 # -----------------
 # Users
 # -----------------
@@ -77,7 +77,7 @@ Person.create!(
     email:              email,
     phone_number:       phone_number,
     approx_age:         approx_age,
-    cv_docx:            cv_docx,
+    cv_docx:            nil,
     is_hh_hired:        is_client,
     is_client:          is_client,
     note:               note,
@@ -140,10 +140,11 @@ jobs= Job.all
   company_id =       company.id
   person_id  =       person.id
   user_id  =         user.id
-  status  =          Mission.statuses.keys.sample
+  status  =          Mission.statuses.keys.sample.to_sym
   is_done   =        [:mission_billed, :mission_payed].include?(status)
   signed    =        [:contract_signed, :mission_billed, :mission_payed].include?(status)
   paid_amount =      signed ? reward / 3 : 0
+  signed_at =        signed ? Date.today - (0..100).to_a.sample : nil
   Mission.create!(
     name:               name,
     reward:             reward,
@@ -159,7 +160,8 @@ jobs= Job.all
     company_id:         company_id,
     person_id:          person_id,
     user_id:            user_id,
-    status:             status
+    status:             status,
+    signed_at:          signed_at
     )
 end
 missions = Mission.all

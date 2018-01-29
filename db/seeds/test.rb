@@ -141,10 +141,11 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
   company_id =       company.id
   person_id  =       person.id
   user_id  =         user.id
-  status  =          Mission.statuses.keys.sample
+  status  =          Mission.statuses.keys.sample.to_sym
   is_done   =        [:mission_billed, :mission_payed].include?(status)
   signed    =        [:contract_signed, :mission_billed, :mission_payed].include?(status)
   paid_amount =      signed ? reward / 3 : 0
+  signed_at =        signed ? Date.today - (0..100).to_a.sample : nil
   Mission.create!(
     name:               name,
     reward:             reward,
@@ -160,7 +161,8 @@ statuses = ['Opportunité', 'Contrat envoyé', 'Contrat signé', 'Mission factur
     company_id:         company_id,
     person_id:          person_id,
     user_id:            user_id,
-    status:             status
+    status:             status,
+    signed_at:          signed_at
     )
 end
 missions = Mission.all
