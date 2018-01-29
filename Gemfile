@@ -36,7 +36,7 @@ gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-asset
 gem 'sweet-alert2-rails'
 gem "pundit"
 # gem "time_frame"
-# gem "rename"
+# gem "draper"
 # gem "seedbank"
 # gem "paper_trail"
 # gem 'inherited_resources' not OK with rails 5 AFAIK 15/12/2017

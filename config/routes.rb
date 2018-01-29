@@ -101,11 +101,13 @@ Rails.application.routes.draw do
   get    '/comactions/:id/add_ext',   to: 'comactions#add_ext'
   get    '/comactions/add_ext',   to: 'comactions#add_ext'
 
+  get    '/dahsboard/:id/general',  to: 'dashboard#general'
+
   get    '/companies/sort',   to: 'companies#sort_col'
 
   resources :account_activations,               only: [:edit]
   resources :jobs,                              only: [:new, :create, :edit, :update, :index, :destroy]
-  resources :users, :people, :missions, :comactions
+  resources :users, :people, :missions, :comactions, :dashboards
   resources :companies do
     member do
       get 'list_people'

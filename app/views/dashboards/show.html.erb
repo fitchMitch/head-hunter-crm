@@ -1,0 +1,72 @@
+<% provide(:title,t('dashboard.title')) %>
+<% provide(:button_text, t('dashboard.add_button')) %>
+<% if logged_in? %>
+  <h1 class="center">
+    <%= t('dashboard.title') %>
+  </h1>
+  <h2>
+    <%= t('dashboard.last_months') %>
+  </h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-3">
+          <%= t('dashboard.period') %>
+        </div>
+        <div class="col-md-3">
+          <%= t('dashboard.activity_rate') %>
+        </div>
+        <div class="col-md-3">
+          <%= t('dashboard.cashflow') %>
+      </div>
+        <div class="col-md-3">
+          <%= t('dashboard.cash_rate') %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-3">
+          <%= t('dashboard.current_month') %>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-3">
+          <%= @current_cash_flow %>
+      </div>
+        <div class="col-md-3">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-3">
+          <%= t('dashboard.last_month') %>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-3">
+          <%= @last_month_cash_flow %>
+      </div>
+        <div class="col-md-3">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="col-md-6 col-md-offset-3">
+      render 'form'
+    </div>
+  </div>
+<% end %>
