@@ -2,6 +2,7 @@ class Dashboard
   include ActiveModel::AttributeAssignment
   attr_accessor :time_frame, :user_id
 
+
   def initialize(attributes)
     att = check_attributes(attributes)
     # if both max and duration are given, max is a priority
@@ -19,11 +20,11 @@ class Dashboard
     @user = retrieve_user
     missions = Mission.where(status: [:contract_signed, :mission_billed, :mission_payed ])
     missions = missions.mine(user_id) unless @user.admin?
-    missions.collect { |mission| mission if !mission.signed_at.nil? && time_frame.cover?( mission.signed_at) }
+    missions.reject { |miss| miss.signed_at.nil? || !time_frame.cover?( miss.signed_at) }
   end
 
   def cash_flow
-    missions = self.signed_missions.compact
+    missions = self.signed_missions
     return 0 if missions.empty?
     cashflow = 0
     missions.each do |mission|

@@ -1,9 +1,9 @@
 fr:
   dashboard:
     add_button: add_buttonfr
-    title: tableau de bord
+    title: Tableau de bord
     period: Période
-    activity_rate: taux d'activité
+    activity_rate: Taux d'activité
     cashflow: Chiffres d'affaires
     cash_rate: Rentabilité
     last_months: Les derniers mois

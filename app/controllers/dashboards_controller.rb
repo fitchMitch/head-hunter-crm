@@ -14,38 +14,51 @@
 class DashboardsController < ApplicationController
   before_action :logged_in_user
   before_action :retrieve_user
-  before_action :make_periods, only: [:show]
+  before_action :make_standard_periods, only: [:show]
 
   def show
-    @dashboard = Dashboard.new(
-      min: @periods[:first_of_month],
-      max: @periods[:now],
-      user_id: current_user.id
-    )
-    @current_cash_flow = @dashboard.cash_flow
-    @dashboard = Dashboard.new(
-      min: @periods[:first_of_last_month],
-      max: @periods[:first_of_month],
-      user_id: current_user.id
-    )
-    @last_month_cash_flow = @dashboard.cash_flow
+    @upper_dashboard = []
+    @standard_periods.each_with_index do |instant, index|
+
+      next if instant == @standard_periods.last
+
+      cur_dashboard = Dashboard.new(
+        min: @standard_periods[index + 1],
+        max: @standard_periods[index],
+        user_id: current_user.id
+      )
+
+      instant_stats = {
+        label_month: cur_dashboard.time_frame.min.strftime("%B"),
+        label_year: cur_dashboard.time_frame.min.strftime("%Y"),
+        cash_flow: cur_dashboard.cash_flow
+      }
+
+      @upper_dashboard << instant_stats
+    end
   end
 
-  def make_periods
+  def make_standard_periods(i = 3)
     now = Time.current
     first_of_month = now.beginning_of_month
-    @periods = {
-      now: now,
-      first_of_month: first_of_month,
-      first_of_last_month: first_of_month - 1.month,
-      first_of_last_2_month: first_of_month - 2.month,
-      first_of_last_3_month: first_of_month - 3.month
-    }
+    @standard_periods =[now, first_of_month ]
+    i.times do |n|
+      @standard_periods << first_of_month -(n+1).months
+    end
+    @standard_periods
+  end
+
+  def activity(period)
+    # Comaction::
   end
 
   private
 
   def retrieve_user
     @user = User.find(params[:id])
+  end
+
+  def hours_per_day
+    Comaction::WORK_HOURS.last.to_i - Comaction::WORK_HOURS.first.to_i
   end
 end

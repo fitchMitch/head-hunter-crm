@@ -107,7 +107,8 @@ Rails.application.routes.draw do
 
   resources :account_activations,               only: [:edit]
   resources :jobs,                              only: [:new, :create, :edit, :update, :index, :destroy]
-  resources :users, :people, :missions, :comactions, :dashboards
+  resources :dashboards,                         only: [:show]
+  resources :users, :people, :missions, :comactions
   resources :companies do
     member do
       get 'list_people'
