@@ -28,6 +28,6 @@ test:
 production:
   <<: *default
   database: hhcrm
-  password: <%= ENV['SGBD_PWD'] %>
+  password: <%= ENV['SGBD_PWD2'] %>
 # username: postgres
-  username: jjflo
+  username: pguser
