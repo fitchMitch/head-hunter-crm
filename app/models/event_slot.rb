@@ -3,8 +3,11 @@ class EventSlot
 
   def initialize(attributes)
     att = check_attributes(attributes)
-    # if both max and duration are given, max is a priority
-    self.time_frame = att[:duration] == 0 ? TimeFrame.new(min: att[:min], max: att[:max]) : TimeFrame.new(min: att[:min], duration: att[:duration])
+    self.time_frame = if att[:duration] == 0 
+      TimeFrame.new(min: att[:min], max: att[:max])
+    else
+      TimeFrame.new(min: att[:min], duration: att[:duration])
+    end
   end
 
   def check_attributes(attri)
@@ -12,9 +15,10 @@ class EventSlot
     max = attri.fetch(:max, 0)
     duration = attri.fetch(:duration, 0)
 
-    duration = 0 if max != 0
+    # if both max and duration are given, max is a priority
     raise 'minimum is badly initialized' if !min.is_a?(Time) || min == 0
     raise 'maximum is badly initialized' unless max.is_a?(Time) || max == 0
+    duration = 0 if max != 0
     raise 'missing parameters max or duration' if max == 0 && duration == 0
 
     { min: min, max: max, duration: duration }
