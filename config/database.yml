@@ -29,5 +29,5 @@ production:
   <<: *default
   database: hhcrm
   password: <%= ENV['SGBD_PWD'] %>
+# username: postgres
   username: jjflo
-  # username: postgres to be updated to your configuration
