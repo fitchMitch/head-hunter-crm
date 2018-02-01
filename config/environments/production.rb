@@ -25,6 +25,9 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
   # Mailer configuration
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'localhost:4000'
   ActionMailer::Base.smtp_settings = {
     address:               ENV['SMTP_SERVER'],
     port:                  '587',

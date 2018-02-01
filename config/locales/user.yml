@@ -11,6 +11,7 @@ fr:
     cannot_destroy: Cet utilisateur ne peut pas être supprimé
     destroyed: Utilisateur supprimé
     email_activation: Un message comportant un lien d'activation de compte a été envoyé.
+    forgotten_password: Mot de passe oublié
     list: Liste des utilisateurs
     login: Login
     password: Mot de passe
