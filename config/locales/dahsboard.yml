@@ -4,9 +4,14 @@ fr:
     title: Tableau de bord
     period: Période
     activity_rate: Taux d'activité
+    cashflow_since_january: Chiffres d'affaires depuis janvier
+    cashflow_over_on_year: Chiffres d'affaires sur un an glissant
     cashflow: Chiffres d'affaires
     cash_rate: Rentabilité
     last_months: Les derniers mois
     current_month: Le mois courant
     last_month: Le mois dernier
     lasts: derniers
+    missing_amount: Retards de paiement client
+    amount_still_to_work_on: Valorisation des en cours
+    since: depuis
