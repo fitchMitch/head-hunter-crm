@@ -87,8 +87,8 @@ class PeopleController < ApplicationController
 
   def related_missions(person)
     missions = []
-    # .where.not('status = ?', Mission.statuses[:mission_paid])
     mission_ids = Mission
+      .where.not(status: [ :mission_payed ])
       .where(person_id: person.id)
       .select('id')
       .pluck(:id)

@@ -4,10 +4,12 @@ class EventSlot
   def initialize(attributes)
     att = check_attributes(attributes)
     Rails.logger.warn ( "attributes is #{attributes}")
-    self.time_frame = if att[:duration] == 0
-      TimeFrame.new(min: att[:min], max: att[:max])
+    if att[:duration] == 0
+      self.time_frame = TimeFrame.new(min: att[:min], max: att[:max])
+      Rails.logger.warn ( "self.time_frame initialized")
     else
-      TimeFrame.new(min: att[:min], duration: att[:duration])
+      self.time_frame = TimeFrame.new(min: att[:min], duration: att[:duration])
+      Rails.logger.warn ( "self.time_frame initialized")
     end
   end
 

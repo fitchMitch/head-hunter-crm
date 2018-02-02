@@ -1,14 +1,12 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-4">
     <%= t(dash[:label_month]) %> <%= dash[:label_year] %>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
+    <%= number_to_percentage (100 * dash[:activity]), precision: 1  %>
+  </div>
+  <div class="col-md-4">
+    <%= number_to_currency dash[:cash_flow] , precision: 0  %>
+  </div>
 
-  </div>
-  <div class="col-md-3">
-    <%= dash[:cash_flow] %>
-  </div>
-  <div class="col-md-3">
-
-  </div>
 </div>

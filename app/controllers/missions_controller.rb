@@ -60,9 +60,7 @@ class MissionsController < ApplicationController
   end
 
   def update
-    @mission.is_done = [:mission_billed, :mission_payed].include?(mission_params[:status])
-    @mission.signed  = [:contract_signed, :mission_billed, :mission_payed].include?(mission_params[:status])
-    @mission.signed_at = @mission.signed_at || DateTime.now if @mission.signed
+    @mission = update_status(@mission, mission_params)
 
     if @mission.update_attributes(mission_params)
       flash[:success] = I18n.t('mission.updated')
@@ -71,6 +69,22 @@ class MissionsController < ApplicationController
       flash[:danger] = I18n.t('mission.unupdated')
       render 'edit'
     end
+  end
+
+  def update_status(mission, mission_params)
+    done_status =  [
+      :mission_billed,
+      :mission_payed
+    ]
+    signed_status = [
+      :contract_signed,
+      :mission_billed,
+      :mission_payed
+    ]
+    mission.is_done = done_status.include?(mission_params[:status].to_sym)
+    mission.signed  = signed_status.include?(mission_params[:status].to_sym)
+    mission.signed_at = mission.signed_at || DateTime.now if mission.signed
+    mission
   end
 
   def destroy
@@ -113,7 +127,8 @@ class MissionsController < ApplicationController
         :person_id,
         :company_id,
         :whished_start_date,
-        :user_id)
+        :user_id
+      )
     end
 
     def find_mission

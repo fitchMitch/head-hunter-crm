@@ -18,6 +18,12 @@ class DashboardsController < ApplicationController
 
   def show
     @upper_dashboard = []
+
+    @other_data = {
+      other_pockets: @one_year.in_their_pocket,
+      work_to_finish: @one_year.work_to_produce,
+      cash_flow: @one_year.cash_flow
+    }
     @standard_periods.each_with_index do |instant, index|
 
       next if instant == @standard_periods.last
@@ -31,7 +37,8 @@ class DashboardsController < ApplicationController
       instant_stats = {
         label_month: cur_dashboard.time_frame.min.strftime("%B"),
         label_year: cur_dashboard.time_frame.min.strftime("%Y"),
-        cash_flow: cur_dashboard.cash_flow
+        cash_flow: cur_dashboard.cash_flow,
+        activity: cur_dashboard.activity
       }
 
       @upper_dashboard << instant_stats
@@ -41,15 +48,16 @@ class DashboardsController < ApplicationController
   def make_standard_periods(i = 3)
     now = Time.current
     first_of_month = now.beginning_of_month
-    @standard_periods =[now, first_of_month ]
+    @standard_periods = [now, first_of_month ]
     i.times do |n|
       @standard_periods << first_of_month -(n+1).months
     end
-    @standard_periods
-  end
-
-  def activity(period)
-    # Comaction::
+    # AND over a year
+    @one_year = Dashboard.new(
+      min: now - 1.year,
+      max: now,
+      user_id: current_user.id
+    )
   end
 
   private
@@ -58,7 +66,5 @@ class DashboardsController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def hours_per_day
-    Comaction::WORK_HOURS.last.to_i - Comaction::WORK_HOURS.first.to_i
-  end
+
 end
