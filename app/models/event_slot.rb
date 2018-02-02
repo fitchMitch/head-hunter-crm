@@ -3,7 +3,7 @@ class EventSlot
 
   def initialize(attributes)
     att = check_attributes(attributes)
-    self.time_frame = if att[:duration] == 0 
+    self.time_frame = if att[:duration] == 0
       TimeFrame.new(min: att[:min], max: att[:max])
     else
       TimeFrame.new(min: att[:min], duration: att[:duration])
@@ -20,7 +20,7 @@ class EventSlot
     raise 'maximum is badly initialized' unless max.is_a?(Time) || max == 0
     duration = 0 if max != 0
     raise 'missing parameters max or duration' if max == 0 && duration == 0
-
+    Rails.logger.warn ( "min is #{min} , max is #{max} and duration is #{duration}")
     { min: min, max: max, duration: duration }
   end
 

@@ -34,7 +34,8 @@ rails g migration AddUserRefToMissions user:references
 rails g migration AddColumnToMissions signed_at:datetime
 ---------------
 rails g integration_test missions
-rails g test_unit:scaffold article
+rails g test_unit:model article title:string body:text
+rails g scaffold_controller article title:string body:text
 ---------------
 rails generate paperclip user avatar
 ----------------------------------

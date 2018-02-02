@@ -14,13 +14,15 @@ updated_at =          Time.zone.now
 # -----------------
 # Users
 # -----------------
-User.create!(name:                   'Etienne WEIL',
+User.create!(
+    name:                   'Etienne WEIL',
     email:                 'weil.etienne@hotmail.fr',
     password:              '123456',
     password_confirmation: '123456',
     admin:                  true,
     activated: true,
-    activated_at: Time.zone.now)
+    activated_at: Time.zone.now
+  )
 
 3.times do |n|
   name  = Faker::Name.name

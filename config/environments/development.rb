@@ -25,10 +25,11 @@ Rails.application.configure do
     }
   else
     config.action_controller.perform_caching = false
-
     config.cache_store = :null_store
   end
-
+  #=======================
+  # Mailer configuration
+  #=======================
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -46,7 +47,9 @@ Rails.application.configure do
     user_name:       ENV['SMTP_EMAIL'],
     password:        ENV['SMTP_PASSWORD'],
   }
-
+  #=======================
+  # Logs
+  #=======================
   config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 3 * 1024 * 1024)
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

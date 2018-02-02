@@ -24,7 +24,9 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+  #=======================
   # Mailer configuration
+  #=======================
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   host = 'localhost:4000'
@@ -56,6 +58,10 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
+  #=======================
+  # Logs
+  #=======================
+
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
