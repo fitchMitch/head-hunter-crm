@@ -37,7 +37,10 @@ class Mission < ApplicationRecord
   include PgSearch
   pg_search_scope :search_name,
                   against: [ [:name, 'A'], [:criteria , 'B'] ],
-                  associated_against: { company: :company_name } ,
+                  associated_against: {
+                    company: :company_name,
+                    person: [:firstname, :lastname]
+                  },
                   using: {
                     # ignoring: :accents,
                     tsearch: { any_word: true, prefix: true },
