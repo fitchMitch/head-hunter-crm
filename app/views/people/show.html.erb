@@ -146,7 +146,7 @@
             <% end %>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="missions">
-            <% if @future_comactions.nil? || @future_comactions.empty?%>
+            <% if @related_missions.nil? || @related_missions.empty?%>
               <%=t('empty_list') %>
             <% else %>
               <%= render partial: "missions/mission_short", collection: @related_missions, as: :mission %>

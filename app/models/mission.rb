@@ -56,7 +56,6 @@ class Mission < ApplicationRecord
     where('status != ? AND status != ?', status[:mission_billed], status[:mission_payed])
   }
   scope :mine, ->(uid) { where('user_id = ?', uid) }
-  # scope :not_paid, -> { where('status != ?', :mission_payed) }
 
 
   validates :name, presence: true, length: { maximum: 50 }

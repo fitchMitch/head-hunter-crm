@@ -76,7 +76,11 @@
         <div class='row right-align'>
           <div class='col-sm-10'>
             <p>
-              <strong><%= @mission.person.full_name %></strong>
+              <%= link_to person_path(@mission.person) do %>
+                <strong>
+                  <%= @mission.person.full_name %>
+                </strong>
+              <% end %>
             </p>
           </div>
           <div class='col-sm-2'>

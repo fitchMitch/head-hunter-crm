@@ -29,7 +29,7 @@ class PeopleController < ApplicationController
     @passed_comactions = Comaction.unscoped.older_than(0).from_person(@person)
     @future_comactions = Comaction.unscoped.newer_than(0).from_person(@person)
     @current_job = Job.current_job(@person.id)
-    @related_missions = Mission.where(person_id: @person.id)
+    @related_missions = related_missions(@person)
 
     @doc = @person.get_cv
 
@@ -83,6 +83,23 @@ class PeopleController < ApplicationController
   def add_company
     set_next_url(person_path(params[:id]))
     redirect_to new_company_path
+  end
+
+  def related_missions(person)
+    missions = []
+    # .where.not('status = ?', Mission.statuses[:mission_paid])
+    mission_ids = Mission
+      .where(person_id: person.id)
+      .select('id')
+      .pluck(:id)
+    mission_ids += Comaction
+      .where(person_id: person.id)
+      .select('mission_id')
+      .pluck(:mission_id)
+    mission_ids.uniq.each do |mission_id|
+      missions << Mission.find_by_id(mission_id)
+    end
+    missions
   end
 
   def job_and_no_jobs(jobs)
