@@ -30,4 +30,4 @@ production:
   database: hhcrm
   password: <%= ENV['SGBD_PWD2'] %>
 # username: postgres
-  username: pguser
+  username: jjflo

@@ -7,7 +7,7 @@ end
 gem 'bundler', '>= 1.8.4'
 gem 'rails',   '~> 5.0.6'
 # gem 'sqlite3', '1.3.12'
-gem 'pg', '~> 0.20.0'
+gem 'pg'
 gem 'sass-rails',   '5.0.6'
 gem 'uglifier',     '3.0.0'
 gem 'coffee-rails', '4.2.1'
@@ -75,5 +75,4 @@ end
 
 group :production do
   gem "passenger", "5.1.12", require: "phusion_passenger/rack_handler"
-
 end

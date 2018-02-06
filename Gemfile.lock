@@ -326,7 +326,7 @@ DEPENDENCIES
   paperclip (~> 5.0.0)
   paperclip-i18n (= 4.3.0)
   passenger (= 5.1.12)
-  pg (~> 0.20.0)
+  pg
   pg_search
   puma (= 3.11.0)
   pundit
