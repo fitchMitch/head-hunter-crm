@@ -3,5 +3,5 @@
   "log_file": "awesome_passenger_production.log",
   "environment": "production",
   "daemonize": true,
-  "user": "postgres"
+  "user": "jjflo"
 }
