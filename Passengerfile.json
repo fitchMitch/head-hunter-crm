@@ -1,5 +1,5 @@
 {
-  "port": "4000",
+  "port": "80",
   "log_file": "awesome_passenger_production.log",
   "environment": "production",
   "daemonize": true,
