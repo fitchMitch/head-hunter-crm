@@ -8,7 +8,6 @@ git_source(:github) do |repo_name|
 end
 gem 'bundler', '>= 1.8.4'
 gem 'rails',   '~> 5.0.6'
-# gem 'sqlite3', '1.3.12'
 gem 'pg'
 gem 'sass-rails',   '5.0.6'
 gem 'uglifier',     '3.0.0'
@@ -37,6 +36,7 @@ gem 'pg_search'
 gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'http://insecure.rails-assets.org'
 gem 'sweet-alert2-rails'
 gem "pundit"
+gem 'puma',         '3.11.0'
 # gem "time_frame"
 # gem "draper"
 # gem "seedbank"
@@ -46,7 +46,7 @@ gem "pundit"
 # temp
 
 group :development, :test do
-  gem 'puma',         '3.11.0'
+
   gem "factory_bot_rails",     "~> 4.0"
   gem 'as-duration'
   gem 'byebug',  '9.0.0', platform: :mri
@@ -76,5 +76,5 @@ group :test do
 end
 
 group :production do
-  gem "passenger", "5.1.12", require: "phusion_passenger/rack_handler"
+  # gem "passenger", "5.1.12", require: "phusion_passenger/rack_handler"
 end
