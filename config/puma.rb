@@ -4,10 +4,11 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum, this matches the default thread size of Active Record.
 #
-workers Integer(ENV['WEB_CONCURRENCY'] || 2)
-threads threads_count, threads_count
+environment ENV.fetch("RAILS_ENV") { "development" }
 
-preload_app!
+workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+
+
 
 rackup      DefaultRackup
 port        ENV['PORT']     || 3000
@@ -32,7 +33,6 @@ on_worker_boot do
   end
 end
 
-environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -61,6 +61,6 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # on_worker_boot do
 #   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 # end
-
+preload_app!
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
