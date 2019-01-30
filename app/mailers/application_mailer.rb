@@ -1,5 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  # default from: "no-reply@#{I18n.t("brand")}.fr'
-  default from: 'no-reply@etienneweil.fr'
+  default from: ENV.fetch('SMTP_EMAIL', nil)
   layout 'mailer'
 end
