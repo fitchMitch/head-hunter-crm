@@ -15,11 +15,6 @@ $(document).on "turbolinks:load", ->
     arr = [date_elem[3], parseInt(date_elem[2]), date_elem[1], hour_helper(parseInt(date_elem[0]/2)), "00"]
     setDateTime(arr)
   # ---------------------------------------------------
-  # qs = (key) ->
-  #   key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&") # escape RegEx meta chars
-  #   match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"))
-  #   match && decodeURIComponent(match[1].replace(/\+/g, " "))
-  # ---------------------------------------------------
   el  = ("#comaction_start_time_#{i}i" for i in[1..6])
   ele  = ("#comaction_end_time_#{i}i" for i in[1..6])
   closures  = []
