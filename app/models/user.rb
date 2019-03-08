@@ -23,28 +23,30 @@ class User < ApplicationRecord
   has_many :comactions, dependent: :destroy
   # has_many :people, dependent: :destroy is not wished but they must be reaffected
   attr_accessor :remember_token,
-    :activation_token,
-    :reset_token
-  before_save    :downcase_email
+                :activation_token,
+                :reset_token
+  before_save :downcase_email
 
 
-  validates :name,  presence: true, length: { maximum: 50 }
+  validates :name,
+            presence: true,
+            length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+0-9\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,
-    presence: true,
-    length: { maximum: 255 },
-    format: { with: VALID_EMAIL_REGEX },
-    uniqueness: { case_sensitive: false }
+            presence: true,
+            length: { maximum: 255 },
+            format: { with: VALID_EMAIL_REGEX },
+            uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password,
-    presence: true,
-    length: { minimum: 6 },
-    allow_nil: true
+            presence: true,
+            length: { minimum: 6 },
+            allow_nil: true
   validates :password_confirmation,
-    presence: true,
-    allow_nil: true
+            presence: true,
+            allow_nil: true
 
-  scope :other_admins, ->(me) { where('admin = ? and id != ?', true , me.id ) }
+  scope :other_admins, ->(me) { where('admin = ? and id != ?', true, me.id) }
 
   # Returns the hash digest of the given string.
   class << self
@@ -69,8 +71,11 @@ class User < ApplicationRecord
   end
 
   def trigram
-    trigram = name.split(' ').count > 1 ?  name.split(' ')[0][0] +  name.split(' ')[1][0..1] : name[0..2]
-    trigram.upcase
+    if name.split(' ').count > 1
+      name.split(' ')[0][0] + name.split(' ')[1][0..1]
+    else
+      name[0..2]
+    end.upcase
   end
   # ------------------------
   # --    PRIVATE        ---

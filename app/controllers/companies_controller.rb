@@ -21,7 +21,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(company_params) # Not the final implementation!
+    @company = Company.new(company_params)
     if @company.save
       flash[:info] = 'Société sauvegardée.'
       goto_next_url companies_path
@@ -44,11 +44,16 @@ class CompaniesController < ApplicationController
   # end
 
   def list_people
-    @nbr = Job.where('company_id = ?', params[:id]).distinct.pluck(:person_id).count
+    @nbr = Job.where('company_id = ?', params[:id])
+              .distinct
+              .pluck(:person_id)
+              .count
     params[:q] = {} if params[:q].nil?
     params[:q]['company_id_eq'] = params[:id]
     @q = Job.ransack(params[:q])
-    @jobs = @q.result.includes(:company, :person).page(pointed_page)
+    @jobs = @q.result
+              .includes(:company, :person)
+              .page(pointed_page)
 
     render 'companies/company_people'
   end
