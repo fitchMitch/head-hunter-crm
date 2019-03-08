@@ -1,7 +1,20 @@
 <%= simple_form_for(@company) do |f| %>
 <div class='row'>
     <div class="col-sm-12">
-        <%= f.input :company_name, label:t('company.company_name'), input_html: {class:" input-sm"}%>
+        <%= f.input :company_name,
+                    label:t('company.company_name'),
+                    input_html: {class:" input-sm"} %>
+    </div>
+</div>
+<div class='row'>
+    <div class="col-sm-12">
+        <%= f.association :company_representative,
+                          collection: Person.order(updated_at: :desc),
+                          label:t("company.representative_long"),
+                          label_method: :full_name,
+                          value_method: :id,
+                          # selected: @who,
+                          include_blank: true %>
     </div>
 </div>
 <div class='row'>

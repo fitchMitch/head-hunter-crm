@@ -6,6 +6,17 @@
         <%= link_to list_people_company_path(company) do %>
           <span class="label label-warning"><%= company.company_name %></span>
         <% end %>
+        <p>
+          <small>
+            <% if company.company_representative.present? %>
+              <%= t('company.representative_short') %> :
+              <%= link_to person_path(company.company_representative) do %>
+                <%= company.company_representative.full_name %>
+              <% end %>
+            <% end %>
+          </small>
+        </p>
+
       </div>
       <div class='col-xs-2'>
         <% if logged_in? %>

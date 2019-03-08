@@ -27,6 +27,9 @@ class Person < ApplicationRecord
   # accepts_nested_attributes_for :jobs, allow_destroy: true
   has_many :missions, dependent: :destroy
   has_many :comactions, dependent: :destroy
+  has_many :company_representatives,
+           class_name: 'Company',
+           foreign_key: 'company_representative_id'
   belongs_to :user
 
   before_save   :downcase_email

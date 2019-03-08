@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129151902) do
+ActiveRecord::Schema.define(version: 20190307221937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,9 +36,11 @@ ActiveRecord::Schema.define(version: 20180129151902) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "company_name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "company_representative_id"
     t.index ["company_name"], name: "index_companies_on_company_name", using: :btree
+    t.index ["company_representative_id"], name: "index_companies_on_company_representative_id", using: :btree
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -126,6 +128,7 @@ ActiveRecord::Schema.define(version: 20180129151902) do
   add_foreign_key "comactions", "missions", on_delete: :cascade
   add_foreign_key "comactions", "people", on_delete: :cascade
   add_foreign_key "comactions", "users"
+  add_foreign_key "companies", "people", column: "company_representative_id"
   add_foreign_key "jobs", "companies"
   add_foreign_key "jobs", "people", on_delete: :cascade
   add_foreign_key "missions", "companies"

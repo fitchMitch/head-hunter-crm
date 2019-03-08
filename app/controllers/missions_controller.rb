@@ -72,19 +72,26 @@ class MissionsController < ApplicationController
   end
 
   def update_status(mission, mission_params)
-    done_status =  [
-      :mission_billed,
-      :mission_payed
+    done_status = %i[
+      mission_billed
+      mission_payed
     ]
-    signed_status = [
-      :contract_signed,
-      :mission_billed,
-      :mission_payed
+    signed_status = %i[
+      contract_signed
+      mission_billed
+      mission_payed
     ]
-    mission.is_done = done_status.include?(mission_params[:status].to_sym)
-    mission.signed  = signed_status.include?(mission_params[:status].to_sym)
+    status = mission_params[:status].present? ? mission_params[:status].to_sym : nil
+    mission.is_done = done_status.include? status
+    mission.signed  = signed_status.include? status
     mission.signed_at = mission.signed_at || DateTime.now if mission.signed
     mission
+  end
+
+  def update_default_representative
+    contact = Company.find(params[:company_id].to_i).company_representative
+    contact ||= Person.last || Person.new
+    render json: { name: contact.full_name, contact_id: contact.id }
   end
 
   def destroy
