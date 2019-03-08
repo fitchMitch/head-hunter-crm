@@ -37,7 +37,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
 
     test 'should edit when wrong update' do
       log_in_as(@user)
-      patch company_path(@company), params: { company: { company_name:""} }
+      patch company_path(@company), params: { company: { company_name: ""} }
       refute flash[:danger].empty?
       assert_template 'companies/edit'
     end
@@ -50,22 +50,23 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
 
     test 'Should get properly sorted list' do
       log_in_as(@user)
-      company = Company.order('company_name DESC').first
+      Company.order('company_name DESC').first
       get companies_path, params: { sort: '-updated_at' }
       assert_response :success
     end
 
     test 'should create company' do
       log_in_as(@user)
-      get new_company_path
-      @some_params = {
-          'company' => {
-            'company_name' => 'ACME'
-          }
-      }
       assert_difference 'Company.count', 1 do
-        post companies_url,params: @some_params
+        post companies_path,
+             params: { company: FactoryBot.attributes_for(:company) }
       end
+    end
+
+    test 'should redirect to companies index when creating a company' do
+      log_in_as(@user)
+      post companies_path,
+           params: { company: FactoryBot.attributes_for(:company) }
       assert_redirected_to companies_url
     end
 

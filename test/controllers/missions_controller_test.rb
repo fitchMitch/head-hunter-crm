@@ -9,7 +9,7 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     @person    = @mission.person
     @some_params = {
         'mission': {
-          'name': 'Yet another',
+          'name': 'another splendid',
           'start_date':  Date.today.years_ago(10),
           'end_date':  Date.today.years_ago(8),
           'reward':  2222,
@@ -35,7 +35,7 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test  'should update' do
+  test 'should update' do
     log_in_as(@admin)
     patch mission_path(@mission), params: @some_params
     assert_redirected_to mission_path(@mission)
@@ -44,7 +44,7 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
   test 'should create mission' do
     log_in_as(@user)
     get new_mission_path
-    post missions_url , params: @some_params
+    post missions_url, params: @some_params
     assert_redirected_to person_url(@person)
   end
 
@@ -82,11 +82,9 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy mission' do
     log_in_as(@admin)
-    assert_difference 'Mission.count',-1 do
+    assert_difference 'Mission.count', -1 do
       delete mission_path(@mission)
     end
     assert_redirected_to missions_path
   end
-
-
 end

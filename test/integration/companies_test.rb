@@ -3,7 +3,7 @@ require 'test_helper'
 class CompaniesTest < ActionDispatch::IntegrationTest
   def setup
     @company = create(:company)
-    @user= create(:user)
+    @user = create(:user)
     log_in_as(@user)
   end
 
@@ -16,9 +16,10 @@ class CompaniesTest < ActionDispatch::IntegrationTest
   end
 
   test 'should land on show when saving' do
-    company2 = attributes_for(:company)
+    company3 = FactoryBot.attributes_for(:company, company_name: 'fra')
     get new_company_path
-    post companies_path, params: { company: company2 }
+    assert_template 'companies/new'
+    post companies_path, params: { company: company3 }
     follow_redirect!
     assert_response :success
     assert_match /Société sauvegardée/, flash[:info]

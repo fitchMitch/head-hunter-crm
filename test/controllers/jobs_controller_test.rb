@@ -3,21 +3,21 @@ require 'test_helper'
 class JobsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @admin = create(:admin)
-    @job= create(:job)
+    @job = create(:job)
     @company = @job.company
     @person = @job.person
-    @user= @job.person.user
+    @user = @job.person.user
     @some_params = {
-        'job' => {
-          'job_title' => 'Yet another',
-          'start_date' =>  Date.today.years_ago(10),
-          'end_date' =>  Date.today.years_ago(8),
-          'salary' =>  2222,
-          'hh_job' =>  true,
-          'person_id' =>  @person.id,
-          'company_id' =>  @company.id,
-          'user_id' =>  @user.id,
-          'no_end' =>  false
+      'job' => {
+        'job_title' => 'Yet another',
+        'start_date' =>  Date.today.years_ago(10),
+        'end_date' =>  Date.today.years_ago(8),
+        'salary' =>  2222,
+        'hh_job' =>  true,
+        'person_id' =>  @person.id,
+        'company_id' =>  @company.id,
+        'user_id' =>  @user.id,
+        'no_end' =>  false
       }
     }
     log_in_as(@user)

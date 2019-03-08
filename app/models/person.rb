@@ -89,6 +89,8 @@ class Person < ApplicationRecord
   end
 
   def full_name
+    return '' if firstname.nil? && lastname.nil?
+    
     firstname.nil? ?  lastname.upcase : firstname + ' ' + lastname.upcase
   end
 
