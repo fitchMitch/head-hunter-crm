@@ -10,7 +10,7 @@ HH_CRM stands for  Head Hunters Customer RelationShip; This tool helps a Head Hu
 ## Using
 * Rails 5.0.1
 * Ruby version 2.2.0
-* Database : posgresql 1.9.4
+* Database : posgresql 10
 * Database initialization : seeds are provided for each environment
 
 ## Test suite
